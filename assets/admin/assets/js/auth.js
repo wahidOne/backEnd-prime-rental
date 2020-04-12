@@ -2,6 +2,7 @@ $(".pesan-validasi-input").alert().delay(3000).slideUp("slow");
 
 const pesanValidasi = document.querySelector(".pesan-validasi");
 const pesanBukanEmailAdmin = document.querySelector(".pesan-blok");
+const pesanBerhasilRegistrasi = document.querySelector(".pesan_registrasi");
 
 if (pesanValidasi) {
 	const dataPesanValidasi = pesanValidasi.dataset.message;
@@ -20,6 +21,17 @@ if (pesanBukanEmailAdmin) {
 		title: "Maaf...",
 		text: dataPesanBukanEmailAdmin,
 		showCloseButton: true,
+	});
+}
+
+if (pesanBerhasilRegistrasi) {
+	const dataPesan = pesanBerhasilRegistrasi.dataset.message;
+	Swal.fire({
+		position: "center",
+		icon: "success",
+		title: "Registrasi Berhasil!",
+		text: dataPesan,
+		showConfirmButton: true,
 	});
 }
 
