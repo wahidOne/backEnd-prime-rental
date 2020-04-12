@@ -2,8 +2,8 @@
 <div class="content-body m-0 p-0 h-100">
 
     <div class="login-register-wrap ">
-        <div class="row justify-content-center align-center" style="height: 100vh;">
-            <div class="col-12 col-lg-6 py-5 my-auto">
+        <div class="row justify-content-center align-center" style="min-height: 100vh;">
+            <div class="col-12 col-lg-6 my-auto">
                 <div class="col-12">
                     <h2 class="font-weight-bold text-white-50 display-4">Sign In</h2>
                 </div>
@@ -16,7 +16,7 @@
                         </p>
                         <!-- Untuk Pesan validasi -->
                         <?php
-                        $this->load->view('admin/templates/auth/flash-message/flash')
+                        $this->load->view('admin/templates/auth/flash-message/flash');
                         ?>
                     </div>
 

@@ -52,10 +52,9 @@ class Auth extends CI_Controller
         // jika usernya ada
         if ($user) {
             // jika usernya aktif
-            if ($user['user_status'] == 1) {
+            if ($user['user_is_activation'] == 1) {
                 // cek password
-                if ($password === $user['user_password']) {
-                    // if (password_verify($password, $user['password'])) {
+                if (password_verify($password, $user['user_password'])) {
                     $data = [
                         'user_email' => $user['user_email'],
                         'user_level' => $user['user_level']
@@ -113,24 +112,25 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|min_length[3]|matches[password1]');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Login ';
+            $data['title'] = 'Administrator Registrator';
             $this->load->view('admin/templates/auth/auth-admin-header', $data);
             $this->load->view('admin/auth/registration', $data);
             $this->load->view('admin/templates/auth/auth-admin-footer', $data);
         } else {
             $data = [
-                'nama' => htmlspecialchars($this->input->post('name', true)),
-                'email' => htmlspecialchars($this->input->post('email', true)),
-                'image' => 'default.jpg',
-                'password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
-                'role_id' => 3,
-                'is_active' => 1,
-                'date_created' => time()
+                'user_name' => htmlspecialchars($this->input->post('name', true)),
+                'user_email' => htmlspecialchars($this->input->post('email', true)),
+                'user_photo' => 'default.jpg',
+                'user_password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'user_status' => 'online',
+                'user_level' => 3,
+                'user_is_activation' => 1,
+                'user_created' => time()
             ];
 
-            $this->db->insert('user', $data);
-            $this->session->set_flashdata('pesan', ' Akun anda telah dibuat. Silahkan masuk!');
-            redirect('auth');
+            $this->M_user->insertData($data);
+            $this->session->set_flashdata('pesan_registrasi', 'Akun anda telah dibuat. Silahkan masuk!');
+            redirect('administrator/login');
         }
     }
 }

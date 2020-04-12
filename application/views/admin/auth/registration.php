@@ -21,7 +21,7 @@
                         <form action="" method="POST">
                             <div class="row">
                                 <div class=" col-12 mb-20 form-group">
-                                    <input type="text" class=" form-control focus-info text-info " id="name" name="name" placeholder="Nama Lengkap" value="<?= set_value('name') ?>" autocomplete="off">
+                                    <input type="text" class=" form-control focus-info text-info " id="name" name="name" placeholder="Nama Anda" value="<?= set_value('name') ?>" autocomplete="off">
                                     <?= form_error('name', '<span class="text-danger m-1 ml-lg-30 pesan-validasi-input">', '</span>'); ?>
                                 </div>
                                 <div class="col-12 mb-20 form-group ">
@@ -51,9 +51,9 @@
                 </div>
             </div>
             <div class="order-1 mt-xs-50 login-bg d-md-flex col-lg-5 flex-column">
-                <div class=" row">
-                    <div class=" col-12 col-sm-10 col-md-6 col-lg-12 ml-sm-100">
-                        <img src="<?= base_url('src/admin/public/dist/svg/authentication.svg') ?>" alt="">
+                <div class=" row justify-content-md-end  ">
+                    <div class=" col-12 col-sm-10 col-md-8 col-lg-12 ml-sm-100 mt-md-35 ">
+                        <img class=" mt-sm-15 mt-35 " src="<?= base_url('src/admin/public/dist/svg/authentication.svg') ?>" alt="">
                     </div>
                     <div class="col-12 d-flex mt-20 pt-20 justify-content-center justify-content-md-start ">
                         <h2 class="font-weight-bold text-white-50  display-3 ">Registration</h2>
