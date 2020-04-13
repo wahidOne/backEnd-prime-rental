@@ -13,8 +13,8 @@
                         </p>
                         <!-- Untuk Pesan validasi -->
                         <?php
-                        $this->load->view('admin/templates/auth/flash-message/flash');
-                        $this->load->view('admin/templates/auth/flash-message/validation');
+                        $this->load->view('backend/templates/auth/flash-message/flash');
+                        $this->load->view('backend/templates/auth/flash-message/validation');
                         ?>
                     </div>
                     <div class="login-register-form">
@@ -53,7 +53,7 @@
             <div class="order-1 mt-xs-50 login-bg d-md-flex col-lg-5 flex-column">
                 <div class=" row justify-content-md-end  ">
                     <div class=" col-12 col-sm-10 col-md-8 col-lg-12 ml-sm-100 mt-md-35 ">
-                        <img class=" mt-sm-15 mt-35 " src="<?= base_url('src/admin/public/dist/svg/authentication.svg') ?>" alt="">
+                        <img class=" mt-sm-15 mt-35 " src="<?= base_url('assets/admin/public/dist/svg/authentication.svg') ?>" alt="">
                     </div>
                     <div class="col-12 d-flex mt-20 pt-20 justify-content-center justify-content-md-start ">
                         <h2 class="font-weight-bold text-white-50  display-3 ">Registration</h2>

@@ -284,7 +284,7 @@ function customizer() {
     $cusHtml += '<h5 class="mb-20">Primary Color</h5>';
     $cusHtml += '<button class="cus-radio color primary active" data-color="primary"><i class="icon"></i>primary</button>';
     $cusHtml += '<button class="cus-radio color indigo" data-color="indigo"><i class="icon"></i>indigo</button>';
-    $cusHtml += '<button class="cus-radio color purple" data-color="purple"><i class="icon"></i>purple</button>';
+    $cusHtml += '<button class="cus-radio color purple " data-color="purple"><i class="icon"></i>purple</button>';
     $cusHtml += '<button class="cus-radio color pink" data-color="pink"><i class="icon"></i>pink</button>';
     $cusHtml += '<button class="cus-radio color red" data-color="red"><i class="icon"></i>red</button>';
     $cusHtml += '<button class="cus-radio color brown" data-color="brown"><i class="icon"></i>brown</button>';
@@ -303,7 +303,8 @@ function customizer() {
             toggleDARK = customizerWrapper.find('.toggle-dark'),
             toggleRTL = customizerWrapper.find('.toggle-rtl'),
             customRadioNotColor = $('.cus-radio:not(.color)'),
-            customRadioColor = $('.cus-radio.color');
+            // customRadioColor = $('.cus-radio.color');
+            ;
 
         customizerToggle.on('click', function(e){
             e.preventDefault();
@@ -354,14 +355,14 @@ function customizer() {
             $body.addClass($target+'-'+$color);
         });
         /*Color*/
-        customRadioColor.on('click', function(e){
-            e.preventDefault();
-            var $this = $(this),
-                $color = $this.data('color');
-            customRadioColor.removeClass('active');
-            $this.addClass('active');
-            $('#cus-style').attr('href', 'assets/css/style-'+$color+'.css');
-        });
+        // customRadioColor.on('click', function(e){
+        //     e.preventDefault();
+        //     var $this = $(this),
+        //         $color = $this.data('color');
+        //     customRadioColor.removeClass('active');
+        //     $this.addClass('active');
+        //     $('#cus-style').attr('href', 'assets/css/style-'+$color+'.css');
+        // });
     });
     
 }

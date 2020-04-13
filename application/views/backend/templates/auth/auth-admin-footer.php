@@ -19,7 +19,7 @@
 <script src="<?= base_url('assets/admin/') ?>assets/js/plugins/toastr/toastr.min.js"></script>
 <script src="<?= base_url('assets/admin/') ?>assets/js/plugins/toastr/toastr.active.js"></script>
 
-<script src="<?= base_url('assets/admin/') ?>public/dist/js/sweetalert2.js"> </script>
+<script src="<?= base_url('assets/admin/') ?>assets/js/sweetalert2.js"> </script>
 
 <!--Main JS-->
 <script src="<?= base_url('assets/admin/') ?>assets/js/main.js"></script>

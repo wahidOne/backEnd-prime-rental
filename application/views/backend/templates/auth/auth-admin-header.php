@@ -1,9 +1,6 @@
 <!doctype html>
 <html class="no-js" lang="en">
 
-
-<!-- Mirrored from demo.hasthemes.com/adomx-preview/dark/login.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Apr 2020 10:27:02 GMT -->
-
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
@@ -11,8 +8,6 @@
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-
     <!-- CSS
 	============================================ -->
 
@@ -38,7 +33,7 @@
     <link id="cus-style" rel="stylesheet" href="<?= base_url('assets/admin/') ?>assets/css/style-primary.css">
 
     <!-- Custom style -->
-    <link rel="stylesheet" href="<?= base_url('assets/admin/') ?>public/dist/css/main.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/admin/') ?>assets/css/main.css">
 
     <style>
         .customizer-toggle {

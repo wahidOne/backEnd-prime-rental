@@ -35,9 +35,9 @@ class Auth extends CI_Controller
         );
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('admin/templates/auth/auth-admin-header', $data);
-            $this->load->view('admin/auth/login', $data);
-            $this->load->view('admin/templates/auth/auth-admin-footer', $data);
+            $this->load->view('backend/templates/auth/auth-admin-header', $data);
+            $this->load->view('backend/auth/login', $data);
+            $this->load->view('backend/templates/auth/auth-admin-footer', $data);
         } else {
             $this->_login();
         }
@@ -63,14 +63,13 @@ class Auth extends CI_Controller
                     $this->session->set_flashdata('pesan');
 
                     if ($user['user_level'] <= 1) {
-                        echo $user['user_name'];
-                        die();
-                        redirect('administrator');
+
+                        redirect('administrator/dashboard/');
                     } else {
                         $this->session->set_flashdata('pesan-blok', '
                             Email yang dimasukan bukan email administrator !
                         ');
-                        redirect('admin/auth/auth');
+                        redirect('administrator/login');
                     }
                 } else {
                     $this->session->set_flashdata('error', 'Passwordnya Yang Anda Masukan Salah!!');
@@ -113,9 +112,9 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Administrator Registrator';
-            $this->load->view('admin/templates/auth/auth-admin-header', $data);
-            $this->load->view('admin/auth/registration', $data);
-            $this->load->view('admin/templates/auth/auth-admin-footer', $data);
+            $this->load->view('backend/templates/auth/auth-admin-header', $data);
+            $this->load->view('backend/auth/registration', $data);
+            $this->load->view('backend/templates/auth/auth-admin-footer', $data);
         } else {
             $data = [
                 'user_name' => htmlspecialchars($this->input->post('name', true)),
@@ -132,5 +131,15 @@ class Auth extends CI_Controller
             $this->session->set_flashdata('pesan_registrasi', 'Akun anda telah dibuat. Silahkan masuk!');
             redirect('administrator/login');
         }
+    }
+
+    public function logout()
+    {
+        $this->session->unset_userdata('email');
+        $this->session->unset_userdata('role_id');
+
+        $this->session->set_flashdata('logout', '
+            Log-out Berhasil! Sampai Jumpa Lagi');
+        redirect('administrator/login');
     }
 }
