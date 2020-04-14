@@ -57,5 +57,6 @@ $route['administrator/logout'] = 'admin/auth/auth/logout';
 
 // adminitrator page
 $route['administrator/dashboard'] = 'admin/dashboard/Dashboard/index';
+$route['administrator/system-management/menu'] = 'admin/dashboard/System/menu';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

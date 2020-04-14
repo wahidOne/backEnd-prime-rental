@@ -18,15 +18,23 @@
                     $subMenu = $this->db->query($querySubMenu)->result_array();
                 ?>
                     <?php if ($this->db->query($querySubMenu)->num_rows() > 0) :  ?>
-                        <li class="has-sub-menu">
-                            <a href="#">
+                        <li class="<?php if ($this->uri->segment(2) === $m['menu_uri_segment']) {
+                                        echo 'active';
+                                    } ?> ">
+                            <a class="" href="#">
                                 <i class="<?= $m['menu_icon']  ?>"></i>
-                                <span> <?= $m['menu_name']; ?></span></a>
-                            <ul class="side-header-sub-menu">
-                                <?php foreach ($subMenu as $sm) : ?>
-                                    <li><a href="<?= base_url($m['menu_url'] . '/' . $sm['submenu_method']) ?>"><span><?= $sm['submenu_name']; ?></span></a></li>
-                                <?php endforeach; ?>
-                            </ul>
+                                <span> <?= $m['menu_name']; ?></span>
+                            </a>
+                            <?php if ($this->uri->segment(2) === $m['menu_uri_segment']) : ?>
+                                <ul class="side-header-sub-menu">
+                                <?php else : ?>
+                                    <ul class="side-header-sub-menu">
+                                    <?php endif; ?>
+                                    <!-- submenu -->
+                                    <?php foreach ($subMenu as $sm) : ?>
+                                        <li class=" active"><a href="<?= base_url($m['menu_url'] . '/' . $sm['submenu_method']) ?>"><span><?= $sm['submenu_name']; ?></span></a></li>
+                                    <?php endforeach; ?>
+                                    </ul>
                         </li>
                     <?php else : ?>
                         <li class="<?php if ($this->uri->segment(2) === $m['menu_uri_segment']) {

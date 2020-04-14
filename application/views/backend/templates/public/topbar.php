@@ -50,14 +50,14 @@
 
                             <!--Language-->
                             <li class="adomx-dropdown position-relative col-auto">
-                                <a class="toggle" href="#"><img class="lang-flag" src="assets/images/flags/flag-1.jpg" alt=""><i class="zmdi zmdi-caret-down drop-arrow"></i></a>
+                                <a class="toggle" href="#"><img class="lang-flag" src="<?= base_url('assets/admin/') ?>assets/images/flags/flag-1.jpg" alt=""><i class="zmdi zmdi-caret-down drop-arrow"></i></a>
 
                                 <!-- Dropdown -->
                                 <ul class="adomx-dropdown-menu dropdown-menu-language">
-                                    <li><a href="#"><img src="assets/images/flags/flag-1.jpg" alt=""> English</a></li>
-                                    <li><a href="#"><img src="assets/images/flags/flag-2.jpg" alt=""> Japanese</a></li>
-                                    <li><a href="#"><img src="assets/images/flags/flag-3.jpg" alt=""> Spanish </a></li>
-                                    <li><a href="#"><img src="assets/images/flags/flag-4.jpg" alt=""> Germany</a></li>
+                                    <li><a href="#"><img src="<?= base_url('assets/admin/') ?>assets/images/flags/flag-1.jpg" alt=""> English</a></li>
+                                    <li><a href="#"><img src="<?= base_url('assets/admin/') ?>assets/images/flags/flag-2.jpg" alt=""> Japanese</a></li>
+                                    <li><a href="#"><img src="<?= base_url('assets/admin/') ?>assets/images/flags/flag-3.jpg" alt=""> Spanish </a></li>
+                                    <li><a href="#"><img src="<?= base_url('assets/admin/') ?>assets/images/flags/flag-4.jpg" alt=""> Germany</a></li>
                                 </ul>
 
                             </li>
@@ -85,7 +85,7 @@
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <div class="image"><img src="assets/images/avatar/avatar-1.jpg" alt=""></div>
+                                                    <div class="image"><img src="<?= base_url('assets/admin/') ?>assets/images/avatar/avatar-1.jpg" alt=""></div>
                                                     <div class="content">
                                                         <h6>Sub: Mail Support</h6>
                                                         <p>There are many variations of passages of Lorem Ipsum available. </p>
@@ -95,7 +95,7 @@
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <div class="image"><img src="assets/images/avatar/avatar-2.jpg" alt=""></div>
+                                                    <div class="image"><img src="<?= base_url('assets/admin/') ?>assets/images/avatar/avatar-2.jpg" alt=""></div>
                                                     <div class="content">
                                                         <h6>Sub: Product inquiry</h6>
                                                         <p>There are many variations of passages of Lorem Ipsum available. </p>
@@ -105,7 +105,7 @@
                                             </li>
                                             <li>
                                                 <a href="#">
-                                                    <div class="image"><img src="assets/images/avatar/avatar-1.jpg" alt=""></div>
+                                                    <div class="image"><img src="<?= base_url('assets/admin/') ?>assets/images/avatar/avatar-1.jpg" alt=""></div>
                                                     <div class="content">
                                                         <h6>Sub: Mail Support</h6>
                                                         <p>There are many variations of passages of Lorem Ipsum available. </p>
@@ -208,7 +208,7 @@
                                 <a class="toggle" href="#">
                                     <span class="user">
                                         <span class="avatar">
-                                            <img src="assets/images/avatar/avatar-1.jpg" alt="">
+                                            <img src="<?= base_url('assets/admin/') ?>assets/images/avatar/avatar-1.jpg" alt="">
                                             <span class="status"></span>
                                         </span>
                                         <span class="name">Madison Howard</span>

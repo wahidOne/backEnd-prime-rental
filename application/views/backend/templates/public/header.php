@@ -45,6 +45,12 @@
     <!-- Custom style -->
     <link rel="stylesheet" href="<?= base_url('assets/admin/') ?>assets/css/main.css">
 
+    <style>
+        .show-sub {
+            display: block !important;
+        }
+    </style>
+
 
 </head>
 

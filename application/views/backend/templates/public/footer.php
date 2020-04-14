@@ -25,5 +25,6 @@
 <script src="<?= base_url('assets/admin/'); ?>assets/js/plugins/tippy4.min.js.js"></script>
 <!--Main JS-->
 <script src="<?= base_url('assets/admin/'); ?>assets/js/main.js"></script>
+<script src="<?= base_url('assets/admin/'); ?>assets/js/costum.js"></script>
 
 <!-- Plugins & Activation JS For Only This Page -->
