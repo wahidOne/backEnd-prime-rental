@@ -1,18 +1,19 @@
 {
-  "name": "rentalmobil",
-  "version": "1.0.0",
-  "description": "What is CodeIgniter ###################",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@sweetalert2/theme-dark": "^3.1.4",
-    "@sweetalert2/themes": "^3.1.4",
-    "sweetalert2": "^9.10.9"
-  },
-  "devDependencies": {}
+	"name": "rentalmobil",
+	"version": "1.0.0",
+	"description": "rental mobil v4.2",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"@sweetalert2/theme-dark": "^3.1.4",
+		"@sweetalert2/themes": "^3.1.4",
+		"sweetalert2": "^9.10.9",
+		"toastr": "^2.1.4"
+	},
+	"devDependencies": {}
 }

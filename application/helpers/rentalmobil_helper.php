@@ -11,7 +11,7 @@ function is_logged_in()
             'error',
             'Anda belum login!!'
         );
-        redirect('administrator/signIn');
+        redirect('administrator/sign-in');
     } else {
         $user_level = $ci->session->userdata('user_level');
         $menu = $ci->uri->segment(2);

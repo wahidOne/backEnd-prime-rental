@@ -36,7 +36,7 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $this->load->view('backend/templates/auth/header', $data);
-            $this->load->view('backend/auth/login-2', $data);
+            $this->load->view('backend/auth/sign-in', $data);
             $this->load->view('backend/templates/auth/footer', $data);
         } else {
             $this->_signIn();
@@ -69,22 +69,22 @@ class Auth extends CI_Controller
                         $this->session->set_flashdata('pesan-blok', '
                             Email yang dimasukan bukan email administrator !
                         ');
-                        redirect('administrator/signIn');
+                        redirect('administrator/sign-in');
                     }
                 } else {
                     $this->session->set_flashdata('error', 'Passwordnya Yang Anda Masukan Salah!!');
-                    redirect('administrator/signIn');
+                    redirect('administrator/sign-in');
                 }
             } else {
                 $this->session->set_flashdata('error', '
                 Email yang dimasukan belum belum aktifasi!');
-                redirect('administrator/signIn');
+                redirect('administrator/sign-in');
             }
         } else {
             $this->session->set_flashdata('error', '
                 Email Belum Terdaftar!!
             ');
-            redirect('administrator/signIn');
+            redirect('administrator/sign-in');
         }
     }
 
@@ -112,9 +112,9 @@ class Auth extends CI_Controller
 
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Administrator Registrator';
-            $this->load->view('backend/templates/auth/auth-admin-header', $data);
-            $this->load->view('backend/auth/registration', $data);
-            $this->load->view('backend/templates/auth/auth-admin-footer', $data);
+            $this->load->view('backend/templates/auth/header', $data);
+            $this->load->view('backend/auth/sign-up', $data);
+            $this->load->view('backend/templates/auth/footer', $data);
         } else {
             $data = [
                 'user_name' => htmlspecialchars($this->input->post('name', true)),
@@ -129,17 +129,17 @@ class Auth extends CI_Controller
 
             $this->M_user->insertData($data);
             $this->session->set_flashdata('pesan_registrasi', 'Akun anda telah dibuat. Silahkan masuk!');
-            redirect('administrator/signIn');
+            redirect('administrator/sign-in');
         }
     }
 
-    public function logout()
+    public function signOut()
     {
         $this->session->unset_userdata('user_email');
         $this->session->unset_userdata('user_level');
 
         $this->session->set_flashdata('logout', '
             Log-out Berhasil! Sampai Jumpa Lagi');
-        redirect('administrator/signIn');
+        redirect('administrator/sign-in');
     }
 }

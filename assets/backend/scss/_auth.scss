@@ -9,4 +9,15 @@
 		object-fit: cover;
 		object-position: center;
 	}
+	.auth-register {
+		width: 100%;
+		height: 100%;
+		background-image: url(../svg/authentication.svg);
+		background-repeat: no-repeat;
+		background-position-y: 30%;
+		background-position-x: center;
+		background-size: 90%;
+		object-fit: cover;
+		object-position: center;
+	}
 }

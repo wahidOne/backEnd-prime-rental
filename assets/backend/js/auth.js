@@ -71,6 +71,6 @@ if (checkEmailIsAlreadyExits) {
 		toastr.options = {
 			positionClass: "toast-top-full-width",
 		};
-		toastr["error"](pesanErrorForm + ", Silahakan gunakan email yang lain!");
+		toastr.error(pesanErrorForm + ", Silahakan gunakan email yang lain!");
 	}
 }

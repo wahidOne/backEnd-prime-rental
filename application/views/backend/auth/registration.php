@@ -35,8 +35,6 @@
                                 <div class="col-12 form-group ">
                                     <input type="password" class=" form-control focus-info  text-info" id="password2" name="password2" placeholder="Masukkan ulang kata sandi ">
                                 </div>
-
-
                                 <div class="col-12 mt-15 text-right ">
                                     <div class="row justify-content-between">
                                         <div class="col-auto mb-15">Sudah mempunyai akun?
@@ -50,6 +48,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="order-1 mt-xs-50 login-bg d-md-flex col-lg-5 flex-column">
                 <div class=" row justify-content-md-end  ">
                     <div class=" col-12 col-sm-10 col-md-8 col-lg-12 ml-sm-100 mt-md-35 ">
