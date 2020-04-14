@@ -51,8 +51,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 // auth admnistrator
-$route['administrator/login'] = 'admin/auth/auth/index';
-$route['administrator/registration'] = 'admin/auth/auth/registration';
+$route['administrator/signIn'] = 'admin/auth/auth/index';
+$route['administrator/signUp'] = 'admin/auth/auth/signUp';
 $route['administrator/logout'] = 'admin/auth/auth/logout';
 
 // adminitrator page

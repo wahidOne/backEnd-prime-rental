@@ -21,7 +21,7 @@ class Auth extends CI_Controller
             'Alamat Email',
             'required|trim|valid_email',
             [
-                'required' => '<span class="text-danger m-1 ml-lg-30 pesan-validasi-input" >Email harus diisi!! </span>',
+                'required' => '<span class="text-danger mt-3 ml-2 pesan-validasi-input mb-n2 " >Email harus diisi!! </span>',
                 'valid_email' => 'Email Tidak Benar!! '
             ]
         );
@@ -30,20 +30,20 @@ class Auth extends CI_Controller
             'Password',
             'required|trim',
             [
-                'required' => '<span class="text-danger m-1 pesan-validasi-input" >Masukan passowrd anda!! </span>'
+                'required' => '<span class="text-danger mt-3 mb-0 ml-2 pesan-validasi-input" >Masukan password anda!! </span>'
             ]
         );
 
         if ($this->form_validation->run() == false) {
-            $this->load->view('backend/templates/auth/auth-admin-header', $data);
-            $this->load->view('backend/auth/login', $data);
-            $this->load->view('backend/templates/auth/auth-admin-footer', $data);
+            $this->load->view('backend/templates/auth/header', $data);
+            $this->load->view('backend/auth/login-2', $data);
+            $this->load->view('backend/templates/auth/footer', $data);
         } else {
-            $this->_login();
+            $this->_signIn();
         }
     }
 
-    private function _login()
+    private function _signIn()
     {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
@@ -69,28 +69,28 @@ class Auth extends CI_Controller
                         $this->session->set_flashdata('pesan-blok', '
                             Email yang dimasukan bukan email administrator !
                         ');
-                        redirect('administrator/login');
+                        redirect('administrator/signIn');
                     }
                 } else {
                     $this->session->set_flashdata('error', 'Passwordnya Yang Anda Masukan Salah!!');
-                    redirect('administrator/login');
+                    redirect('administrator/signIn');
                 }
             } else {
                 $this->session->set_flashdata('error', '
                 Email yang dimasukan belum belum aktifasi!');
-                redirect('administrator/login');
+                redirect('administrator/signIn');
             }
         } else {
             $this->session->set_flashdata('error', '
                 Email Belum Terdaftar!!
             ');
-            redirect('administrator/login');
+            redirect('administrator/signIn');
         }
     }
 
 
 
-    public function registration()
+    public function signUp()
     {
         if ($this->session->userdata('email')) {
             redirect('user');
@@ -129,17 +129,17 @@ class Auth extends CI_Controller
 
             $this->M_user->insertData($data);
             $this->session->set_flashdata('pesan_registrasi', 'Akun anda telah dibuat. Silahkan masuk!');
-            redirect('administrator/login');
+            redirect('administrator/signIn');
         }
     }
 
     public function logout()
     {
-        $this->session->unset_userdata('email');
-        $this->session->unset_userdata('role_id');
+        $this->session->unset_userdata('user_email');
+        $this->session->unset_userdata('user_level');
 
         $this->session->set_flashdata('logout', '
             Log-out Berhasil! Sampai Jumpa Lagi');
-        redirect('administrator/login');
+        redirect('administrator/signIn');
     }
 }
