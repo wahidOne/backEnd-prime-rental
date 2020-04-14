@@ -51,12 +51,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 $route['default_controller'] = 'welcome';
 // auth admnistrator
-$route['administrator/signIn'] = 'admin/auth/auth/index';
-$route['administrator/signUp'] = 'admin/auth/auth/signUp';
-$route['administrator/logout'] = 'admin/auth/auth/logout';
+$route['administrator/sign-in'] = 'admin/auth/auth/index';
+$route['administrator/sign-up'] = 'admin/auth/auth/signUp';
+$route['administrator/sign-out'] = 'admin/auth/auth/signOut';
 
 // adminitrator page
 $route['administrator/dashboard'] = 'admin/dashboard/Dashboard/index';
 $route['administrator/system-management/menu'] = 'admin/dashboard/System/menu';
-$route['404_override'] = '';
+$route['404_override'] = 'Page404/index';
 $route['translate_uri_dashes'] = FALSE;
