@@ -1,8 +1,7 @@
 <div class="page-wrapper full-page">
     <div class="page-content d-flex align-items-center justify-content-center">
-
         <div class="row w-100 mx-0 auth-page">
-            <div class=" col-sm-8 col-md-8 col-xl-8 mx-auto h-100 py-md-5  ">
+            <div class=" col-sm-8 col-md-8 col-xl-8 mx-auto">
                 <div class="card">
                     <div class="row">
                         <div class="d-none d-lg-flex col-md-6 col-lg-7 pr-md-0">

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title> login Administrator | Primerental.id </title>
+    <title> <?= $title; ?> | Administrator Primerental.id </title>
     <!-- core:css -->
     <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>vendors/core/core.css">
     <!-- endinject -->

@@ -16,15 +16,19 @@ class Dashboard extends CI_Controller
 
     public function index()
     {
-        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+
 
         $data = [
             'title' => 'Dashboard',
-            'user' => $user
+            'user' => $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array()
         ];
 
+
         $backendTemplates = $this->publicData['backendTemplates'];
+
         $viewsDashboardPath = 'backend/dashboard/';
+
+        $data['path']  = $viewsDashboardPath;
 
         $this->load->view($backendTemplates . 'header', $data);
         $this->load->view($backendTemplates . 'topbar', $data);

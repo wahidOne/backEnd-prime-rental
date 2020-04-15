@@ -14,7 +14,7 @@ class Auth extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Login ';
+        $data['title'] = 'Sign Up ';
 
         $this->form_validation->set_rules(
             'email',
@@ -63,7 +63,7 @@ class Auth extends CI_Controller
                     $this->session->set_flashdata('pesan');
 
                     if ($user['user_level'] <= 1) {
-
+                        $this->session->set_flashdata('toastrBerhasilLogin', "Selamat datang " . $user['user_name']);
                         redirect('administrator/dashboard/');
                     } else {
                         $this->session->set_flashdata('pesan-blok', '
@@ -111,7 +111,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|min_length[3]|matches[password1]');
 
         if ($this->form_validation->run() == false) {
-            $data['title'] = 'Administrator Registrator';
+            $data['title'] = 'Sign Up';
             $this->load->view('backend/templates/auth/header', $data);
             $this->load->view('backend/auth/sign-up', $data);
             $this->load->view('backend/templates/auth/footer', $data);
@@ -138,8 +138,7 @@ class Auth extends CI_Controller
         $this->session->unset_userdata('user_email');
         $this->session->unset_userdata('user_level');
 
-        $this->session->set_flashdata('logout', '
-            Log-out Berhasil! Sampai Jumpa Lagi');
+        $this->session->set_flashdata('pesan-signOut', ' Sampai Jumpa Lagi');
         redirect('administrator/sign-in');
     }
 }

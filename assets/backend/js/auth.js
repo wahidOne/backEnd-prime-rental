@@ -2,7 +2,9 @@ $(".pesan-validasi-input").alert().delay(3000).slideUp("slow");
 
 const pesanValidasi = document.querySelector(".pesan-validasi");
 const pesanBukanEmailAdmin = document.querySelector(".pesan-blok");
+const pesanBerhasilogin = document.querySelector(".toastrBerhasilLogin");
 const pesanBerhasilRegistrasi = document.querySelector(".pesan_registrasi");
+const pesanBerhasilLogout = document.querySelector(".pesan-signOut");
 
 if (pesanValidasi) {
 	const dataPesanValidasi = pesanValidasi.dataset.message;
@@ -12,6 +14,29 @@ if (pesanValidasi) {
 		text: dataPesanValidasi,
 		timer: 3500,
 	});
+}
+
+toastr.options = {
+	closeButton: true,
+	debug: false,
+	newestOnTop: false,
+	progressBar: true,
+	positionClass: "toast-top-right",
+	preventDuplicates: false,
+	onclick: null,
+	showDuration: "300",
+	hideDuration: "1000",
+	timeOut: "6000",
+	extendedTimeOut: "1000",
+	showEasing: "swing",
+	hideEasing: "linear",
+	showMethod: "fadeIn",
+	hideMethod: "fadeOut",
+};
+
+if (pesanBerhasilogin) {
+	const dataPesan = pesanBerhasilogin;
+	toastr.success(dataPesan, "Login Berhasil!  ");
 }
 
 if (pesanBukanEmailAdmin) {
@@ -35,25 +60,6 @@ if (pesanBerhasilRegistrasi) {
 	});
 }
 
-toastr.options = {
-	closeButton: true,
-	debug: false,
-	newestOnTop: false,
-	progressBar: true,
-	rtl: false,
-	positionClass: "toast-bottom-right",
-	preventDuplicates: false,
-	onclick: null,
-	showDuration: 100,
-	hideDuration: 200,
-	timeOut: 6000,
-	extendedTimeOut: 100,
-	showEasing: "swing",
-	hideEasing: "linear",
-	showMethod: "fadeIn",
-	hideMethod: "hide",
-};
-
 // function panggilToatsr() {
 // 	pesanForm.map((element, index) => {
 // 		const pesan = element.dataset.validation;
@@ -73,4 +79,26 @@ if (checkEmailIsAlreadyExits) {
 		};
 		toastr.error(pesanErrorForm + ", Silahakan gunakan email yang lain!");
 	}
+}
+
+if (pesanBerhasilLogout) {
+	const dataPesan = pesanBerhasilLogout.dataset.message;
+	toastr.options = {
+		closeButton: true,
+		debug: false,
+		newestOnTop: false,
+		progressBar: true,
+		positionClass: "toast-top-right",
+		preventDuplicates: false,
+		onclick: null,
+		showDuration: "300",
+		hideDuration: "1000",
+		timeOut: "5000",
+		extendedTimeOut: "1000",
+		showEasing: "swing",
+		hideEasing: "linear",
+		showMethod: "fadeIn",
+		hideMethod: "fadeOut",
+	};
+	toastr.success(dataPesan, "logout Berhasil!  ");
 }

@@ -10,6 +10,6 @@
 
 <!-- core:js -->
 <script src="<?= base_url('assets/');  ?>backend/vendors/core/core.js"></script>
+<script src="<?= base_url('assets/backend/') ?>js/toastr.min.js"></script>
 
 <!-- endinject -->
-

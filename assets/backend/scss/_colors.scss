@@ -3,6 +3,7 @@ $dark_40: #2b2c3b;
 $dark_60: #1f1f2b;
 $dark_80: #181a27;
 $dark_100: #0f1314;
+$dark_costum: #0c1427;
 
 .bg-dark-60 {
 	background-color: $dark_60;
@@ -14,4 +15,8 @@ $dark_100: #0f1314;
 
 .bg-dark-100 {
 	background-color: $dark_100;
+}
+
+.bg-dark-costum {
+	background-color: $dark_costum;
 }

@@ -8,7 +8,7 @@ function is_logged_in()
     $ci = get_instance();
     if (!$ci->session->userdata('user_email')) {
         $ci->session->set_flashdata(
-            'error',
+            'blok',
             'Anda belum login!!'
         );
         redirect('administrator/sign-in');

@@ -2,14 +2,14 @@
 
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
-            <h4 class="mb-3 mb-md-0">Welcome to Dashboard</h4>
+            <h4 class="mb-3 mb-md-0">Dashboard</h4>
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
             <div class="input-group date datepicker dashboard-date mr-2 mb-2 mb-md-0 d-md-none d-xl-flex" id="dashboardDate">
                 <span class="input-group-addon bg-transparent"><i data-feather="calendar" class=" text-primary"></i></span>
                 <input type="text" class="form-control">
             </div>
-            <button type="button" class="btn btn-outline-info btn-icon-text mr-2 d-none d-md-block">
+            <!-- <button type="button" class="btn btn-outline-info btn-icon-text mr-2 d-none d-md-block">
                 <i class="btn-icon-prepend" data-feather="download"></i>
                 Import
             </button>
@@ -20,9 +20,38 @@
             <button type="button" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
                 <i class="btn-icon-prepend" data-feather="download-cloud"></i>
                 Download Report
-            </button>
+            </button> -->
         </div>
     </div>
+
+    <?php $this->load->view($path . '/flashmessage/flash') ?>
+    <?php if ($this->session->flashdata('toastrBerhasilLogin')) : ?>
+    <div class="row pb-4 ">
+        <div class="col-lg-12">
+            <div class=" alert shadow-lg border alert-dismissible fade show  bg-dark-costum p-sm-3  " role="alert">
+                <div class="row">
+                    <div class="col-sm-7 d-flex flex-column align-content-center pt-3 ">
+                        <div class="col-sm">
+                            <p class="ml-1 font-20 text-primary text-capitalize ">
+                                hi, <?= $user['user_name']; ?>
+                            </p>
+                            <h3 class=" text-white-50 display-1 "> Selamat datang di </h3>
+                            <h4 class=" text-white-50 font-weight-light display-4 "> Administrator <br> <span class="text-white   display-2 ">Prime</span><span class="text-primary display-2 ">rental
+                                </span> </h4>
+                        </div>
+                    </div>
+                    <div class=" col-sm-4 overflow-hidden d-sm-flex  justify-content-center ">
+                        <img class=" w-100 h-auto overflow-hidden" style="object-fit: cover; opacity: .7;" src="<?= base_url('assets/backend/svg/hello.svg') ?>" alt="">
+                    </div>
+                </div>
+
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
 
     <div class="row">
         <div class="col-12 col-xl-12 stretch-card">
