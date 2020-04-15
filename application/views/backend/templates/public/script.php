@@ -29,4 +29,43 @@
             })
         });
     });
+
+
+
+
+
+
+    if ($("#kotaChart").length) {
+        new Chart($("#kotaChart"), {
+            type: "doughnut",
+            data: {
+                labels: ["Jakarta", "Bekasi", "Depok", "Bogor", "Tanggerang"],
+                datasets: [{
+                    backgroundColor: [
+                        "#3955f7",
+                        "#0cfaa7",
+                        "#f2ee07",
+                        "#FF3366",
+                        "#12e7ff",
+
+
+                    ],
+                    data: [30, 20, 9, 18, 15],
+                }, ],
+            },
+            options: {
+                responsive: true,
+                defaultFontSize: 13,
+                legend: {
+                    fontSize: 17,
+                    position: 'left',
+                    labels: {
+                        fontFamily: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+                        fontColor: '#fff',
+                    }
+                }
+
+            },
+        });
+    }
 </script>

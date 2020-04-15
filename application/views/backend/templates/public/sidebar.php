@@ -46,7 +46,7 @@
 
                                 </a>
                                 <div class="collapse" id="<?php echo $toLower; ?>">
-                                    <ul class="nav sub-menu">
+                                    <ul class="nav sub-menu ml-2">
                                         <?php foreach ($subMenu as $sm) : ?>
                                             <li class="nav-item">
                                                 <a href="<?= base_url($m['menu_url'] . '/' . $sm['submenu_method']) ?>" class="nav-link"><?= $sm['submenu_name']; ?></a>
@@ -70,7 +70,7 @@
                     <?php endif; ?>
                 <?php endforeach; ?>
                 <li class=" nav-item">
-                    <a href="#" class="nav-link sign--out--link">
+                    <a href="#as" class="nav-link sign--out--link">
                         <i class="link-icon" data-feather="log-out"></i>
                         <span class="link-title">Log Out</span>
                     </a>
