@@ -1,252 +1,249 @@
-<!-- Header Section Start -->
-<div class="header-section ">
-    <div class="container-fluid">
-        <div class="row justify-content-between align-items-center py-0">
+<div class="page-wrapper">
 
-            <!-- Header Logo (Header Left) Start -->
-            <div class="header-logo col-auto">
-                <a href="index.html">
-                    <img src="<?= base_url('assets/admin/') ?>assets/images/logo/logo.png" alt="">
-                    <img src="<?= base_url('assets/admin/') ?>assets/images/logo/logo-light.png" class="logo-light" alt="">
-                </a>
-            </div><!-- Header Logo (Header Left) End -->
-
-            <!-- Header Right Start -->
-            <div class="header-right flex-grow-1 col-auto">
-                <div class="row justify-content-between align-items-center">
-
-                    <!-- Side Header Toggle & Search Start -->
-                    <div class="col-auto">
-                        <div class="row align-items-center">
-
-                            <!--Side Header Toggle-->
-                            <div class="col-auto"><button class="side-header-toggle"><i class="zmdi zmdi-menu"></i></button></div>
-
-                            <!--Header Search-->
-                            <div class="col-auto">
-
-                                <div class="header-search">
-
-                                    <button class="header-search-open d-block d-xl-none"><i class="zmdi zmdi-search"></i></button>
-
-                                    <div class="header-search-form">
-                                        <form action="#">
-                                            <input type="text" placeholder="Search Here">
-                                            <button><i class="zmdi zmdi-search"></i></button>
-                                        </form>
-                                        <button class="header-search-close d-block d-xl-none"><i class="zmdi zmdi-close"></i></button>
-                                    </div>
-
-                                </div>
-                            </div>
-
+    <!-- partial:partials/_navbar.html -->
+    <nav class="navbar">
+        <a href="#" class="sidebar-toggler">
+            <i data-feather="menu"></i>
+        </a>
+        <div class="navbar-content">
+            <form class="search-form">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">
+                            <i data-feather="search"></i>
                         </div>
-                    </div><!-- Side Header Toggle & Search End -->
-
-                    <!-- Header Notifications Area Start -->
-                    <div class="col-auto">
-
-                        <ul class="header-notification-area">
-
-                            <!--Language-->
-                            <li class="adomx-dropdown position-relative col-auto">
-                                <a class="toggle" href="#"><img class="lang-flag" src="<?= base_url('assets/admin/') ?>assets/images/flags/flag-1.jpg" alt=""><i class="zmdi zmdi-caret-down drop-arrow"></i></a>
-
-                                <!-- Dropdown -->
-                                <ul class="adomx-dropdown-menu dropdown-menu-language">
-                                    <li><a href="#"><img src="<?= base_url('assets/admin/') ?>assets/images/flags/flag-1.jpg" alt=""> English</a></li>
-                                    <li><a href="#"><img src="<?= base_url('assets/admin/') ?>assets/images/flags/flag-2.jpg" alt=""> Japanese</a></li>
-                                    <li><a href="#"><img src="<?= base_url('assets/admin/') ?>assets/images/flags/flag-3.jpg" alt=""> Spanish </a></li>
-                                    <li><a href="#"><img src="<?= base_url('assets/admin/') ?>assets/images/flags/flag-4.jpg" alt=""> Germany</a></li>
-                                </ul>
-
-                            </li>
-
-                            <!--Mail-->
-                            <li class="adomx-dropdown col-auto">
-                                <a class="toggle" href="#"><i class="zmdi zmdi-email-open"></i><span class="badge"></span></a>
-
-                                <!-- Dropdown -->
-                                <div class="adomx-dropdown-menu dropdown-menu-mail">
-                                    <div class="head">
-                                        <h4 class="title">You have 3 new mail.</h4>
-                                    </div>
-                                    <div class="body custom-scroll">
-                                        <ul>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="image"><img src="assets/images/avatar/avatar-2.jpg" alt=""></div>
-                                                    <div class="content">
-                                                        <h6>Sub: New Account</h6>
-                                                        <p>There are many variations of passages of Lorem Ipsum available. </p>
-                                                    </div>
-                                                    <span class="reply"><i class="zmdi zmdi-mail-reply"></i></span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="image"><img src="<?= base_url('assets/admin/') ?>assets/images/avatar/avatar-1.jpg" alt=""></div>
-                                                    <div class="content">
-                                                        <h6>Sub: Mail Support</h6>
-                                                        <p>There are many variations of passages of Lorem Ipsum available. </p>
-                                                    </div>
-                                                    <span class="reply"><i class="zmdi zmdi-mail-reply"></i></span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="image"><img src="<?= base_url('assets/admin/') ?>assets/images/avatar/avatar-2.jpg" alt=""></div>
-                                                    <div class="content">
-                                                        <h6>Sub: Product inquiry</h6>
-                                                        <p>There are many variations of passages of Lorem Ipsum available. </p>
-                                                    </div>
-                                                    <span class="reply"><i class="zmdi zmdi-mail-reply"></i></span>
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <div class="image"><img src="<?= base_url('assets/admin/') ?>assets/images/avatar/avatar-1.jpg" alt=""></div>
-                                                    <div class="content">
-                                                        <h6>Sub: Mail Support</h6>
-                                                        <p>There are many variations of passages of Lorem Ipsum available. </p>
-                                                    </div>
-                                                    <span class="reply"><i class="zmdi zmdi-mail-reply"></i></span>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <!--Notification-->
-                            <li class="adomx-dropdown col-auto">
-                                <a class="toggle" href="#"><i class="zmdi zmdi-notifications"></i><span class="badge"></span></a>
-
-                                <!-- Dropdown -->
-                                <div class="adomx-dropdown-menu dropdown-menu-notifications">
-                                    <div class="head">
-                                        <h5 class="title">You have 4 new notification.</h5>
-                                    </div>
-                                    <div class="body custom-scroll">
-                                        <ul>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-notifications-none"></i>
-                                                    <p>There are many variations of pages available.</p>
-                                                    <span>11.00 am Today</span>
-                                                </a>
-                                                <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-block"></i>
-                                                    <p>There are many variations of pages available.</p>
-                                                    <span>11.00 am Today</span>
-                                                </a>
-                                                <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-info-outline"></i>
-                                                    <p>There are many variations of pages available.</p>
-                                                    <span>11.00 am Today</span>
-                                                </a>
-                                                <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-shield-security"></i>
-                                                    <p>There are many variations of pages available.</p>
-                                                    <span>11.00 am Today</span>
-                                                </a>
-                                                <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-notifications-none"></i>
-                                                    <p>There are many variations of pages available.</p>
-                                                    <span>11.00 am Today</span>
-                                                </a>
-                                                <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-block"></i>
-                                                    <p>There are many variations of pages available.</p>
-                                                    <span>11.00 am Today</span>
-                                                </a>
-                                                <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-info-outline"></i>
-                                                    <p>There are many variations of pages available.</p>
-                                                    <span>11.00 am Today</span>
-                                                </a>
-                                                <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                            </li>
-                                            <li>
-                                                <a href="#">
-                                                    <i class="zmdi zmdi-shield-security"></i>
-                                                    <p>There are many variations of pages available.</p>
-                                                    <span>11.00 am Today</span>
-                                                </a>
-                                                <button class="delete"><i class="zmdi zmdi-close-circle-o"></i></button>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                    <div class="footer">
-                                        <a href="#" class="view-all">view all</a>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                            <!--User-->
-                            <li class="adomx-dropdown col-auto">
-                                <a class="toggle" href="#">
-                                    <span class="user">
-                                        <span class="avatar">
-                                            <img src="<?= base_url('assets/admin/') ?>assets/images/avatar/avatar-1.jpg" alt="">
-                                            <span class="status"></span>
-                                        </span>
-                                        <span class="name">Madison Howard</span>
-                                    </span>
-                                </a>
-
-                                <!-- Dropdown -->
-                                <div class="adomx-dropdown-menu dropdown-menu-user">
-                                    <div class="head">
-                                        <h5 class="name"><a href="#">Madison Howard</a></h5>
-                                        <a class="mail" href="#">mailnam@mail.com</a>
-                                    </div>
-                                    <div class="body">
-                                        <ul>
-                                            <li><a href="#"><i class="zmdi zmdi-account"></i>Profile</a></li>
-                                            <li><a href="#"><i class="zmdi zmdi-email-open"></i>Inbox</a></li>
-                                            <li><a href="#"><i class="zmdi zmdi-wallpaper"></i>Activity</a></li>
-                                        </ul>
-                                        <ul>
-                                            <li><a href="#"><i class="zmdi zmdi-settings"></i>Setting</a></li>
-                                            <li><a href="#"><i class="zmdi zmdi-lock-open"></i>Sing out</a></li>
-                                        </ul>
-                                        <ul>
-                                            <li><a href="#"><i class="zmdi zmdi-paypal"></i>Payment</a></li>
-                                            <li><a href="#"><i class="zmdi zmdi-google-pages"></i>Invoice</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-
-                            </li>
-
-                        </ul>
-
-                    </div><!-- Header Notifications Area End -->
-
+                    </div>
+                    <input type="text" class="form-control" id="navbarForm" placeholder="Search here...">
                 </div>
-            </div><!-- Header Right End -->
-
+            </form>
+            <ul class="navbar-nav">
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="flag-icon flag-icon-us mt-1" title="us" id="us"></i> <span class="font-weight-medium ml-1 mr-1">English</span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="languageDropdown">
+                        <a href="javascript:;" class="dropdown-item py-2"><i class="flag-icon flag-icon-us" title="us" id="us"></i> <span class="ml-1"> English </span></a>
+                        <a href="javascript:;" class="dropdown-item py-2"><i class="flag-icon flag-icon-fr" title="fr" id="fr"></i> <span class="ml-1"> French </span></a>
+                        <a href="javascript:;" class="dropdown-item py-2"><i class="flag-icon flag-icon-de" title="de" id="de"></i> <span class="ml-1"> German </span></a>
+                        <a href="javascript:;" class="dropdown-item py-2"><i class="flag-icon flag-icon-pt" title="pt" id="pt"></i> <span class="ml-1"> Portuguese </span></a>
+                        <a href="javascript:;" class="dropdown-item py-2"><i class="flag-icon flag-icon-es" title="es" id="es"></i> <span class="ml-1"> Spanish </span></a>
+                    </div>
+                </li>
+                <li class="nav-item dropdown nav-apps">
+                    <a class="nav-link dropdown-toggle" href="#" id="appsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i data-feather="grid"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="appsDropdown">
+                        <div class="dropdown-header d-flex align-items-center justify-content-between">
+                            <p class="mb-0 font-weight-medium">Web Apps</p>
+                            <a href="javascript:;" class="text-muted">Edit</a>
+                        </div>
+                        <div class="dropdown-body">
+                            <div class="d-flex align-items-center apps">
+                                <a href="pages/apps/chat.html"><i data-feather="message-square" class="icon-lg"></i>
+                                    <p>Chat</p>
+                                </a>
+                                <a href="pages/apps/calendar.html"><i data-feather="calendar" class="icon-lg"></i>
+                                    <p>Calendar</p>
+                                </a>
+                                <a href="pages/email/inbox.html"><i data-feather="mail" class="icon-lg"></i>
+                                    <p>Email</p>
+                                </a>
+                                <a href="pages/general/profile.html"><i data-feather="instagram" class="icon-lg"></i>
+                                    <p>Profile</p>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="dropdown-footer d-flex align-items-center justify-content-center">
+                            <a href="javascript:;">View all</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown nav-messages">
+                    <a class="nav-link dropdown-toggle" href="#" id="messageDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i data-feather="mail"></i>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="messageDropdown">
+                        <div class="dropdown-header d-flex align-items-center justify-content-between">
+                            <p class="mb-0 font-weight-medium">9 New Messages</p>
+                            <a href="javascript:;" class="text-muted">Clear all</a>
+                        </div>
+                        <div class="dropdown-body">
+                            <a href="javascript:;" class="dropdown-item">
+                                <div class="figure">
+                                    <img src="../assets/images/faces/face2.jpg" alt="userr">
+                                </div>
+                                <div class="content">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p>Leonardo Payne</p>
+                                        <p class="sub-text text-muted">2 min ago</p>
+                                    </div>
+                                    <p class="sub-text text-muted">Project status</p>
+                                </div>
+                            </a>
+                            <a href="javascript:;" class="dropdown-item">
+                                <div class="figure">
+                                    <img src="../assets/images/faces/face3.jpg" alt="userr">
+                                </div>
+                                <div class="content">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p>Carl Henson</p>
+                                        <p class="sub-text text-muted">30 min ago</p>
+                                    </div>
+                                    <p class="sub-text text-muted">Client meeting</p>
+                                </div>
+                            </a>
+                            <a href="javascript:;" class="dropdown-item">
+                                <div class="figure">
+                                    <img src="../assets/images/faces/face4.jpg" alt="userr">
+                                </div>
+                                <div class="content">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p>Jensen Combs</p>
+                                        <p class="sub-text text-muted">1 hrs ago</p>
+                                    </div>
+                                    <p class="sub-text text-muted">Project updates</p>
+                                </div>
+                            </a>
+                            <a href="javascript:;" class="dropdown-item">
+                                <div class="figure">
+                                    <img src="../assets/images/faces/face5.jpg" alt="userr">
+                                </div>
+                                <div class="content">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p>Amiah Burton</p>
+                                        <p class="sub-text text-muted">2 hrs ago</p>
+                                    </div>
+                                    <p class="sub-text text-muted">Project deadline</p>
+                                </div>
+                            </a>
+                            <a href="javascript:;" class="dropdown-item">
+                                <div class="figure">
+                                    <img src="../assets/images/faces/face6.jpg" alt="userr">
+                                </div>
+                                <div class="content">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <p>Yaretzi Mayo</p>
+                                        <p class="sub-text text-muted">5 hr ago</p>
+                                    </div>
+                                    <p class="sub-text text-muted">New record</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="dropdown-footer d-flex align-items-center justify-content-center">
+                            <a href="javascript:;">View all</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown nav-notifications">
+                    <a class="nav-link dropdown-toggle" href="#" id="notificationDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i data-feather="bell"></i>
+                        <div class="indicator">
+                            <div class="circle"></div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="notificationDropdown">
+                        <div class="dropdown-header d-flex align-items-center justify-content-between">
+                            <p class="mb-0 font-weight-medium">6 New Notifications</p>
+                            <a href="javascript:;" class="text-muted">Clear all</a>
+                        </div>
+                        <div class="dropdown-body">
+                            <a href="javascript:;" class="dropdown-item">
+                                <div class="icon">
+                                    <i data-feather="user-plus"></i>
+                                </div>
+                                <div class="content">
+                                    <p>New customer registered</p>
+                                    <p class="sub-text text-muted">2 sec ago</p>
+                                </div>
+                            </a>
+                            <a href="javascript:;" class="dropdown-item">
+                                <div class="icon">
+                                    <i data-feather="gift"></i>
+                                </div>
+                                <div class="content">
+                                    <p>New Order Recieved</p>
+                                    <p class="sub-text text-muted">30 min ago</p>
+                                </div>
+                            </a>
+                            <a href="javascript:;" class="dropdown-item">
+                                <div class="icon">
+                                    <i data-feather="alert-circle"></i>
+                                </div>
+                                <div class="content">
+                                    <p>Server Limit Reached!</p>
+                                    <p class="sub-text text-muted">1 hrs ago</p>
+                                </div>
+                            </a>
+                            <a href="javascript:;" class="dropdown-item">
+                                <div class="icon">
+                                    <i data-feather="layers"></i>
+                                </div>
+                                <div class="content">
+                                    <p>Apps are ready for update</p>
+                                    <p class="sub-text text-muted">5 hrs ago</p>
+                                </div>
+                            </a>
+                            <a href="javascript:;" class="dropdown-item">
+                                <div class="icon">
+                                    <i data-feather="download"></i>
+                                </div>
+                                <div class="content">
+                                    <p>Download completed</p>
+                                    <p class="sub-text text-muted">6 hrs ago</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="dropdown-footer d-flex align-items-center justify-content-center">
+                            <a href="javascript:;">View all</a>
+                        </div>
+                    </div>
+                </li>
+                <li class="nav-item dropdown nav-profile">
+                    <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="../assets/images/faces/face1.jpg" alt="profile">
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="profileDropdown">
+                        <div class="dropdown-header d-flex flex-column align-items-center">
+                            <div class="figure mb-3">
+                                <img src="../assets/images/faces/face1.jpg" alt="">
+                            </div>
+                            <div class="info text-center">
+                                <p class="name font-weight-bold mb-0">Amiah Burton</p>
+                                <p class="email text-muted mb-3">amiahburton@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="dropdown-body">
+                            <ul class="profile-nav p-0 pt-3">
+                                <li class="nav-item">
+                                    <a href="pages/general/profile.html" class="nav-link">
+                                        <i data-feather="user"></i>
+                                        <span>Profile</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link">
+                                        <i data-feather="edit"></i>
+                                        <span>Edit Profile</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link">
+                                        <i data-feather="repeat"></i>
+                                        <span>Switch User</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="javascript:;" class="nav-link">
+                                        <i data-feather="log-out"></i>
+                                        <span>Log Out</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
         </div>
-    </div>
-</div><!-- Header Section End -->
+    </nav>
+    <!-- partial -->

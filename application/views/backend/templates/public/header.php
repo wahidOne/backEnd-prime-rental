@@ -1,59 +1,30 @@
-<!doctype html>
-<html class="no-js" lang="en">
-
-
-<!-- Mirrored from demo.hasthemes.com/adomx-preview/dark/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 07 Apr 2020 10:20:01 GMT -->
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Prime Rental Admintrator | <?= $title; ?></title>
-    <meta name="robots" content="noindex, follow" />
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Favicon -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>NobleUI Responsive Bootstrap 4 Dashboard Template</title>
 
+    <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>vendors/core/core.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>css/vendor/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>css/vendor/font-awesome.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>css/vendor/themify-icons.css">
+    <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>css/vendor/cryptocurrency-icons.css">
+    <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>fonts/feather-font/css/iconfont.css">
 
-    <!-- CSS
-	============================================ -->
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="<?= base_url('assets/admin/'); ?>assets/css/vendor/bootstrap.min.css">
-
-    <!-- Icon Font CSS -->
-    <link rel="stylesheet" href="<?= base_url('assets/admin/'); ?>assets/css/vendor/material-design-iconic-font.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/admin/'); ?>assets/css/vendor/font-awesome.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/admin/'); ?>assets/css/vendor/themify-icons.css">
-    <link rel="stylesheet" href="<?= base_url('assets/admin/'); ?>assets/css/vendor/cryptocurrency-icons.css">
-
-
-
-
-    <!-- Plugins CSS -->
-    <link rel="stylesheet" href="<?= base_url('assets/admin/'); ?>assets/css/plugins/plugins.css">
-
-    <!-- Helper CSS -->
-    <link rel="stylesheet" href="<?= base_url('assets/admin/'); ?>assets/css/helper.css">
-
-
-    <!-- Main Style CSS -->
-    <link rel="stylesheet" href="<?= base_url('assets/admin/'); ?>assets/css/style.css">
-
-    <!-- Custom Style CSS Only For Demo Purpose -->
-    <link id="cus-style" rel="stylesheet" href="<?= base_url('assets/admin/'); ?>assets/css/style-purple.css">
-
-    <!-- Custom style -->
-    <link rel="stylesheet" href="<?= base_url('assets/admin/') ?>assets/css/main.css">
-
-    <style>
-        .show-sub {
-            display: block !important;
-        }
-    </style>
-
-
+    <!-- end plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>fonts/feather-font/css/iconfont.css">
+    <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>vendors/flag-icon-css/css/flag-icon.min.css">
+    <!-- endinject -->
+    <!-- Layout styles -->
+    <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>css/demo_2/style.css">
+    <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>css/main.css">
 </head>
 
-<body class="skin-dark">
-
+<body>
     <div class="main-wrapper">
