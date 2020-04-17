@@ -19,7 +19,8 @@ toastr.options = {
 };
 
 if (pesanBerhasilogin) {
-	console.log("ok");
 	const dataPesan = pesanBerhasilogin.dataset.message;
-	toastr.success(dataPesan, " Login Berhasil!  ");
+	toastr.success(dataPesan, " Login Berhasil!");
 }
+
+// datatables Menu

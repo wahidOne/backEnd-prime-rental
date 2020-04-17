@@ -58,5 +58,10 @@ $route['administrator/sign-out'] = 'admin/auth/auth/signOut';
 // adminitrator page
 $route['administrator/dashboard'] = 'admin/dashboard/Dashboard/index';
 $route['administrator/system-management/menu'] = 'admin/dashboard/System/menu';
+$route['administrator/system-management/tambah-menu'] = 'admin/dashboard/System/tambahMenu';
+$route['administrator/system-management/ubah-menu'] = 'admin/dashboard/System/UbahMenu';
+$route['administrator/system-management/delete-menu/(:any)'] = 'admin/dashboard/System/deleteMenu/$1';
+
+// $route['administrator/system-management/get-menu-where/(:any)'] = 'admin/dashboard/System/getMenuWhere/$1';
 $route['404_override'] = 'Page404/index';
 $route['translate_uri_dashes'] = FALSE;

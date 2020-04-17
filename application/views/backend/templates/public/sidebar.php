@@ -34,16 +34,15 @@
                     <li class="nav-item">
                         <?php if ($this->uri->segment(2) === $m['menu_uri_segment']) : ?>
                             <a class="nav-link active" data-toggle="collapse" href="#<?php echo $toLower; ?>" role="button" aria-expanded="true" aria-controls="<?php echo $toLower; ?>">
-                                <i class="link-icon" data-feather="box"></i>
+                                <i class="link-icon <?= $m['menu_icon'] ?> "></i>
                                 <span class="link-title"><?= $m['menu_name']; ?></span>
                                 <i class="link-arrow" data-feather="chevron-down"> </i>
                             <?php else : ?>
                                 <a class="nav-link " data-toggle="collapse" href="#<?php echo $toLower; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $toLower; ?>">
-                                    <i class="link-icon" data-feather="box"></i>
+                                    <i class="link-icon <?= $m['menu_icon'] ?> "></i>
                                     <span class="link-title"><?= $m['menu_name']; ?></span>
                                     <i class="link-arrow" data-feather="chevron-down"> </i>
                                 <?php endif; ?>
-
                                 </a>
                                 <div class="collapse" id="<?php echo $toLower; ?>">
                                     <ul class="nav sub-menu ml-2">
@@ -63,7 +62,7 @@
                         <li class="nav-item ">
                         <?php endif; ?>
                         <a href="<?= base_url($m['menu_url']); ?>" class="nav-link">
-                            <i class="link-icon" data-feather="box"></i>
+                            <i class="link-icon <?= $m['menu_icon'] ?> "></i>
                             <span class="link-title"><?= $m['menu_name']; ?></span>
                         </a>
                         </li>

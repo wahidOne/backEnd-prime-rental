@@ -1,6 +1,8 @@
 $(".pesan-validasi-input").alert().delay(3000).slideUp("slow");
 
 const pesanValidasi = document.querySelector(".pesan-validasi");
+
+const pesanAksesDiTolak = document.querySelector(".access-block");
 const pesanBukanEmailAdmin = document.querySelector(".pesan-blok");
 const pesanBerhasilogin = document.querySelector(".toastrBerhasilLogin");
 const pesanBerhasilRegistrasi = document.querySelector(".pesan_registrasi");
@@ -13,6 +15,16 @@ if (pesanValidasi) {
 		title: "Maaf...",
 		text: dataPesanValidasi,
 		timer: 3500,
+	});
+}
+
+if (pesanAksesDiTolak) {
+	const dataPesan = pesanAksesDiTolak.dataset.message;
+	Swal.fire({
+		icon: "error",
+		title: "Akses Di Tolak",
+		text: dataPesan,
+		timer: 3700,
 	});
 }
 

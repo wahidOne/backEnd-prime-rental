@@ -1,5 +1,4 @@
 <div class="page-wrapper">
-
     <!-- partial:partials/_navbar.html -->
     <nav class="navbar">
         <a href="#" class="sidebar-toggler">
@@ -201,16 +200,16 @@
                 </li>
                 <li class="nav-item dropdown nav-profile">
                     <a class="nav-link dropdown-toggle" href="#" id="profileDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <img src="../assets/images/faces/face1.jpg" alt="profile">
+                        <img src="<?= base_url('assets/uploads/ava/' . $user['user_photo']) ?>" alt="<?= $user['user_name'] ?>">
                     </a>
                     <div class="dropdown-menu" aria-labelledby="profileDropdown">
                         <div class="dropdown-header d-flex flex-column align-items-center">
                             <div class="figure mb-3">
-                                <img src="../assets/images/faces/face1.jpg" alt="">
+                                <img src="<?= base_url('assets/uploads/ava/' . $user['user_photo']) ?>" alt="">
                             </div>
                             <div class="info text-center">
-                                <p class="name font-weight-bold mb-0">Amiah Burton</p>
-                                <p class="email text-muted mb-3">amiahburton@gmail.com</p>
+                                <p class="name font-weight-bold mb-0 text-capitalize"><?= $user['user_name'] ?></p>
+                                <p class="email text-muted mb-3"><?= $user['user_email'] ?></p>
                             </div>
                         </div>
                         <div class="dropdown-body">

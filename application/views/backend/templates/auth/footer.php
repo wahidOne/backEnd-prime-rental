@@ -15,7 +15,6 @@
 
 <script src="<?= base_url('assets/backend/') ?>js/template.js"></script>
 <script src="<?= base_url('assets/backend/') ?>js/sweetalert2.js"></script>
-
 <script src="<?= base_url('assets/backend/') ?>js/auth.js"></script>
 <!-- endinject -->
 <!-- custom js for this page -->

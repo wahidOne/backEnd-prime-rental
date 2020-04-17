@@ -2,6 +2,7 @@
 <script src="<?= base_url('assets/');  ?>backend/vendors/feather-icons/feather.min.js"></script>
 <script src="<?= base_url('assets/');  ?>backend/js/template.js"></script>
 <script src="<?= base_url('assets/backend/') ?>js/sweetalert2.js"></script>
+<script src="<?= base_url('assets/global-plugins/') ?>axios/axios.min.js"></script>
 <!-- endinject -->
 <!-- custom js for this page -->
 <script src="<?= base_url('assets/');  ?>backend/js/dashboard.js"></script>
@@ -11,7 +12,6 @@
 
 <script>
     const signOutLinks = [...document.querySelectorAll(".sign--out--link")];
-
     signOutLinks.map((link) => {
         link.addEventListener("click", (e) => {
             Swal.fire({
@@ -29,11 +29,6 @@
             })
         });
     });
-
-
-
-
-
 
     if ($("#kotaChart").length) {
         new Chart($("#kotaChart"), {
@@ -68,4 +63,41 @@
             },
         });
     }
+
+
+
+    $("#dataTablesMenu").DataTable({
+        // "search": {
+        //     "search": ""
+        // },
+        // "columnDefs": [{
+        //     "searchable": false,
+        //     "targets": 1
+        // }, {
+        //     "orderable": false,
+        //     "targets": 1
+        // }],
+        aLengthMenu: [
+            [10, 30, 50, -1],
+            [10, 30, 50, "All"],
+        ],
+        iDisplayLength: 10,
+        language: {
+            search: "",
+        },
+    });
+    $("#dataTablesMenu").each(function() {
+        var datatable = $(this);
+        // SEARCH - Add the placeholder for Search and Turn this into in-line form control
+        var search_input = datatable
+            .closest(".dataTables_wrapper")
+            .find("div[id$=_filter] input");
+        search_input.attr("placeholder", "Search");
+        search_input.removeClass("form-control-sm");
+        // LENGTH - Inline-Form control
+        var length_sel = datatable
+            .closest(".dataTables_wrapper")
+            .find("div[id$=_length] select");
+        length_sel.removeClass("form-control-sm");
+    });
 </script>

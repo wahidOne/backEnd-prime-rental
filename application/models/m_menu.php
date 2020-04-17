@@ -17,7 +17,6 @@ class M_menu extends CI_Model
         // AND `menu_type_id` = '1'
         // ORDER BY `user_access_menu`.`access_menu_id` ASC
         // ";
-
         $this->db->select('*');
         $this->db->from('user_menu');
         $this->db->join('user_access_menu', 'user_access_menu.access_menu_id = user_menu.menu_id', 'left');
@@ -32,5 +31,38 @@ class M_menu extends CI_Model
         }
 
         // return $this->db->query($queryMenu)->result_array();
+    }
+
+    public function getMenu()
+    {
+        $this->db->select('*,user_menu_type.type_name as menu_type ');
+        $this->db->from('user_menu');
+        $this->db->join('user_menu_type', 'user_menu_type.type_id =  user_menu.menu_type_id', 'left');
+        $query = $this->db->get();
+
+        if ($query->num_rows() != 0) {
+            return $query->result_array();
+        } else {
+            return false;
+        }
+    }
+
+    public function ShowMenuById($where = null)
+    {
+        $this->db->select('user_menu.*, user_menu_type.type_name as menu_type ');
+        $this->db->from('user_menu');
+        $this->db->join('user_menu_type', 'user_menu_type.type_id =  user_menu.menu_type_id');
+        $this->db->where($where);
+        $query =  $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query->row_array();
+        } else {
+            return false;
+        }
+    }
+
+    public function menuWhere($where = null)
+    {
+        return $this->db->get_where('user_menu', $where);
     }
 }
