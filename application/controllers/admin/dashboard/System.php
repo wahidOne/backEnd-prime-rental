@@ -15,6 +15,8 @@ class System extends CI_Controller
         is_logged_in();
     }
 
+
+    // Menu
     public function menu()
     {
         $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
@@ -98,7 +100,7 @@ class System extends CI_Controller
         echo json_encode($data);
     }
 
-    public function deleteMenu($id)
+    public function deleteMenu()
     {
         $menu = $this->M_menu->ShowMenuById(['menu_id' => $this->uri->segment(4)]);
         $this->M_public->deleteData(['menu_id' => $this->uri->segment(4)], 'user_menu');
@@ -107,5 +109,176 @@ class System extends CI_Controller
             'Berhasil menghapus menu ' . $menu['menu_name'] . '!'
         );
         redirect('administrator/system-management/menu');
+    }
+
+    // SubMenu 
+
+
+    public function showSubmenu()
+    {
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+
+        $submenu = $this->M_menu->getSubmenu();
+        $menu = $this->M_menu->getMenu();
+        $data = [
+            'title' => 'Submenu Manegements',
+            'user' => $user,
+            'submenu' => $submenu,
+            'menu' => $menu
+        ];
+
+
+        $this->form_validation->set_rules(
+            'name',
+            'name',
+            'required|trim',
+            [
+                'required' => 'Masukan nama submenu!'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'method',
+            'Method',
+            'required|trim',
+            [
+                'required' => 'Masukan method submenunya!'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'icon',
+            'Icon',
+            'required|trim',
+            [
+                'required' => 'Tentukan Icon!'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'menu_id',
+            'Menu',
+            'required|trim',
+            [
+                'required' => 'Tentukan Menu!'
+            ]
+        );
+
+        $backendTemplates = $this->publicData['backendTemplates'];
+        $viewsDashboardPath = 'backend/dashboard/';
+        if ($this->form_validation->run() == false) {
+            $this->load->view($backendTemplates . 'header', $data);
+            $this->load->view($backendTemplates . 'topbar', $data);
+            $this->load->view($backendTemplates . 'sidebar', $data);
+            $this->load->view($viewsDashboardPath . 'system-management/v_submenu', $data); //main content
+            $this->load->view($backendTemplates . 'footer', $data);
+            $this->load->view($viewsDashboardPath . '/plugins/_menu', $data); //plugins
+            $this->load->view($backendTemplates . 'script', $data);
+            // costum js
+            $this->load->view($viewsDashboardPath . 'system-management/js/js_submenu', $data);
+            $this->load->view($backendTemplates . 'end', $data);
+        } else {
+            $data = [
+                'submenu_id' => $this->input->post('submenu_id'),
+                'submenu_name' => $this->input->post('name'),
+                'submenu_method' => $this->input->post('method'),
+                'submenu_icon' => $this->input->post('icon'),
+                'submenu_menu_id' => $this->input->post('menu_id'),
+                'submenu_active' => 1
+            ];
+
+            $this->M_public->insertData('user_submenu', $data);
+            $this->session->set_flashdata('pesan-tambah-submenu', "Submenu baru berhasil di tambahkan! ");
+
+            redirect('administrator/system-management/submenu');
+        }
+    }
+
+
+
+
+    public function updateSubmenu()
+    {
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+        $submenu_id = $this->uri->segment(4);
+        $submenu = $this->M_menu->getSubmenuWhere(['submenu_id' => $submenu_id]);
+        $menu = $this->M_menu->getMenu();
+
+        $data = [
+            'title' => 'Update Submenu',
+            'user' => $user,
+            'submenu' => $submenu,
+            'menu' => $menu
+        ];
+
+
+        $this->form_validation->set_rules(
+            'name',
+            'name',
+            'required|trim',
+            [
+                'required' => 'Masukan nama submenu!'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'method',
+            'Method',
+            'required|trim',
+            [
+                'required' => 'Masukan method submenunya!'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'icon',
+            'Icon',
+            'required|trim',
+            [
+                'required' => 'Tentukan Icon!'
+            ]
+        );
+        $this->form_validation->set_rules(
+            'menu_id',
+            'Menu',
+            'required|trim',
+            [
+                'required' => 'Tentukan Menu!'
+            ]
+        );
+        $backendTemplates = $this->publicData['backendTemplates'];
+        $viewsDashboardPath = 'backend/dashboard/';
+        if ($this->form_validation->run() == false) {
+            $this->load->view($backendTemplates . 'header', $data);
+            $this->load->view($backendTemplates . 'topbar', $data);
+            $this->load->view($backendTemplates . 'sidebar', $data);
+            $this->load->view($viewsDashboardPath . 'system-management/v_update-submenu', $data); //main content
+            $this->load->view($backendTemplates . 'footer', $data);
+            $this->load->view($viewsDashboardPath . '/plugins/_menu', $data); //plugins
+            $this->load->view($backendTemplates . 'script', $data);
+            // costum js
+            $this->load->view($viewsDashboardPath . 'system-management/js/js_submenu', $data);
+            $this->load->view($backendTemplates . 'end', $data);
+        } else {
+            $data = [
+                'submenu_name' => $this->input->post('name'),
+                'submenu_method' => $this->input->post('method'),
+                'submenu_icon' => $this->input->post('icon'),
+                'submenu_menu_id' => $this->input->post('menu_id'),
+                'submenu_active' => 1
+            ];
+
+            $this->M_public->updateData(['submenu_id' => $submenu_id], 'user_submenu', $data);
+            $this->session->set_flashdata('pesan-ubah-submenu', "Submenu berhasil diupdate! ");
+            redirect('administrator/system-management/submenu');
+        }
+    }
+
+
+    public function deleteSubmenu()
+    {
+        $submenu_id = $this->uri->segment(4);
+        $submenu = $this->M_menu->getSubmenuWhere(['submenu_id' => $submenu_id]);
+        $this->M_public->deleteData(['submenu_id' => $submenu_id], 'user_submenu');
+        $this->session->set_flashdata(
+            'pesan-hapus-submenu',
+            'Berhasil menghapus submenu  <strong>' . $submenu['submenu_name'] . '</strong>!'
+        );
+        redirect('administrator/system-management/submenu');
     }
 }

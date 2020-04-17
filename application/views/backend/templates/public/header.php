@@ -23,4 +23,11 @@
 </head>
 
 <body>
+
     <div class="main-wrapper">
+        <div id="PreLoaderBar" class="preloader position-fixed border bg-dark-costum ">
+            <div class="spinner-grow spin text-primary" role="status">
+            </div>
+            <br>
+            <span class=" display-5 font-weight-bold text-white-50 "> Loading...</span>
+        </div>

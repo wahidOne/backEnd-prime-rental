@@ -65,4 +65,32 @@ class M_menu extends CI_Model
     {
         return $this->db->get_where('user_menu', $where);
     }
+
+
+    public function getSubmenu()
+    {
+        $this->db->select('*,user_menu.menu_name');
+        $this->db->from('user_submenu');
+        $this->db->join('user_menu', 'user_menu.menu_id = user_submenu.submenu_menu_id ', 'left');
+        $query = $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query->result_array();
+        } else {
+            return false;
+        }
+    }
+
+    public function getSubmenuWhere($where = null)
+    {
+        $this->db->select('*,user_menu.menu_name');
+        $this->db->from('user_submenu');
+        $this->db->join('user_menu', 'user_menu.menu_id = user_submenu.submenu_menu_id ', 'left');
+        $this->db->where($where);
+        $query = $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query->row_array();
+        } else {
+            return false;
+        }
+    }
 }

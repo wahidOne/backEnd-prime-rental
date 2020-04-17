@@ -11,6 +11,17 @@
 <!-- end custom js for this page -->
 
 <script>
+    document.onreadystatechange = function() {
+        if (document.readyState === "complete") {
+            console.log(document.readyState);
+            setTimeout(() => {
+                    document.getElementById("PreLoaderBar").style.display = "none";
+                },
+                500);
+        }
+    }
+
+
     const signOutLinks = [...document.querySelectorAll(".sign--out--link")];
     signOutLinks.map((link) => {
         link.addEventListener("click", (e) => {

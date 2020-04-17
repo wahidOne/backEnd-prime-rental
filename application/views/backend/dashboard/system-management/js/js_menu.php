@@ -11,9 +11,6 @@
 
     // validasi
     function checkRequired(inputArr, actions) {
-        let valid = false;
-
-
         const inputError = inputArr.filter(input => input.value.trim() === ``).map(el => {
             showError(el, `${getFieldName(el)} is required`);
         });
@@ -24,7 +21,6 @@
         }
 
     }
-
 
     // pesan Error
     function showError(input, message) {
@@ -39,7 +35,6 @@
     // get Field Name
     function getFieldName(input) {
         const title = input.dataset.title;
-        // return input.id.charAt(0).toUpperCase() + input.id.slice(1);
         return title;
     }
 

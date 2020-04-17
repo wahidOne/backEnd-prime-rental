@@ -64,8 +64,8 @@ $route['administrator/system-management/delete-menu/(:any)'] = 'admin/dashboard/
 // submenu
 $route['administrator/system-management/submenu'] = 'admin/dashboard/System/showSubmenu';
 $route['administrator/system-management/add-submenu'] = 'admin/dashboard/System/addSubmenu';
-$route['administrator/system-management/update-submenu'] = 'admin/dashboard/System/updateSubmenu';
-$route['administrator/system-management/delet-submenu'] = 'admin/dashboard/System/deleteSubmenu';
+$route['administrator/system-management/update-submenu/(:any)'] = 'admin/dashboard/System/updateSubmenu/$1';
+$route['administrator/system-management/delete-submenu/(:any)'] = 'admin/dashboard/System/deleteSubmenu/$1';
 
 // $route['administrator/system-management/get-menu-where/(:any)'] = 'admin/dashboard/System/getMenuWhere/$1';
 $route['404_override'] = 'Page404/index';
