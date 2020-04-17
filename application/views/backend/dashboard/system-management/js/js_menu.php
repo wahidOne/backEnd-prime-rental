@@ -13,22 +13,18 @@
     function checkRequired(inputArr, actions) {
         let valid = false;
 
-        inputArr.forEach(input => {
-            if (input.value.trim() === '' || input.value < 1) {
-                showError(input, `${getFieldName(input)} is required`);
-                valid = false;
-            } else {
-                valid = true;
-            }
 
+        const inputError = inputArr.filter(input => input.value.trim() === ``).map(el => {
+            showError(el, `${getFieldName(el)} is required`);
         });
-        if (!valid === false) {
+
+        if (inputError.length === 0) {
             console.log('true');
             actions();
         }
 
-        console.log(valid);
     }
+
 
     // pesan Error
     function showError(input, message) {
@@ -63,16 +59,12 @@
         formMenu.addEventListener('submit', form => {
             form.preventDefault();
             checkRequired([menuName, menuMethod, menuUrl, menuSlug, menuIcon, menuType], actions);
-
-
         })
     })
 
     function actions() {
         const formTambahData = document.querySelector('.tambahData');
         if (formTambahData) {
-            // const  = formTambahData;
-
             formTambahData.action = '<?= base_url('administrator/system-management/tambah-menu') ?>';
             formTambahData.method = "POST";
             formTambahData.submit();

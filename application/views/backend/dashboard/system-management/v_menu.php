@@ -146,12 +146,10 @@
                             <div class="form-group">
                                 <label class=" form-control-label" for="menu_type">Type </label>
                                 <select class="form-control text-primary " name="menu_type" id="menu_type" data-title="Menu Type">
-                                    <option selected="" value="0">Open this Select Type Menu</option>
-                                    <div class="d-none" id="select-tambah">
-                                        <?php foreach ($menu_type as $mt) : ?>
-                                            <option value="<?= $mt['type_id'] ?>" class=" text-capitalize "><?= $mt['type_name'] ?></option>
-                                        <?php endforeach; ?>
-                                    </div>
+                                    <option selected value="">Open this Select Type Menu</option>
+                                    <?php foreach ($menu_type as $mt) : ?>
+                                        <option value="<?= $mt['type_id'] ?>" class=" text-capitalize "><?= $mt['type_name'] ?></option>
+                                    <?php endforeach; ?>
                                 </select>
                                 <small class="text-danger"></small>
                             </div>
