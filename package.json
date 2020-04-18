@@ -14,7 +14,8 @@
 		"@sweetalert2/themes": "^3.1.4",
 		"axios": "^0.19.2",
 		"sweetalert2": "^9.10.9",
-		"toastr": "^2.1.4"
+		"toastr": "^2.1.4",
+		"validate.js": "^0.13.1"
 	},
 	"devDependencies": {}
 }

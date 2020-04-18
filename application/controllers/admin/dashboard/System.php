@@ -281,4 +281,89 @@ class System extends CI_Controller
         );
         redirect('administrator/system-management/submenu');
     }
+
+
+    // user access
+    public function showUserAccessMenu()
+    {
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+
+        $data = [
+            'title' => 'User level',
+            'user' => $user,
+            'user_level' => $this->M_public->getData('user_level')->result_array()
+        ];
+
+
+
+        if ($this->form_validation->run() == false) {
+            $backendTemplates = $this->publicData['backendTemplates'];
+            $viewsDashboardPath = 'backend/dashboard/';
+            $this->load->view($backendTemplates . 'header', $data);
+            $this->load->view($backendTemplates . 'topbar', $data);
+            $this->load->view($backendTemplates . 'sidebar', $data);
+            $this->load->view($viewsDashboardPath . 'system-management/v_user-access-menu', $data); //main content
+            $this->load->view($backendTemplates . 'footer', $data);
+            $this->load->view($viewsDashboardPath . '/plugins/_menu', $data); //plugins
+            $this->load->view($backendTemplates . 'script', $data);
+            // costum js
+            $this->load->view($viewsDashboardPath . 'system-management/js/js_user-access-menu', $data);
+            $this->load->view($backendTemplates . 'end', $data);
+        }
+    }
+
+    public function getUserAccessMenu($level_id)
+    {
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+
+        $data = [
+            'title' => 'User access menu',
+            'user' => $user,
+
+        ];
+
+        $data['level'] = $this->db->get_where('user_level', ['level_id' => $level_id])->row_array();
+        // $data['level'] = $this
+        $this->db->where('menu_id !=', 2);
+        $data['menu'] = $this->db->get('user_menu')->result_array();
+
+        $backendTemplates = $this->publicData['backendTemplates'];
+        $viewsDashboardPath = 'backend/dashboard/';
+        $this->load->view($backendTemplates . 'header', $data);
+        $this->load->view($backendTemplates . 'topbar', $data);
+        $this->load->view($backendTemplates . 'sidebar', $data);
+        $this->load->view($viewsDashboardPath . 'system-management/v_user-changeaccess-menu', $data); //main content
+        $this->load->view($backendTemplates . 'footer', $data);
+        $this->load->view($viewsDashboardPath . '/plugins/_menu', $data); //plugins
+        $this->load->view($backendTemplates . 'script', $data);
+        // costum js
+        $this->load->view($viewsDashboardPath . 'system-management/js/js_user-changeaccess-menu', $data);
+        $this->load->view($backendTemplates . 'end', $data);
+    }
+
+
+    public function changeAccess()
+    {
+        $menu_id = $this->input->post('menu_id');
+        $level_id = $this->input->post('level_id');
+
+        $data = [
+            'access_user_level_id' => $level_id,
+            'access_menu_id' => $menu_id
+        ];
+
+
+
+        $result = $this->db->get_where('user_access_menu', $data);
+
+        if ($result->num_rows() < 1) {
+            $this->db->insert('user_access_menu', $data);
+        } else {
+            $this->db->delete('user_access_menu', $data);
+        }
+
+        $this->session->set_flashdata('pesan-akses', 'Berhasil mengubah aksesauth!');
+
+        // echo json_encode($data);
+    }
 }

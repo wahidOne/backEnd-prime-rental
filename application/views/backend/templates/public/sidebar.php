@@ -34,32 +34,37 @@
                     <?php if ($this->uri->segment(2) === $m['menu_uri_segment']) : ?>
                         <li class="nav-item active">
                             <a class="nav-link" data-toggle="collapse" href="#<?php echo $toLower; ?>" role="button" aria-expanded="true" aria-controls="<?php echo $toLower; ?>">
-                                <i class="link-icon <?= $m['menu_icon'] ?> "></i>
-                                <span class="link-title"><?= $m['menu_name']; ?></span>
-                                <i class="link-arrow" data-feather="chevron-down"> </i>
+                            <?php else : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="collapse" href="#<?php echo $toLower; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $toLower; ?>">
+                            <?php endif; ?>
+                            <i class="link-icon <?= $m['menu_icon'] ?> "></i>
+                            <span class="link-title"><?= $m['menu_name']; ?></span>
+                            <i class="link-arrow" data-feather="chevron-down"> </i>
                             </a>
-                        <?php else : ?>
-                        <li class="nav-item ">
-                            <a class="nav-link " data-toggle="collapse" href="#<?php echo $toLower; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $toLower; ?>">
-                                <i class="link-icon <?= $m['menu_icon'] ?> "></i>
-                                <span class="link-title"><?= $m['menu_name']; ?></span>
-                                <i class="link-arrow" data-feather="chevron-down"> </i>
-                            </a>
-                        <?php endif; ?>
-                        <div class="collapse" id="<?php echo $toLower; ?>">
-                            <ul class="nav sub-menu ml-2">
-                                <?php foreach ($subMenu as $sm) : ?>
-                                    <li class="nav-item ">
-                                        <?php if ($this->uri->segment(3) ===  $sm['submenu_method']) : ?>
-                                            <a href="<?= base_url($m['menu_url'] . '/' . $sm['submenu_method']) ?>" class="nav-link active"><?= $sm['submenu_name']; ?></a>
-                                        <?php else : ?>
-                                            <a href="<?= base_url($m['menu_url'] . '/' . $sm['submenu_method']) ?>" class="nav-link "><?= $sm['submenu_name']; ?></a>
+                            <!-- <a class="nav-link " data-toggle="collapse" href="#<?php echo $toLower; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $toLower; ?>">
+                            <i class="link-icon <?= $m['menu_icon'] ?> "></i>
+                            <span class="link-title"><?= $m['menu_name']; ?></span>
+                            <i class="link-arrow" data-feather="chevron-down"> </i>
+                        </a> -->
+                            <?php if ($this->uri->segment(2) === $m['menu_uri_segment']) : ?>
+                                <div class="collapse show" id="<?php echo $toLower; ?>">
+                                <?php else :  ?>
+                                    <div class="collapse" id="<?php echo $toLower; ?>">
+                                    <?php endif; ?>
+                                    <ul class="nav sub-menu ml-2">
+                                        <?php foreach ($subMenu as $sm) : ?>
+                                            <li class="nav-item ">
+                                                <?php if ($this->uri->segment(3) ===  $sm['submenu_method']) : ?>
+                                                    <a href="<?= base_url($m['menu_url'] . '/' . $sm['submenu_method']) ?>" class="nav-link active"><?= $sm['submenu_name']; ?></a>
+                                                <?php else : ?>
+                                                    <a href="<?= base_url($m['menu_url'] . '/' . $sm['submenu_method']) ?>" class="nav-link "><?= $sm['submenu_name']; ?></a>
 
-                                        <?php endif; ?>
-                                    </li>
-                                <?php endforeach; ?>
-                            </ul>
-                        </div>
+                                                <?php endif; ?>
+                                            </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                    </div>
                         </li>
                     <?php else : ?>
                         <!-- menu active-->

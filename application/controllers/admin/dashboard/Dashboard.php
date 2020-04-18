@@ -20,7 +20,8 @@ class Dashboard extends CI_Controller
 
         $data = [
             'title' => 'Dashboard',
-            'user' => $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array()
+            'user' => $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array(),
+            'allUser' => $this->M_user->getAllUser()
         ];
 
 

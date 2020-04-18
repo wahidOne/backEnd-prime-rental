@@ -207,9 +207,10 @@
                             <div class="figure mb-3">
                                 <img src="<?= base_url('assets/uploads/ava/' . $user['user_photo']) ?>" alt="">
                             </div>
-                            <div class="info text-center">
+                            <div class="info text-center pb-2">
                                 <p class="name font-weight-bold mb-0 text-capitalize"><?= $user['user_name'] ?></p>
-                                <p class="email text-muted mb-3"><?= $user['user_email'] ?></p>
+                                <p class="email text-muted "><?= $user['user_email'] ?></p>
+                                <span class="mt-1 font-weight-bold text-uppercase text-primary mb-3"><?= $user['user_level'] ?></span>
                             </div>
                         </div>
                         <div class="dropdown-body">

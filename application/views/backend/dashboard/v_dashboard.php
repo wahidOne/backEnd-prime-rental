@@ -245,26 +245,31 @@
                                 <th>Aksi</th>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th>1</th>
-                                    <td>
-                                        <img src="<?= base_url('assets/uploads/ava/default.png') ?>" alt="">
-                                    </td>
-                                    <td>Devin@gmail.com</td>
-                                    <td>
-                                        <div class="dropleft">
-                                            <button class="btn p-0" type="button" id="user1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="user1">
-                                                <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">Detail</span></a>
-                                                <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="slash" class="icon-sm mr-2"></i> <span class="">Nonaktifkan</span></a>
-                                                <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>
 
+                                <?php $no = 1; ?>
+                                <?php foreach ($allUser as $u) : ?>
+                                    <tr>
+                                        <th><?= $no++; ?></th>
+                                        <td>
+                                            <img src="<?= base_url('assets/uploads/ava/') . $u['user_photo'] ?>" alt="">
+                                        </td>
+                                        <td><?= $u['user_email']; ?></td>
+                                        <td>
+                                            <div class="dropleft">
+                                                <button class="btn p-0" type="button" id="user1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="user1">
+                                                    <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">Detail</span></a>
+                                                    <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="slash" class="icon-sm mr-2"></i> <span class="">Nonaktifkan</span></a>
+                                                    <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>
+
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
+
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>

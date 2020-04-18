@@ -4,7 +4,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class Auth extends CI_Controller
 {
 
-
     public function __construct()
     {
         parent::__construct();
@@ -62,7 +61,7 @@ class Auth extends CI_Controller
                     $this->session->set_userdata($data);
                     $this->session->set_flashdata('pesan');
 
-                    if ($user['user_level'] <= 1) {
+                    if ($user['user_level'] <= 2) {
                         $this->session->set_flashdata('toastrBerhasilLogin', "Selamat datang " . $user['user_name']);
                         redirect('administrator/dashboard/');
                     } else {

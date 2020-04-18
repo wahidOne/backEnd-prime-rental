@@ -12,6 +12,11 @@ class M_Public extends CI_Model
         return $this->db->get($table);
     }
 
+    public function getDataWhere($table, $where = null)
+    {
+        return $this->db->get_where($table, $where);
+    }
+
     public function updateData($where = null, $table, $data = null)
     {
         $this->db->where($where);

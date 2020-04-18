@@ -11,11 +11,26 @@ class M_user extends CI_Model
     public function getUser($where = null)
     {
         // return $this->db->get_where('user', $where)->row_array();
-        $this->db->select('user.*, user_level.`level`');
+        $this->db->select('user.*, user_level.`level` as user_level');
         $this->db->from('user');
         $this->db->join('user_level', 'user_level.level_id
         = user.user_level');
         $this->db->where($where);
         return $this->db->get();
+    }
+
+    public function getAllUser()
+    {
+        // return $this->db->get_where('user', $where)->row_array();
+        $this->db->select('user.*, user_level.`level` as user_level');
+        $this->db->from('user');
+        $this->db->join('user_level', 'user_level.level_id
+        = user.user_level');
+        $query =  $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query->result_array();
+        } else {
+            return false;
+        }
     }
 }

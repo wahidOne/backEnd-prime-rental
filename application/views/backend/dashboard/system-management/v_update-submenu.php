@@ -75,9 +75,9 @@
                                 <?= form_error('menu_id', '<span class="text-danger m-1 pesan-validasi-input">', '</span>'); ?>
                             </div>
                         </div>
-                        <div class="col-sm-12">
-                            <a href="<?= base_url('administrator/system-management/submenu') ?>" class="btn btn-secondary">Cancel</a>
-                            <button type="submit" class="btn btn-primary">Save</button>
+                        <div class="col-sm-12  text-right ">
+                            <a href="<?= base_url('administrator/system-management/submenu') ?>" class="btn btn-secondary text-dark ">Cancel</a>
+                            <button type="submit" class="btn btn-primary ml-2">Save</button>
                         </div>
                     </div>
                 </form>
