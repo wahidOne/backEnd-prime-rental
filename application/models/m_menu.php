@@ -22,6 +22,7 @@ class M_menu extends CI_Model
         $this->db->join('user_access_menu', 'user_access_menu.access_menu_id = user_menu.menu_id', 'left');
         $this->db->join('user_menu_type', 'user_menu_type.type_id =  user_menu.menu_type_id', 'left');
         $this->db->where('user_access_menu.access_user_level_id', $user_level);
+        $this->db->where('menu_type_id', 1);
         $this->db->order_by('user_access_menu.access_menu_id', 'asc');
         $query = $this->db->get();
         if ($query->num_rows() != 0) {

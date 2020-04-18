@@ -75,6 +75,7 @@ $route['administrator/system-management/delete-level-access/(:num)'] = 'admin/da
 $route['administrator/system-management/get-level-access/(:num)'] = 'admin/dashboard/System/getUserLevel/$1';
 $route['administrator/system-management/get-access-menu/(:any)'] = 'admin/dashboard/System/getUserAccessMenu/$1';
 $route['administrator/system-management/change-access-menu'] = 'admin/dashboard/System/changeAccess';
+$route['administrator/system-management/change-access-submenu'] = 'admin/dashboard/System/changeSubmenuAccess';
 
 // $route['administrator/system-management/get-menu-where/(:any)'] = 'admin/dashboard/System/getMenuWhere/$1';
 $route['404_override'] = 'Page404/index';

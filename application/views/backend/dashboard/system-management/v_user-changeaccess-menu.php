@@ -23,7 +23,7 @@
     <?php endif; ?>
 
     <div class="row">
-        <div class="col-md-10 grid-margin stretch-card">
+        <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-header ">
                     <div class="d-flex">
@@ -31,35 +31,64 @@
                     </div>
                 </div>
                 <div class="card-body">
-
                     <div class="table-responsive-lg">
-                        <table class="table table-hover ">
-                            <thead>
-                                <tr>
-                                    <th class="pt-0">#</th>
-                                    <th class="pt-0">Level</th>
-                                    <th class="pt-0">Akses</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php $no = 1; ?>
-                                <?php foreach ($menu as $m) : ?>
-                                    <tr>
-                                        <th><span class=" text-white-50 "><?= $no++; ?></span></th>
-                                        <td class=" text-capitalize "><?= $m['menu_name']; ?></td>
-                                        <td>
-                                            <div class="input-group">
-                                                <div class="form-check">
-                                                    <label class="form-check-label">
-                                                        <input type="checkbox" <?= check_access($level['level_id'], $m['menu_id']); ?> data-level="<?= $level['level_id']; ?>" data-menu="<?= $m['menu_id']; ?>" class="form-check-input checkbox-level">
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                        <div class="row">
+                            <div class="col-md-6 mt-3 mb-3">
+                                <h3 class="card-title">Access Menu</h3>
+                                <table class="table table-hover table-bordered ">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Menu</th>
+                                            <th colspan="1">Akses</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no = 1; ?>
+                                        <?php foreach ($menu as $m) : ?>
+                                            <tr>
+                                                <th><span class=" text-white-50 "><?= $no++; ?></span></th>
+                                                <td class=" text-capitalize "><?= $m['menu_name']; ?></td>
+
+                                                <td>
+                                                    <div class="custom-control custom-switch">
+                                                        <input style="cursor: pointer;" type="checkbox" class="custom-control-input checkbox-akses-menu" <?= check_access($level['level_id'], $m['menu_id']); ?> data-level="<?= $level['level_id']; ?>" data-menu="<?= $m['menu_id']; ?>" id="<?= $m['menu_name']; ?>">
+                                                        <label class="custom-control-label" for="<?= $m['menu_name']; ?>"></label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-md-6 mt-3  ">
+                                <h3 class="card-title">Access submenu</h3>
+                                <table class="table table-hover table-bordered ">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>Submenu</th>
+                                            <th colspan="1">Akses</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php $no = 1; ?>
+                                        <?php foreach ($submenu as $sm) : ?>
+                                            <tr>
+                                                <th><span class=" text-white-50 "><?= $no++; ?></span></th>
+                                                <td class=" text-capitalize "><?= $sm['submenu_name']; ?></td>
+                                                <td>
+                                                    <div class="custom-control custom-switch">
+                                                        <input type="checkbox" class="custom-control-input checkbox-akses-submenu" <?= check_submenu_access($level['level_id'], $sm['submenu_id']); ?> data-level="<?= $level['level_id']; ?>" data-submenu="<?= $sm['submenu_id']; ?>" id="<?= $sm['submenu_name']; ?>">
+                                                        <label class="custom-control-label" for="<?= $sm['submenu_name']; ?>"></label>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        <?php endforeach; ?>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="card-footer">

@@ -210,7 +210,7 @@
                             <div class="info text-center pb-2">
                                 <p class="name font-weight-bold mb-0 text-capitalize"><?= $user['user_name'] ?></p>
                                 <p class="email text-muted "><?= $user['user_email'] ?></p>
-                                <span class="mt-1 font-weight-bold text-uppercase text-primary mb-3"><?= $user['user_level'] ?></span>
+                                <span class="mt-1 font-weight-bold text-uppercase text-primary mb-3"><?= $user['level'] ?></span>
                             </div>
                         </div>
                         <div class="dropdown-body">

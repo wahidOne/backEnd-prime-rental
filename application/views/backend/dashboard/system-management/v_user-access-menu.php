@@ -59,20 +59,24 @@
                                         <th><span class=" text-white-50 "><?= $no++; ?></span></th>
                                         <td class=" text-capitalize "><?= $l['level']; ?></td>
                                         <td>
-                                            <a id="btn-access" href="<?= site_url('administrator/system-management/get-access-menu/') . $l['level_id']; ?>" class=" badge badge-outlineinfo   ">
+                                            <a id="btn-access" href="<?= site_url('administrator/system-management/get-access-menu/') . $l['level_id']; ?>" class=" btn btn-sm btn-outline-info   ">
                                                 access
                                             </a>
                                         </td>
                                         <td>
-                                            <div class="d-flex flex-wrap justify-content-center  ">
-                                                <a href="<?= base_url('administrator/system-management/get-level-access/') . $l['level_id']; ?>" class="badge badge-outlineprimary button--edit">
-                                                    <i class="fas fa-fw fa-edit"></i>
-                                                    Edit
-                                                </a>
-                                                <a href="<?= base_url('administrator/system-management/delete-level-access/') . $l['level_id']; ?>" class="badge badge-outlinedanger ml-2   ">
-                                                    <i class="fas fa-fw fa-trash "></i>
-                                                    Delete
-                                                </a>
+                                            <div class="row d-flex flex-wrap justify-content-center  ">
+                                                <div class="col-6 text-right px-1 ">
+                                                    <a href="<?= base_url('administrator/system-management/get-level-access/') . $l['level_id']; ?>" class="  btn btn-sm btn-outline-primary  button--edit">
+                                                        <i class="fas fa-fw fa-edit"></i>
+                                                        Edit
+                                                    </a>
+                                                </div>
+                                                <div class="col-6 px-1 text-left ">
+                                                    <a href="<?= base_url('administrator/system-management/delete-level-access/') . $l['level_id']; ?>" class=" btn btns-sm btn-outline-danger  ml-2   ">
+                                                        <i class="fas fa-fw fa-trash "></i>
+                                                        Delete
+                                                    </a>
+                                                </div>
                                             </div>
                                         </td>
 

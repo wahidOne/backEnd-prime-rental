@@ -323,10 +323,19 @@ class System extends CI_Controller
         ];
 
         $data['level'] = $this->db->get_where('user_level', ['level_id' => $level_id])->row_array();
-        // $data['level'] = $this
-        $this->db->where('menu_id !=', 2);
-        $data['menu'] = $this->db->get('user_menu')->result_array();
 
+        if ($data['level']['level_id']  <= '1') {
+            $this->db->where('submenu_id !=', 1);
+            $this->db->where('submenu_id !=', 3);
+            $this->db->where('submenu_id !=', 4);
+            $data['submenu'] = $this->db->get('user_submenu')->result_array();
+            $this->db->where('menu_id !=', 2);
+            $data['menu'] = $this->db->get('user_menu')->result_array();
+        } else {
+            $data['submenu'] = $this->db->get('user_submenu')->result_array();
+            // $this->db->where('menu_id !=', 2);
+            $data['menu'] = $this->db->get('user_menu')->result_array();
+        }
         $backendTemplates = $this->publicData['backendTemplates'];
         $viewsDashboardPath = 'backend/dashboard/';
         $this->load->view($backendTemplates . 'header', $data);
@@ -363,6 +372,29 @@ class System extends CI_Controller
         $this->session->set_flashdata('pesan-akses', 'Berhasil mengubah aksesauth!');
 
         // echo json_encode($data);
+    }
+
+    public function changeSubmenuAccess()
+    {
+        $submenu_id = $this->input->post('submenu_id');
+        $level_id = $this->input->post('level_id');
+
+        $data = [
+            'access_user_level_id' => $level_id,
+            'access_submenu_id' => $submenu_id
+        ];
+
+        $result = $this->db->get_where('user_access_submenu', $data);
+
+        if ($result->num_rows() < 1) {
+            $this->db->insert('user_access_submenu', $data);
+        } else {
+            $this->db->delete('user_access_submenu', $data);
+        }
+
+        $this->session->set_flashdata('pesan-akses', 'Berhasil mengubah akses !');
+
+        echo json_encode($data);
     }
 
 

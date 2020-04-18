@@ -15,12 +15,18 @@
 
             <!-- Query Data -->
             <?php
+
+            $user_level_id = $user['user_level'];
+
             $user_menu = $this->M_menu->showMenuToSidebar();
             foreach ($user_menu as $m) :
                 $menuId = $m['menu_id'];
                 $querySubMenu = "SELECT *
-                            FROM `user_submenu`
+                            FROM `user_submenu` 
+                            JOIN `user_access_submenu`
+                            ON `user_submenu`.`submenu_id` = `user_access_submenu`.`access_submenu_id`
                             WHERE `submenu_menu_id` = $menuId
+                            AND `user_access_submenu`.`access_user_level_id` = $user_level_id
                             AND `submenu_active` = 1
                             ";
                 $subMenu = $this->db->query($querySubMenu)->result_array();
@@ -42,11 +48,6 @@
                             <span class="link-title"><?= $m['menu_name']; ?></span>
                             <i class="link-arrow" data-feather="chevron-down"> </i>
                             </a>
-                            <!-- <a class="nav-link " data-toggle="collapse" href="#<?php echo $toLower; ?>" role="button" aria-expanded="false" aria-controls="<?php echo $toLower; ?>">
-                            <i class="link-icon <?= $m['menu_icon'] ?> "></i>
-                            <span class="link-title"><?= $m['menu_name']; ?></span>
-                            <i class="link-arrow" data-feather="chevron-down"> </i>
-                        </a> -->
                             <?php if ($this->uri->segment(2) === $m['menu_uri_segment']) : ?>
                                 <div class="collapse show" id="<?php echo $toLower; ?>">
                                 <?php else :  ?>
