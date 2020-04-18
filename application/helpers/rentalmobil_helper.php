@@ -38,7 +38,7 @@ function is_logged_in()
         //     'role_id' => $role_id,
         //     'menu_id' => $menu_id
         // ]);
-
+            
         $ci->db->where('access_user_level_id', $level_id);
         $ci->db->where('access_menu_id', $menu_id);
         $result = $ci->db->get('user_access_menu');

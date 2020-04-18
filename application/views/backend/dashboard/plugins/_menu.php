@@ -1,0 +1,1 @@
+<script src="<?= base_url('assets/');  ?>backend/vendors/jquery-validation/jquery.validate.min.js"></script>

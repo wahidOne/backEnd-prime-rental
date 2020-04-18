@@ -66,9 +66,13 @@ $route['administrator/system-management/submenu'] = 'admin/dashboard/System/show
 $route['administrator/system-management/add-submenu'] = 'admin/dashboard/System/addSubmenu';
 $route['administrator/system-management/update-submenu/(:any)'] = 'admin/dashboard/System/updateSubmenu/$1';
 $route['administrator/system-management/delete-submenu/(:any)'] = 'admin/dashboard/System/deleteSubmenu/$1';
-// user access
 
+// user access
 $route['administrator/system-management/user-access-menu'] = 'admin/dashboard/System/showUserAccessMenu';
+$route['administrator/system-management/add-level-access'] = 'admin/dashboard/System/addUserLevel';
+$route['administrator/system-management/update-level-access'] = 'admin/dashboard/System/updateUserLevel';
+$route['administrator/system-management/delete-level-access/(:num)'] = 'admin/dashboard/System/DeleteUserLevel/$1';
+$route['administrator/system-management/get-level-access/(:num)'] = 'admin/dashboard/System/getUserLevel/$1';
 $route['administrator/system-management/get-access-menu/(:any)'] = 'admin/dashboard/System/getUserAccessMenu/$1';
 $route['administrator/system-management/change-access-menu'] = 'admin/dashboard/System/changeAccess';
 

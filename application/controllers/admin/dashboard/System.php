@@ -352,8 +352,6 @@ class System extends CI_Controller
             'access_menu_id' => $menu_id
         ];
 
-
-
         $result = $this->db->get_where('user_access_menu', $data);
 
         if ($result->num_rows() < 1) {
@@ -365,5 +363,74 @@ class System extends CI_Controller
         $this->session->set_flashdata('pesan-akses', 'Berhasil mengubah aksesauth!');
 
         // echo json_encode($data);
+    }
+
+
+    public function addUserLevel()
+    {
+        $level = $this->input->post('level');
+        $data = [
+            'level' => $level
+        ];
+        if ($data) {
+
+            $this->M_public->insertData('user_level', $data);
+
+            $data = [
+                'success' => true,
+                'message' => 'Berhasil menambahkan level baru!'
+            ];
+        } else {
+            $data = [
+                'success' => false,
+                'message' => 'Maaf.., Data yang diinput kosong!'
+            ];
+        }
+        echo json_encode($data);
+    }
+
+    public function getUserLevel()
+    {
+        $level_id = $this->uri->segment(4);
+        $data = $this->M_public->getDataWhere('user_level', ['level_id' => $level_id])->row_array();
+        echo json_encode($data);
+    }
+
+    public function updateUserLevel()
+    {
+        $level_id = $this->input->post('level_id');
+        $level = $this->input->post('level');
+        $data_input = [
+            'level_id' => $level_id,
+            'level' => $level
+        ];
+
+        if ($data_input) {
+            $this->M_public->updateData(['level_id' => $level_id], 'user_level', $data_input);
+            $data = [
+                'success' => true,
+                'message' => 'Berhasil mengubah level!',
+                'data' => $data_input
+            ];
+        } else {
+            $data = [
+                'success' => false,
+                'message' => 'Maaf.., Data yang diinput kosong!'
+            ];
+        }
+        echo json_encode($data);
+    }
+
+
+    public function DeleteUserLevel()
+    {
+        $level_id = $this->uri->segment(4);
+        $user_level = $this->M_public->getDataWhere('user_level', ['level_id' => $level_id])->row_array();
+        $this->M_public->deleteData(['level_id' => $level_id], 'user_level');
+        $this->session->set_flashdata(
+            'pesan-level',
+            'Berhasil menghapus user level' . ' <strong> ' . $user_level['level'] . '</strong>!'
+        );
+        redirect('administrator/system-management/user-access-menu');
     }
 }
