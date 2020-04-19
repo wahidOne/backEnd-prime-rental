@@ -3,9 +3,8 @@
     const FormEdit = document.querySelector('#form-edit');
     const buttonEdit = document.querySelectorAll('.button--edit');
 
-
     if (formLevel.length > 0) {
-        $(".form-level").validate({
+        $("#myform").validate({
             rules: {
                 level: {
                     required: true,
@@ -13,12 +12,8 @@
             },
             messages: {
                 level: {
-                    required: "masukan nama level",
+                    required: "<p class='text-danger'>masukan nama level</p>",
                 }
-            },
-            errorPlacement: function(label, element) {
-                label.addClass('text-danger');
-                labelinsertAfter(element);
             },
             submitHandler: function(form) {
                 const url = form.dataset.url;

@@ -23,7 +23,7 @@
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">Tambah Level</h6>
-                    <form data-url="<?= base_url('administrator/system-management/add-level-access/') ?>" action="" class="forms-sample form-level " method="POST">
+                    <form data-url="<?= base_url('administrator/system-management/add-level-access/') ?>" action="" class="forms-sample form-level " id="myform" method="POST">
                         <div class="form-group">
                             <label for="level">Level Name</label>
                             <input type="text" class="form-control text-primary " name="level" id="level" autocomplete="off" placeholder="Username">

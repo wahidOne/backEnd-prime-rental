@@ -4,9 +4,9 @@
 <script src="<?= base_url('assets/backend/') ?>js/sweetalert2.js"></script>
 <script src="<?= base_url('assets/global-plugins/') ?>axios/axios.min.js"></script>
 
-
 <!-- endinject -->
 <!-- custom js for this page -->
+
 <script src="<?= base_url('assets/');  ?>backend/js/dashboard.js"></script>
 <script src="<?= base_url('assets/');  ?>backend/js/datepicker.js"></script>
 <script src="<?= base_url('assets/');  ?>backend/js/costum.js"></script>
