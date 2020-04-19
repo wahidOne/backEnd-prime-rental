@@ -107,6 +107,7 @@ class Auth extends CI_Controller
             'min_length' => ' Kata sandi terlalu pendek ! '
         ]);
 
+
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|min_length[3]|matches[password1]');
 
         if ($this->form_validation->run() == false) {

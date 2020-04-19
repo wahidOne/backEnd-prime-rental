@@ -33,9 +33,9 @@
                 <div class="card-body">
                     <div class="table-responsive-lg">
                         <div class="row">
-                            <div class="col-md-6 mt-3 mb-3">
+                            <div class="col-lg-6 mt-3 mb-3">
                                 <h3 class="card-title">Access Menu</h3>
-                                <table class="table table-hover table-bordered ">
+                                <table class="table table-hover table-bordered " id="data-akses-menu">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -61,9 +61,10 @@
                                     </tbody>
                                 </table>
                             </div>
-                            <div class="col-md-6 mt-3  ">
+                            <div class="col-lg-6 mt-3  ">
                                 <h3 class="card-title">Access submenu</h3>
-                                <table class="table table-hover table-bordered ">
+
+                                <table class="table table-hover table-bordered " id="data-akses-submenu">
                                     <thead>
                                         <tr>
                                             <th>#</th>

@@ -75,6 +75,24 @@
                                 <?= form_error('menu_id', '<span class="text-danger m-1 pesan-validasi-input">', '</span>'); ?>
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class=" form-control-label" for="type_id">Type Submenu </label>
+                                <select class="form-control text-white text-capitalize" name="type" id="type">
+                                    <option selected="" disabled>Open this Select Menu</option>
+                                    <div class="d-none">
+                                        <?php foreach ($type_menu as $t) : ?>
+                                            <?php if ($submenu['submenu_type_id'] == $t['type_id']) : ?>
+                                                <option selected value="<?= $t['type_id'] ?>" class=" text-capitalize "><?= $t['type_name'] ?></option>
+                                            <?php else :  ?>
+                                                <option value="<?= $t['type_id'] ?>" class=" text-capitalize "><?= $t['type_name'] ?></option>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </select>
+                                <?= form_error('type', '<span class="text-danger m-1 pesan-validasi-input">', '</span>'); ?>
+                            </div>
+                        </div>
                         <div class="col-sm-12  text-right ">
                             <a href="<?= base_url('administrator/system-management/submenu') ?>" class="btn btn-secondary text-dark ">Cancel</a>
                             <button type="submit" class="btn btn-primary ml-2">Save</button>
@@ -89,4 +107,4 @@
 
 
 
-</div>
+</div

@@ -96,18 +96,19 @@
                         backdrop: 'static',
                         keyboard: false
                     }, 'show')
-                    await axios.get('<?= base_url("admin/dashboard/System/getMenuWhere/") ?>' + menuId)
-                        .then(function(response) {
-                            // handle success
-                            showDataOnModal(response.data)
-                        })
-                        .catch(function(error) {
-                            // handle error
-                            console.log(error);
-                        })
-                        .then(function() {
 
-                        });
+                    const url = '<?= base_url("administrator/system-management/detail-menu/") ?>' + menuId;
+                    await $.ajax({
+                        type: 'GET',
+                        url: url,
+                        async: true,
+                        dataType: 'json',
+                        success: function(res) {
+                            if (res != false) {
+                                showDataOnModal(res);
+                            }
+                        }
+                    });
                 } else {
                     showAlert();
                 }

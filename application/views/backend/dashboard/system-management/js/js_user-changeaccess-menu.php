@@ -1,4 +1,47 @@
 <script hidden>
+    $(function() {
+        $('#data-akses-menu').DataTable({
+            "aLengthMenu": [
+                [5, 10, 30, 50, -1],
+                [5, 10, 30, 50, "All"]
+            ],
+            "iDisplayLength": 5,
+            "language": {
+                search: ""
+            }
+        });
+        $('#data-akses-menu').each(function() {
+            var datatable = $(this);
+            // SEARCH - Add the placeholder for Search and Turn this into in-line form control
+            var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
+            search_input.attr('placeholder', 'Search');
+            search_input.removeClass('form-control-sm');
+            // LENGTH - Inline-Form control
+            var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
+            length_sel.removeClass('form-control-sm');
+        });
+        $('#data-akses-submenu').DataTable({
+            "aLengthMenu": [
+                [5, 10, 30, 50, -1],
+                [5, 10, 30, 50, "All"]
+            ],
+            "iDisplayLength": 5,
+            "language": {
+                search: ""
+            }
+        });
+        $('#data-akses-submenu').each(function() {
+            var datatable = $(this);
+            // SEARCH - Add the placeholder for Search and Turn this into in-line form control
+            var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
+            search_input.attr('placeholder', 'Search');
+            search_input.removeClass('form-control-sm');
+            // LENGTH - Inline-Form control
+            var length_sel = datatable.closest('.dataTables_wrapper').find('div[id$=_length] select');
+            length_sel.removeClass('form-control-sm');
+        });
+    });
+
     const checkboxAksesMenu = [...document.querySelectorAll('.checkbox-akses-menu')];
     const checkboxAksesSubmenu = [...document.querySelectorAll('.checkbox-akses-submenu')];
     if (checkboxAksesMenu.length > 0) {
@@ -36,6 +79,7 @@
                     const submenu_id = this.dataset.submenu;
                     const level_id = this.dataset.level;
                     const url = '<?= base_url('administrator/system-management/change-access-submenu'); ?>';
+                    console.log(submenu_id);
                     await $.ajax({
                         url: url,
                         type: 'post',
@@ -44,7 +88,6 @@
                             level_id: level_id
                         },
                         success: function(res) {
-                            console.log(res);
                             document.location.href = "<?= base_url('administrator/system-management/get-access-menu/'); ?>" + level_id;
                         }
                     });

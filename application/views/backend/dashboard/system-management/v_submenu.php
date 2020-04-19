@@ -13,7 +13,7 @@
     <div class="row pt-5 pb-4 px-3">
         <h1 class=" display-5 text-primary ">
             <i class="far fa-fw fa-folders font-26  "></i>
-            <span class=" font-weight-light ml-3 ">Menu Management</span>
+            <span class=" font-weight-light ml-3 ">Submenu Management</span>
         </h1>
     </div>
 
@@ -39,32 +39,36 @@
                 <div class="card-body">
 
                     <div class="table-responsive-lg">
-                        <table class="table table-hover ">
+                        <table class="table table-hover " id="data-submenu">
                             <thead>
                                 <tr>
                                     <th class="pt-0">#</th>
                                     <th class="pt-0">Nama / Title</th>
-                                    <th class="pt-0">Method (Fungsi)</th>
-                                    <th class="pt-0" colspan="2">Tipe Menu</th>
+                                    <th class="pt-0">Url</th>
+                                    <th class="pt-0">Submenu Parent</th>
+                                    <th class="pt-0">Tipe Menu</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php $no = 1; ?>
                                 <?php foreach ($submenu as $sm) : ?>
+
                                     <tr>
                                         <th><span class=" text-white-50 "><?= $no++; ?></span></th>
                                         <td><?= $sm['submenu_name']; ?></td>
                                         <td><?= $sm['submenu_method']; ?></td>
                                         <td><?= $sm['menu_name']; ?></td>
-                                        <td>
+                                        <td class=" text-capitalize ">
+                                            <div class="badge <?= $sm['submenu_type_id'] == 1 ? 'badge-info' : ' badge-warning' ?> "><?= $sm['submenu_type']; ?></div>
+                                        </td>
                                         <td>
                                             <div class="text-wrap d-flex justify-content-around ">
                                                 <a class=" badge badge-primary " href="<?= base_url('administrator/system-management/update-submenu/') . $sm['submenu_id']; ?>"><i data-feather="edit-2" class="icon-sm"></i> <span class="">Edit</span></a>
                                                 <a id="hapus-menu" class="badge badge-danger ml-2 ml-md-1" href="<?= base_url('administrator/system-management/delete-submenu/') . $sm['submenu_id']; ?>"><i class=" fas fa-fw fa-trash-alt mr-1  "></i>Delete</a>
                                             </div>
                                         </td>
-                                        </td>
+
                                     </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -86,7 +90,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-primary " id="modal-title"><i class="fal fa-fw font-18 fa-folder-plus"></i> Tambah Menu</h5>
+                <h5 class="modal-title text-primary " id="modal-title"><i class="fal fa-fw font-18 fa-folder-plus"></i> Tambah Submenu</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -109,25 +113,39 @@
                                 <?= form_error('method', '<span class="text-danger m-1 pesan-validasi-input">', '</span>'); ?>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label class=" form-control-label " for="icon">Icon</label>
                                 <input type="text" name="icon" class="form-control text-primary " id="icon" data-title="Icon">
                                 <?= form_error('icon', '<span class="text-danger m-1 pesan-validasi-input">', '</span>'); ?>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <div class="form-group">
-                                <label class=" form-control-label" for="menu_id">Menu </label>
+                                <label class=" form-control-label" for="menu_id">Parent Menu </label>
                                 <select class="form-control text-white text-capitalize " name="menu_id" id="menu_id">
                                     <option selected="" disabled>Open this Select Menu</option>
-                                    <div class="d-none" id="select-tambah">
+                                    <div class="d-none">
                                         <?php foreach ($menu as $m) : ?>
                                             <option value="<?= $m['menu_id'] ?>" class=" text-capitalize "><?= $m['menu_name'] ?></option>
                                         <?php endforeach; ?>
                                     </div>
                                 </select>
                                 <?= form_error('menu_id', '<span class="text-danger m-1 pesan-validasi-input">', '</span>'); ?>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class=" form-control-label" for="type_id">Type Submenu </label>
+                                <select class="form-control text-white text-capitalize" name="type" id="type">
+                                    <option selected="" disabled>Open this Select Menu</option>
+                                    <div class="d-none">
+                                        <?php foreach ($type_menu as $t) : ?>
+                                            <option value="<?= $t['type_id'] ?>" class=" text-capitalize "><?= $t['type_name'] ?></option>
+                                        <?php endforeach; ?>
+                                    </div>
+                                </select>
+                                <?= form_error('type', '<span class="text-danger m-1 pesan-validasi-input">', '</span>'); ?>
                             </div>
                         </div>
                     </div>

@@ -70,9 +70,12 @@ class M_menu extends CI_Model
 
     public function getSubmenu()
     {
-        $this->db->select('*,user_menu.menu_name');
+        $this->db->select('*,user_menu.menu_name, user_menu_type.type_name as submenu_type');
         $this->db->from('user_submenu');
         $this->db->join('user_menu', 'user_menu.menu_id = user_submenu.submenu_menu_id ', 'left');
+        $this->db->join('user_menu_type', 'user_menu_type.type_id = user_submenu.submenu_type_id ', 'left');
+        $this->db->order_by('submenu_menu_id ASC ');
+        $this->db->order_by('submenu_type_id ASC ');
         $query = $this->db->get();
         if ($query->num_rows() != 0) {
             return $query->result_array();
@@ -86,6 +89,7 @@ class M_menu extends CI_Model
         $this->db->select('*,user_menu.menu_name');
         $this->db->from('user_submenu');
         $this->db->join('user_menu', 'user_menu.menu_id = user_submenu.submenu_menu_id ', 'left');
+
         $this->db->where($where);
         $query = $this->db->get();
         if ($query->num_rows() != 0) {

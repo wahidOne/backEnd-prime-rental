@@ -70,9 +70,7 @@
                                                     <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
                                                 </button>
                                                 <div class="dropdown-menu" aria-labelledby="<?= $m['menu_name']; ?>">
-                                                    <a class="dropdown-item d-flex align-items-center text-primary   " href="#"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">View</span></a>
                                                     <a class="dropdown-item d-flex align-items-center text-info ubah-menu" href="#" data-id="<?= $m['menu_id']; ?>"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>
-
                                                     <a id="hapus-menu" class="dropdown-item d-flex align-items-center text-danger " href="<?= base_url('administrator/system-management/delete-menu/') . $m['menu_id']; ?>"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>
                                                 </div>
                                             </div>

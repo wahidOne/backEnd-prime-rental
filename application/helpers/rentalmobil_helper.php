@@ -3,8 +3,6 @@
 
 function is_logged_in()
 {
-
-
     $ci = get_instance();
     if (!$ci->session->userdata('user_email')) {
         $ci->session->set_flashdata(
@@ -26,6 +24,16 @@ function is_logged_in()
 
         if ($userAccess->num_rows() < 1) {
             redirect('administrator/blocked');
+            $submenu = $ci->uri->segment(3);
+            $querySubmenu = $ci->db->get_where('user_submenu', ['submenu_method' => $submenu])->row_array();
+            $submenu_id = $querySubmenu['submenu_id'];
+            $userAccessSubmenu = $ci->db->get_where('user_access_submenu', [
+                'access_user_level_id' => $user_level,
+                'access_submenu_id' => $submenu_id
+            ]);
+            if ($userAccessSubmenu->num_rows() < 1) {
+                redirect('administrator/blocked');
+            }
         }
     }
 

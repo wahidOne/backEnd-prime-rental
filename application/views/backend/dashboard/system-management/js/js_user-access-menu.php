@@ -18,7 +18,7 @@
             },
             errorPlacement: function(label, element) {
                 label.addClass('text-danger');
-                label.insertAfter(element);
+                labelinsertAfter(element);
             },
             submitHandler: function(form) {
                 const url = form.dataset.url;

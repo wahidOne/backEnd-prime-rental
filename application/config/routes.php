@@ -59,8 +59,10 @@ $route['administrator/sign-out'] = 'admin/auth/auth/signOut';
 $route['administrator/dashboard'] = 'admin/dashboard/Dashboard/index';
 $route['administrator/system-management/menu'] = 'admin/dashboard/System/menu';
 $route['administrator/system-management/tambah-menu'] = 'admin/dashboard/System/tambahMenu';
+$route['administrator/system-management/detail-menu/(:any)'] = 'admin/dashboard/System/getMenuWhere/$1';
 $route['administrator/system-management/ubah-menu'] = 'admin/dashboard/System/UbahMenu';
 $route['administrator/system-management/delete-menu/(:any)'] = 'admin/dashboard/System/deleteMenu/$1';
+
 // submenu
 $route['administrator/system-management/submenu'] = 'admin/dashboard/System/showSubmenu';
 $route['administrator/system-management/add-submenu'] = 'admin/dashboard/System/addSubmenu';
@@ -76,6 +78,10 @@ $route['administrator/system-management/get-level-access/(:num)'] = 'admin/dashb
 $route['administrator/system-management/get-access-menu/(:any)'] = 'admin/dashboard/System/getUserAccessMenu/$1';
 $route['administrator/system-management/change-access-menu'] = 'admin/dashboard/System/changeAccess';
 $route['administrator/system-management/change-access-submenu'] = 'admin/dashboard/System/changeSubmenuAccess';
+// Master Data
+$route['administrator/master-data/cars'] = 'admin/dashboard/Master_data/cars';
+$route['administrator/master-data/data-tables-cars'] = 'admin/dashboard/Master_data/get_ajax';
+
 
 // $route['administrator/system-management/get-menu-where/(:any)'] = 'admin/dashboard/System/getMenuWhere/$1';
 $route['404_override'] = 'Page404/index';

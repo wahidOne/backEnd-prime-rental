@@ -43,7 +43,7 @@
                 <div class="card-body">
 
                     <div class="table-responsive-lg">
-                        <table class="table table-hover ">
+                        <table class="table table-hover " id="data-level">
                             <thead>
                                 <tr>
                                     <th class="pt-0">#</th>

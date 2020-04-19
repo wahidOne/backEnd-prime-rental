@@ -96,7 +96,7 @@ class System extends CI_Controller
     public function getMenuWhere()
     {
         // $menuId = $this->uri->segment(4);
-        $data = $this->M_menu->ShowMenuById(['menu_id' => $this->uri->segment(5)]);
+        $data = $this->M_menu->ShowMenuById(['menu_id' => $this->uri->segment(4)]);
         echo json_encode($data);
     }
 
@@ -124,7 +124,8 @@ class System extends CI_Controller
             'title' => 'Submenu Manegements',
             'user' => $user,
             'submenu' => $submenu,
-            'menu' => $menu
+            'menu' => $menu,
+            'type_menu' => $this->M_public->getData('user_menu_type')->result_array()
         ];
 
 
@@ -160,6 +161,14 @@ class System extends CI_Controller
                 'required' => 'Tentukan Menu!'
             ]
         );
+        $this->form_validation->set_rules(
+            'type',
+            'Type',
+            'required|trim',
+            [
+                'required' => 'Tentukan tipe menu!'
+            ]
+        );
 
         $backendTemplates = $this->publicData['backendTemplates'];
         $viewsDashboardPath = 'backend/dashboard/';
@@ -181,6 +190,7 @@ class System extends CI_Controller
                 'submenu_method' => $this->input->post('method'),
                 'submenu_icon' => $this->input->post('icon'),
                 'submenu_menu_id' => $this->input->post('menu_id'),
+                'submenu_type_id' => $this->input->post('type'),
                 'submenu_active' => 1
             ];
 
@@ -205,7 +215,8 @@ class System extends CI_Controller
             'title' => 'Update Submenu',
             'user' => $user,
             'submenu' => $submenu,
-            'menu' => $menu
+            'menu' => $menu,
+            'type_menu' => $this->M_public->getData('user_menu_type')->result_array()
         ];
 
 
@@ -260,6 +271,7 @@ class System extends CI_Controller
                 'submenu_method' => $this->input->post('method'),
                 'submenu_icon' => $this->input->post('icon'),
                 'submenu_menu_id' => $this->input->post('menu_id'),
+                'submenu_type_id' => $this->input->post('type'),
                 'submenu_active' => 1
             ];
 
@@ -294,8 +306,6 @@ class System extends CI_Controller
             'user_level' => $this->M_public->getData('user_level')->result_array()
         ];
 
-
-
         if ($this->form_validation->run() == false) {
             $backendTemplates = $this->publicData['backendTemplates'];
             $viewsDashboardPath = 'backend/dashboard/';
@@ -325,15 +335,14 @@ class System extends CI_Controller
         $data['level'] = $this->db->get_where('user_level', ['level_id' => $level_id])->row_array();
 
         if ($data['level']['level_id']  <= '1') {
-            $this->db->where('submenu_id !=', 1);
-            $this->db->where('submenu_id !=', 3);
-            $this->db->where('submenu_id !=', 4);
+            $this->db->where('submenu_menu_id !=', 2);
             $data['submenu'] = $this->db->get('user_submenu')->result_array();
             $this->db->where('menu_id !=', 2);
             $data['menu'] = $this->db->get('user_menu')->result_array();
         } else {
+            $this->db->where('submenu_menu_id !=', 2);
             $data['submenu'] = $this->db->get('user_submenu')->result_array();
-            // $this->db->where('menu_id !=', 2);
+            $this->db->where('menu_id !=', 2);
             $data['menu'] = $this->db->get('user_menu')->result_array();
         }
         $backendTemplates = $this->publicData['backendTemplates'];
