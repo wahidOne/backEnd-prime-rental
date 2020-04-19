@@ -9,9 +9,7 @@
     <!-- inject -->
     <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>vendors/core/core.css">
     <!-- endinject -->
-    <!-- plugin css for this page -->
-    <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-    <!-- end plugin css for this page -->
+
     <!-- inject:css -->
     <link rel="stylesheet" href="<?= base_url('assets/global-plugins/'); ?>fontawesome/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>fonts/feather-font/css/iconfont.css">
@@ -19,6 +17,9 @@
     <!-- endinject -->
     <!-- Layout styles -->
     <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>css/demo_2/style.css">
+    <!-- plugin css for this page -->
+    <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>vendors/DataTables/css/datatables.bootstrap4.min.css">
+    <!-- end plugin css for this page -->
     <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>css/main.css">
 </head>
 

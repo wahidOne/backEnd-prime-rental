@@ -15,9 +15,7 @@
 
             <!-- Query Data -->
             <?php
-
             $user_level_id = $user['user_level'];
-
             $user_menu = $this->M_menu->showMenuToSidebar();
             foreach ($user_menu as $m) :
                 $menuId = $m['menu_id'];
@@ -28,6 +26,7 @@
                             WHERE `submenu_menu_id` = $menuId
                             AND `user_access_submenu`.`access_user_level_id` = $user_level_id
                             AND `submenu_active` = 1
+                            AND `submenu_type_id` = 1
                             ";
                 $subMenu = $this->db->query($querySubMenu)->result_array();
                 $noSpace =  preg_replace('/\s+/', '', $m['menu_uri_segment']);
