@@ -80,6 +80,7 @@ $route['administrator/system-management/change-access-menu'] = 'admin/dashboard/
 $route['administrator/system-management/change-access-submenu'] = 'admin/dashboard/System/changeSubmenuAccess';
 // Master Data
 $route['administrator/master-data/cars'] = 'admin/dashboard/Master_data/cars';
+$route['administrator/master-data/add-cars'] = 'admin/dashboard/Master_data/AddCar';
 $route['administrator/master-data/data-tables-cars'] = 'admin/dashboard/Master_data/get_ajax';
 
 

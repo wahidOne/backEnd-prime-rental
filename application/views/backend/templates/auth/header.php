@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>vendors/core/core.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
+
     <!-- end plugin css for this page -->
     <!-- inject:css -->
     <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>fonts/feather-font/css/iconfont.css">

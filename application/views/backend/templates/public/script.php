@@ -2,6 +2,7 @@
 <script src="<?= base_url('assets/');  ?>backend/vendors/feather-icons/feather.min.js"></script>
 <script src="<?= base_url('assets/');  ?>backend/js/template.js"></script>
 <script src="<?= base_url('assets/backend/') ?>js/sweetalert2.js"></script>
+
 <script src="<?= base_url('assets/global-plugins/') ?>axios/axios.min.js"></script>
 
 <!-- endinject -->
