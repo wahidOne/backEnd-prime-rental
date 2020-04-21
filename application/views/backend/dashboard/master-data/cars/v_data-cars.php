@@ -68,38 +68,38 @@
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="brand" class="form-control-label text-white-50  font-weight-bold ">Brand </label>
-                                    <input type="text" class="form-control" name="brand" id="brand">
+                                    <input type="text" class="form-control text-primary" name="brand" id="brand">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="no_police" class="form-control-label text-white-50  font-weight-bold ">No Police </label>
-                                    <input type="text" class="form-control" name="no_police" id="no_police">
+                                    <input type="text" class="form-control text-primary" name="no_police" id="no_police">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group">
                                     <label for="fuel" class="form-control-label text-white-50  font-weight-bold ">Type Fuel </label>
-                                    <input type="text" class="form-control" name="fuel" id="fuel">
+                                    <input type="text" class="form-control text-primary" name="fuel" id="fuel">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group ">
                                     <label for="price" class="form-control-label text-white-50  font-weight-bold ">Price </label>
 
-                                    <input type="text" class="form-control" name="price" id="price">
+                                    <input type="text" class="form-control text-primary" name="price" id="price">
                                 </div>
                             </div>
                             <div class="col-sm-6">
                                 <div class="form-group ">
                                     <label for="transmission" class="form-control-label text-white-50  font-weight-bold ">Transmission </label>
-                                    <input type="text" class="form-control" name="transmission" id="transmission">
+                                    <input type="text" class="form-control text-primary" name="transmission" id="transmission">
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="form-group ">
                                     <label for="capacity" class="form-control-label text-white-50  font-weight-bold ">Capacity </label>
-                                    <input type="number" class="form-control" name="capacity" id="capacity">
+                                    <input type="number" class="form-control text-primary" name="capacity" id="capacity">
                                 </div>
                             </div>
                             <div class="col-sm-3">
@@ -116,13 +116,13 @@
                             <div class="col-lg-6">
                                 <div class="form-group">
                                     <label for="desc" class="form-control-label text-white-50  font-weight-bold ">Descriptions Car </label>
-                                    <textarea class=" form-control " name="desc" id="desc" cols="30" rows="10"></textarea>
+                                    <textarea class=" form-control text-primary" name="desc" id="desc" cols="30" rows="10"></textarea>
                                 </div>
                             </div>
                             <div class="col-lg-6 ">
                                 <div class="form-group">
                                     <div class="card">
-                                        <div class="card-body">
+                                        <div class="card-body upload ">
                                             <h6 class="card-title">Upload Image </h6>
                                             <input type="file" id="image" name="image" class="border" />
                                         </div>
@@ -133,7 +133,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <button id="submit" type="submit" class="btn btn-primary">Save changes</button>
                     </div>
 
                 </form>

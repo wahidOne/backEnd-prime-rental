@@ -75,7 +75,7 @@
         menuId.map(id => {
             formMenu.removeChild(id);
         })
-        menuId.value = ''
+        menuId.value = '';
         menuName.value = '';
         menuMethod.value = '';
         menuUrl.value = '';

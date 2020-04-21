@@ -81,6 +81,9 @@ $route['administrator/system-management/change-access-submenu'] = 'admin/dashboa
 // Master Data
 $route['administrator/master-data/cars'] = 'admin/dashboard/Master_data/cars';
 $route['administrator/master-data/add-cars'] = 'admin/dashboard/Master_data/AddCar';
+$route['administrator/master-data/update-car'] = 'admin/dashboard/Master_data/updateCar';
+$route['administrator/master-data/get-car/(:num)'] = 'admin/dashboard/Master_data/getCarWhere/$1';
+$route['administrator/master-data/delete-car/(:num)'] = 'admin/dashboard/Master_data/deleteCar/$1';
 $route['administrator/master-data/data-tables-cars'] = 'admin/dashboard/Master_data/get_ajax';
 
 

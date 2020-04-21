@@ -68,18 +68,18 @@ class M_cars extends CI_Model
     }
     // end datatables
 
-    // public function getAllCars()
-    // {
-    //     $this->db->select('*');
-    //     $this->db->from('cars');
-    //     $this->db->join('tipe_mobil', 'tipe_mobil.id_tipe =  mobil.id_tipe_mobil', 'left');
-    //     $query = $this->db->get();
-    //     if ($query->num_rows() != 0) {
-    //         return $query->result_array();
-    //     } else {
-    //         return false;
-    //     }
-    // }
+    public function getAllCars()
+    {
+        $this->db->select('*');
+        $this->db->from('cars');
+        $this->db->join('car_types', 'car_types.type_id =  cars.car_type_id');
+        $query = $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query->result_array();
+        } else {
+            return false;
+        }
+    }
 
     public function saveCar($image)
     {
@@ -99,6 +99,29 @@ class M_cars extends CI_Model
         ];
 
         $this->db->insert('cars', $data);
+
+        return $data;
+    }
+
+
+    public function updateCar($image, $where = null, $dateInput = null)
+    {
+        $data = [
+            'car_id' => $this->input->post('car_id', true),
+            'car_brand' => $this->input->post('brand', true),
+            'car_no_police' => $this->input->post('no_police', true),
+            'car_type_id' => $this->input->post('type_id', true),
+            'car_price' => $this->input->post('price', true),
+            'car_fuel' => $this->input->post('fuel', true),
+            'car_transmission' => $this->input->post('transmission', true),
+            'car_capacity' => $this->input->post('capacity', true),
+            'car_desc' => $this->input->post('desc', true),
+            'car_date_input' => $dateInput,
+            'car_date_update' => time(),
+            'car_photo' => $image
+        ];
+
+        $this->db->update('cars', $data, $where);
 
         return $data;
     }

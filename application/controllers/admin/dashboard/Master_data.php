@@ -30,9 +30,10 @@ class Master_data extends CI_Controller
             // add html for action
             $row[] = '
             <div class="d-flex justify-content-center ">
-                    <a href="' . site_url('administrator/master-data/cars-update/' . $c->car_id) . '" class="btn btn-outline-info btn-xs  "><i class="fas fa-fw fa-info"></i> Detail</a>
-                    <a href="' . site_url('administrator/master-data/cars-update/' . $c->car_id) . '" class="btn btn-outline-primary btn-xs ml-2  "><i class="fas fa-fw fa-pencil"></i> Update</a>
-                    <a href="' . site_url('administrator/master-data/cars-delete/' . $c->car_id) . '" class="btn btn-outline-danger btn-xs  ml-2"><i class="fas fa-fw fa-trash"></i> Delete</a>
+                    <a data-url="' . site_url('administrator/master-data/get-car/') . '" href="#" class="btn btn-outline-info btn-xs" data-id="' . $c->car_id . '" ><i class="fas fa-fw fa-info"></i> Detail</a>
+                    <a data-url="' . site_url('administrator/master-data/get-car/') . '" href="" class="btn btn-outline-primary btn-xs ml-2 button-edit" data-id="' . $c->car_id . '"><i class="fas fa-fw fa-pencil"></i> Update</a>
+                    <a href="' . base_url('administrator/master-data/delete-car/') . $c->car_id . '" data-name="' .  $c->car_brand . '" href="#" class="btn btn-outline-danger btn-xs button-delete  ml-2"><i class="fas fa-fw fa-trash"></i>Delete</a>
+
             </div>';
             $data[] = $row;
         }
@@ -78,7 +79,7 @@ class Master_data extends CI_Controller
         $config['upload_path'] = './assets/uploads/cars';
         $config['allowed_types'] = 'gif|jpg|png|doc|txt';
         // $config['max_size'] = 1024 * 8;
-        $config['encrypt_name'] = TRUE;
+        $config['file_name'] = 'car' . time();
 
         $this->load->library('upload', $config);
 
@@ -107,8 +108,77 @@ class Master_data extends CI_Controller
         }
 
 
-        @unlink($_FILES[$file_name]);
+        // @unlink($_FILES[$file_name]);
 
         echo json_encode(array('status' => $status, 'msg' => $msg, 'result' => $result));
+    }
+
+
+    public function getCarWhere()
+    {
+        $car_id = $this->uri->segment(4);
+
+        $data = [
+            'car' =>  $this->M_public->getDataWhere('cars', ['car_id' => $car_id])->row_array(),
+            'type' => $this->M_public->getData('car_types')->result_array()
+        ];
+        echo json_encode($data);
+    }
+
+    public function updateCar()
+    {
+
+        $car_id = $this->input->post('car_id');
+
+        $file_name = 'image';
+
+        $car = $this->M_public->getDataWhere('cars', ['car_id' => $car_id])->row_array();
+
+        $carFirstTimeInput = $car['car_date_input'];
+
+        $config['upload_path'] = './assets/uploads/cars';
+        $config['allowed_types'] = 'gif|jpg|png|doc|txt';
+        // $config['max_size'] = 1024 * 8;
+        $config['file_name'] = 'car-update-' . time();
+
+        $this->load->library('upload', $config);
+
+        if ($this->upload->do_upload($file_name)) {
+            $upload_data = $this->upload->data();
+            unlink('assets/uploads/cars/' . $this->input->post('old_image', TRUE));
+            $image = $upload_data['file_name'];
+        } else {
+            $image = $this->input->post('old_image', TRUE);
+            // $result = $this->M_cars->updateCar($image);
+        }
+
+
+        $result = $this->M_cars->updateCar($image, ['car_id' => $car_id], $carFirstTimeInput);
+
+        if ($result) {
+            $status = "Berhasil";
+            $msg = "yeah.. Data berhasil di tambahkan";
+        } else {
+            unlink($upload_data['full_path']);
+            $status = "Gagal";
+            $msg = "maaf.. data gagal di masukan, silahkan coba kembali.";
+        }
+
+        // unlink('./assets/uploads/cars' . $_FILES[$file_name]);
+
+
+        echo json_encode(array('image' => $image, 'status' => $status, 'msg' => $msg, 'result' => $result));
+        // echo json_encode(['data' => 'hayy']);
+    }
+
+
+    public function deleteCar()
+    {
+        $car_id = $this->uri->segment(4);
+        $data['car'] = $this->M_public->getDataWhere('cars', ['car_id' => $car_id])->row_array();
+
+        $data['result'] = $this->M_public->deleteData(['car_id' => $car_id], 'cars');
+
+        echo json_encode($data);
     }
 }
