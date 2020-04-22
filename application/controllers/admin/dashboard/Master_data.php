@@ -15,6 +15,9 @@ class Master_data extends CI_Controller
 
     function get_ajax()
     {
+
+
+
         $cars = $this->M_cars->get_datatables();
         $data = array();
         $no = @$_POST['start'];
@@ -30,9 +33,9 @@ class Master_data extends CI_Controller
             // add html for action
             $row[] = '
             <div class="d-flex justify-content-center ">
-                    <a data-url="' . site_url('administrator/master-data/get-car/') . '" href="#" class="btn btn-outline-info btn-xs" data-id="' . $c->car_id . '" ><i class="fas fa-fw fa-info"></i> Detail</a>
+                    <a id="button-info" href="' . site_url('administrator/master-data/get-car/') . '" data-id="' . $c->car_id . '" class="btn btn-outline-info btn-xs" ><i class="fas fa-fw fa-info"></i> Detail</a>
                     <a data-url="' . site_url('administrator/master-data/get-car/') . '" href="" class="btn btn-outline-primary btn-xs ml-2 button-edit" data-id="' . $c->car_id . '"><i class="fas fa-fw fa-pencil"></i> Update</a>
-                    <a href="' . base_url('administrator/master-data/delete-car/') . $c->car_id . '" data-name="' .  $c->car_brand . '" href="#" class="btn btn-outline-danger btn-xs button-delete  ml-2"><i class="fas fa-fw fa-trash"></i>Delete</a>
+                    <a href="' . base_url('administrator/master-data/delete-car/') . $c->car_id . '" data-name="' .  $c->car_brand . '" class="btn btn-outline-danger btn-xs button-delete  ml-2"><i class="fas fa-fw fa-trash"></i>Delete</a>
 
             </div>';
             $data[] = $row;
@@ -110,7 +113,7 @@ class Master_data extends CI_Controller
 
         // @unlink($_FILES[$file_name]);
 
-        echo json_encode(array('status' => $status, 'msg' => $msg, 'result' => $result));
+        echo json_encode(array('status' => $status, 'msg' => $msg));
     }
 
 
@@ -118,57 +121,45 @@ class Master_data extends CI_Controller
     {
         $car_id = $this->uri->segment(4);
 
+        $car = $this->M_cars->getCarWhere(['car_id' => $car_id]);
+
+        $car['car_date_input'] =  TanggalIndonesia(date('Y-m-d', $car['car_date_input']));
+
         $data = [
-            'car' =>  $this->M_public->getDataWhere('cars', ['car_id' => $car_id])->row_array(),
-            'type' => $this->M_public->getData('car_types')->result_array()
+            'car' =>  $car,
+            'car_new_price' => "Rp. " . number_format($car['car_price'], 2, ',', '.'),
+            'type' => $this->M_public->getData('car_types')->result_array(),
         ];
+
+        // $data['created'] = 
+
         echo json_encode($data);
     }
 
     public function updateCar()
     {
 
-        $car_id = $this->input->post('car_id');
-
-        $file_name = 'image';
+        $car_id = $this->input->post('u_car_id');
 
         $car = $this->M_public->getDataWhere('cars', ['car_id' => $car_id])->row_array();
-
         $carFirstTimeInput = $car['car_date_input'];
 
-        $config['upload_path'] = './assets/uploads/cars';
-        $config['allowed_types'] = 'gif|jpg|png|doc|txt';
-        // $config['max_size'] = 1024 * 8;
-        $config['file_name'] = 'car-update-' . time();
-
-        $this->load->library('upload', $config);
-
-        if ($this->upload->do_upload($file_name)) {
-            $upload_data = $this->upload->data();
-            unlink('assets/uploads/cars/' . $this->input->post('old_image', TRUE));
-            $image = $upload_data['file_name'];
-        } else {
-            $image = $this->input->post('old_image', TRUE);
-            // $result = $this->M_cars->updateCar($image);
-        }
-
-
-        $result = $this->M_cars->updateCar($image, ['car_id' => $car_id], $carFirstTimeInput);
+        $result = $this->M_cars->updateCar(['car_id' => $car_id], $carFirstTimeInput);
 
         if ($result) {
-            $status = "Berhasil";
-            $msg = "yeah.. Data berhasil di tambahkan";
+            $data['status'] = "Berhasil";
+            $data['message'] = "Data berhasil di ubah!";
         } else {
-            unlink($upload_data['full_path']);
-            $status = "Gagal";
-            $msg = "maaf.. data gagal di masukan, silahkan coba kembali.";
+            // unlink($upload_data['full_path']);
+            $data['status'] = "Gagal";
+            $data['message'] = "maaf.. data gagal di ubah, silahkan coba kembali.";
         }
 
         // unlink('./assets/uploads/cars' . $_FILES[$file_name]);
 
 
-        echo json_encode(array('image' => $image, 'status' => $status, 'msg' => $msg, 'result' => $result));
-        // echo json_encode(['data' => 'hayy']);
+        echo json_encode($data);
+        // echo json_encode($data, $car_id);
     }
 
 
@@ -177,8 +168,22 @@ class Master_data extends CI_Controller
         $car_id = $this->uri->segment(4);
         $data['car'] = $this->M_public->getDataWhere('cars', ['car_id' => $car_id])->row_array();
 
+
+        $oldImage = $data['car']['car_photo'];
+
+        $this->_deleteImage($oldImage);
+
+
         $data['result'] = $this->M_public->deleteData(['car_id' => $car_id], 'cars');
 
         echo json_encode($data);
+    }
+
+    private function _deleteImage($oldImage)
+    {
+        // $product = $this->getById($id);
+        if ($oldImage != "default.jpg") {
+            return unlink(FCPATH . "assets/uploads/cars/" . $oldImage);
+        }
     }
 }

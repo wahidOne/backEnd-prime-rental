@@ -30,7 +30,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-hover " id="table-cars">
+                        <table class="table table-hover " id="table-cars" data-url="<?= site_url('administrator/master-data/data-tables-cars') ?>">
                             <thead>
                                 <tr>
                                     <th class="pt-0">#</th>
@@ -142,5 +142,111 @@
     </div>
 
 
+
+
+    <div class="modal fade bd-example-modal-lg" id="modalUpdate" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Ubah Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="modalUpdateBody" class="modal-body">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade bd-example-modal-xl" id="modalDetail" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title title-detail text-center font-weight-bolder ">Detail Car </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="modalDetailBody" class="modal-body">
+                    <!-- <div class="row flex-grow ">
+                        <div class="col-lg-5 my-auto grid-margin stretch-card ">
+                            <div class="card border-0 shadow-none ">
+                                <div class="card-body">
+                                    <img class=" card-img-absolute img-fluid w-100 " src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSveoAzV5iXWDh8NnoA80GBZNF350mR1pyCaAOvk10ywEIsUYPk&usqp=CAU" alt="">
+                                    <span class=" mt-1 text-white-50">Date create : 12-20-2020</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-7 grid-margin stretch-card ">
+                            <div class="card shadow-none border-0 ">
+                                <div class="card-body flex-column d-flex">
+                                    <p class=" display-3 my-1 text-light">Agya Kuning</p>
+                                    <h4 class=" font-weight-bold text-monospace text-primary-muted mt-2  "> Hatback </h4>
+
+                                    <div class="pt-4 ">
+                                        <div class="row px-0 justify-content-between">
+                                            <div class="col-6 col-xl-4  mt-2">
+                                                <h5 class="font-weight-bold text-primary">Price</h5>
+                                                <span class=" text-white-50 display-4 my-2 ">
+                                                    Rp. 200.000
+                                                </span>
+                                            </div>
+
+                                            <div class=" col-6 col-xl-4  text-left text-xl-center   mt-2">
+                                                <h5 class=" font-weight-bold text-primary ">Transmission</h5>
+                                                <h6 class="text-white-50 text-left text-xl-center  mt-2 ">
+                                                    Otomastis
+                                                </h6>
+                                            </div>
+                                            <div class="d-none d-md-flex col-xl-4 "></div>
+                                        </div>
+                                        <div class="row mt-3 border-top pt-3 pr-0">
+                                            <div class="col-12 col-lg-8">
+                                                <h5 class=" font-weight-bold text-primary ">Description</h5>
+                                                <p class="text-white-50 text-left ">
+                                                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Odio laudantium optio et unde atque accusantium minima numquam earum inventore porro, quia ex fugiat fugit quis, iusto voluptatibus, quisquam aliquid cum!
+                                                </p>
+                                            </div>
+                                            <div class="col-12 col-lg-4 ">
+                                                <h5 class=" font-weight-bold text-primary mt-3 mt-lg-0 ">Police Number</h5>
+                                                <div class=" text-light font-weight-bold mt-lg-2 font-18  ">
+                                                    C 4205 DE
+                                                </div>
+                                            </div>
+                                            <hr class=" border-top w-100 ">
+                                            <div class="col-6 col-lg-6 col-xl-3 text-left   mt-2">
+                                                <h5 class=" font-weight-bold text-primary font-17 ">Capacity</h5>
+                                                <p class="text-white-50 text-left  font-17 font-weight-bold ">
+                                                    5 Kursi
+                                                </p>
+                                            </div>
+                                            <div class="col-6 col-lg-6 col-xl-3 text-left  mt-2">
+                                                <h5 class=" font-weight-bold text-primary font-17 ">Status</h5>
+                                                <p class="text-white-50 text-left font-17  ">
+                                                    Bebas sewa
+                                                </p>
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                    </div> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
