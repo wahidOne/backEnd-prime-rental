@@ -11,7 +11,7 @@
     </nav>
     <div class="row pt-5 pb-4 px-3">
         <h1 class=" display-5 text-primary ">
-            <i class="far fa-fw fa-folders font-26  "></i>
+            <i class="far fa-fw fa-cars font-26  "></i>
             <span class=" font-weight-light ml-3 ">Cars</span>
         </h1>
     </div>

@@ -13,15 +13,6 @@ class M_cars extends CI_Model
     private function _get_datatables_query()
     {
 
-
-        // $this->db->select('p_item.*, p_category.name as category_name, p_unit.name as unit_name');
-        // $this->db->from('p_item');
-        // $this->db->join('p_category', 'p_item.category_id = p_category.category_id');
-        // $this->db->join('p_unit', 'p_item.unit_id = p_unit.unit_id');
-        // $this->db->select('*');
-        // $this->db->from('mobil');
-        // $this->db->join('tipe', 'tipe.tipe_id =  mobil.id_tipe_mobil', 'left');
-        // $this->getAllCars();
         $this->db->select('*');
         $this->db->from('cars');
         $this->db->join('car_types', 'car_types.type_id =  cars.car_type_id');

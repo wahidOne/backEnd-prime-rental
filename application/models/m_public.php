@@ -21,6 +21,8 @@ class M_Public extends CI_Model
     {
         $this->db->where($where);
         $this->db->update($table, $data);
+
+        return $data;
     }
 
     public function deleteData($where = null, $table)

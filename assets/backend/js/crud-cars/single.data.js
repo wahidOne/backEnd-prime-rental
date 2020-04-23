@@ -39,12 +39,12 @@ const modalUpdateUI = (data, path) => {
                     <div class="row px-0 justify-content-between">
                         <div class="col-6 col-xl-4  mt-2">
                             <h5 class="font-weight-bold text-primary">Price</h5>
-                            <span class=" text-white-50 font-24  my-2 ">${car_new_price}</span>
+                            <span class=" text-light font-20  my-2 ">${car_new_price}</span>
                         </div>
 
                         <div class=" col-6 col-xl-4  text-left text-xl-center   mt-2">
                             <h5 class=" font-weight-bold text-primary ">Transmission</h5>
-                            <h6 class="text-white-50 text-left text-xl-center  mt-2 ">
+                            <h6 class="text-light text-left text-xl-center mt-2 ">
                             ${car.car_transmission}
                             </h6>
                         </div>
@@ -53,7 +53,7 @@ const modalUpdateUI = (data, path) => {
                     <div class="row mt-3 border-top pt-3 pr-0">
                         <div class="col-12 col-lg-8">
                             <h5 class=" font-weight-bold text-primary ">Description</h5>
-                            <p class="text-white-50 text-left ">
+                            <p class="text-light text-left ">
                             ${car.car_desc}
                             </p>
                         </div>
@@ -66,19 +66,19 @@ const modalUpdateUI = (data, path) => {
                         <hr class=" border-top w-100 ">
                         <div class="col-4 col-lg-4 col-xl-3 text-left   mt-2">
                             <h5 class=" font-weight-bold text-primary font-17 ">Capacity</h5>
-                            <p class="text-white-50 text-left  font-17 font-weight-bold ">
+                            <p class="text-light text-left  font-17 font-weight-bold ">
                             ${car.car_capacity} Kursi
                             </p>
                         </div>
                         <div class="col-4 col-lg-4 col-xl-3 text-left   mt-2">
                             <h5 class=" font-weight-bold text-primary font-17 ">Type of Fuel </h5>
-                            <p class="text-white-50 text-left  font-17 font-weight-bold ">
+                            <p class="text-light text-left  font-17 font-weight-bold ">
                             ${car.car_fuel}
                             </p>
                         </div>
                         <div class="col-4 col-lg-4 col-xl-3 text-left  mt-2">
                             <h5 class=" font-weight-bold text-primary font-17 ">Status</h5>
-                            <p class="text-white-50 text-left font-17  ">
+                            <p class="text-light text-left font-17  ">
                                 Bebas sewa
                             </p>
                         </div>

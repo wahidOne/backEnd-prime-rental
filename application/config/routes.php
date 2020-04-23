@@ -85,6 +85,13 @@ $route['administrator/master-data/update-car'] = 'admin/dashboard/Master_data/up
 $route['administrator/master-data/get-car/(:num)'] = 'admin/dashboard/Master_data/getCarWhere/$1';
 $route['administrator/master-data/delete-car/(:num)'] = 'admin/dashboard/Master_data/deleteCar/$1';
 $route['administrator/master-data/data-tables-cars'] = 'admin/dashboard/Master_data/get_ajax';
+/////
+$route['administrator/master-data/types-car'] = 'admin/dashboard/Master_data/typesCar';
+$route['administrator/master-data/get-types-car'] = 'admin/dashboard/Master_data/showTypesCar';
+$route['administrator/master-data/get-type-car/(:num)'] = 'admin/dashboard/Master_data/detailTypeCar/$1';
+$route['administrator/master-data/add-type'] = 'admin/dashboard/Master_data/addTypes';
+$route['administrator/master-data/update-type'] = 'admin/dashboard/Master_data/updateTypes';
+$route['administrator/master-data/delete-type/(:num)'] = 'admin/dashboard/Master_data/deleteTypes/$1';
 
 
 // $route['administrator/system-management/get-menu-where/(:any)'] = 'admin/dashboard/System/getMenuWhere/$1';

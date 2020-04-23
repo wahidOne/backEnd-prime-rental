@@ -15,9 +15,6 @@ class Master_data extends CI_Controller
 
     function get_ajax()
     {
-
-
-
         $cars = $this->M_cars->get_datatables();
         $data = array();
         $no = @$_POST['start'];
@@ -185,5 +182,94 @@ class Master_data extends CI_Controller
         if ($oldImage != "default.jpg") {
             return unlink(FCPATH . "assets/uploads/cars/" . $oldImage);
         }
+    }
+
+
+
+    // tipe mobil 
+
+    public function typesCar()
+    {
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+        $data = [
+            'title' => 'Data Car Types',
+            'user' => $user,
+        ];
+        $backendTemplates = $this->publicData['backendTemplates'];
+        $viewsDashboardPath = 'backend/dashboard/';
+        $this->load->view($backendTemplates . 'header', $data);
+        $this->load->view($backendTemplates . 'topbar', $data);
+        $this->load->view($backendTemplates . 'sidebar', $data);
+        $this->load->view($viewsDashboardPath . 'master-data/cars/v_data-car-types', $data); //main content
+        $this->load->view($backendTemplates . 'footer', $data);
+        $this->load->view($viewsDashboardPath . '/plugins/_master-data', $data); //plugins
+        $this->load->view($backendTemplates . 'script', $data);
+        // costum js
+        $this->load->view($viewsDashboardPath . 'master-data/cars/js/js_car_types', $data);
+        $this->load->view($backendTemplates . 'end', $data);
+    }
+
+    public function showTypesCar()
+    {
+        $data['type'] = $this->M_public->getData('car_types')->result_array();
+
+        echo json_encode($data);
+    }
+
+    public function addTypes()
+    {
+
+        $data['type_name'] =  $this->input->post('name');
+
+        $result = $this->M_public->insertData('car_types', $data);
+
+        if ($data) {
+            $data['status'] = "Berhasil";
+            $data['pesan'] = "good job!.. Data berhasil di tambahkan";
+        } else {
+            $data['status'] = "Gagal";
+            $data['pesan'] = "Opps sorry.. data gagal di masukan, silahkan coba kembali.";
+        }
+
+        echo json_encode($data);
+    }
+
+    public function detailTypeCar()
+    {
+
+        $type_id = $this->uri->segment(4);
+
+        $data['types'] = $this->M_public->getDataWhere('car_types', ['type_id' => $type_id])->row_array();
+
+        echo json_encode($data);
+    }
+
+    public function updateTypes()
+    {
+        $post['type_id'] = $this->input->post('type_id');
+        $post['type_name'] = $this->input->post('type_name');
+
+
+        $result = $this->M_public->updateData(['type_id' => $post['type_id']], 'car_types', $post);
+
+        if ($result) {
+            $data['status'] = "Berhasil";
+            $data['pesan'] = "good job!.. Data berhasil di tambahkan";
+        } else {
+            $data['status'] = "Gagal";
+            $data['pesan'] = "Opps sorry.. data gagal di masukan, silahkan coba kembali.";
+        }
+
+        echo json_encode($data);
+    }
+
+    public function deleteTypes()
+    {
+        $type_id = $this->uri->segment(4);
+        $data['types'] = $this->M_public->getDataWhere('car_types', ['type_id' => $type_id])->row_array();
+
+        $data['result'] = $this->M_public->deleteData(['type_id' => $type_id], 'car_types');
+
+        echo json_encode($data);
     }
 }

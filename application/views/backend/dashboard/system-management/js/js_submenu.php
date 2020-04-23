@@ -9,6 +9,9 @@
             search: ""
         }
     });
+
+
+
     $('#data-submenu').each(function() {
         var datatable = $(this);
         // SEARCH - Add the placeholder for Search and Turn this into in-line form control
@@ -47,6 +50,7 @@
         toastr.success(dataPesan, "Berhasil menghapus data!");
     }
 
+    // $('#data-submenu').DataTable().destroy();
 
     const linkDeleteMenu = [...document.querySelectorAll("#hapus-menu")];
 
