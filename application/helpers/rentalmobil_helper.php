@@ -171,6 +171,7 @@ function TanggalIndonesia($date)
             break;
     }
 
-    $tanggalIndonesia =  $hari . ", " . $tgl . " " . $bln . " " . $thn;
+    $tanggalIndonesia = $tgl . " " . $bln . " " . $thn;
+    // $tanggalIndonesia =  $hari . ", " . $tgl . " " . $bln . " " . $thn;
     return $tanggalIndonesia;
 };

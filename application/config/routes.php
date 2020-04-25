@@ -93,6 +93,10 @@ $route['administrator/master-data/add-type'] = 'admin/dashboard/Master_data/addT
 $route['administrator/master-data/update-type'] = 'admin/dashboard/Master_data/updateTypes';
 $route['administrator/master-data/delete-type/(:num)'] = 'admin/dashboard/Master_data/deleteTypes/$1';
 
+//admnistrator profile
+$route['administrator/profile'] = 'admin/profile/Profile';
+$route['administrator/profile/update-profile'] = 'admin/profile/Profile/updateProfile';
+
 
 // $route['administrator/system-management/get-menu-where/(:any)'] = 'admin/dashboard/System/getMenuWhere/$1';
 $route['404_override'] = 'Page404/index';

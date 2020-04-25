@@ -9,10 +9,11 @@
     <!-- inject -->
     <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>vendors/core/core.css">
     <!-- endinject -->
-    <!-- <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>select2/select2.min.css">
-    <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>jquery-tags-input/jquery.tagsinput.min.css"> -->
+
     <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>vendors/dropzone/dropzone.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>vendors/dropify/dist/dropify.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>vendors/bootstrap-colorpicker/bootstrap-colorpicker.min.css">
+    <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>vendors/bootstrap-datepicker/bootstrap-datepicker.min.css">
     <!-- inject:css -->
     <link rel="stylesheet" href="<?= base_url('assets/global-plugins/'); ?>fontawesome/css/all.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>fonts/feather-font/css/iconfont.css">
