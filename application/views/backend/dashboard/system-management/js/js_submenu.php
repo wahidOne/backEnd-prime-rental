@@ -1,10 +1,32 @@
 <script>
+    const linkDeleteMenu = [...document.querySelectorAll(".hapus-menu")];
+
+
+    linkDeleteMenu.map(link => {
+        link.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            if (e.target.classList.contains('hapus-menu')) {
+                const url = e.target.getAttribute("href");
+                Swal.fire({
+                    title: 'Ingin Menghapus Submenu ini?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#727CF5',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Iya'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location.href = url;
+                    }
+                })
+            }
+
+
+        });
+    })
+
     $('#data-submenu').DataTable({
-        "aLengthMenu": [
-            [5, 10, 30, 50, -1],
-            [5, 10, 30, 50, "All"]
-        ],
-        "iDisplayLength": 5,
         "language": {
             search: ""
         }
@@ -13,6 +35,7 @@
 
 
     $('#data-submenu').each(function() {
+        console.log(this);
         var datatable = $(this);
         // SEARCH - Add the placeholder for Search and Turn this into in-line form control
         var search_input = datatable.closest('.dataTables_wrapper').find('div[id$=_filter] input');
@@ -51,31 +74,4 @@
     }
 
     // $('#data-submenu').DataTable().destroy();
-
-    const linkDeleteMenu = [...document.querySelectorAll("#hapus-menu")];
-
-    linkDeleteMenu.map(link => {
-        link.addEventListener("click", (e) => {
-            e.preventDefault();
-
-            if (e.target.id = 'hapus-menu') {
-                console.log(e.target);
-                const url = e.target.getAttribute("href");
-                Swal.fire({
-                    title: 'Ingin Menghapus Submenu ini?',
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#727CF5',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Iya'
-                }).then((result) => {
-                    if (result.value) {
-                        window.location.href = url;
-                    }
-                })
-            }
-
-
-        });
-    })
 </script>

@@ -61,7 +61,7 @@ class Auth extends CI_Controller
                     $this->session->set_userdata($data);
                     $this->session->set_flashdata('pesan');
 
-                    if ($user['user_level'] <= 2) {
+                    if ($user['user_level'] <= 4 && $user['user_level'] != 3) {
                         $this->session->set_flashdata('toastrBerhasilLogin', "Selamat datang " . $user['user_name']);
                         redirect('administrator/dashboard/');
                     } else {
@@ -119,7 +119,7 @@ class Auth extends CI_Controller
             $data = [
                 'user_name' => htmlspecialchars($this->input->post('name', true)),
                 'user_email' => htmlspecialchars($this->input->post('email', true)),
-                'user_photo' => 'default.jpg',
+                'user_photo' => 'default.png',
                 'user_password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
                 'user_status' => 'online',
                 'user_level' => 3,

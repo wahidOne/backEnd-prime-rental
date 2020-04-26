@@ -38,7 +38,7 @@
                 </div>
                 <div class="card-body">
 
-                    <div class="table-responsive-lg">
+                    <div class="table-responsive">
                         <table class="table table-hover " id="data-submenu">
                             <thead>
                                 <tr>
@@ -65,7 +65,7 @@
                                         <td>
                                             <div class="text-wrap d-flex justify-content-around ">
                                                 <a class=" badge badge-primary " href="<?= base_url('administrator/system-management/update-submenu/') . $sm['submenu_id']; ?>"><i data-feather="edit-2" class="icon-sm"></i> <span class="">Edit</span></a>
-                                                <a id="hapus-menu" class="badge badge-danger ml-2 ml-md-1" href="<?= base_url('administrator/system-management/delete-submenu/') . $sm['submenu_id']; ?>"><i class=" fas fa-fw fa-trash-alt mr-1  "></i>Delete</a>
+                                                <a id="" class="badge badge-danger ml-2 ml-md-1 hapus-menu" href="<?= base_url('administrator/system-management/delete-submenu/') . $sm['submenu_id']; ?>"><i class=" fas fa-fw fa-trash-alt mr-1  "></i>Delete</a>
                                             </div>
                                         </td>
 

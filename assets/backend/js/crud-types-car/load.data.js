@@ -20,11 +20,6 @@ export const loadData = () => {
 			tbody.innerHTML = tbodyData;
 
 			$("#table-types").DataTable({
-				aLengthMenu: [
-					[5, 10, 30, 50, -1],
-					[5, 10, 30, 50, "All"],
-				],
-				iDisplayLength: 5,
 				language: {
 					search: "",
 				},

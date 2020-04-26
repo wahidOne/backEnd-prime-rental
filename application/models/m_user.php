@@ -111,4 +111,51 @@ class M_user extends CI_Model
 
         return "default.png";
     }
+
+
+    public function getUserWhere($where = null)
+    {
+        return $this->db->get_where('user', $where);
+    }
+
+    public function getGeneralUsers()
+    {
+        $this->db->select('user.*, user_level.`level` as user_level');
+        $this->db->from('user');
+        $this->db->join('user_level', 'user_level.level_id
+        = user.user_level');
+        $this->db->where('user_level', 3);
+        $query = $this->db->get();
+
+        if ($query->num_rows() != 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
+    public function getAdminUsers()
+    {
+
+        $where = [
+            'user_level < ' => 5,
+            'user_level !=' => 3
+        ];
+
+        $this->db->select('user.*, user_level.*');
+        $this->db->from('user');
+        $this->db->join('user_level', 'user_level.level_id
+        = user.user_level');
+        $this->db->where($where);
+
+
+        // $this->db->where('user_level', 2);
+        // $this->db->where('user_level', 4);
+        $query = $this->db->get();
+
+        if ($query->num_rows() != 0) {
+            return $query->result();
+        } else {
+            return false;
+        }
+    }
 }

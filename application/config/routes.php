@@ -97,6 +97,15 @@ $route['administrator/master-data/delete-type/(:num)'] = 'admin/dashboard/Master
 $route['administrator/profile'] = 'admin/profile/Profile';
 $route['administrator/profile/update-profile'] = 'admin/profile/Profile/updateProfile';
 
+//-->  users <--//
+
+$route['administrator/users/general'] = 'admin/dashboard/Users/index';
+$route['administrator/users/get-general-user'] = 'admin/dashboard/Users/generalUser';
+// users/admin
+
+$route['administrator/users/admin'] = 'admin/dashboard/Users/administrators';
+$route['administrator/users/get-admin-user'] = 'admin/dashboard/Users/getAdminUser';
+
 
 // $route['administrator/system-management/get-menu-where/(:any)'] = 'admin/dashboard/System/getMenuWhere/$1';
 $route['404_override'] = 'Page404/index';
