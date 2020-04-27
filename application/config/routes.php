@@ -100,6 +100,8 @@ $route['administrator/profile/update-profile'] = 'admin/profile/Profile/updatePr
 //-->  users <--//
 
 $route['administrator/users/general'] = 'admin/dashboard/Users/index';
+$route['administrator/users/get-user/(:num)'] = 'admin/dashboard/Users/getUser/$1';
+$route['administrator/users/change-level'] = 'admin/dashboard/Users/changeLevel';
 $route['administrator/users/get-general-user'] = 'admin/dashboard/Users/generalUser';
 // users/admin
 

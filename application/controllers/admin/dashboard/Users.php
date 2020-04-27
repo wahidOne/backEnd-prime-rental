@@ -49,6 +49,44 @@ class Users extends CI_Controller
         echo json_encode($data);
     }
 
+    public function getUser()
+    {
+        $user_id = $this->uri->segment(4);
+
+
+        $data = [
+            'user' => $this->M_user->getUserWhere(['user_id' => $user_id])->row_array(),
+            'level' => $this->M_public->getData('user_level')->result_array()
+        ];
+
+
+        echo json_encode($data);
+    }
+
+
+    public function changeLevel()
+    {
+        // $user_id = $this->uri->segment(4);
+
+        $user_id = $this->input->post('user_id');
+
+        $data = [
+            'user_id' => $this->input->post('user_id'),
+            'user_level' => $this->input->post('user_level')
+        ];
+
+        $this->M_public->updateData(['user_id ' => $user_id], 'user', $data);
+
+        if ($data) {
+            $res['status'] = "Berhasil";
+            $res['message'] = "Berhasil mengubah level user";
+        }
+
+        $data['response'] = $res;
+
+        echo json_encode($data);
+    }
+
     public function administrators()
     {
         $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();

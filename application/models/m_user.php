@@ -115,7 +115,18 @@ class M_user extends CI_Model
 
     public function getUserWhere($where = null)
     {
-        return $this->db->get_where('user', $where);
+        $this->db->select('user.*, user_level.`level`');
+        $this->db->from('user');
+        $this->db->join('user_level', 'user_level.level_id
+        = user.user_level');
+        $this->db->where($where);
+        $query = $this->db->get();
+
+        if ($query->num_rows() != 0) {
+            return $query;
+        } else {
+            return false;
+        }
     }
 
     public function getGeneralUsers()

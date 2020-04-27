@@ -3,8 +3,6 @@ export const loadDataAdmin = (path) => {
 
 	const url = table.dataset.url;
 
-	console.log(url);
-	console.log("hhhmm");
 	return $.ajax({
 		type: "GET",
 		url: url,
@@ -101,7 +99,9 @@ const showRow = (path, user, no) => {
                     class="fas fa-trash-alt fa-fw  mr-2"></i> <span class="">Detele</span></a>
                 <a class="dropdown-item d-flex align-items-center text-warning" href="#"><i 
                     class=" fas fa-user-alt-slash  mr-2"></i> <span class="">Deactivate</span></a>
-                <a class="dropdown-item d-flex align-items-center text-secondary " href="#"><i 
+                <a data-id="${
+									user.user_id
+								}" class="dropdown-item d-flex align-items-center text-secondary btn-change-level " href="#"><i 
                     class="fas fa-user-cog fa-fw  mr-2"></i> <span class="">Change Role</span></a>
                 </div>
             </div>

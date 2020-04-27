@@ -62,7 +62,7 @@ const showRow = (path, user, no) => {
 				}  </td>
         <td>${user.user_created}</td>
 	    <td>
-            <div class="dropleft mb-2">
+            <div id="test" class="dropleft mb-2">
                 <button class="btn p-0 ml-3 text-primary" type="button" id="${
 									user.user_email
 								}" data-toggle="dropdown"
@@ -73,16 +73,18 @@ const showRow = (path, user, no) => {
                 <div class="dropdown-menu " aria-labelledby="${
 									user.user_email
 								}">
-                <a class="dropdown-item d-flex align-items-center text-primary " href="#">
-                    <i  class=" fas fa-info-circle fa-fw "></i> 
-                    <span class="ml-2">Detail</span></a>
-                <a class="dropdown-item d-flex align-items-center text-danger " href="#">
-                <i 
-                    class="fas fa-trash-alt fa-fw  mr-2"></i> <span class="">Detele</span></a>
-                <a class="dropdown-item d-flex align-items-center text-warning" href="#"><i 
-                    class=" fas fa-user-alt-slash  mr-2"></i> <span class="">Deactivate</span></a>
-                <a class="dropdown-item d-flex align-items-center text-secondary " href="#"><i 
-                    class="fas fa-user-cog fa-fw  mr-2"></i> <span class="">Change Role</span></a>
+					<a class="dropdown-item d-flex align-items-center text-primary " href="#">
+						<i  class=" fas fa-info-circle fa-fw "></i> 
+						<span class="ml-2">Detail</span></a>
+					<a class="dropdown-item d-flex align-items-center text-danger " href="#">
+					<i 
+						class="fas fa-trash-alt fa-fw  mr-2"></i> <span class="">Detele</span></a>
+					<a class="dropdown-item d-flex align-items-center text-warning" href="#"><i 
+						class=" fas fa-user-alt-slash  mr-2"></i> <span class="">Deactivate</span></a>
+					<a data-id="${
+						user.user_id
+					}" class="dropdown-item d-flex align-items-center text-secondary btn-change-level " href="#"><i 
+						class="fas fa-user-cog fa-fw  mr-2"></i> <span class="">Change Role</span></a>
                 </div>
             </div>
 	    </td>
