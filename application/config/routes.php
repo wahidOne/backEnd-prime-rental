@@ -55,9 +55,10 @@ $route['administrator/sign-in'] = 'admin/auth/auth/index';
 $route['administrator/sign-up'] = 'admin/auth/auth/signUp';
 $route['administrator/sign-out'] = 'admin/auth/auth/signOut';
 
-// adminitrator page
+// menu
 $route['administrator/dashboard'] = 'admin/dashboard/Dashboard/index';
 $route['administrator/system-management/menu'] = 'admin/dashboard/System/menu';
+$route['administrator/system-management/get-menu'] = 'admin/dashboard/System/showMenu';
 $route['administrator/system-management/tambah-menu'] = 'admin/dashboard/System/tambahMenu';
 $route['administrator/system-management/detail-menu/(:any)'] = 'admin/dashboard/System/getMenuWhere/$1';
 $route['administrator/system-management/ubah-menu'] = 'admin/dashboard/System/UbahMenu';

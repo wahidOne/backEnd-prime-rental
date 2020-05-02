@@ -236,7 +236,7 @@
                     <div class="d-flex justify-content-between align-items-baseline mb-2">
                         <h6 class="card-title mb-2">User terbaru</h6>
                     </div>
-                    <div class="table-responsive-xl">
+                    <div class="table-responsive-xl ">
                         <table class="table table-hover">
                             <thead>
                                 <th>#</th>

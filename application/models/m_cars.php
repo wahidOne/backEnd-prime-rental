@@ -12,7 +12,6 @@ class M_cars extends CI_Model
 
     private function _get_datatables_query()
     {
-
         $this->db->select('*');
         $this->db->from('cars');
         $this->db->join('car_types', 'car_types.type_id =  cars.car_type_id');
@@ -38,6 +37,8 @@ class M_cars extends CI_Model
             $this->db->order_by(key($order), $order[key($order)]);
         }
     }
+
+
     function get_datatables()
     {
         $this->_get_datatables_query();

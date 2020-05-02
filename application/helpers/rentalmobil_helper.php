@@ -25,7 +25,11 @@ function is_logged_in()
         if ($userAccess->num_rows() < 1) {
             redirect('administrator/blocked');
             $submenu = $ci->uri->segment(3);
-            $querySubmenu = $ci->db->get_where('user_submenu', ['submenu_method' => $submenu])->row_array();
+
+            $querySubmenu = $ci->db->get_where('user_submenu', [
+                'submenu_method' => $submenu,
+                'submenu_type_id' => 1
+            ])->row_array();
             $submenu_id = $querySubmenu['submenu_id'];
             $userAccessSubmenu = $ci->db->get_where('user_access_submenu', [
                 'access_user_level_id' => $user_level,

@@ -6,6 +6,8 @@ class M_Public extends CI_Model
     public function insertData($table, $data = null)
     {
         $this->db->insert($table, $data);
+
+        return $this->db->affected_rows();
     }
     public function getData($table)
     {
@@ -17,18 +19,18 @@ class M_Public extends CI_Model
         return $this->db->get_where($table, $where);
     }
 
-    public function updateData($where = null, $table, $data = null)
+    public function updateData($where = null, $table, $data)
     {
         $this->db->where($where);
         $this->db->update($table, $data);
 
-        return $data;
+        return $this->db->affected_rows();
     }
 
     public function deleteData($where = null, $table)
     {
-        $result = $this->db->delete($table, $where);
+        $this->db->delete($table, $where);
 
-        return $result;
+        return $this->db->affected_rows();
     }
 }

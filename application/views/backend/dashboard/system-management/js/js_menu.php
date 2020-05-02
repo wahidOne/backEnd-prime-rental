@@ -178,14 +178,13 @@
                 const formTambahData = document.querySelector('.ubahData');
                 if (formTambahData) {
                     // const  = formTambahData;
-                    console.log('ok')
                     formTambahData.action = '<?= base_url('administrator/system-management/ubah-menu') ?>';
                     formTambahData.method = "POST";
                     formTambahData.submit();
                     $('#menu-modal').modal({
                         backdrop: 'static',
                         keyboard: false
-                    }, 'hide')
+                    }, 'hide');
                 }
             }
         });

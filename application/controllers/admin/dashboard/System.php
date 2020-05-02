@@ -15,7 +15,6 @@ class System extends CI_Controller
         is_logged_in();
     }
 
-
     // Menu
     public function menu()
     {
@@ -39,8 +38,51 @@ class System extends CI_Controller
         $this->load->view($viewsDashboardPath . '/plugins/_menu', $data); //plugins
         $this->load->view($backendTemplates . 'script', $data);
         // costum js
-        $this->load->view($viewsDashboardPath . 'system-management/js/js_menu', $data);
+        $this->load->view($viewsDashboardPath . 'system-management/js/js_menuV2', $data);
         $this->load->view($backendTemplates . 'end', $data);
+    }
+
+    public function showMenu()
+    {
+        // $data['menu'] =  $this->M_menu->getMenu();
+        // $data['menu_type'] = $this->M_public->getData('user_menu_type')->result_array();
+
+
+        // echo json_encode($data);
+
+        $menu = $this->M_menu->get_datatables_menu();
+        $data = array();
+        $no = @$_POST['start'];
+        foreach ($menu as $m) {
+            $no++;
+            $row = array();
+            $row[] = $no . ".";
+            $row[] = "<i class=' text-primary font-20 " . $m->menu_icon  . "' ></i>";
+            $row[] = $m->menu_name;
+            $row[] = $m->menu_method;
+            $row[] = $m->menu_url;
+            $row[] = $m->menu_type;
+            $row[] = '<div class="d-flex justify-content-center">
+                        <a id="ubah-menu" href="' . site_url('administrator/system-management/detail-menu/') . $m->menu_id . '" class="badge badge-primary text-dark">
+                            <i class="fad fa-edit"></i>Edit
+                        </a>
+                        <a data-id="' . $m->menu_id  . '" id="hapus-menu" href="' . site_url('administrator/system-management/delete-menu/')  . '" class="badge badge-danger text-dark ml-2">
+                            <i class="fad fa-trash"></i> Delete
+                        </a>
+                    </div>
+            ';
+            // add html for action
+
+            $data[] = $row;
+        }
+        $output = array(
+            "draw" => @$_POST['draw'],
+            "recordsTotal" => $this->M_menu->count_all('user_menu'),
+            "recordsFiltered" => $this->M_menu->count_filtered_menu(),
+            "data" => $data,
+        );
+        // output to json format
+        echo json_encode($output);
     }
 
     public function tambahMenu()
@@ -48,23 +90,30 @@ class System extends CI_Controller
         $menu_name = $this->input->post('menu_name');
         $menu_method = $this->input->post('menu_method');
         $menu_url = $this->input->post('menu_url');
-        $menu_slug = $this->input->post('menu_slug');
         $menu_icon = $this->input->post('menu_icon');
         $menu_type = $this->input->post('menu_type');
 
-        $data = [
+        $menu = [
             'menu_name' => $menu_name,
             'menu_method' => $menu_method,
-            'menu_url' => $menu_url,
-            'menu_uri_segment' => $menu_slug,
+            'menu_url' => 'administrator/' . $menu_url,
+            'menu_uri_segment' => $menu_url,
             'menu_icon' => $menu_icon,
             'menu_type_id' => $menu_type
         ];
-        $this->M_public->insertData('user_menu', $data);
 
-        $this->session->set_flashdata('pesan-tambah-menu', "Menu baru berhasil di tambahkan ");
+        $result = $this->M_public->insertData('user_menu', $menu);
 
-        redirect('administrator/system-management/menu');
+        // $result = 1;//
+
+        // $this->session->set_flashdata('pesan-tambah-menu', "Menu baru berhasil di tambahkan ");
+        if ($result >= 0) {
+            $data['status'] = 'berhasil';
+            $data['pesan'] = 'Berhasil menambahkan menu baru';
+            $data['result'] = $menu;
+        }
+
+        echo json_encode($data);
     }
 
     public function ubahMenu()
@@ -73,24 +122,32 @@ class System extends CI_Controller
         $menu_name = $this->input->post('menu_name');
         $menu_method = $this->input->post('menu_method');
         $menu_url = $this->input->post('menu_url');
-        $menu_slug = $this->input->post('menu_slug');
         $menu_icon = $this->input->post('menu_icon');
         $menu_type = $this->input->post('menu_type');
 
         $data = [
-            'menu_id' => $menu_id,
             'menu_name' => $menu_name,
             'menu_method' => $menu_method,
-            'menu_url' => $menu_url,
-            'menu_uri_segment' => $menu_slug,
+            'menu_url' =>  $menu_url,
+            'menu_uri_segment' => $menu_url,
             'menu_icon' => $menu_icon,
             'menu_type_id' => $menu_type
         ];
-        $this->M_public->updateData(['menu_id' => $menu_id], 'user_menu', $data);
 
-        $this->session->set_flashdata('pesan-ubah-menu', "Menu berhasil di ubah ");
+        $result = $this->M_public->updateData(['menu_id' => $menu_id], 'user_menu', $data);
 
-        redirect('administrator/system-management/menu');
+        // $result = 1;
+        // $this->session->set_flashdata('pesan-ubah-menu', "Menu berhasil di ubah ");
+
+        if ($result >= 0) {
+            $response['status'] = 'Berhasil';
+            $response['pesan'] = 'Berhasil mengubah menu !';
+            $response['result'] = $data;
+        }
+
+        // redirect('administrator/system-management/menu');
+
+        echo json_encode($response);
     }
 
     public function getMenuWhere()
@@ -103,12 +160,18 @@ class System extends CI_Controller
     public function deleteMenu()
     {
         $menu = $this->M_menu->ShowMenuById(['menu_id' => $this->uri->segment(4)]);
-        $this->M_public->deleteData(['menu_id' => $this->uri->segment(4)], 'user_menu');
-        $this->session->set_flashdata(
-            'pesan-hapus-menu',
-            'Berhasil menghapus menu ' . $menu['menu_name'] . '!'
-        );
-        redirect('administrator/system-management/menu');
+        // $this->M_public->deleteData(['menu_id' => $this->uri->segment(4)], 'user_menu');
+
+        // $result = 1;
+        $result =  $this->M_public->deleteData(['menu_id' => $this->uri->segment(4)], 'user_menu');
+        if ($result >= 0) {
+            $data['status'] = 'berhasil';
+            $data['pesan'] = 'Berhasil Menghapus menu ' . $menu['menu_name'];
+            $data['result'] = $menu;
+        }
+
+
+        echo json_encode($data);
     }
 
     // SubMenu 
@@ -335,9 +398,9 @@ class System extends CI_Controller
         $data['level'] = $this->db->get_where('user_level', ['level_id' => $level_id])->row_array();
 
         if ($data['level']['level_id']  <= '1') {
-            $this->db->where('submenu_menu_id !=', 2);
+            // $this->db->where('submenu_menu_id !=', 2);
             $data['submenu'] = $this->db->get('user_submenu')->result_array();
-            $this->db->where('menu_id !=', 2);
+            // $this->db->where('menu_id !=', 2);
             $data['menu'] = $this->db->get('user_menu')->result_array();
         } else {
             $this->db->where('submenu_menu_id !=', 2);

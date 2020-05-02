@@ -40,46 +40,24 @@
                 </div>
                 <div class="card-body">
 
-                    <div class="table-responsive-lg">
-                        <table class="table table-hover ">
+                    <div class="table-responsive">
+                        <table id="table-menu" class="table table-hover" data-url="<?= site_url('administrator/system-management/get-menu') ?>">
                             <thead>
                                 <tr>
-                                    <th class="pt-0">#</th>
-                                    <th class="pt-0">Icon</th>
-                                    <th class="pt-0">Name / Title</th>
-                                    <th class="pt-0">Method</th>
-                                    <th class="pt-0">Url</th>
-                                    <th class="pt-0">Type</th>
-                                    <th class="text-center" colspan="2">Aksi</th>
+                                    <th>#</th>
+                                    <th>Icon</th>
+                                    <th>Name / Title</th>
+                                    <th>Method</th>
+                                    <th>Url</th>
+                                    <th>Type</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <?php $no = 1; ?>
-                                <?php foreach ($menu as $m) : ?>
-                                    <tr>
-                                        <th><span class=" text-white-50 "><?= $no++; ?></span></th>
-                                        <td><span><i class="text-primary <?= $m['menu_icon']; ?>"></i></span> </td>
-                                        <td><?= $m['menu_name']; ?></td>
-                                        <td><?= $m['menu_method']; ?></td>
-                                        <td><?= $m['menu_url']; ?></td>
-                                        <td class=" text-capitalize "><?= $m['menu_type']; ?></td>
-                                        <td>
-                                        <td>
-                                            <div class="dropleft justify-content-center ">
-                                                <button class="btn p-0" type="button" id="<?= $m['menu_name']; ?>" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
-                                                </button>
-                                                <div class="dropdown-menu" aria-labelledby="<?= $m['menu_name']; ?>">
-                                                    <a class="dropdown-item d-flex align-items-center text-info ubah-menu" href="#" data-id="<?= $m['menu_id']; ?>"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>
-                                                    <a id="hapus-menu" class="dropdown-item d-flex align-items-center text-danger " href="<?= base_url('administrator/system-management/delete-menu/') . $m['menu_id']; ?>"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                        </td>
+                            <tbody id="tbody-menu">
 
-                                    </tr>
-                                <?php endforeach; ?>
+
                             </tbody>
+
                         </table>
                     </div>
                 </div>
@@ -106,7 +84,7 @@
                 <div class="modal-body">
                     <div class="row px-md-4">
                         <div class="col-md-6">
-                            <div class="form-group">
+                            <div class="form-group" id="parent_menu_id">
                                 <label class="form-control-label " for="menu_name">Title</label>
                                 <input type="text" name="menu_name" class="form-control text-primary " id="menu_name" data-title="Title">
                                 <small class="text-danger"></small>
@@ -126,13 +104,13 @@
                                 <small class="text-danger"></small>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="form-group">
                                 <label class=" form-control-label " for="menu_slug">Slug</label>
                                 <input type="text" name="menu_slug" class="form-control text-primary " id="menu_slug" data-title="Slug">
                                 <small class="text-danger"></small>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label class=" form-control-label" for="menu_icon">Icon</label>
@@ -146,7 +124,7 @@
                                 <select class="form-control text-primary " name="menu_type" id="menu_type" data-title="Menu Type">
                                     <option selected value="">Open this Select Type Menu</option>
                                     <?php foreach ($menu_type as $mt) : ?>
-                                        <option value="<?= $mt['type_id'] ?>" class=" text-capitalize "><?= $mt['type_name'] ?></option>
+                                        <option value="<?= $mt['type_id'] ?>" class="text-capitalize type_select "><?= $mt['type_name'] ?></option>
                                     <?php endforeach; ?>
                                 </select>
                                 <small class="text-danger"></small>
