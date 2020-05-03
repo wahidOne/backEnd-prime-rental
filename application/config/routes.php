@@ -113,7 +113,8 @@ $route['administrator/users/get-admin-user'] = 'admin/dashboard/Users/getAdminUs
 
 $route['administrator/users/drivers'] = 'admin/dashboard/Users/drivers';
 $route['administrator/users/get-drivers'] = 'admin/dashboard/Users/getDrivers';
-$route['administrator/users/get-a-driver/(:num)'] = 'admin/dashboard/Users/getDriversWhere';
+$route['administrator/users/get-a-driver/(:num)'] = 'admin/dashboard/Users/getDriversWhere/$1';
+$route['administrator/users/del-driver/(:num)'] = 'admin/dashboard/Users/deleteDriver/$1';
 
 
 

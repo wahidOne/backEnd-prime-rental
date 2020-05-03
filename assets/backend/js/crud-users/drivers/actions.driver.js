@@ -100,3 +100,16 @@ const updateUIModal = (data, path) => {
 	
 	`;
 };
+
+export const changeLevel = (url, id) => {
+	return $.ajax({
+		type: "POST",
+		url: url + id,
+		async: true,
+		dataType: "json",
+		success: function (res) {
+			Swal.fire("Deleted!", res.message, "success");
+			return res;
+		},
+	});
+};

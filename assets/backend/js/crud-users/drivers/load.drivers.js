@@ -74,11 +74,14 @@ const showRow = (path, user, no) => {
                     <i class="fad fa-fw fa-info "></i>
                     Detail 
                 </a>
-                <a href="#" class="badge badge-danger ml-2 text-dark ">
+                <a data-id="${
+									user.user_id
+								}"  id="delete-driver" href="#" class="badge badge-danger ml-2 text-dark " data-name="${
+		user.user_name
+	}" >
                     <i class="fad fa-fw fa-trash-alt  "></i>
                     Delete
                 </a>
-            
             </div>
 	    </td>
 	</tr>

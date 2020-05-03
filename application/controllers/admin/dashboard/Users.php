@@ -93,6 +93,10 @@ class Users extends CI_Controller
                 ];
                 $this->M_public->insertData('admin', $admin);
                 $data['admin'] = $admin;
+            } else {
+                if ($user_level != "4") {
+                    $this->M_public->deleteData(['admin_user_id' => $user_id], 'admin');
+                }
             }
         }
 
@@ -103,6 +107,7 @@ class Users extends CI_Controller
                     'driver_name' => $user['user_name'],
                     'driver_phone' => '0000-0000-0000',
                     'driver_user_id' => $user_id,
+                    'driver_ID_number' => "-",
                     'driver_status' => "Bebas",
                 ];
                 $this->M_public->insertData('drivers', $driver);
@@ -207,6 +212,25 @@ class Users extends CI_Controller
 
         $data['user_created'] =  date('d-F-Y', $data['user_created']);
 
+        echo json_encode($data);
+    }
+
+    public function deleteDriver()
+    {
+
+        $user_id = $this->uri->segment(4);
+
+        $driver = [
+            'user_id' => $user_id,
+            'user_level' => 3
+        ];
+
+        $result = $this->M_public->updateData(['user_id ' => $user_id], 'user', $driver);
+
+        if ($result > 0) {
+            $this->M_public->deleteData(['driver_user_id' => $user_id], 'drivers');
+            $data['message'] = "Berhasil menghapus driver!";
+        }
         echo json_encode($data);
     }
 }
