@@ -3,15 +3,18 @@
 
 function is_logged_in()
 {
+
     $ci = get_instance();
-    if (!$ci->session->userdata('user_email')) {
+
+
+    if (!$ci->session->userdata('primerental')['user_email']) {
         $ci->session->set_flashdata(
             'access-block',
             'Anda belum login!!'
         );
         redirect('administrator/sign-in');
     } else {
-        $user_level = $ci->session->userdata('user_level');
+        $user_level = $ci->session->userdata('primerental')['user_level'];
         $menu = $ci->uri->segment(2);
 
         $queryMenu = $ci->db->get_where('user_menu', ['menu_uri_segment' => $menu])->row_array();

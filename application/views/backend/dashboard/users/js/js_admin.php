@@ -34,10 +34,12 @@
 
         const user_id = form_Change_level.querySelector('[name=user_id]');
         const user_level = form_Change_level.querySelector('[name=user_level]');
+        const old_level = form_Change_level.querySelector('[name=old_level]');
 
         const data = {
             user_id : user_id.value,
-            user_level : user_level.value
+            user_level : user_level.value,
+            old_level : old_level.value
         };
 
             
@@ -58,5 +60,20 @@
         }
 
     })
+
+
+    document.addEventListener('visibilitychange', function () {
+
+// fires when user switches tabs, apps, goes to homescreen, etc.
+    if (document.visibilityState === 'hidden') {
+        $("#table-admin-users").DataTable().destroy();
+            loadDataAdmin(pathImg);
+    }
+    // fires when app transitions from prerender, user returns to the app / tab.
+    if (document.visibilityState === 'visible') {
+        // $("#table-admin-users").DataTable().destroy();
+        //     loadDataAdmin(pathImg);
+    }
+});
 
 </script>

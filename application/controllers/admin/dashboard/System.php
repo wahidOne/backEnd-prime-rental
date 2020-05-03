@@ -18,7 +18,7 @@ class System extends CI_Controller
     // Menu
     public function menu()
     {
-        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
         $menu = $this->M_menu->getMenu();
 
         $data = [
@@ -179,7 +179,7 @@ class System extends CI_Controller
 
     public function showSubmenu()
     {
-        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
 
         $submenu = $this->M_menu->getSubmenu();
         $menu = $this->M_menu->getMenu();
@@ -269,7 +269,7 @@ class System extends CI_Controller
 
     public function updateSubmenu()
     {
-        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
         $submenu_id = $this->uri->segment(4);
         $submenu = $this->M_menu->getSubmenuWhere(['submenu_id' => $submenu_id]);
         $menu = $this->M_menu->getMenu();
@@ -361,7 +361,7 @@ class System extends CI_Controller
     // user access
     public function showUserAccessMenu()
     {
-        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
 
         $data = [
             'title' => 'User level',
@@ -387,7 +387,7 @@ class System extends CI_Controller
 
     public function getUserAccessMenu($level_id)
     {
-        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
 
         $data = [
             'title' => 'User access menu',

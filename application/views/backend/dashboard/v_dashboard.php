@@ -234,7 +234,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-baseline mb-2">
-                        <h6 class="card-title mb-2">User terbaru</h6>
+                        <h6 class="card-title mb-2">Anggota terbaru</h6>
                     </div>
                     <div class="table-responsive-xl ">
                         <table class="table table-hover">
@@ -251,9 +251,9 @@
                                     <tr>
                                         <th><?= $no++; ?></th>
                                         <td>
-                                            <img src="<?= base_url('assets/uploads/ava/') . $u['user_photo'] ?>" alt="">
+                                            <img src="<?= base_url('assets/uploads/ava/') . $u->user_photo ?>" alt="">
                                         </td>
-                                        <td><?= $u['user_email']; ?></td>
+                                        <td><?= $u->user_email; ?></td>
                                         <td>
                                             <div class="dropleft">
                                                 <button class="btn p-0" type="button" id="user1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -268,7 +268,6 @@
                                             </div>
                                         </td>
                                     </tr>
-
                                 <?php endforeach; ?>
                             </tbody>
                         </table>

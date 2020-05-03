@@ -85,8 +85,7 @@ const showRow = (path, user, no) => {
 									user.user_email
 								}" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
-                <i class=" fas fa-fw fa-sort-down text-primary "  ></i>
-                <span class=" font-11 " >Actions</span>
+				<i class=" fas fa-fw fa-ellipsis-v  "></i>
                 </button>
                 <div class="dropdown-menu " aria-labelledby="${
 									user.user_email

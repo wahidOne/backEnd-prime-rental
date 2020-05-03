@@ -51,7 +51,7 @@ class Master_data extends CI_Controller
     // Menu
     public function cars()
     {
-        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
         $data = [
             'title' => 'Data Cars',
             'user' => $user,
@@ -190,7 +190,7 @@ class Master_data extends CI_Controller
 
     public function typesCar()
     {
-        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
         $data = [
             'title' => 'Data Car Types',
             'user' => $user,

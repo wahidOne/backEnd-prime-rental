@@ -20,7 +20,7 @@ class Profile extends CI_Controller
 
         $data = [
             'title' => 'User profile',
-            'user' => $this->M_user->getAdmin(['user_email' => $this->session->userdata('user_email')])->row_array(),
+            'user' => $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array(),
         ];
 
 
@@ -46,9 +46,6 @@ class Profile extends CI_Controller
     public function updateProfile()
     {
 
-        $data = [
-            'user' => $this->M_user->getAdmin(['user_email' => $this->session->userdata('user_email')])->row_array(),
-        ];
         $this->M_user->update();
         // $this->db->set('image', $new_image);
 

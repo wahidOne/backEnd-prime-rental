@@ -8,6 +8,8 @@ export const changeLevel = (url, data, showMessage) => {
 		success: function (res) {
 			const { message, status } = res.response;
 
+			console.log(res);
+
 			showMessage(message, status, status, true, "toast-top-right", "9000");
 			return res;
 		},

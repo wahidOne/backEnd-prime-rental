@@ -67,6 +67,7 @@
                 <form id="form-change-level" action="<?= site_url('administrator/users/change-level') ?>">
                     <div class="col-12">
                         <input type="hidden" class=" form-control " name="user_id">
+                        <input type="hidden" class=" form-control " name="old_level">
                         <div class="form-group row">
                             <label for="user_level" class="col-sm-2 my-auto">Level</label>
                             <div class="col-sm-10">

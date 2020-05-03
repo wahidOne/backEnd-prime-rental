@@ -6,7 +6,7 @@ class M_menu extends CI_Model
 
     public function showMenuToSidebar()
     {
-        $user_level = $this->session->userdata('user_level');
+        $user_level = $this->session->userdata('primerental')['user_level'];
         $this->db->select('*');
         $this->db->from('user_menu');
         $this->db->join('user_access_menu', 'user_access_menu.access_menu_id = user_menu.menu_id', 'left');

@@ -8,6 +8,8 @@ class Dashboard extends CI_Controller
         'backendTemplates' => 'backend/templates/public/'
     ];
 
+
+
     public function __construct()
     {
         parent::__construct();
@@ -20,8 +22,8 @@ class Dashboard extends CI_Controller
 
         $data = [
             'title' => 'Dashboard',
-            'user' => $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array(),
-            'allUser' => $this->M_user->getAllUser()
+            'user' => $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array(),
+            'allUser' => $this->M_user->getGeneralUsers()
         ];
 
 

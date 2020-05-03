@@ -60,6 +60,20 @@
 
     })
 
+    document.addEventListener('visibilitychange', function () {
+
+// fires when user switches tabs, apps, goes to homescreen, etc.
+    if (document.visibilityState === 'hidden') {
+        $("#table-general-users").DataTable().destroy();
+            loadDataUsers(pathImg);
+    }
+    // fires when app transitions from prerender, user returns to the app / tab.
+    if (document.visibilityState === 'visible') {
+        $("#table-general-users").DataTable().destroy();
+            loadDataUsers(pathImg);
+    }
+});
+
 
 
 </script>

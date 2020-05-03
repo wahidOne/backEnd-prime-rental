@@ -60,38 +60,66 @@ const updateUIModal = (data, path) => {
 		<div class="col-12">
 			<span class=" font-weight-bold text-primary">Contact Infomation</span>
 			<div class="mt-2  row pl-3">
-				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex justify-content-between">
-					<h6 class="text-white-50" >Username</h6>
-					<h6>${data.user_name}</h6>
+				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex ">
+					<div class="col-6">
+						<h6 class="text-white-50" >Username</h6>
+					</div>
+					<div class="col-6">
+						<h6 >${data.user_name}</h6>
+					</div>
 				</div>
-				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex justify-content-between">
-					<h6  class="text-white-50">Email</h6>
-					<h6>${data.user_email}</h6>
+				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex">
+					<div class="col-6">
+						<h6  class="text-white-50">Email</h6>
+					</div>
+					<div class="col-6">
+						<h6  >${data.user_email}</h6>
+					</div>
 				</div>
-				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex justify-content-between">
-					<h6  class="text-white-50">Phone number</h6>
-					<h6>${data.driver_phone}</h6>
+				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex">
+					<div class="col-6">
+						<h6  class="text-white-50">Phone number</h6>
+					</div>
+					<div class="col-6">
+						<h6  >${data.driver_phone}</h6>
+					</div>
 				</div>
 			</div>
 		</div>
 		<div class="col-12 mt-3">
 			<span class=" font-weight-bold  text-primary">Basic Infomation</span>
 			<div class="mt-2  row pl-3">
-				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex justify-content-between">
-					<h6 class="text-white-50" >Full Name</h6>
-					<h6 >${data.driver_name}</h6>
+				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex ">
+					<div class="col-6">
+						<h6 class="text-white-50" >Full Name</h6>
+					</div>
+					<div class="col-6">
+						<h6 >${data.driver_name}</h6>
+					</div>
 				</div>
-				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex justify-content-between">
-					<h6 class="text-white-50">ID number</h6>
-					<h6>${data.driver_ID_number}</h6>
+				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex ">
+					<div class="col-6">
+						<h6 class="text-white-50">ID number</h6>
+					</div>
+					<div class="col-6">
+						<h6>${data.driver_ID_number}</h6>
+					</div>
 				</div>
-				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex justify-content-between">
+				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex ">
+					<div class="col-6">
 					<h6 class="text-white-50">Joined</h6>
+					</div>
+					<div class="col-6">
 					<h6>${data.user_created}</h6>
+					</div>
 				</div>
-				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex justify-content-between">
-					<h6 class="text-white-50">Status</h6>
-					<h6>${data.driver_status}</h6>
+				<div class="col-8 col-md-10 col-lg-8 mt-2 d-flex ">
+					<div class="col-6">
+						<h6 class="text-white-50">Status</h6>
+					</div>
+					<div class="col-6">
+						<h6>${data.driver_status}</h6>
+					</div>
 				</div>
 			</div>
 		</div>

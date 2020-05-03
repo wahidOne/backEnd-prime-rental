@@ -54,10 +54,18 @@ class Auth extends CI_Controller
             if ($user['user_is_activation'] == 1) {
                 // cek password
                 if (password_verify($password, $user['user_password'])) {
-                    $data = [
+
+                    $sessionadmin = [
                         'user_email' => $user['user_email'],
                         'user_level' => $user['user_level']
                     ];
+
+                    $data = [
+                        'primerental' => $sessionadmin
+                    ];
+
+
+
                     $this->session->set_userdata($data);
                     $this->session->set_flashdata('pesan');
 
@@ -135,8 +143,8 @@ class Auth extends CI_Controller
 
     public function signOut()
     {
-        $this->session->unset_userdata('user_email');
-        $this->session->unset_userdata('user_level');
+        $this->session->unset_userdata('primerental')['user_email'];
+        $this->session->unset_userdata('primerental')['user_level'];
 
         $this->session->set_flashdata('pesan-signOut', ' Sampai Jumpa Lagi');
         redirect('administrator/sign-in');

@@ -66,8 +66,6 @@
             </div>
             <div class="modal-body">
                 <div class="container-fluid" id="container-modal">
-
-
                 </div>
 
             </div>

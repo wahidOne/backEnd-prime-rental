@@ -15,7 +15,7 @@ class Users extends CI_Controller
 
     public function index()
     {
-        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
         $data = [
             'title' => 'Data General Users',
             'user' => $user,
@@ -70,19 +70,25 @@ class Users extends CI_Controller
 
         $user_id = $this->input->post('user_id');
         $user_level = $this->input->post('user_level');
+        $old_user_level = $this->input->post('old_level');
 
-        $data = [
+
+        $dataupdate = [
             'user_id' => $user_id,
             'user_level' => $user_level
         ];
 
-        $this->M_public->updateData(['user_id ' => $user_id], 'user', $data);
-
         $user = $this->db->get_where('user', ['user_id' => $user_id])->row_array();
 
-        if ($user_level == "4") {
-            $cekAdmin = $this->db->get_where('admin', ['admin_user_id' => $user_id]);
-            if ($cekAdmin->num_rows() < 1) {
+
+        if ($user_level == 4 || $old_user_level = 4) {
+            $cekdata = $this->db->get_where('admin', ['admin_user_id' => $user_id]);
+        } elseif ($user_level == 7) {
+            $cekdata = $this->db->get_where('drivers', ['driver_user_id' => $user_id]);
+        }
+
+        if ($cekdata->num_rows() < 1) {
+            if ($user_level == "4") {
                 $admin = [
                     'admin_name' => $user['user_name'],
                     'admin_user_id' => $user_id,
@@ -92,17 +98,9 @@ class Users extends CI_Controller
                     'admin_gender' => '-',
                 ];
                 $this->M_public->insertData('admin', $admin);
+                $this->M_public->updateData(['user_id ' => $user_id], 'user', $dataupdate);
                 $data['admin'] = $admin;
-            } else {
-                if ($user_level != "4") {
-                    $this->M_public->deleteData(['admin_user_id' => $user_id], 'admin');
-                }
-            }
-        }
-
-        if ($user_level == "7") {
-            $cekDriver = $this->db->get_where('drivers', ['driver_user_id' => $user_id]);
-            if ($cekDriver->num_rows() < 1) {
+            } else if ($user_level == "7") {
                 $driver = [
                     'driver_name' => $user['user_name'],
                     'driver_phone' => '0000-0000-0000',
@@ -111,9 +109,22 @@ class Users extends CI_Controller
                     'driver_status' => "Bebas",
                 ];
                 $this->M_public->insertData('drivers', $driver);
+                $this->M_public->updateData(['user_id ' => $user_id], 'user', $dataupdate);
                 $data['driver'] = $driver;
             }
+        } else {
+
+            // $res['debug'] = $cekAdmin;
+            if ($old_user_level = 4) {
+                if ($user_level != 4) {
+                    $this->db->delete('admin', ['admin_user_id' => $user_id]);
+                    $this->M_public->updateData(['user_id ' => $user_id], 'user', $dataupdate);
+                }
+            }
         }
+
+
+
 
         if ($data) {
             $res['status'] = "Berhasil";
@@ -128,7 +139,7 @@ class Users extends CI_Controller
 
     public function administrators()
     {
-        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
         $data = [
             'title' => 'Data Administrator',
             'user' => $user,
@@ -155,8 +166,10 @@ class Users extends CI_Controller
     {
         $admin = $this->M_user->getAdminUsers();
         foreach ($admin as $a) {
-            $a->user_created = date('d-F-Y', $a->user_created);
-            $row[] = $a;
+            if ($a->user_level != 1) {
+                $a->user_created = date('d-F-Y', $a->user_created);
+                $row[] = $a;
+            }
         }
 
         $data['users'] = $row;
@@ -169,7 +182,7 @@ class Users extends CI_Controller
 
     public function drivers()
     {
-        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
         $data = [
             'title' => 'Data Drivers',
             'user' => $user,

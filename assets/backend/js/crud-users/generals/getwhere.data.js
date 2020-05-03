@@ -13,12 +13,14 @@ export const getUserWhere = (url, id) => {
 
 			const inputId = formLevel.querySelector("[ name=user_id ]");
 			const selectUserLevel = formLevel.querySelector("[name=user_level]");
+			const oldLevel = formLevel.querySelector("[name=old_level]");
 
 			const user_level_id = res.user.user_level;
 
 			res.level.map((row) => (formData += UpdateformModal(row, user_level_id)));
 
 			inputId.value = res.user.user_id;
+			oldLevel.value = res.user.user_level;
 
 			selectUserLevel.innerHTML = formData;
 		},
