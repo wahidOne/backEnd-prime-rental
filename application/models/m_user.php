@@ -169,4 +169,41 @@ class M_user extends CI_Model
             return false;
         }
     }
+
+
+    public function getDrivers()
+    {
+        $this->db->select('user.*, user_level.`level` as user_level, drivers.*');
+        $this->db->from('user');
+        $this->db->join('drivers', 'drivers.driver_user_id
+        = user.user_id');
+        $this->db->join('user_level', 'user_level.level_id
+        = user.user_level');
+        $this->db->where('user_level', 7);
+        $query = $this->db->get();
+
+        if ($query->num_rows() != 0) {
+            return $query->result();
+        } else {
+            return "no driver";
+        }
+    }
+    public function getDriversWhere($where)
+    {
+
+        $this->db->select('user.*, user_level.`level` as user_level, drivers.*');
+        $this->db->from('user');
+        $this->db->join('drivers', 'drivers.driver_user_id
+        = user.user_id');
+        $this->db->join('user_level', 'user_level.level_id
+        = user.user_level');
+        $this->db->where($where);
+        $query = $this->db->get();
+
+        if ($query->num_rows() != 0) {
+            return $query;
+        } else {
+            return "no driver";
+        }
+    }
 }

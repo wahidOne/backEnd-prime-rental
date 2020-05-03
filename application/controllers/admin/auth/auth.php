@@ -13,7 +13,7 @@ class Auth extends CI_Controller
 
     public function index()
     {
-        $data['title'] = 'Sign Up ';
+        $data['title'] = 'Sign In ';
 
         $this->form_validation->set_rules(
             'email',

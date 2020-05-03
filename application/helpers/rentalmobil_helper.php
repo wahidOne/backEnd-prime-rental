@@ -22,6 +22,9 @@ function is_logged_in()
             'access_menu_id' => $menu_id
         ]);
 
+        // var_dump($userAccess);
+        // die();
+
         if ($userAccess->num_rows() < 1) {
             redirect('administrator/blocked');
             $submenu = $ci->uri->segment(3);

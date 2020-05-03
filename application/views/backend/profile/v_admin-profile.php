@@ -236,10 +236,21 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group row">
-                                                    <label for="user_photo" class="col-sm-2 col-md-3  col-form-label">Upload Image</label>
+                                                    <label class="col-sm-2 col-md-3  col-form-label">Upload Image</label>
                                                     <div class="col-sm-10 col-md-9">
+
                                                         <input type="hidden" class="form-control border-primary text-primary " name="user_old_img" value="<?= $user['user_photo'] ?> ">
-                                                        <input type="file" id="user_photo" name="user_photo" class="border" data-default-file="<?= base_url('assets/uploads/ava/') . $user['user_photo'] ?>" />
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <img class="img-fluid" src="<?= base_url('assets/uploads/ava/') . $user['user_photo'] ?>" alt="profile">
+                                                            </div>
+                                                            <div class="col-md-6 stretch-card ">
+                                                                <input type="file" id="user_photo" name="user_photo" class="border" />
+                                                            </div>
+                                                        </div>
+
+
                                                     </div>
                                                 </div>
                                                 <div class="form-group text-right mt-2">

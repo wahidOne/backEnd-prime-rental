@@ -69,13 +69,46 @@ class Users extends CI_Controller
         // $user_id = $this->uri->segment(4);
 
         $user_id = $this->input->post('user_id');
+        $user_level = $this->input->post('user_level');
 
         $data = [
-            'user_id' => $this->input->post('user_id'),
-            'user_level' => $this->input->post('user_level')
+            'user_id' => $user_id,
+            'user_level' => $user_level
         ];
 
         $this->M_public->updateData(['user_id ' => $user_id], 'user', $data);
+
+        $user = $this->db->get_where('user', ['user_id' => $user_id])->row_array();
+
+        if ($user_level == "4") {
+            $cekAdmin = $this->db->get_where('admin', ['admin_user_id' => $user_id]);
+            if ($cekAdmin->num_rows() < 1) {
+                $admin = [
+                    'admin_name' => $user['user_name'],
+                    'admin_user_id' => $user_id,
+                    'admin_address' => '-',
+                    'admin_phone' => '-',
+                    'admin_birth' => '-',
+                    'admin_gender' => '-',
+                ];
+                $this->M_public->insertData('admin', $admin);
+                $data['admin'] = $admin;
+            }
+        }
+
+        if ($user_level == "7") {
+            $cekDriver = $this->db->get_where('drivers', ['driver_user_id' => $user_id]);
+            if ($cekDriver->num_rows() < 1) {
+                $driver = [
+                    'driver_name' => $user['user_name'],
+                    'driver_phone' => '0000-0000-0000',
+                    'driver_user_id' => $user_id,
+                    'driver_status' => "Bebas",
+                ];
+                $this->M_public->insertData('drivers', $driver);
+                $data['driver'] = $driver;
+            }
+        }
 
         if ($data) {
             $res['status'] = "Berhasil";
@@ -84,6 +117,7 @@ class Users extends CI_Controller
 
         $data['response'] = $res;
 
+
         echo json_encode($data);
     }
 
@@ -91,7 +125,7 @@ class Users extends CI_Controller
     {
         $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
         $data = [
-            'title' => 'Data General Users',
+            'title' => 'Data Administrator',
             'user' => $user,
         ];
 
@@ -110,6 +144,8 @@ class Users extends CI_Controller
     }
 
 
+
+
     public function getAdminUser()
     {
         $admin = $this->M_user->getAdminUsers();
@@ -121,6 +157,55 @@ class Users extends CI_Controller
         $data['users'] = $row;
         // $data['users'] = $users;
 
+
+        echo json_encode($data);
+    }
+
+
+    public function drivers()
+    {
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('user_email')])->row_array();
+        $data = [
+            'title' => 'Data Drivers',
+            'user' => $user,
+        ];
+
+        $backendTemplates = $this->publicData['backendTemplates'];
+        $viewsDashboardPath = 'backend/dashboard/';
+        $this->load->view($backendTemplates . 'header', $data);
+        $this->load->view($backendTemplates . 'topbar', $data);
+        $this->load->view($backendTemplates . 'sidebar', $data);
+        $this->load->view($viewsDashboardPath . 'users/drivers/v_drivers', $data); //main content
+        $this->load->view($backendTemplates . 'footer', $data);
+        $this->load->view($viewsDashboardPath . '/plugins/_users', $data); //plugins
+        $this->load->view($backendTemplates . 'script', $data);
+        // costum js
+        $this->load->view($viewsDashboardPath . 'users/js/js_drivers', $data);
+        $this->load->view($backendTemplates . 'end', $data);
+    }
+
+
+    public function getDrivers()
+    {
+        $drivers = $this->M_user->getDrivers();
+        foreach ($drivers as $drive) {
+            $drive->user_created = date('d-F-Y', $drive->user_created);
+            $row[] = $drive;
+        }
+
+        $data['driver'] = $row;
+
+        echo json_encode($data);
+    }
+
+    public function getDriversWhere()
+    {
+
+        $user_id = $this->uri->segment(4);
+
+        $data = $this->M_user->getDriversWhere(['user_id' => $user_id])->row_array();
+
+        $data['user_created'] =  date('d-F-Y', $data['user_created']);
 
         echo json_encode($data);
     }

@@ -44,19 +44,22 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+
                                         <?php $no = 1; ?>
                                         <?php foreach ($menu as $m) : ?>
-                                            <tr>
-                                                <th><span class=" text-white-50 "><?= $no++; ?></span></th>
-                                                <td class=" text-capitalize "><?= $m['menu_name']; ?></td>
+                                            <?php if ($m['menu_id'] != 2) : ?>
+                                                <tr>
+                                                    <th><span class=" text-white-50 "><?= $no++; ?></span></th>
+                                                    <td class=" text-capitalize "><?= $m['menu_name']; ?></td>
 
-                                                <td>
-                                                    <div class="custom-control custom-switch">
-                                                        <input style="cursor: pointer;" type="checkbox" class="custom-control-input checkbox-akses-menu" <?= check_access($level['level_id'], $m['menu_id']); ?> data-level="<?= $level['level_id']; ?>" data-menu="<?= $m['menu_id']; ?>" id="<?= $m['menu_name']; ?>">
-                                                        <label class="custom-control-label" for="<?= $m['menu_name']; ?>"></label>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                                    <td>
+                                                        <div class="custom-control custom-switch">
+                                                            <input style="cursor: pointer;" type="checkbox" class="custom-control-input checkbox-akses-menu" <?= check_access($level['level_id'], $m['menu_id']); ?> data-level="<?= $level['level_id']; ?>" data-menu="<?= $m['menu_id']; ?>" id="<?= $m['menu_name']; ?>">
+                                                            <label class="custom-control-label" for="<?= $m['menu_name']; ?>"></label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php endif; ?>
                                         <?php endforeach; ?>
                                     </tbody>
                                 </table>

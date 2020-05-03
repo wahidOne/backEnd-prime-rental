@@ -95,7 +95,7 @@ $route['administrator/master-data/update-type'] = 'admin/dashboard/Master_data/u
 $route['administrator/master-data/delete-type/(:num)'] = 'admin/dashboard/Master_data/deleteTypes/$1';
 
 //admnistrator profile
-$route['administrator/profile'] = 'admin/profile/Profile';
+$route['administrator/profile'] = 'admin/profile/Profile/index';
 $route['administrator/profile/update-profile'] = 'admin/profile/Profile/updateProfile';
 
 //-->  users <--//
@@ -104,10 +104,18 @@ $route['administrator/users/general'] = 'admin/dashboard/Users/index';
 $route['administrator/users/get-user/(:num)'] = 'admin/dashboard/Users/getUser/$1';
 $route['administrator/users/change-level'] = 'admin/dashboard/Users/changeLevel';
 $route['administrator/users/get-general-user'] = 'admin/dashboard/Users/generalUser';
+
 // users/admin
 
 $route['administrator/users/admin'] = 'admin/dashboard/Users/administrators';
 $route['administrator/users/get-admin-user'] = 'admin/dashboard/Users/getAdminUser';
+
+
+$route['administrator/users/drivers'] = 'admin/dashboard/Users/drivers';
+$route['administrator/users/get-drivers'] = 'admin/dashboard/Users/getDrivers';
+$route['administrator/users/get-a-driver/(:num)'] = 'admin/dashboard/Users/getDriversWhere';
+
+
 
 
 // $route['administrator/system-management/get-menu-where/(:any)'] = 'admin/dashboard/System/getMenuWhere/$1';
