@@ -152,8 +152,10 @@ class M_user extends CI_Model
             'user_level !=' => 3
         ];
 
-        $this->db->select('user.*, user_level.*');
+        $this->db->select('user.*, user_level.*, admin.*');
         $this->db->from('user');
+        $this->db->join('admin', 'admin.admin_user_id
+        = user.user_id');
         $this->db->join('user_level', 'user_level.level_id
         = user.user_level');
         $this->db->where($where);
@@ -165,6 +167,28 @@ class M_user extends CI_Model
 
         if ($query->num_rows() != 0) {
             return $query->result();
+        } else {
+            return false;
+        }
+    }
+
+    public function getAdminWhere($where)
+    {
+        $this->db->select('user.*, user_level.*, admin.*');
+        $this->db->from('user');
+        $this->db->join('admin', 'admin.admin_user_id
+        = user.user_id');
+        $this->db->join('user_level', 'user_level.level_id
+        = user.user_level');
+        $this->db->where($where);
+
+
+        // $this->db->where('user_level', 2);
+        // $this->db->where('user_level', 4);
+        $query = $this->db->get();
+
+        if ($query->num_rows() != 0) {
+            return $query;
         } else {
             return false;
         }
@@ -185,7 +209,7 @@ class M_user extends CI_Model
         if ($query->num_rows() != 0) {
             return $query->result();
         } else {
-            return "no driver";
+            return "no admin";
         }
     }
     public function getDriversWhere($where)

@@ -31,11 +31,11 @@
                                 <tr>
                                     <th class="pt-0">#</th>
                                     <th class="pt-0">Photo</th>
-                                    <th class="pt-0">Username</th>
                                     <th class="pt-0">Email</th>
+                                    <th class="pt-0">Gender</th>
                                     <th class="pt-0">Role</th>
                                     <th class="pt-0">Status</th>
-                                    <th class="pt-0">Joined</th>
+                                    <th class="pt-0">Phone number</th>
                                     <th class="pt-0 text-center ">Actions</th>
                                 </tr>
                             </thead>
@@ -48,7 +48,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 
@@ -80,6 +79,32 @@
                         </div>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="m-info" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">
+                    Detail of admin
+                </h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid" id="container-modal">
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

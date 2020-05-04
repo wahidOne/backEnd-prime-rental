@@ -54,8 +54,8 @@ const showRow = (path, user, no) => {
 							path + user.user_photo
 						}" alt="">
         </td>
-	    <td>${user.user_name}</td>
         <td>${user.user_email}</td>
+	    <td class="text-capitalize" >${user.admin_gender}</td>
         <td> 
         ${(() => {
 					if (user.level_id == 1) {
@@ -78,7 +78,7 @@ const showRow = (path, user, no) => {
 						? ` <span class="badge badge-success text-capitalize"> ${user.user_status} </span> `
 						: `<span class="badge badge-success">${user.user_status}</span>`
 				}  </td>
-        <td>${user.user_created}</td>
+        <td class=" text-center " >${user.admin_phone}</td>
 	    <td>
             <div class="dropleft mb-2">
                 <button class="btn p-0 ml-3 text-primary" type="button" id="${
@@ -90,7 +90,9 @@ const showRow = (path, user, no) => {
                 <div class="dropdown-menu " aria-labelledby="${
 									user.user_email
 								}">
-                <a class="dropdown-item d-flex align-items-center text-primary " href="#">
+                <a data-id="${
+									user.user_id
+								}" class="dropdown-item d-flex align-items-center text-primary btn-detail " href="#">
                     <i  class=" fas fa-info-circle fa-fw "></i> 
                     <span class="ml-2">Detail</span></a>
                 <a class="dropdown-item d-flex align-items-center text-danger " href="#">

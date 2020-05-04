@@ -96,6 +96,7 @@ class Users extends CI_Controller
                     'admin_phone' => '-',
                     'admin_birth' => '-',
                     'admin_gender' => '-',
+                    'admin_created' => time(),
                 ];
                 $this->M_public->insertData('admin', $admin);
                 $this->M_public->updateData(['user_id ' => $user_id], 'user', $dataupdate);
@@ -113,8 +114,6 @@ class Users extends CI_Controller
                 $data['driver'] = $driver;
             }
         } else {
-
-            // $res['debug'] = $cekAdmin;
             if ($old_user_level = 4) {
                 if ($user_level != 4) {
                     $this->db->delete('admin', ['admin_user_id' => $user_id]);
@@ -159,9 +158,6 @@ class Users extends CI_Controller
         $this->load->view($backendTemplates . 'end', $data);
     }
 
-
-
-
     public function getAdminUser()
     {
         $admin = $this->M_user->getAdminUsers();
@@ -175,6 +171,18 @@ class Users extends CI_Controller
         $data['users'] = $row;
         // $data['users'] = $users;
 
+
+        echo json_encode($data);
+    }
+
+    public function getAdminWhere()
+    {
+        $user_id = $this->uri->segment(4);
+
+        $data = $this->M_user->getAdminWhere(['user_id' => $user_id])->row_array();
+
+        $data['user_created'] =  date('d-F-Y', $data['user_created']);
+        $data['user_photo'] =   base_url('assets/uploads/ava/') . $data['user_photo'];
 
         echo json_encode($data);
     }

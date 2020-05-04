@@ -109,6 +109,7 @@ $route['administrator/users/get-general-user'] = 'admin/dashboard/Users/generalU
 
 $route['administrator/users/admin'] = 'admin/dashboard/Users/administrators';
 $route['administrator/users/get-admin-user'] = 'admin/dashboard/Users/getAdminUser';
+$route['administrator/users/admin-where/(:num)'] = 'admin/dashboard/Users/getAdminWhere/$1';
 
 
 $route['administrator/users/drivers'] = 'admin/dashboard/Users/drivers';
