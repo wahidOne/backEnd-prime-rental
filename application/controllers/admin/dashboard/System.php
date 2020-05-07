@@ -96,7 +96,7 @@ class System extends CI_Controller
         $menu = [
             'menu_name' => $menu_name,
             'menu_method' => $menu_method,
-            'menu_url' => 'administrator/' . $menu_url,
+            'menu_url' =>  $menu_url,
             'menu_uri_segment' => $menu_url,
             'menu_icon' => $menu_icon,
             'menu_type_id' => $menu_type

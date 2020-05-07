@@ -100,7 +100,6 @@ class M_menu extends CI_Model
     // datatable menu
     private function _get_datatables_query_menu($column_search, $column_order, $order)
     {
-
         $i = 0;
         foreach ($column_search as $item) { // loop column
             if (@$_POST['search']['value']) { // if datatable send POST for search

@@ -33,12 +33,13 @@
                         <table class="table table-hover " id="table-cars" data-url="<?= site_url('administrator/master-data/data-tables-cars') ?>">
                             <thead>
                                 <tr>
-                                    <th class="pt-0">#</th>
-                                    <th class="pt-0">Image</th>
-                                    <th class="pt-0">Merk</th>
-                                    <th class="pt-0">No Police</th>
-                                    <th class="pt-0">Type of car</th>
-                                    <th class="pt-0">Price</th>
+                                    <th>#</th>
+                                    <th>Image</th>
+                                    <th>Merk</th>
+                                    <th>No Police</th>
+                                    <th>Type of car</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
                                     <th class="text-center">Aksi</th>
                                 </tr>
                             </thead>

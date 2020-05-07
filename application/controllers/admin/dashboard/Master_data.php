@@ -27,12 +27,13 @@ class Master_data extends CI_Controller
             $row[] = $c->car_no_police;
             $row[] = $c->type_name;
             $row[] = $c->car_price;
+            $row[] = $c->car_status ==  0 ? '<span class="badge badge-warning">Di sewa</span>' : '<span class="badge badge-warning">Sudah Kembali</span>';
             // add html for action
             $row[] = '
             <div class="d-flex justify-content-center ">
-                    <a id="button-info" href="' . site_url('administrator/master-data/get-car/') . '" data-id="' . $c->car_id . '" class="btn btn-outline-info btn-xs" ><i class="fas fa-fw fa-info"></i> Detail</a>
-                    <a data-url="' . site_url('administrator/master-data/get-car/') . '" href="" class="btn btn-outline-primary btn-xs ml-2 button-edit" data-id="' . $c->car_id . '"><i class="fas fa-fw fa-pencil"></i> Update</a>
-                    <a href="' . base_url('administrator/master-data/delete-car/') . $c->car_id . '" data-name="' .  $c->car_brand . '" class="btn btn-outline-danger btn-xs button-delete  ml-2"><i class="fas fa-fw fa-trash"></i>Delete</a>
+                    <a id="button-info" href="' . site_url('administrator/master-data/get-car/') . '" data-id="' . $c->car_id . '" class="badge badge-info text-dark"><i class="fas fa-fw fa-info"></i> Detail</a>
+                    <a data-url="' . site_url('administrator/master-data/get-car/') . '" href="" class="badge badge-primary text-dark ml-2 button-edit" data-id="' . $c->car_id . '"><i class="fas fa-fw fa-pencil"></i> Update</a>
+                    <a href="' . base_url('administrator/master-data/delete-car/') . $c->car_id . '" data-name="' .  $c->car_brand . '" class="badge badge-danger  button-delete  ml-2"><i class="fas fa-fw fa-trash"></i>Delete</a>
 
             </div>';
             $data[] = $row;

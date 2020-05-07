@@ -118,6 +118,11 @@ $route['administrator/users/get-a-driver/(:num)'] = 'admin/dashboard/Users/getDr
 $route['administrator/users/del-driver/(:num)'] = 'admin/dashboard/Users/deleteDriver/$1';
 
 
+// Transaction
+$route['administrator/transaction/rent'] = 'admin/dashboard/Transaction/rental';
+$route['administrator/transaction/load-rent'] = 'admin/dashboard/Transaction/loadRentalData';
+$route['administrator/transaction/get-rent/(:num)'] = 'admin/dashboard/Transaction/getRental/$1';
+
 
 
 // $route['administrator/system-management/get-menu-where/(:any)'] = 'admin/dashboard/System/getMenuWhere/$1';
