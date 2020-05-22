@@ -16,7 +16,6 @@
 <script>
     document.onreadystatechange = function() {
         if (document.readyState === "complete") {
-            console.log(document.readyState);
             setTimeout(() => {
                     document.getElementById("PreLoaderBar").style.display = "none";
                 },
