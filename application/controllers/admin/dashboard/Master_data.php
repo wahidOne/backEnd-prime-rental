@@ -27,7 +27,7 @@ class Master_data extends CI_Controller
             $row[] = $c->car_no_police;
             $row[] = $c->type_name;
             $row[] = $c->car_price;
-            $row[] = $c->car_status ==  0 ? '<span class="badge badge-warning">Di sewa</span>' : '<span class="badge badge-warning">Sudah Kembali</span>';
+            $row[] = $c->car_status ==  1 ? '<span class="badge badge-warning">Di sewa</span>' : '<span class="badge badge-success text-dark ">Bebas</span>';
             // add html for action
             $row[] = '
             <div class="d-flex justify-content-center ">

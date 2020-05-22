@@ -67,7 +67,7 @@ class M_cars extends CI_Model
         $this->db->join('car_types', 'car_types.type_id =  cars.car_type_id');
         $query = $this->db->get();
         if ($query->num_rows() != 0) {
-            return $query->result_array();
+            return $query;
         } else {
             return false;
         }
@@ -82,6 +82,20 @@ class M_cars extends CI_Model
         $query = $this->db->get();
         if ($query->num_rows() != 0) {
             return $query->row_array();
+        } else {
+            return false;
+        }
+    }
+
+    public function getCarsWhere($where = null)
+    {
+        $this->db->select('*');
+        $this->db->from('cars');
+        $this->db->join('car_types', 'car_types.type_id =  cars.car_type_id');
+        $this->db->where($where);
+        $query = $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query;
         } else {
             return false;
         }
