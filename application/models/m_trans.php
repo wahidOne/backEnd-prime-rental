@@ -70,7 +70,7 @@ class M_trans extends CI_Model
 
     public function getRentalWhere($where)
     {
-        $this->db->select('rental_trans.*, cars.car_brand, cars.car_price , user.user_id, user.user_name');
+        $this->db->select('rental_trans.*, cars.car_brand, cars.car_price , cars.car_photo  , user.user_id, user.user_name');
         $this->db->from('rental_trans');
         $this->db->join('cars', 'cars.car_id =  rental_trans.rent_car_id');
         $this->db->join('user', 'user.user_id =  rental_trans.rent_user_id');
@@ -79,6 +79,22 @@ class M_trans extends CI_Model
         $query = $this->db->get();
         if ($query->num_rows() != 0) {
             return $query->row_array();
+        } else {
+            return false;
+        }
+    }
+
+    public function getUserRental($where)
+    {
+        $this->db->select('rental_trans.*, cars.*, user.user_id, user.user_name');
+        $this->db->from('rental_trans');
+        $this->db->join('cars', 'cars.car_id =  rental_trans.rent_car_id');
+        $this->db->join('user', 'user.user_id =  rental_trans.rent_user_id');
+        $this->db->where($where);
+
+        $query = $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query;
         } else {
             return false;
         }

@@ -73,10 +73,10 @@ class Auth extends CI_Controller
                         $this->session->set_flashdata('toastrBerhasilLogin', "Selamat datang " . $user['user_name']);
                         redirect('administrator/dashboard/');
                     } else {
-                        $this->session->set_flashdata('pesan-blok', '
-                            Email yang dimasukan bukan email administrator !
-                        ');
-                        redirect('administrator/sign-in');
+                        // $this->session->set_flashdata('pesan-blok', '
+                        //     Email yang dimasukan bukan email administrator !
+                        // ');
+                        redirect('administrator/rental');
                     }
                 } else {
                     $this->session->set_flashdata('error', 'Passwordnya Yang Anda Masukan Salah!!');

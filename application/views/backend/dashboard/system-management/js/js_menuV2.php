@@ -9,7 +9,6 @@
     const form = document.querySelector("#formActionMenu");
     const formGroup = form.querySelector("#parent_menu_id");
 
-
     // loadMenu(_url);
 
     loadDataMenu();
@@ -130,6 +129,7 @@
 
                     const updateUrl = `<?= base_url('administrator/system-management/ubah-menu') ?>`
                     const result =  UpdateData(updateUrl, showMessage, menuIdValues);
+
                     if(result) {
                         $("#table-menu").DataTable().destroy();
                         loadDataMenu();

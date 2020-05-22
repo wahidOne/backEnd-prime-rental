@@ -124,6 +124,13 @@ $route['administrator/transaction/load-rent'] = 'admin/dashboard/Transaction/loa
 $route['administrator/transaction/get-rent/(:num)'] = 'admin/dashboard/Transaction/getRental/$1';
 
 
+$route['administrator/rental'] = 'admin/demo/Rental/index';
+$route['administrator/rental/transaction/(:num)'] = 'admin/demo/Rental/transaction_rent/$1';
+$route['admistrator/rental/add-rental'] = 'admin/demo/Rental/add_rental';
+$route['admistrator/rental/receipt'] = 'admin/demo/Rental/receipt';
+$route['admistrator/rental/reset-receipt'] = 'admin/demo/Rental/reset_receipt';
+$route['admistrator/rental/transaction/u/(:any)'] = 'admin/demo/Rental/userTransaction/$1';
+
 
 // $route['administrator/system-management/get-menu-where/(:any)'] = 'admin/dashboard/System/getMenuWhere/$1';
 $route['404_override'] = 'Page404/index';
