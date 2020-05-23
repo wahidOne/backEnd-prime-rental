@@ -91,7 +91,7 @@ $this->load->view($componentPath . "banner");
                             <h6 class="card__brand"><?= $fr['car_brand']; ?></h6>
                             <h5 class="card__type text-center font-md-20px"><?= $fr['type_name']  ?></h5>
                             <h5 class="card__price">Rp. <?= number_format($fr['car_price'], 2, ',', '.') ?></h5>
-                            <div class="d-flex mt-2"><a href="" class="btn card__btn-sewa btn-block mr-1">Sewa</a> <a href="detail.html" class="btn card__btn-detail">Detail</a></div>
+                            <div class="d-flex mt-2"><a href="" class="btn card__btn-sewa btn-block mr-1">Sewa</a> <a href="<?= site_url('mobil/detail/') . $fr['car_id'] ?>" class="btn card__btn-detail">Detail</a></div>
                         </div>
                     </div>
                 </div>

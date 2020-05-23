@@ -5,20 +5,50 @@
     <section class="listcars-main bg-light">
         <div class="container-fluid px-5 listcars-container bg-light">
             <div class="row">
-                <div class="col-md-3 pt-2 listcars-sidenav d-none d-block  px-lg-5 bg-light">
+                <div class="col-md-3 pt-2 listcars-sidenav d-none d-md-block  px-lg-5 bg-light">
                     <h3>Filter</h3>
                     <ul class="nav flex-column nav-filter">
                         <li class="nav-item"><a class="nav-link" id="listcars-navlink" href="#" data-status="false" data-collapse="#cars"><span>Tipe </span><i class="fas fa-chevron-down"></i></a>
                             <div class="collapse nav-collapse pl-2" id="cars">
-                                <nav class="nav d-flex pt-1 flex-column"><a class="nav-link" href="#"><span>All Type
-                                        </span></a><a class="nav-link" href="#"><span>Hatback</span></a></nav><br>
+                                <nav class="nav d-flex pt-1 flex-column">
+                                    <a class="nav-link" href="#">
+                                        <span>All Type
+                                        </span>
+                                    </a>
+                                    <?php foreach ($car_type as $ct) :  ?>
+                                        <a class="nav-link" href="<?= $ct['type_id'] ?>"><span><?= $ct['type_name']; ?></span></a>
+                                    <?php endforeach; ?>
+                                </nav><br>
                             </div>
                             <hr>
                         </li>
                         <li class="nav-item"><a class="nav-link" id="listcars-navlink" href="#" data-status="false" data-collapse="#chair"><span>Kursi </span><i class="fas fa-chevron-down"></i></a>
                             <div class="collapse nav-collapse pl-2" id="chair">
-                                <nav class="nav d-flex pt-1 flex-column"><a class="nav-link" href="#"><span>All
-                                        </span></a><a class="nav-link" href="#"><span>5 kursi </span></a><a class="nav-link" href="#"><span>6 kursi </span></a><a class="nav-link" href="#"><span>> 7 kursi</span></a></nav><br>
+                                <nav class="nav d-flex pt-1 flex-column">
+                                    <a class="nav-link" href="#"><span>All
+                                        </span></a><a class="nav-link" href="#"><span>5 kursi </span>
+                                    </a>
+                                    <a class="nav-link" href="#"><span>6 kursi </span></a>
+                                    <a class="nav-link" href="#"><span>> 7 kursi</span></a></nav><br>
+                            </div>
+                            <hr>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" id="listcars-navlink" href="#" data-status="false" data-collapse="#price"><span>Price </span><i class="fas fa-chevron-down"></i></a>
+                            <div class="collapse nav-collapse pl-2" id="price">
+                                <nav class="nav d-flex pt-1 flex-column">
+                                    <a class="nav-link" href="#"><span>All Price
+                                        </span></a><a class="nav-link" href="#"><span> Rp. 300.000 < </span> </a> <a class="nav-link" href="#"><span> Rp. 500.000 < </span> </a> <a class="nav-link" href="#"><span> > Rp. 1.000.000</span></a></nav><br>
+                            </div>
+                            <hr>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="listcars-navlink" href="#" data-status="false" data-collapse="#transmission"><span>Transmisi </span><i class="fas fa-chevron-down"></i></a>
+                            <div class="collapse nav-collapse pl-2" id="transmission">
+                                <nav class="nav d-flex pt-1 flex-column">
+
+                                    <a class="nav-link" href="#"><span>Otomatis </span></a>
+                                    <a class="nav-link" href="#"><span>Manual</span></a>
+                                </nav><br>
                             </div>
                             <hr>
                         </li>
@@ -30,7 +60,8 @@
                             <h3 class="col-6 col-md-7">Search</h3>
                             <div class="input-group listcars-search col-6 col-md-5">
                                 <input class="form-control bg-transparent listcars-input-search border-0" placeholder="Search">
-                                <div class="input-group-prepend mr-n1"><button class="btn btn-search rounded-circle"><i class="fad fa-search"></i></button>
+                                <div class="input-group-prepend mr-n1 my-auto">
+                                    <a href="#" class=" badge btn-search"><i class="fas text-secondary fa-search"></i></a>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +105,7 @@
                                                         ?>
 
 
-                                                        <div class="d-flex mt-2 justify-content-end"><a href="#" class="btn btn-primary">Detail</a>
+                                                        <div class="d-flex mt-2 justify-content-end"><a href="<?= site_url('mobil/detail/') . $c['car_id'] ?>" class="btn btn-primary">Detail</a>
                                                             <?php if ($c['car_status'] == 0) : ?>
                                                                 <a href="#" class="btn ml-2 btn-secondary">Sewa</a>
                                                             <?php else :  ?>

@@ -118,7 +118,6 @@ class Master_data extends CI_Controller
     public function getCarWhere()
     {
         $car_id = $this->uri->segment(4);
-
         $car = $this->M_cars->getCarWhere(['car_id' => $car_id]);
 
         $car['car_date_input'] =  TanggalIndonesia(date('Y-m-d', $car['car_date_input']));

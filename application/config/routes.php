@@ -51,8 +51,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 */
 // frontEnd
 $route['default_controller'] = 'frontend/public/Pages/index';
-$route['home'] = 'frontend/public/Pages/index';
-$route['cars'] = 'frontend/public/Pages/cars';
+$route['beranda'] = 'frontend/public/Pages/index';
+$route['mobil-kami'] = 'frontend/public/Pages/cars';
+$route['mobil/detail/(:any)'] = 'frontend/public/Pages/detailCar/$1';
 
 
 
