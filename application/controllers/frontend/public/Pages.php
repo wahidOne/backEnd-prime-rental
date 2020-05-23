@@ -74,4 +74,22 @@ class Pages extends CI_Controller
         $this->load->view($templatesPath .  "footer", $data);
         $this->load->view($templatesPath .  "end", $data);
     }
+
+
+    public function about()
+    {
+        $data['title'] =  "Tentang Kami";
+        $templatesPath  = $this->public['templates'];
+        $views  = $this->public['pages'];
+        $data['count'] =  $this->db->count_all_results('cars');
+
+        $data['componentPath'] = $views . "about/components/";
+        $data['templatesPath'] = $templatesPath;
+        $this->load->view($templatesPath .  "header", $data);
+        $this->load->view($templatesPath .  "navbar_mobile", $data);
+        $this->load->view($templatesPath .  "sidebar", $data);
+        $this->load->view($views .  "about/about-page", $data);
+        $this->load->view($templatesPath .  "footer", $data);
+        $this->load->view($templatesPath .  "end", $data);
+    }
 }

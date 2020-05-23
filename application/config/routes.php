@@ -54,7 +54,7 @@ $route['default_controller'] = 'frontend/public/Pages/index';
 $route['beranda'] = 'frontend/public/Pages/index';
 $route['mobil-kami'] = 'frontend/public/Pages/cars';
 $route['mobil/detail/(:any)'] = 'frontend/public/Pages/detailCar/$1';
-
+$route['tentang-kami'] = 'frontend/public/Pages/about';
 
 
 // auth admnistrator
