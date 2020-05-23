@@ -8,7 +8,9 @@ $this->load->view($componentPath . "banner");
 <section class="best-cars pt-10 pb-10">
     <div class="container-fluid pb-10">
         <div class="row">
-            <div class="col-12 font-6 mb-6 py-5 text-center"><span class="text-white font-md-9 text-secondary">Mobil</span> <span style="font-weight: 600;" class="bg-secondary rounded-sm font-md-9 px-2 text-primary">Terbaik</span></div>
+            <div class="col-12 font-6 mb-6 py-5 text-center"><span class="text-white font-md-9 text-secondary">Rekomendasi</span>
+                <!-- <span style="font-weight: 600;" class="bg-secondary rounded-sm font-md-9 px-2 text-primary">Mobil</span> -->
+            </div>
         </div>
         <div class="row justify-content-center">
             <div class="col-11 col-lg-11 mx-auto">

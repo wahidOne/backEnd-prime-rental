@@ -28,7 +28,7 @@
                 <span>Sewa &
                     Pembayaran</span>
             </a>
-            <a class="flex-sm-fill nav-link" href="#"><i class="fab fa-teamspeak mr-1 fa-fw"></i>
+            <a class="flex-sm-fill nav-link" href="<?= site_url('kontak') ?>"><i class="fab fa-teamspeak mr-1 fa-fw"></i>
                 <span>Kontak</span>
             </a>
             <hr class="w-100 bg-secondary-70">

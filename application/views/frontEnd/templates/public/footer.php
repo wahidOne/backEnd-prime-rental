@@ -20,7 +20,7 @@
                 <h4 class="font-4 text-white font-weight-bold">Pelanggan</h4>
                 <ul class="nav flex-column font-17px mt-2 mt-md-3 px-0 font-18px">
                     <li class="nav-item ml-n2"><a class="nav-link text-white-50" href="#">Cara Pembayaran</a></li>
-                    <li class="nav-item ml-n2"><a class="nav-link text-white-50" href="#">Kontak</a></li>
+                    <li class="nav-item ml-n2"><a class="nav-link text-white-50" href="<?= base_url('kontak') ?>">Kontak</a></li>
                 </ul>
             </div>
             <div class="col-md-6 col-lg-3 mt-3 mx-auto">

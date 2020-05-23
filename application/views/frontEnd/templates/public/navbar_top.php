@@ -5,11 +5,12 @@
             <div class="navbar-nav mx-auto d-flex w-100 font-montserrat">
                 <a class="nav-item px-lg-2 nav-link ml-auto text-primary" href="<?= site_url('beranda') ?>">Beranda </a>
                 <a class="nav-item px-lg-2 nav-link text-primary" href="<?= site_url('mobil-kami') ?>">Mobil Kami</a>
-                <a class="nav-item px-lg-2 nav-link text-primary" href="<?= site_url('tentang-kami') ?>">Tentang</a>
-                <a class="nav-item px-lg-2 nav-link text-primary" href="#">
-                    <i class="fas fa-search"></i></a>
-                <a class="nav-item ml-lg-2 nav-link text-primary  font-italic  " style="text-decoration: underline" href="#">Registrasi</a>
-                <a class="nav-item ml-lg-2 px-3  btn btn-primary " href="#">Login</a>
+                <a class="nav-item px-lg-2 nav-link text-primary" href="<?= site_url('tentang-kami') ?>">Tentang </a>
+                <a class="nav-item pl-lg-2 nav-link border-left border-primary text-primary" href="#">
+                    <i class="fas fa-search"></i>
+                </a>
+                <a class="nav-item ml-lg-1 nav-link text-primary  font-italic  " style="text-decoration: underline" href="#">Login</a>
+                <a class="nav-item ml-lg-2 px-3  btn btn-primary " href="#">Registrasi</a>
             </div>
         </div>
     </div>
