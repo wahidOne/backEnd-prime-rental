@@ -14,7 +14,13 @@
                     </ol>
                 </nav>
                 <h1 class="font-md-8 text-primary"><?= $car['car_brand']  ?></h1>
-                <div class="d-flex font-26px text-primary mt-2"><i class="fas fa-star fa-fw"></i> <i class="fas fa-star fa-fw ml-1"></i> <i class="fas fa-star fa-fw ml-1"></i> <i class="fas fa-star-half-alt fa-fw ml-1"></i> <i class="far fa-star fa-fw ml-1"></i></div>
+                <div class="d-flex font-26px text-warning mt-2">
+                    <i class="fas fa-star fa-fw"></i>
+                    <i class="fas fa-star fa-fw ml-1"></i>
+                    <i class="fas fa-star fa-fw ml-1"></i>
+                    <i class="fas fa-star-half-alt fa-fw ml-1"></i>
+                    <i class="far fa-star fa-fw ml-1"></i>
+                </div>
                 <h5 class="font-25px mt-2 text-white font-italic"><?= $car['type_name']  ?></h5>
                 <h5 class="font-25px mt-2 text-primary">Rp <?= number_format($car['car_price'], 2, ',', '.') ?>/ hari</h5>
                 <p class="mt-md-2 text-white-50"><?= $car['car_desc']; ?></p>
@@ -23,8 +29,15 @@
                         <?= $car['car_transmission']; ?>
                     </span>
                     <span class="badge badge-pill badge-primary font-18px text-secondary shadow-sm ml-2"><?= $car['car_fuel']; ?></span>
-                </div><a href="#" class="btn btn-outline-primary mt-3 font-18px rounded-pill py-1 px-3">Sewa
-                    sekarang</a>
+                </div>
+                <?php if ($car['car_status'] == 0) : ?>
+                    <a href="#" class="btn btn-outline-primary mt-3 font-18px rounded-pill py-1 px-3">Sewa
+                        sekarang</a>
+                <?php else :  ?>
+                    <span style="cursor: default" class="btn btn-outline-primary mt-3 font-18px rounded-pill py-1 px-3">Tersewa
+                    </span>
+                <?php endif;  ?>
+
             </div>
         </div>
     </div>
@@ -52,6 +65,13 @@
                                                 <h6 class="card__brand"><?= $c['car_brand']; ?></h6>
                                                 <h5 class="card__type font-md-20px"><?= $c['type_name'] ?></h5>
                                                 <h5 class="card__price">Rp. <?= number_format($c['car_price'], 2, ',', '.') ?>/hari</h5>
+                                                <div class="d-flex justify-content-center  text-warning ">
+                                                    <i class="fas fa-star fa-fw"></i>
+                                                    <i class="fas fa-star fa-fw ml-1"></i>
+                                                    <i class="fas fa-star fa-fw ml-1"></i>
+                                                    <i class="fas fa-star-half-alt fa-fw ml-1"></i>
+                                                    <i class="far fa-star fa-fw ml-1"></i>
+                                                </div>
                                                 <div class="d-flex justify-content-around">
                                                     <?php if ($c['car_status'] == 0) : ?>
                                                         <a href="<?= site_url('sewa/') . $c['car_id'] ?>" class="btn btn-block card__btn mt-2">Sewa</a>
@@ -59,7 +79,7 @@
                                                         <span style="cursor: default" class="btn font-italic  btn-block card__btn mt-2 ">Di sewa</span>
                                                     <?php endif; ?>
 
-                                                    <a href="<?= site_url('mobil/detail/') . $c['car_id'] ?>" class="btn card__btn ml-1 mt-2"><i class="fad fa-eye"></i></a>
+                                                    <a href="<?= site_url('mobil/detail/') . $c['car_id'] ?>" class="btn card__btn ml-1 mt-2"><i class="fas fa-eye"></i></a>
 
                                                 </div>
                                             </div>

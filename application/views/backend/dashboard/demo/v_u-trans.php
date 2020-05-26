@@ -12,7 +12,6 @@
 
     <div class="row mt-5">
         <div class="col-sm-12">
-
             <?php if ($rent == []) :  ?>
                 <div class="col-10 mx-auto">
                     <div class="card">
@@ -54,7 +53,7 @@
                                             <?= $no++; ?>
                                         </td>
                                         <td>
-                                            <?= $rent['rent_date']; ?>
+                                            <?= $r['rent_date']; ?>
                                         </td>
                                         <td class=" text-capitalize "><?= $cos['cos_name']; ?></td>
                                         <td><?= $r['car_brand']; ?></td>
@@ -73,8 +72,7 @@
 
             <?php endif; ?>
 
-
-            </>
+            ban
 
         </div>
 

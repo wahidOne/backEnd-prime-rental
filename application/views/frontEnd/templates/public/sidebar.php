@@ -20,7 +20,7 @@
         <nav class="nav d-flex flex-column px-0 mt-2 mb-3"> -->
             <hr class="w-100 bg-secondary-70">
             <a class="flex-sm-fill nav-link" href="#">
-                <i class="fal fa-fw mr-1 fa-car-mechanic"></i>
+                <i class="fal fa-fw mr-1 fa-info-square "></i>
                 <span>Syarat & Ketentuan</span>
             </a>
             <a class="flex-sm-fill nav-link" href="#">
@@ -28,9 +28,14 @@
                 <span>Sewa &
                     Pembayaran</span>
             </a>
+            <a class="flex-sm-fill nav-link" href="<?= site_url('kontak') ?>">
+                <i class="fal fa-tools  mr-1 fa-fw"></i>
+                <span>Layanan Kami</span>
+            </a>
             <a class="flex-sm-fill nav-link" href="<?= site_url('kontak') ?>"><i class="fab fa-teamspeak mr-1 fa-fw"></i>
                 <span>Kontak</span>
             </a>
+
             <hr class="w-100 bg-secondary-70">
             <a class="flex-sm-fill nav-link" href="#"><i class="fad fa-fw  mr-1 fa-sign-out-alt "></i>
                 <span>Logout</span>

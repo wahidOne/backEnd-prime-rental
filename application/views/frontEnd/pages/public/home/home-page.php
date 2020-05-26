@@ -17,7 +17,6 @@ $this->load->view($componentPath . "banner");
                 <div class="swiper-container slider-cars swiper position-relative mx-auto px-3 w-100">
                     <div class="swiper-wrapper py-2">
                         <?php $this->load->view($componentPath . "slider-cars", $cars); ?>
-
                     </div>
                 </div><a href="#" class="text-secondary swiper__nav swiper__nav-prev p-1"><i class="fas fa-angle-left fa-3x"></i> </a><a href="#" class="text-secondary swiper__nav swiper__nav-next p-1"><i class="fas fa-angle-right fa-3x"></i></a>
             </div>
@@ -87,12 +86,19 @@ $this->load->view($componentPath . "banner");
             <?php foreach ($free_rent as $fr) : ?>
 
                 <div class="col free-rental-col col-sm-6 col-md-3 mb-6">
-                    <div class="card free-rental__card text-center">
+                    <div class="card free-rental__card text-center border-0">
                         <img class="img-fluid px-2" src="<?= base_url('assets/uploads/cars/') . $fr['car_photo'] ?>" alt="">
                         <div class="card-body d-flex flex-column justify-content-between">
                             <h6 class="card__brand"><?= $fr['car_brand']; ?></h6>
                             <h5 class="card__type text-center font-md-20px"><?= $fr['type_name']  ?></h5>
                             <h5 class="card__price">Rp. <?= number_format($fr['car_price'], 2, ',', '.') ?></h5>
+                            <div class=" d-flex  text-warning justify-content-center  ">
+                                <i class="fas fa-star "></i>
+                                <i class="fas fa-star  ml-1"></i>
+                                <i class="fas fa-star  ml-1"></i>
+                                <i class="fas fa-star-half-alt  ml-1"></i>
+                                <i class="far fa-star  ml-1"></i>
+                            </div>
                             <div class="d-flex mt-2"><a href="" class="btn card__btn-sewa btn-block mr-1">Sewa</a> <a href="<?= site_url('mobil/detail/') . $fr['car_id'] ?>" class="btn card__btn-detail">Detail</a></div>
                         </div>
                     </div>

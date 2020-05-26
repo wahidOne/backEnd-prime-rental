@@ -10,7 +10,7 @@
                     <i class="fas fa-search"></i>
                 </a>
                 <a class="nav-item ml-lg-1 nav-link text-primary  font-italic  " style="text-decoration: underline" href="#">Login</a>
-                <a class="nav-item ml-lg-2 px-3  btn btn-primary " href="#">Registrasi</a>
+                <a class="nav-item ml-lg-2 btn btn-primary " href="#">Registrasi</a>
             </div>
         </div>
     </div>

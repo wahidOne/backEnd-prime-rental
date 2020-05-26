@@ -14,6 +14,16 @@ class Pages extends CI_Controller
     public function index()
     {
 
+        if ($this->session->userdata('primerental_user') != NULL) {
+            $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']]);
+            if ($user->num_rows() > 0) {
+                $data['user'] = $user->row_array();
+            } else {
+                $data['user'] = [];
+            }
+        }
+
+
         $data['title'] =  "Beranda";
 
         // data
@@ -59,6 +69,16 @@ class Pages extends CI_Controller
         $car = $this->M_cars->getCarWhere(['car_id' => $car_id]);
         // $data['similiar_car'] = $this->M_cars->getCarsWhere(['car_type_id' => $car['car_type_id']])->result_array();
 
+        if ($this->session->userdata('primerental_user') != NULL) {
+            $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']]);
+            if ($user->num_rows() > 0) {
+                $data['user'] = $user->row_array();
+            } else {
+                $data['user'] = [];
+            }
+        }
+
+
         $data['cars'] = $this->M_cars->getAllCars()->result_array();
         $data['car'] = $car;
         $data['title'] =  $car['car_brand'];
@@ -78,6 +98,19 @@ class Pages extends CI_Controller
 
     public function about()
     {
+
+        if ($this->session->userdata('primerental_user') != NULL) {
+            $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']]);
+            if ($user->num_rows() > 0) {
+                $data['user'] = $user->row_array();
+            } else {
+                $data['user'] = [];
+            }
+        }
+
+
+
+
         $data['title'] =  "Tentang Kami";
         $templatesPath  = $this->public['templates'];
         $views  = $this->public['pages'];

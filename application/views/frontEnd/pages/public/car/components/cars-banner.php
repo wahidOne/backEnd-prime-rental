@@ -9,13 +9,14 @@
             </ol>
         </nav>
     </div>
-    <div class="col-12 listcars-banner-content pl-0 pl-md-2">
-        <div class="row h-100">
-            <div class="col-md-7 d-flex align-content-center flex-column justify-content-center">
+    <div class="col-12 listcars-banner-content mt-md-5 ">
+        <div class="row h-100 d-flex ">
+            <div class="col-md-6 order-2 d-flex flex-column align-items-end justify-content-center">
                 <p class="font-25px text-white mb-n1 ml-0 pl-0">Temukan</p>
-                <h1 class="text-primary font-md-65px font-weight-bold ml-0 pl-0">Mobil Terbaik Anda</h1>
+                <h1 class="text-primary text-right font-md-65px font-weight-bold">Mobil <br> Terbaik Anda</h1>
             </div>
-            <div class="col-md-5 my-auto mt-3"><img class="img-fluid" src="<?= base_url('assets/frontEnd/') ?>dist/static/svg/list-cars.svg" alt=""></div>
+            <div class="col-md-6 order-1 my-auto d-flex align-content-center justify-content-center align-items-center flex-nowrap px-0  ">
+                <img class=" w-100" src="<?= base_url('assets/frontEnd/') ?>dist/static/svg/list-cars.svg" alt=""></div>
         </div>
     </div>
 </section>

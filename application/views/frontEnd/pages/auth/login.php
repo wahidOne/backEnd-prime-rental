@@ -1,0 +1,53 @@
+<div class="login-content">
+    <div class="bubble d-none d-md-flex"></div>
+    <div class="bubble-2"></div>
+    <div class="container-fluid login-container p-2 p-md-5 px-0">
+        <div class="col-xl-10 col-lg-12 mx-auto login-card my-auto px-0">
+            <div class="row px-0 h-100">
+                <div class="col-lg-7 col-md-12 mx-md-auto login-auth py-3 px-4">
+                    <div class="menu-btn menu-btn-dark"><span class="menu-btn__burger"></span></div>
+                    <div class="text-center col-md-9 col-lg-12 mx-md-auto px-0">
+                        <h4 class="text-dark font-20px font-md-24px">Welcome To</h4>
+                        <h4 class="text-secondary font-5 font-md-5">Primerental Login
+                        </h4>
+                        <p class="text-dark col-12 col-lg-8 mx-auto">Silahkan bergabung
+                            dan menemukan mobil terbaik anda</p>
+                        <form action="" method="POST">
+                            <div class="form-group row mt-3 col-12 col-sm-10 col-lg-9 mx-auto">
+                                <div class="input-group login-group-input px-1">
+                                    <div class="input-group-prepend mr-n1">
+                                        <span class="input-group-text text-secondary bg-transparent border-0 font-weight-bold font-26px"><i class="fad fa-at"></i></span>
+                                    </div><input name="email" class="form-control my-auto login-input rounded-pill" placeholder="Email">
+                                </div>
+                                <?= form_error('email', '<span style="margin-top: 3px"  class="text-danger  ml-2" >', '</span>'); ?>
+                            </div>
+                            <div class="form-group row mt-3 col-12 col-sm-10 col-lg-9 mx-auto">
+                                <div class="input-group login-group-input px-1">
+                                    <div class="input-group-prepend mr-n1">
+                                        <span class="input-group-text text-secondary bg-transparent border-0 font-weight-bold font-26px"><i class="fad fa-lock"></i></span>
+                                    </div><input name="password" class="form-control login-input rounded-pill" placeholder="Password ">
+
+                                </div>
+                                <?= form_error('password', '<span style="margin-top: 3px" class="text-danger ml-2" >', '</span>'); ?>
+                            </div>
+                            <div class="form-group row mt-4 col-6 col-sm-10 col-lg-9 mx-auto">
+                                <button type="submit" class="btn btn-secondary btn-sm btn-block rounded-pill text-primary login-submit">Login</button>
+                            </div>
+                            <div class="d-flex text-center justify-content-center">
+                                <span class="text-muted mr-1">Belum punya akun
+                                    ?</span> <a class="text-secondary" href="">registrasi sekarang</a></div>
+                        </form>
+                    </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-flex justify-content-center login-cover" style="background: linear-gradient(163deg, rgba(34,38,76,0.8547794117647058) 100%, rgba(61,66,108,0) 100%),
+        url('<?= base_url('assets/frontEnd/') ?>dist/static/img/bg/bg-login.png') center top;">
+                    <div class="login-cover-overlay"></div>
+                    <div class="login-cover-content text-primary">
+                        <h2 class="display-4">PrimeRental</h2>
+                        <p class="font-18px text-primary-50">Belum Punya Akun?</p><a class="btn btn-primary rounded-pill px-5 text-secondary" href="registrasi.html">Registrasi sekarang</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

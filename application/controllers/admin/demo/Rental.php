@@ -20,7 +20,7 @@ class Rental extends CI_Controller
     public function index()
     {
         $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
-        $cars = $this->M_cars->getAllCars();
+        $cars = $this->M_cars->getAllCars()->result_array();
 
         $data = [
             'title' => 'Demo ',
@@ -254,9 +254,9 @@ class Rental extends CI_Controller
         if ($rent == false) {
             $data['rent'] = [];
         } else {
-            $rent = $rent->result();
+            $rowRent = $rent->result();
 
-            foreach ($rent as $r) {
+            foreach ($rowRent as $r) {
                 $r->car_photo = base_url('assets/uploads/cars/') . $r->car_photo;
                 $date_rent_start = strtotime($r->rent_date_start);
                 $date_end = strtotime($r->rent_date_end);
@@ -267,6 +267,9 @@ class Rental extends CI_Controller
 
                 $data[] = $row;
             }
+            $data['rent'] = $rent->result();
+
+
             // $date_rent_start = strtotime($rent['rent_date_start']);
             // $date_end = strtotime($rent['rent_date_end']);
 
@@ -276,6 +279,8 @@ class Rental extends CI_Controller
 
         }
 
+        var_dump($data['rent']);
+        die();
         $data['title'] = 'User Transaksi';
         $data['user'] = $user;
 
