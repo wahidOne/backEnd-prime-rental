@@ -1,9 +1,11 @@
 <?php
-
 $this->load->view($componentPath . "banner");
-
-
 ?>
+<?php if ($this->session->flashdata('auth-success')) : ?>
+    <div class="auth-success" data-message="<?= $this->session->flashdata('auth-success');  ?>">
+    </div>
+<?php endif; ?>
+
 
 <section class="best-cars pt-10 pb-10">
     <div class="container-fluid pb-10">

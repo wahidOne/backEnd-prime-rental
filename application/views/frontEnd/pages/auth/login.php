@@ -12,6 +12,10 @@
                         </h4>
                         <p class="text-dark col-12 col-lg-8 mx-auto">Silahkan bergabung
                             dan menemukan mobil terbaik anda</p>
+                        <!-- flash message -->
+                        <?php
+                        $this->load->view('frontEnd/templates/auth/flashdata');
+                        ?>
                         <form action="" method="POST">
                             <div class="form-group row mt-3 col-12 col-sm-10 col-lg-9 mx-auto">
                                 <div class="input-group login-group-input px-1">

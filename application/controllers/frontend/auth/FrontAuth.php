@@ -67,21 +67,33 @@ class FrontAuth extends CI_Controller
                     ];
 
                     $this->session->set_userdata($data);
+                    $this->session->set_flashdata('auth-success', 'Login Berhasil!');
                     redirect('beranda');
                 } else {
-                    $this->session->set_flashdata('error', 'Passwordnya Yang Anda Masukan Salah!!');
+                    $this->session->set_flashdata('auth-error', 'Passwordnya Yang Anda Masukan Salah!!');
                     redirect('autentifikasi/login');
                 }
             } else {
-                $this->session->set_flashdata('error', '
+                $this->session->set_flashdata('auth-error', '
                 Email yang dimasukan belum belum aktifasi!');
                 redirect('autentifikasi/login');
             }
         } else {
-            $this->session->set_flashdata('error', '
+            $this->session->set_flashdata('auth-error', '
             Email Belum Terdaftar!!
         ');
             redirect('autentifikasi/login');
         }
+    }
+
+
+
+    public function logout()
+    {
+        $this->session->unset_userdata('primerental_user')['user_email'];
+        $this->session->unset_userdata('primerental_user')['user_level'];
+
+        $this->session->set_flashdata('auth-success', 'Logout berhasil, Sampai jumpa lagi');
+        redirect('autentifikasi/login');
     }
 }

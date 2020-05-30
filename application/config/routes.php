@@ -57,6 +57,7 @@ $route['mobil/detail/(:any)'] = 'frontend/public/Pages/detailCar/$1';
 $route['tentang-kami'] = 'frontend/public/Pages/about';
 $route['kontak'] = 'frontend/public/Pages/contact';
 $route['autentifikasi/login'] = 'frontend/auth/frontAuth/index';
+$route['autentifikasi/logout'] = 'frontend/auth/frontAuth/logout';
 
 
 

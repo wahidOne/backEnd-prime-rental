@@ -9,8 +9,19 @@
                 <a class="nav-item pl-lg-2 nav-link border-left border-primary text-primary" href="#">
                     <i class="fas fa-search"></i>
                 </a>
-                <a class="nav-item ml-lg-1 nav-link text-primary  font-italic  " style="text-decoration: underline" href="#">Login</a>
-                <a class="nav-item ml-lg-2 btn btn-primary " href="#">Registrasi</a>
+
+                <?php if ($this->session->userdata('primerental_user')) : ?>
+                    <?php if ($user) : ?>
+                        <a href="" class=" my-auto ml-lg-2">
+                            <img height="40" src="<?= base_url('assets/uploads/ava/') . $user['user_photo']; ?>" alt="">
+                        </a>
+                    <?php endif; ?>
+                <?php else :  ?>
+                    <a class="nav-item ml-lg-1 nav-link text-primary  font-italic  " style="text-decoration: underline" href="<?= base_url('autentifikasi/login') ?>">Login</a>
+                    <a class="nav-item ml-lg-2 px-3  btn btn-primary " href="<?= base_url('autentifikasi/login') ?>">Registrasi</a>
+                <?php endif; ?>
+                <!-- <a class="nav-item ml-lg-1 nav-link text-primary  font-italic  " style="text-decoration: underline" href="#">Login</a>
+                <a class="nav-item ml-lg-2 btn btn-primary " href="#">Registrasi</a> -->
             </div>
         </div>
     </div>

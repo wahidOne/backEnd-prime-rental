@@ -13,5 +13,5 @@
 
 
     <div class="preloader" id="preloader">
-        <h1 class="text-loader"><span class="text-wrapper"><span class="letters text-primary ">PrimeRental...</span></span></h1>
+        <h1 class="text-loader"><span class="text-wrapper"><span class="letters text-primary ">Loading...</span></span></h1>
     </div>
