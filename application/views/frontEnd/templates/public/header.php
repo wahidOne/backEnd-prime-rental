@@ -9,7 +9,7 @@
     <link href="<?= base_url('assets/frontEnd/') ?>dist/css/vendor.min.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="hide">
 
 
     <div class="preloader" id="preloader">

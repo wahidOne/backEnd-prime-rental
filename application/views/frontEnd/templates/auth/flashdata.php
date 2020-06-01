@@ -6,3 +6,7 @@
   <div class="auth-success" data-message="<?= $this->session->flashdata('auth-success');  ?>">
   </div>
 <?php endif; ?>
+<?php if ($this->session->flashdata('register-success')) : ?>
+  <div class="register-success" data-message="<?= $this->session->flashdata('register-success');  ?>">
+  </div>
+<?php endif; ?>

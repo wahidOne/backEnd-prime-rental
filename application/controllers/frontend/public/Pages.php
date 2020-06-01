@@ -50,6 +50,17 @@ class Pages extends CI_Controller
         $views  = $this->public['pages'];
         $data['count'] =  $this->db->count_all_results('cars');
 
+
+        if ($this->session->userdata('primerental_user') != NULL) {
+            $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']]);
+            if ($user->num_rows() > 0) {
+                $data['user'] = $user->row_array();
+            } else {
+                $data['user'] = [];
+            }
+        }
+
+
         $data['componentPath'] = $views . "car/components/";
         $data['templatesPath'] = $templatesPath;
         $data['cars'] = $this->M_cars->getAllCars()->result_array();

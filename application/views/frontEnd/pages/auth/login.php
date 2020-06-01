@@ -1,4 +1,4 @@
-<div class="login-content">
+<div class="login-content ">
     <div class="bubble d-none d-md-flex"></div>
     <div class="bubble-2"></div>
     <div class="container-fluid login-container p-2 p-md-5 px-0">
@@ -29,7 +29,7 @@
                                 <div class="input-group login-group-input px-1">
                                     <div class="input-group-prepend mr-n1">
                                         <span class="input-group-text text-secondary bg-transparent border-0 font-weight-bold font-26px"><i class="fad fa-lock"></i></span>
-                                    </div><input name="password" class="form-control login-input rounded-pill" placeholder="Password ">
+                                    </div><input type="password" name="password" class="form-control login-input rounded-pill" placeholder="Password ">
 
                                 </div>
                                 <?= form_error('password', '<span style="margin-top: 3px" class="text-danger ml-2" >', '</span>'); ?>
@@ -39,7 +39,7 @@
                             </div>
                             <div class="d-flex text-center justify-content-center">
                                 <span class="text-muted mr-1">Belum punya akun
-                                    ?</span> <a class="text-secondary" href="">registrasi sekarang</a></div>
+                                    ?</span> <a class="text-secondary" href="<?= base_url('autentifikasi/registrasi') ?>">registrasi sekarang</a></div>
                         </form>
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                     <div class="login-cover-overlay"></div>
                     <div class="login-cover-content text-primary">
                         <h2 class="display-4">PrimeRental</h2>
-                        <p class="font-18px text-primary-50">Belum Punya Akun?</p><a class="btn btn-primary rounded-pill px-5 text-secondary" href="registrasi.html">Registrasi sekarang</a>
+                        <p class="font-18px text-primary-50">Belum Punya Akun?</p><a class="btn btn-primary rounded-pill px-5 text-secondary" href="<?= base_url('autentifikasi/registrasi') ?>">Registrasi sekarang</a>
                     </div>
                 </div>
             </div>

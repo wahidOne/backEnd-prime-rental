@@ -3,6 +3,19 @@ import Swal from "../../../../global-plugins/sweetalert2/src/sweetalert2.js";
 export const AuthAlert = () => {
 	const alertError = document.querySelector(".auth-message");
 	const alertSuccess = document.querySelector(".auth-success");
+	const registerSuccess = document.querySelector(".register-success");
+	console.log(registerSuccess);
+
+	if (registerSuccess) {
+		const alertMessage = registerSuccess.dataset.message;
+
+		Swal.fire({
+			icon: "success",
+			title: "Selamat Bergabung!",
+			text: alertMessage,
+			showConfirmButton: true,
+		});
+	}
 
 	if (alertError) {
 		const alertMessage = alertError.dataset.message;

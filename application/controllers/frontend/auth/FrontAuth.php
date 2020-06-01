@@ -88,6 +88,64 @@ class FrontAuth extends CI_Controller
 
 
 
+    public function registrasi()
+    {
+
+        $userSession = $this->session->userdata('primerental_user');
+        if ($userSession != NULL) {
+            if ($userSession['user_email']) {
+                redirect('beranda');
+            }
+        }
+
+
+
+        $this->form_validation->set_rules('name', 'Name', 'required|trim', [
+            'required' => 'Username harus di isi!',
+        ]);
+        $this->form_validation->set_rules('email', 'Email', 'required|trim|valid_email|is_unique[user.user_email]', [
+            'required' => 'Email harus diisi!',
+            'is_unique' => "Email yang di masukan sudah terdaftar!"
+        ]);
+        $this->form_validation->set_rules('password1', 'Password', 'required|trim|min_length[3]|matches[password2]', [
+            'required' => 'Masukan kata sandi anda! ',
+            'matches' => ' Kata sandi tidak sama !',
+            'min_length' => ' Kata sandi terlalu pendek ! '
+        ]);
+
+
+        $this->form_validation->set_rules('password2', 'Password', 'required|trim|min_length[3]|matches[password1]', [
+            'required' => 'Ulangi Kata Sandi!'
+        ]);
+
+        $data['title'] = 'Registrasi ';
+
+        if ($this->form_validation->run() == false) {
+
+            $this->load->view('frontEnd/templates/auth/header', $data);
+            $this->load->view('frontEnd/templates/public/sidebar', $data);
+            $this->load->view('frontEnd/pages/auth/register', $data);
+            $this->load->view('frontEnd/templates/auth/footer', $data);
+        } else {
+            $data = [
+                'user_name' => htmlspecialchars($this->input->post('name', true)),
+                'user_email' => htmlspecialchars($this->input->post('email', true)),
+                'user_photo' => 'default.png',
+                'user_password' => password_hash($this->input->post('password1'), PASSWORD_DEFAULT),
+                'user_status' => 'online',
+                'user_level' => 3,
+                'user_is_activation' => 1,
+                'user_created' => time()
+            ];
+
+            $this->M_user->insertData($data);
+            $this->session->set_flashdata('register-success', 'Akun anda telah dibuat. Silahkan masuk!');
+            redirect('autentifikasi/login');
+        }
+    }
+
+
+
     public function logout()
     {
         $this->session->unset_userdata('primerental_user')['user_email'];
