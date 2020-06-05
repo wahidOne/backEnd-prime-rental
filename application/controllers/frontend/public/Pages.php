@@ -90,7 +90,9 @@ class Pages extends CI_Controller
         }
 
 
-        $data['cars'] = $this->M_cars->getAllCars()->result_array();
+        $data['cars'] = $this->M_cars->getCarsWhere([
+            'car_type_id' => $car['car_type_id'],
+        ]);
         $data['car'] = $car;
         $data['title'] =  $car['car_brand'];
 

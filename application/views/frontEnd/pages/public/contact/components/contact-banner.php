@@ -12,8 +12,8 @@
     <div class="col-12 contact-banner-content pl-0 pl-md-2 pb-4">
         <div class="row h-100">
             <div class="col-md-6 d-flex align-content-center flex-column justify-content-center">
-                <p class="font-25px text-white mb-n1 ml-0 pl-0">Kapanpun Anda Membutuhkan Kami</p>
-                <h1 class="text-primary font-md-72px font-weight-bold ml-0 pl-0">Kami Selalu Siap Membantu</h1>
+                <p class="font-25px text-white mb-n1 ml-1 pl-0">Kapanpun Anda Membutuhkan Kami</p>
+                <h1 class="text-primary font-weight-light font-md-72px ml-0 pl-0">Kami Selalu Siap Membantu</h1>
             </div>
             <div class="col-md-6 my-auto mt-3"><img class="img-fluid" src="<?= base_url('assets/frontEnd/') ?>dist/static/svg/contact_us.svg" alt=""></div>
         </div>
