@@ -6,7 +6,7 @@ class M_costumer extends CI_Model
 
 
 
-    public function  cekCostumer($where = null)
+    public function cekCostumer($where = null)
     {
 
         // return $this->db->get_where('user', $where)->row_array();
