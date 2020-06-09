@@ -1,6 +1,10 @@
-<script src="<?= base_url('assets/frontEnd/') ?>dist/js/main.bundle.js"></script>
-<script src="<?= base_url('assets/frontEnd/') ?>dist/js/vendor.bundle.js"></script>
-<script type="module" src="<?= base_url('assets/frontEnd/') ?>index.js"></script>
+<script src="<?= base_url('assets/frontEnd/') ?>dist/js/vendor.js"></script>
+<script src="<?= base_url('assets/frontEnd/') ?>dist/js/main.js"></script>
+<script src="<?= base_url('assets/frontEnd/') ?>costum/front-costum.js"></script>
+
+
+<!-- <script type="module" src="<?= base_url('assets/frontEnd/') ?>index.js"></script> -->
+
 </body>
 
 </html>

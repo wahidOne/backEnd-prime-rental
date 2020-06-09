@@ -4,7 +4,8 @@
 	"description": "rental mobil v4.2",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1"
+		"build": "webpack --config webpack.prod.js",
+		"test": "webpack --watch --config webpack.config.js --info-verbosity verbose"
 	},
 	"keywords": [],
 	"author": "",
@@ -20,7 +21,14 @@
 		"validate.js": "^0.13.1"
 	},
 	"devDependencies": {
+		"@babel/core": "^7.10.2",
+		"@babel/preset-env": "^7.10.2",
+		"babel-loader": "^8.1.0",
+		"babel-plugin-transform-class-properties": "^6.24.1",
+		"bootstrap": "^4.5.0",
 		"clean-webpack-plugin": "^3.0.0",
+		"jquery": "^3.5.1",
+		"popper.js": "^1.16.1",
 		"terser-webpack-plugin": "^3.0.1",
 		"webpack": "^4.43.0",
 		"webpack-cli": "^3.3.11"

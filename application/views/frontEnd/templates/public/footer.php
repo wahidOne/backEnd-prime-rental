@@ -46,3 +46,27 @@
         </div>
     </div>
 </footer>
+
+
+<?php if ($this->session->flashdata('error-rental')) : ?>
+    <div class="modal fade alertSewa" id="alertSewa" tabindex="-1" role="dialog" aria-labelledby="blokSewaLabel" aria-hidden="true">
+        <div class="modal-dialog  ">
+            <div class="modal-content bg-secondary ">
+                <div class="modal-header text-light border-0 ">
+                    <h5 class="modal-title" id="blokSewaLabel">Permintaan Ditolak</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-white-50 ">
+                    <?= $this->session->flashdata('error-rental'); ?>
+                </div>
+                <div class="modal-footer border-0 ">
+                    <a href="<?= site_url('autentifikasi/login')  ?>" class="btn text-primary btn-link ">Login</a>
+                    <a href="<?= site_url('autentifikasi/registrasi') ?>" class="btn btn-primary  " data-dismiss="modal">Registrasi</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
