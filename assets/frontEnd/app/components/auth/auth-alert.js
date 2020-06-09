@@ -1,4 +1,4 @@
-import Swal from "../../../../global-plugins/sweetalert2/src/sweetalert2.js";
+import Swal from "sweetalert2";
 
 export const AuthAlert = () => {
 	const alertError = document.querySelector(".auth-message");

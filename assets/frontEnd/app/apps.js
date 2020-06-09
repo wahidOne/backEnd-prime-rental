@@ -1,5 +1,15 @@
-import { autentifikasi } from "./components/auth/auth.js";
+import { AuthAlert } from "./components/auth/auth-alert.js";
+
+import { transactions } from "./components/transactions/transactions.js";
+
+const modalErrorTransactions = document.querySelector(".alertSewa");
 
 export const Apps = () => {
-	autentifikasi();
+	AuthAlert();
+
+	if (modalErrorTransactions) {
+		$("#alertSewa").modal("show");
+	}
+
+	transactions();
 };
