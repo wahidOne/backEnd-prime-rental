@@ -50,6 +50,10 @@ class Pages extends CI_Controller
         $views  = $this->public['pages'];
         $data['count'] =  $this->db->count_all_results('cars');
 
+        $data['themeNavbar'] = "dark";
+        $data['themeHamburger'] = "light";
+        $data['linkColor'] = "primary";
+
 
         if ($this->session->userdata('primerental_user') != NULL) {
             $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']]);
@@ -90,6 +94,10 @@ class Pages extends CI_Controller
         }
 
 
+        $data['themeNavbar'] = "light";
+        $data['themeHamburger'] = "dark";
+        $data['linkColor'] = "primary";
+
         $data['cars'] = $this->M_cars->getCarsWhere([
             'car_type_id' => $car['car_type_id'],
         ]);
@@ -112,6 +120,7 @@ class Pages extends CI_Controller
     public function about()
     {
 
+
         if ($this->session->userdata('primerental_user') != NULL) {
             $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']]);
             if ($user->num_rows() > 0) {
@@ -125,6 +134,9 @@ class Pages extends CI_Controller
 
 
         $data['title'] =  "Tentang Kami";
+        $data['themeNavbar'] = "dark";
+        $data['themeHamburger'] = "light";
+        $data['linkColor'] = "primary";
         $templatesPath  = $this->public['templates'];
         $views  = $this->public['pages'];
 
@@ -140,7 +152,19 @@ class Pages extends CI_Controller
 
     public function contact()
     {
+
+        if ($this->session->userdata('primerental_user') != NULL) {
+            $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']]);
+            if ($user->num_rows() > 0) {
+                $data['user'] = $user->row_array();
+            } else {
+                $data['user'] = [];
+            }
+        }
         $data['title'] =  "Kontak Kami";
+        $data['themeNavbar'] = "dark";
+        $data['themeHamburger'] = "light";
+        $data['linkColor'] = "primary";
         $templatesPath  = $this->public['templates'];
         $views  = $this->public['pages'];
 

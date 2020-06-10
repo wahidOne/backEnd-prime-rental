@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-3 pt-2 listcars-sidenav d-none d-md-block  px-lg-5 bg-light">
                     <h3>Filter</h3>
-                    <ul class="nav flex-column nav-filter">
+                    <ul class="nav flex-column nav-filter font-15px ">
                         <li class="nav-item"><a class="nav-link" id="listcars-navlink" href="#" data-status="false" data-collapse="#cars"><span>Tipe </span><i class="fas fa-chevron-down"></i></a>
                             <div class="collapse nav-collapse pl-2" id="cars">
                                 <nav class="nav d-flex pt-1 flex-column">
@@ -107,7 +107,13 @@
 
                                                         <div class="d-flex mt-2 justify-content-end"><a href="<?= site_url('mobil/detail/') . $c['car_id'] ?>" class="btn btn-primary">Detail</a>
                                                             <?php if ($c['car_status'] == 0) : ?>
-                                                                <a href="#" class="btn ml-2 btn-secondary">Sewa</a>
+                                                                <form class="ml-2" action="<?= base_url('penyewaan') ?>" method="GET">
+                                                                    <input type="hidden" name="car_id" value="<?= $c['car_id'] ?>">
+                                                                    <input type="hidden" name="prev_url" value="<?= $this->uri->uri_string(); ?>">
+                                                                    <button class="btn  btn-secondary  " type="submit">
+                                                                        Sewa
+                                                                    </button>
+                                                                </form>
                                                             <?php else :  ?>
                                                                 <a href="#" style="cursor: default" class="btn font-italic btn-secondary ml-2   disabled" tabindex="-1" role="button" aria-disabled="true">Di Sewa</a>
                                                             <?php endif; ?>

@@ -31,8 +31,12 @@
                     <span class="badge badge-pill badge-primary font-18px text-secondary shadow-sm ml-2"><?= $car['car_fuel']; ?></span>
                 </div>
                 <?php if ($car['car_status'] == 0) : ?>
-                    <a href="#" class="btn btn-outline-primary mt-3 font-18px rounded-pill py-1 px-3">Sewa
-                        sekarang</a>
+                    <form action="<?= base_url('penyewaan') ?>" method="GET">
+                        <input type="hidden" name="car_id" value="<?= $car['car_id'] ?>">
+                        <input type="hidden" name="prev_url" value="<?= $this->uri->uri_string(); ?>">
+                        <button type="submit" class="btn btn-outline-primary mt-3 font-18px rounded-pill py-1 px-3">Sewa
+                            sekarang</button>
+                    </form>
                 <?php else :  ?>
                     <span style="cursor: default" class="btn btn-outline-primary mt-3 font-18px rounded-pill py-1 px-3">Tersewa
                     </span>
@@ -62,9 +66,48 @@
                 <?php else : ?>
                     <?php if ($cars->num_rows() <= 5) : ?>
                         <div class="row d-none d-md-flex  ">
-                            <div class="col-sm-3">
+                            <?php foreach ($cars->result_array() as $c) :  ?>
+                                <?php if ($car['car_id'] != $c['car_id']) : ?>
+                                    <div class="col-sm-4 col-lg-3 card-stretch">
+                                        <div class="card swiper--card">
+                                            <div class="d-flex flex-column mt-auto">
+                                                <div class="swiper-img">
+                                                    <img height="150" src="<?= base_url('assets/uploads/cars/') . $c['car_photo'] ?>" alt=""></div>
+                                                <div class="card-body d-flex flex-column justify-content-center align-content-end mt-auto">
+                                                    <h6 class="card__brand"><?= $c['car_brand']; ?></h6>
+                                                    <h5 class="card__type font-md-20px"><?= $c['type_name'] ?></h5>
+                                                    <h5 class="card__price">Rp. <?= number_format($c['car_price'], 2, ',', '.') ?>/hari</h5>
+                                                    <div class="d-flex justify-content-center  text-warning ">
+                                                        <i class="fas fa-star fa-fw"></i>
+                                                        <i class="fas fa-star fa-fw ml-1"></i>
+                                                        <i class="fas fa-star fa-fw ml-1"></i>
+                                                        <i class="fas fa-star-half-alt fa-fw ml-1"></i>
+                                                        <i class="far fa-star fa-fw ml-1"></i>
+                                                    </div>
+                                                    <div class="d-flex justify-content-around">
+                                                        <?php if ($c['car_status'] == 0) : ?>
+                                                            <div class="d-flex w-100">
+                                                                <form class=" w-100 " action="<?= base_url('penyewaan') ?>" method="GET">
+                                                                    <input type="hidden" name="car_id" value="<?= $c['car_id'] ?>">
+                                                                    <input type="hidden" name="prev_url" value="<?= $this->uri->uri_string(); ?>">
+                                                                    <button class="btn btn-block card__btn mt-2" type="submit">
+                                                                        Sewa
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                            <!-- <a href="<?= site_url('sewa/') . $c['car_id'] ?>">Sewa</a> -->
+                                                        <?php else :  ?>
+                                                            <span style="cursor: default" class="btn font-italic  btn-block card__btn mt-2 ">Di sewa</span>
+                                                        <?php endif; ?>
 
-                            </div>
+                                                        <a href="<?= site_url('mobil/detail/') . $c['car_id'] ?>" class="btn card__btn ml-1 mt-2"><i class="fas fa-eye"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                <?php endif; ?>
+                            <?php endforeach; ?>
                         </div>
                     <?php endif; ?>
                     <div class="swiper-container swiper-similar-cars position-relative mx-auto px-3 w-100">
@@ -89,9 +132,18 @@
                                                     </div>
                                                     <div class="d-flex justify-content-around">
                                                         <?php if ($c['car_status'] == 0) : ?>
-                                                            <a href="<?= site_url('sewa/') . $c['car_id'] ?>" class="btn btn-block card__btn mt-2">Sewa</a>
+                                                            <div class="d-flex w-100">
+                                                                <form class=" w-100 " action="<?= base_url('penyewaan') ?>" method="post">
+                                                                    <input type="hidden" name="car_id" value="<?= $c['car_id'] ?>">
+                                                                    <input type="hidden" name="prev_url" value="<?= $this->uri->uri_string(); ?>">
+                                                                    <button class="btn btn-block  card__btn mt-2" type="submit">
+                                                                        Sewa
+                                                                    </button>
+                                                                </form>
+                                                            </div>
+                                                            <!-- <a href="<?= site_url('sewa/') . $c['car_id'] ?>">Sewa</a> -->
                                                         <?php else :  ?>
-                                                            <span style="cursor: default" class="btn font-italic  btn-block card__btn mt-2 ">Di sewa</span>
+                                                            <span style="cursor: default" class="btn font-italic btn-block card__btn mt-2 ">Di sewa</span>
                                                         <?php endif; ?>
 
                                                         <a href="<?= site_url('mobil/detail/') . $c['car_id'] ?>" class="btn card__btn ml-1 mt-2"><i class="fas fa-eye"></i></a>

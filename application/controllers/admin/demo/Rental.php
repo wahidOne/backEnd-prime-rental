@@ -203,9 +203,6 @@ class Rental extends CI_Controller
             $result['rent_max_returned'] = $tgl_max_kembali;
             $result['rent_type'] = $result['rent_type'] == 1 ? 'Pakai Supir' : 'Tidak Pakai Supir';
 
-
-
-
             $data = [
                 'user' => $user,
                 'receipt' => $result,
@@ -246,11 +243,6 @@ class Rental extends CI_Controller
 
         $rent = $this->M_trans->getUserRental(['rent_user_id' => $user['user_id']]);
 
-
-
-
-
-
         if ($rent == false) {
             $data['rent'] = [];
         } else {
@@ -279,8 +271,8 @@ class Rental extends CI_Controller
 
         }
 
-        var_dump($data['rent']);
-        die();
+        // var_dump($data['rent']);
+        // die();
         $data['title'] = 'User Transaksi';
         $data['user'] = $user;
 

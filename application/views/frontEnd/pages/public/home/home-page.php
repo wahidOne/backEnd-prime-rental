@@ -101,7 +101,17 @@ $this->load->view($componentPath . "banner");
                                 <i class="fas fa-star-half-alt  ml-1"></i>
                                 <i class="far fa-star  ml-1"></i>
                             </div>
-                            <div class="d-flex mt-2"><a href="" class="btn card__btn-sewa btn-block mr-1">Sewa</a> <a href="<?= site_url('mobil/detail/') . $fr['car_id'] ?>" class="btn card__btn-detail">Detail</a></div>
+                            <div class="d-flex mt-2">
+                                <form class=" w-100 mr-1 " action="<?= base_url('penyewaan') ?>" method="GET">
+                                    <input type="hidden" name="car_id" value="<?= $fr['car_id'] ?>">
+                                    <input type="hidden" name="prev_url" value="<?= $this->uri->uri_string(); ?>">
+                                    <button class="btn card__btn-sewa btn-block " type="submit">
+                                        Sewa
+                                    </button>
+                                </form>
+                                <!-- <a href="" class="">Sewa</a>  -->
+                                <a href="<?= site_url('mobil/detail/') . $fr['car_id'] ?>" class="btn card__btn-detail">Detail</a>
+                            </div>
                         </div>
                     </div>
                 </div>

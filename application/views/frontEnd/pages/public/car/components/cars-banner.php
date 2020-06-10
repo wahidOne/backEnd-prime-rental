@@ -1,5 +1,6 @@
 <section class="listcars-banner px-3">
-    <?php $this->load->view($templatesPath . "navbar_top"); ?>
+    <?php
+    $this->load->view($templatesPath . "navbar_top"); ?>
     <div class="col-12 pl-0 mt-4 pl-md-2">
         <h4 class="mb-n4 text-primary font-25px">Mobil</h4>
         <nav aria-label="breadcrumb px-0">

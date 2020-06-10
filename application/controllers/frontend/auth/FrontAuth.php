@@ -15,6 +15,17 @@ class FrontAuth extends CI_Controller
     public function index()
     {
 
+
+
+        if ($this->session->userdata('primerental_user')) {
+            $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']])->row_array();
+            if ($user) {
+                redirect('beranda');
+            }
+        }
+
+
+
         $data['title'] = 'Login ';
 
         $this->form_validation->set_rules(
@@ -47,6 +58,13 @@ class FrontAuth extends CI_Controller
 
     private function _login()
     {
+
+        if ($this->session->userdata('primerental_user')) {
+            $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']])->row_array();
+            if ($user) {
+                redirect('beranda');
+            }
+        }
         $email = $this->input->post('email');
         $password = $this->input->post('password');
 

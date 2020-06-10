@@ -59,6 +59,7 @@ $route['kontak'] = 'frontend/public/Pages/contact';
 
 
 $route['penyewaan'] = 'frontend/public/Transactions/index';
+$route['status-transaksi']['GET'] = 'frontend/public/Transactions/receipt_transactions';
 
 
 
