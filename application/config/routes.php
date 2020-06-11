@@ -68,8 +68,6 @@ $route['autentifikasi/registrasi'] = 'frontend/auth/frontAuth/registrasi';
 $route['autentifikasi/logout'] = 'frontend/auth/frontAuth/logout';
 
 
-
-
 // auth admnistrator
 $route['administrator/sign-in'] = 'admin/auth/auth/index';
 $route['administrator/sign-up'] = 'admin/auth/auth/signUp';
@@ -136,6 +134,12 @@ $route['administrator/users/drivers'] = 'admin/dashboard/Users/drivers';
 $route['administrator/users/get-drivers'] = 'admin/dashboard/Users/getDrivers';
 $route['administrator/users/get-a-driver/(:num)'] = 'admin/dashboard/Users/getDriversWhere/$1';
 $route['administrator/users/del-driver/(:num)'] = 'admin/dashboard/Users/deleteDriver/$1';
+
+
+// users/costumer 
+$route['administrator/users/costumer'] = 'admin/dashboard/Users/costumers';
+$route['administrator/users/get-costumers'] = 'admin/dashboard/Users/getCostumers';
+
 
 
 // Transaction

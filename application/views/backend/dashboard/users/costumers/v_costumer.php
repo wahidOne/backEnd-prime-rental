@@ -11,8 +11,8 @@
     </nav>
     <div class="row pt-5 pb-4 px-3">
         <h1 class=" display-5 text-primary ">
-            <i class="far fa-fw fa-users font-26  "></i>
-            <span class=" font-weight-light ml-3 ">Drivers </span>
+            <i class="far fa-fw fa-user-tag font-26  "></i>
+            <span class=" font-weight-light ml-3 ">Costumer </span>
         </h1>
     </div>
 
@@ -26,14 +26,13 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive table-responsive-lg ">
-                        <table class="table table-hover " id="table-drivers" data-url="<?= site_url('administrator/users/get-drivers') ?>">
+                        <table class="table table-hover " id="table-costumers" data-url="<?= site_url('administrator/users/get-costumers') ?>">
                             <thead>
                                 <tr>
                                     <th class="pt-0">#</th>
                                     <th class="pt-0">Photo</th>
                                     <th class="pt-0">Name</th>
                                     <th class="pt-0">Email</th>
-                                    <th class="pt-0">Phone</th>
                                     <th class="pt-0">Status</th>
                                     <th class="pt-0">Joined</th>
                                     <th class="pt-0 text-center ">Actions</th>
@@ -45,32 +44,6 @@
                         </table>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div id="m-info" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header border-0 pt-md-2 ">
-                <h4 class="modal-title ml-md-2 mt-md-3">
-                    Detail of driver
-                </h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="container-fluid" id="container-modal">
-                </div>
-
-            </div>
-
-            <div class="modal-footer border-0">
-                <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

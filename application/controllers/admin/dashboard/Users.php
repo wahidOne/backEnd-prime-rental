@@ -254,4 +254,30 @@ class Users extends CI_Controller
         }
         echo json_encode($data);
     }
+
+    public function costumers()
+    {
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
+        $data = [
+            'title' => 'Data Kostumer',
+            'user' => $user,
+        ];
+
+        $backendTemplates = $this->publicData['backendTemplates'];
+        $viewsDashboardPath = 'backend/dashboard/';
+        $this->load->view($backendTemplates . 'header', $data);
+        $this->load->view($backendTemplates . 'topbar', $data);
+        $this->load->view($backendTemplates . 'sidebar', $data);
+        $this->load->view($viewsDashboardPath . 'users/costumers/v_costumer', $data); //main content
+        $this->load->view($backendTemplates . 'footer', $data);
+        $this->load->view($viewsDashboardPath . '/plugins/_users', $data); //plugins
+        $this->load->view($backendTemplates . 'script', $data);
+        // costum js
+        $this->load->view($viewsDashboardPath . 'users/js/js_costumer', $data);
+        $this->load->view($backendTemplates . 'end', $data);
+    }
+
+    public function getCostumers()
+    {
+    }
 }
