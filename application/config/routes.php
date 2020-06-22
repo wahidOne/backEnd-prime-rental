@@ -137,10 +137,10 @@ $route['administrator/users/del-driver/(:num)'] = 'admin/dashboard/Users/deleteD
 
 
 // users/costumer 
-$route['administrator/users/costumer'] = 'admin/dashboard/Users/costumers';
-$route['administrator/users/get-costumers'] = 'admin/dashboard/Users/getCostumers';
-
-
+$route['administrator/users/customer'] = 'admin/dashboard/Users/customers';
+$route['administrator/users/get-customers'] = 'admin/dashboard/Users/getCustomers';
+$route['administrator/users/get-costumer/(:num)'] = 'admin/dashboard/Users/getCustomersWhere/$1';
+$route['administrator/users/del-customer/(:num)'] = 'admin/dashboard/Users/deleteCostumer/$1';
 
 // Transaction
 $route['administrator/transaction/rent'] = 'admin/dashboard/Transaction/rental';

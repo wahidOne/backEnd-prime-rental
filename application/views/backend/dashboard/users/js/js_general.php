@@ -8,8 +8,7 @@
     const pathImg = `<?= base_url('assets/uploads/ava/') ?>`
     
     loadDataUsers(pathImg);
-    
-
+   
 
     const table = document.querySelector("#table-general-users");
 

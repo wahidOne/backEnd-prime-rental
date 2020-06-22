@@ -178,7 +178,7 @@ class Transactions extends CI_Controller
                 $this->M_public->insertData('rental_trans', $data_insert_to_table_transaction);
                 $this->M_public->updateData(['car_id' => $rent_car_id], 'cars', $updateCarStatus);
 
-                if ($costumer->num_rows() > 0) {
+                if ($costumer->num_rows() < 1) {
                     $data_insert_to_table_costumers = [
                         'cos_name' => $this->input->post('cos_name'),
                         'cos_address' => $this->input->post('cos_address'),

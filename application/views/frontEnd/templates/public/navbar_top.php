@@ -17,8 +17,24 @@
                         </a>
                     <?php endif; ?>
                 <?php else :  ?>
-                    <a class="nav-item ml-lg-1 nav-link   font-italic  " style="text-decoration: underline" href="<?= base_url('autentifikasi/login') ?>">Login</a>
-                    <a class="nav-item ml-lg-2 px-3  btn btn-primary " href="<?= base_url('autentifikasi/login') ?>">Registrasi</a>
+                    <!-- <a class="nav-item ml-lg-1 nav-link   font-italic  " style="text-decoration: underline" href="<?= base_url('autentifikasi/login') ?>">Login</a>
+                    <a class="nav-item ml-lg-2 px-3  btn btn-primary " href="<?= base_url('autentifikasi/login') ?>">Registrasi</a> -->
+                    <li class="nav-item dropdown pl-2 ">
+                        <a href="# " class="nav-link text-primary font-19px " data-toggle="dropdown" id="btnProfileDropDown">
+                            <i class="fas fa-user "></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right bg-secondary text-primary profileDropDown ">
+                            <div class=" dropdown-menu-nav nav text-primary ">
+                                <a href="#" class="nav-link text-primary"> <i class=" fad fa-sign-in-alt fa-fw mr-1 ">
+                                    </i>
+                                    <span>Masuk</span></a>
+                                <a href="#" class="nav-link text-primary">
+                                    <i class="fa-fw fad fa-user-plus"></i>
+                                    <span class=" ml-1 ">Registrasi</span></a>
+                            </div>
+
+                        </div>
+                    </li>
                 <?php endif; ?>
                 <!-- <a class="nav-item ml-lg-1 nav-link text-primary  font-italic  " style="text-decoration: underline" href="#">Login</a>
                 <a class="nav-item ml-lg-2 btn btn-primary " href="#">Registrasi</a> -->

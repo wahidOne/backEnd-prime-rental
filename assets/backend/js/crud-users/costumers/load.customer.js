@@ -1,5 +1,5 @@
 export const loadDataCostumers = (path) => {
-	const table = document.querySelector("#table-costumers");
+	const table = document.querySelector("#table-customers");
 
 	const url = table.dataset.url;
 
@@ -10,24 +10,23 @@ export const loadDataCostumers = (path) => {
 		dataType: "json",
 		success: function (data) {
 			let tbodyData = "";
-			const tbody = table.querySelector("#tbody-drivers");
-			// // tbodyData += showRow(data);
+			const tbody = table.querySelector("#tbody-customers");
 			let [arr] = Object.keys(data).map((user) => data[user]);
 			let no = 1;
 			arr.map((user) => (tbodyData += showRow(path, user, no++)));
 			tbody.innerHTML = tbodyData;
-			$("#table-drivers").DataTable({
+			$("#table-customers").DataTable({
 				language: {
 					search: "",
 				},
 				columnDefs: [
 					{
-						targets: [1, -1, 7, -1],
+						targets: [1, -1, 6, -1],
 						orderable: false,
 					},
 				],
 			});
-			$("#table-drivers").each(function () {
+			$("#table-customers").each(function () {
 				var datatable = $(this);
 				// SEARCH - Add the placeholder for Search and Turn this into in-line form control
 				var search_input = datatable
@@ -57,27 +56,23 @@ const showRow = (path, user, no) => {
 							path + user.user_photo
 						}" alt="">
         </td>
-	    <td>${user.driver_name}</td>
+	    <td>${user.cos_name}</td>
         <td>${user.user_email}</td>
-        <td>${user.driver_phone}</td>
-        <td>${
-					user.user_status == "Bebas"
-						? ` <span class="badge badge-success text-capitalize"> ${user.driver_status} </span> `
-						: `<span class="badge badge-success">${user.driver_status}</span>`
-				}  </td>
+        <td>${user.cos_phone}</td>
+      
         <td>${user.user_created}</td>
 	    <td>
             <div class="d-flex">
                 <a data-id="${
-									user.user_id
-								}" id="info-driver" href="#" class="badge badge-primary text-dark ">
+									user.cos_id
+								}" id="info-customer" href="#" class="badge badge-primary text-dark ">
                     <i class="fad fa-fw fa-info "></i>
                     Detail 
                 </a>
                 <a data-id="${
-									user.user_id
-								}"  id="delete-driver" href="#" class="badge badge-danger ml-2 text-dark " data-name="${
-		user.user_name
+									user.cos_id
+								}"  id="delete-customer" href="#" class="badge badge-danger ml-2 text-dark " data-name="${
+		user.cos_name
 	}" >
                     <i class="fad fa-fw fa-trash-alt  "></i>
                     Delete

@@ -255,7 +255,7 @@ class Users extends CI_Controller
         echo json_encode($data);
     }
 
-    public function costumers()
+    public function customers()
     {
         $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
         $data = [
@@ -277,7 +277,40 @@ class Users extends CI_Controller
         $this->load->view($backendTemplates . 'end', $data);
     }
 
-    public function getCostumers()
+    public function getCustomers()
     {
+        $customer = $this->M_costumer->getCustomers()->result();
+        foreach ($customer as $cus) {
+            $cus->user_created = date('d-F-Y', $cus->user_created);
+            $row[] = $cus;
+        }
+
+        $data['costumers'] = $row;
+
+        echo json_encode($data);
+    }
+
+    public function getCustomersWhere()
+    {
+
+        $cos_id = $this->uri->segment(4);
+
+        $data = $this->M_costumer->cekCostumer(['cos_id' => $cos_id])->row_array();
+
+        $data['user_created'] =  date('d-F-Y', $data['user_created']);
+
+        echo json_encode($data);
+    }
+
+
+    public function deleteCostumer()
+    {
+
+        $cos_id = $this->uri->segment(4);
+
+
+        $data['result'] = $this->M_public->deleteData(['cos_id' => $cos_id], 'costumer');
+
+        echo json_encode($data);
     }
 }

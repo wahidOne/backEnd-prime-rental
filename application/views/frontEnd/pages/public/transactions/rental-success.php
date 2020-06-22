@@ -22,7 +22,8 @@
                         <div class="card-body text-white">
                             <div class="row px-md-5">
                                 <div class="col-6">
-                                    <p class="text-dark mb-n2">Untuk :</p><span class="font-18px font-md-36px text-secondary"><?= $costumer['cos_name']   ?></span>
+                                    <p class="text-dark mb-n2">Untuk :</p><span class="font-18px font-md-36px text-secondary">
+                                        <?= $costumer['cos_name']; ?></span>
                                 </div>
                                 <div class="col-6 text-right">
                                     <p class="text-dark mb-n2">No transaksi</p><span class="font-18px font-md-29px text-secondary"><?= $receipt['rent_id'] ?></span>

@@ -4,11 +4,11 @@
     ?>
     <section class="listcars-main bg-light">
         <div class="container-fluid px-5 listcars-container bg-light">
-            <div class="row">
-                <div class="col-md-3 pt-2 listcars-sidenav d-none d-md-block  px-lg-5 bg-light">
+            <div class="row px-md-4">
+                <div class="col-lg-3 pt-2 listcars-sidenav d-none d-lg-block  px-lg-5 bg-light">
                     <h3>Filter</h3>
-                    <ul class="nav flex-column nav-filter font-15px ">
-                        <li class="nav-item"><a class="nav-link" id="listcars-navlink" href="#" data-status="false" data-collapse="#cars"><span>Tipe </span><i class="fas fa-chevron-down"></i></a>
+                    <ul class="nav flex-column nav-filter font-12px ">
+                        <li class="nav-item"><a class="nav-link " id="listcars-navlink" href="#" data-status="false" data-collapse="#cars"><span>Tipe </span><i class="fas font-10px fa-chevron-down"></i></a>
                             <div class="collapse nav-collapse pl-2" id="cars">
                                 <nav class="nav d-flex pt-1 flex-column">
                                     <a class="nav-link" href="#">
@@ -22,7 +22,7 @@
                             </div>
                             <hr>
                         </li>
-                        <li class="nav-item"><a class="nav-link" id="listcars-navlink" href="#" data-status="false" data-collapse="#chair"><span>Kursi </span><i class="fas fa-chevron-down"></i></a>
+                        <li class="nav-item"><a class="nav-link" id="listcars-navlink" href="#" data-status="false" data-collapse="#chair"><span>Kursi </span><i class="fas fa-chevron-down font-10px "></i></a>
                             <div class="collapse nav-collapse pl-2" id="chair">
                                 <nav class="nav d-flex pt-1 flex-column">
                                     <a class="nav-link" href="#"><span>All
@@ -33,7 +33,7 @@
                             </div>
                             <hr>
                         </li>
-                        <li class="nav-item"><a class="nav-link" id="listcars-navlink" href="#" data-status="false" data-collapse="#price"><span>Price </span><i class="fas fa-chevron-down"></i></a>
+                        <li class="nav-item"><a class="nav-link" id="listcars-navlink" href="#" data-status="false" data-collapse="#price"><span>Price </span><i class="fas fa-chevron-down font-10px "></i></a>
                             <div class="collapse nav-collapse pl-2" id="price">
                                 <nav class="nav d-flex pt-1 flex-column">
                                     <a class="nav-link" href="#"><span>All Price
@@ -42,7 +42,7 @@
                             <hr>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="listcars-navlink" href="#" data-status="false" data-collapse="#transmission"><span>Transmisi </span><i class="fas fa-chevron-down"></i></a>
+                            <a class="nav-link" id="listcars-navlink" href="#" data-status="false" data-collapse="#transmission"><span>Transmisi </span><i class="fas fa-chevron-down font-10px "></i></a>
                             <div class="collapse nav-collapse pl-2" id="transmission">
                                 <nav class="nav d-flex pt-1 flex-column">
 
@@ -54,7 +54,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-md-9 pt-2 px-lg-5">
+                <div class="col-lg-9 pt-2 px-lg-5">
                     <div class="row">
                         <div class="form-group col-12 col-md-12 row px-0">
                             <h3 class="col-6 col-md-7">Search</h3>
