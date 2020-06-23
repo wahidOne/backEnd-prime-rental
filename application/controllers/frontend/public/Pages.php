@@ -52,7 +52,7 @@ class Pages extends CI_Controller
 
         $data['themeNavbar'] = "dark";
         $data['themeHamburger'] = "light";
-        $data['linkColor'] = "primary";
+        $data['linkColor'] = "primary-70";
 
 
         if ($this->session->userdata('primerental_user') != NULL) {
@@ -96,7 +96,7 @@ class Pages extends CI_Controller
 
         $data['themeNavbar'] = "light";
         $data['themeHamburger'] = "dark";
-        $data['linkColor'] = "primary";
+        $data['linkColor'] = "primary-70";
 
         $data['cars'] = $this->M_cars->getCarsWhere([
             'car_type_id' => $car['car_type_id'],
@@ -136,7 +136,7 @@ class Pages extends CI_Controller
         $data['title'] =  "Tentang Kami";
         $data['themeNavbar'] = "dark";
         $data['themeHamburger'] = "light";
-        $data['linkColor'] = "primary";
+        $data['linkColor'] = "primary-70";
         $templatesPath  = $this->public['templates'];
         $views  = $this->public['pages'];
 
@@ -164,7 +164,7 @@ class Pages extends CI_Controller
         $data['title'] =  "Kontak Kami";
         $data['themeNavbar'] = "dark";
         $data['themeHamburger'] = "light";
-        $data['linkColor'] = "primary";
+        $data['linkColor'] = "primary-70";
         $templatesPath  = $this->public['templates'];
         $views  = $this->public['pages'];
 

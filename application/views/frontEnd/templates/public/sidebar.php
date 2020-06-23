@@ -23,11 +23,9 @@
             <?php if ($this->session->userdata('primerental_user')) : ?>
                 <?php if ($user) : ?>
                     <hr class="w-100 bg-secondary-70">
-                    <a class="flex-sm-fill nav-link" href="#">
-                        <i class="far fa-tachometer mr-1 fa-fw"></i><span>Dashboard</span></a>
-                    <a class="flex-sm-fill nav-link" href="#"><i class="fal fa-user mr-1 fa-fw"></i><span>Akun
+                    <a class="flex-sm-fill nav-link" href="<?= site_url('profile') ?>"><i class="fal fa-user mr-1 fa-fw"></i><span>Akun
                             Saya</span></a>
-                    <a class="flex-sm-fill nav-link" href="#"><i class="fal fa-shopping-bag mr-1 fa-fw"></i><span>Pesanan Saya</span></a>
+                    <a class="flex-sm-fill nav-link" href="#"><i class="fal fa-handshake mr-1 fa-fw"></i><span>Transaksi</span></a>
                 <?php endif; ?>
             <?php endif; ?>
 
