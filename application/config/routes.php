@@ -61,7 +61,10 @@ $route['kontak'] = 'frontend/public/Pages/contact';
 $route['penyewaan'] = 'frontend/public/Transactions/index';
 $route['status-transaksi']['GET'] = 'frontend/public/Transactions/receipt_transactions';
 
+
 $route['profile'] = 'frontend/public/User/index';
+$route['profile/update'] = 'frontend/public/User/updateProfile';
+$route['profile/upload-gambar'] = 'frontend/public/User/uploadImage';
 
 $route['autentifikasi/login'] = 'frontend/auth/frontAuth/index';
 $route['autentifikasi/registrasi'] = 'frontend/auth/frontAuth/registrasi';

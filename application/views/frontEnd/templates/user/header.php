@@ -2,8 +2,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>PrimeRental | <?= $title ?></title>
-    <link href="<?= base_url('assets/frontEnd/') ?>dist/css/main.min.css" rel="stylesheet">
     <link href="<?= base_url('assets/frontEnd/') ?>dist/css/vendor.min.css" rel="stylesheet">
+    <link href="<?= base_url('assets/frontEnd/') ?>dist/css/main.min.css" rel="stylesheet">
 </head>
 
 <body>

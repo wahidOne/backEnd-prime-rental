@@ -71,11 +71,6 @@ class M_user extends CI_Model
             $image = $old_image;
         }
 
-        // var_dump($this->input->post('user_photo'));
-        // die();
-
-
-
         $this->db->set('a.user_name', $user_name);
         $this->db->set('a.user_email', $user_email);
         $this->db->set('a.user_photo', $image);
@@ -92,7 +87,7 @@ class M_user extends CI_Model
     }
 
 
-    private function _uploadImage()
+    public function _uploadImage()
     {
         $config['upload_path']          = './assets/uploads/ava/';
         $config['allowed_types']        = 'gif|jpg|png';

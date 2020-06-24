@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 export const AuthAlert = () => {
 	const alertError = document.querySelector(".auth-message");
 	const alertSuccess = document.querySelector(".auth-success");
+	const alertInfo = document.querySelector(".auth-info");
 	const registerSuccess = document.querySelector(".register-success");
 	console.log(registerSuccess);
 
@@ -40,6 +41,19 @@ export const AuthAlert = () => {
 		Toast.fire({
 			icon: "success",
 			title: alertMessage,
+		});
+	}
+
+	if (alertInfo) {
+		const alertMessage = alertInfo.dataset.message;
+		console.log("opps");
+		Swal.fire({
+			title: "Maaf!",
+			icon: "info",
+			html: alertMessage,
+			timer: 7500,
+			showCloseButton: true,
+			showConfirmButton: true,
 		});
 	}
 };

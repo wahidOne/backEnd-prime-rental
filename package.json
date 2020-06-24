@@ -15,6 +15,7 @@
 		"@sweetalert2/themes": "^3.1.4",
 		"axios": "^0.19.2",
 		"dom-to-image": "^2.6.0",
+		"dropify": "^0.2.2",
 		"jquery-validation": "^1.19.1",
 		"sweetalert2": "^9.10.9",
 		"toastr": "^2.1.4",

@@ -18,19 +18,15 @@ module.exports = {
 		path: path.resolve(__dirname, "assets/frontEnd/costum"),
 	},
 	plugins: [
-		new webpack.ProvidePlugin({
-			$: "jquery",
-			jQuery: "jquery",
-		}),
+		// new webpack.ProvidePlugin({
+		// 	$: "jquery",
+		// 	jQuery: "jquery",
+		// }),
 		new CleanWebpackPlugin(),
 	],
 
 	module: {
 		rules: [
-			// {
-			// 	test: /\.html$/,
-			// 	use: ["html-loader"],
-			// },
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
