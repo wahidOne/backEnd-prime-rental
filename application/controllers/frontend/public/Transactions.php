@@ -59,11 +59,6 @@ class Transactions extends CI_Controller
                 'required|trim',
             );
             $this->form_validation->set_rules(
-                'client_no_ID',
-                'Nomor Identitas',
-                'required|trim',
-            );
-            $this->form_validation->set_rules(
                 'client_address',
                 'Alamat Lengkap',
                 'required|trim',
@@ -80,8 +75,6 @@ class Transactions extends CI_Controller
             'Kota',
             'required|trim',
         );
-
-
 
         $this->form_validation->set_rules(
             'rent_serv',
@@ -185,38 +178,36 @@ class Transactions extends CI_Controller
 
                 if ($statusInputDataClients) {
 
-                    $upload_IDcard_image = $_FILES['IDcard_img']['name'];
+                    // $upload_IDcard_image = $_FILES['IDcard_img']['name'];
 
-                    if ($upload_IDcard_image) {
-                        $config['upload_path']          = './assets/uploads/client-IDcard/';
-                        $config['allowed_types']        = 'gif|jpg|png|jpeg';
-                        $config['file_name']            = 'fotoKTP-' . $client_id . "-" . date('dmY', time());
-                        $config['overwrite']            = true;
+                    // if ($upload_IDcard_image) {
+                    //     $config['upload_path']          = './assets/uploads/client-IDcard/';
+                    //     $config['allowed_types']        = 'gif|jpg|png|jpeg';
+                    //     $config['file_name']            = 'fotoKTP-' . $client_id . "-" . date('dmY', time());
+                    //     $config['overwrite']            = true;
 
-                        $this->load->library('upload', $config);
+                    //     $this->load->library('upload', $config);
 
-                        if ($this->upload->do_upload('IDcard_img')) {
+                    //     if ($this->upload->do_upload('IDcard_img')) {
 
 
-                            $clientIDcard_img = $this->upload->data('file_name');
-                        } else {
-                            $this->session->set_flashdata('error-date', 'Ada kesalahan saat upload foto KTP anda!');
-                            redirect($fullURL);
-                        }
-                    } else {
-                        $this->session->set_flashdata('error-date', 'Silahkan upload foto KTP anda!');
-                        redirect($fullURL);
-                    }
+                    //         $clientIDcard_img = $this->upload->data('file_name');
+                    //     } else {
+                    //         $this->session->set_flashdata('error-date', 'Ada kesalahan saat upload foto KTP anda!');
+                    //         redirect($fullURL);
+                    //     }
+                    // } else {
+                    //     $this->session->set_flashdata('error-date', 'Silahkan upload foto KTP anda!');
+                    //     redirect($fullURL);
+                    // }
 
 
                     $data_insert_to_table_clients = [
                         'client_id' => $client_id,
                         'client_fullname' => $this->input->post('client_name'),
                         'client_user_id' => $rent_user_id,
-                        'client_ID_num' => $this->input->post('client_no_ID'),
                         'client_address' => $this->input->post('client_address'),
                         'client_phone' => $this->input->post('client_name'),
-                        'client_IDcard_img' => $clientIDcard_img,
                         'client_status' => 0
                     ];
                     $this->M_public->insertData('clients', $data_insert_to_table_clients);
@@ -224,14 +215,6 @@ class Transactions extends CI_Controller
 
                 $this->M_public->insertData('rental_trans', $data_insert_to_table_transaction);
                 $this->M_public->updateData(['car_id' => $rent_car_id], 'cars', $updateCarStatus);
-
-                // var_dump($data_insert_to_table_transaction);
-                // echo "<br>
-                // <br>
-                // <br>
-                // <br>";
-                // var_dump($data_insert_to_table_clients);
-                // die();
                 $invoice['rent_id'] = $rent_id;
                 $invoice['client_id'] = $client_id;
                 $_SESSION['invoice'] = $invoice;
@@ -261,9 +244,7 @@ class Transactions extends CI_Controller
             $sessionInvoice = $this->session->userdata('invoice');
 
             if ($invoice_rental['rent_id'] == $sessionInvoice['rent_id'] && $invoice_rental['rent_client_id'] == $sessionInvoice['client_id'] && $invoice_rental['rent_user_id'] == $user_id) {
-                // var_dump($invoice_rental);
-                // echo "<br><br>";
-                // var_dump($sessionInvoice);
+
 
                 $date_rent_start = strtotime($invoice_rental['rent_date_start']);
                 $date_end = strtotime($invoice_rental['rent_date_end']);
@@ -306,9 +287,6 @@ class Transactions extends CI_Controller
                 $data['car'] = $car;
                 $data['bank'] = $this->M_public->getData('bank')->result_array();
 
-                // validasi
-
-
                 $data['title'] =  "Pembayaran";
                 $data['themeNavbar'] = "dark";
                 $data['themeHamburger'] = "light";
@@ -326,8 +304,6 @@ class Transactions extends CI_Controller
                 $this->load->view($views .  "transactions/payments", $data);
                 $this->load->view($templatesPath .  "footer", $data);
                 $this->load->view($templatesPath .  "end", $data);
-                // } else {
-                // }
             }
         }
     }
@@ -339,16 +315,10 @@ class Transactions extends CI_Controller
         $userId = $this->input->post('user_id');
 
 
-
         $priceTotal = $this->input->post('total_price');
         $rentPeriod = $this->input->post('rent_time');
         $method = $this->input->post('pay_menthod');
         $bank = $this->input->post('bank');
-
-
-
-
-
         $paymetId = getAutoNumber('payment_trans', 'payment_id', 'pay-', 7);
 
         $data = [
@@ -363,11 +333,6 @@ class Transactions extends CI_Controller
             "payment_date" => time()
         ];
 
-        $sessionInvoice = $this->session->userdata('invoice');
-
-        // if ($sessionInvoice) {
-        //     unset($_SESSION['invoice']);
-        // }
 
         $this->M_public->insertData('payment_trans', $data);
 

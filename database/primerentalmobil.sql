@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 01 Jul 2020 pada 10.27
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.3
+-- Waktu pembuatan: 01 Jul 2020 pada 13.25
+-- Versi server: 10.4.8-MariaDB
+-- Versi PHP: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -101,7 +101,7 @@ CREATE TABLE `cars` (
 
 INSERT INTO `cars` (`car_id`, `car_brand`, `car_type_id`, `car_no_police`, `car_price`, `car_fine`, `car_status`, `car_date_input`, `car_date_update`, `car_fuel`, `car_transmission`, `car_capacity`, `car_desc`, `car_photo`) VALUES
 (1, 'Agya Kuning', 1, 'AY 4523 DE', '300000', '20000', 0, 1587544311, 1590148812, 'Bensin', 'Manual', 5, 'Baru dari Toyota, Agya hadir dengan 5 varian. Varian teratas Agya, 1.2L TRD A / T a 1197 cc, Mesin bensin 4 silinder menghasilkan tenaga 87 hp dan Torsi 108 Nm. 5 kursi Agya 1.2L TRD A / T memiliki transmisi Otomatis 4-Kecepatan. Perangkat Anti Pencurian & Alarm Anti Pencurian menambah keamanan mobil.', 'car-1587547843-prime.png'),
-(2, 'Toyota Yaris', 1, 'TY 5432 IN', '400000', '20000', 0, 1587544392, 1593098461, 'Bensin', 'Otomatis', 5, 'Yaris ditawarkan dengan banyak fitur di semua varian yang membuatnya kompeten di segmen Hatchback. Menghidupkan Yaris TRD Sportivo CVT adalah mesin 1496 cc yang menghasilkan daya maksimum 106 hp sementara torsi puncak berbunyi 140 Nm. Model teratas Yaris cukup efisien dan memberikan angka mengesankan berkisar antara 11,9 kmpl di kota. Kisaran lebih lanjut didorong ke 14,3 kmpl di jalan raya.', 'car1587544392.png'),
+(2, 'Toyota Yaris', 1, 'TY 5432 IN', '400000', '20000', 1, 1587544392, 1593098461, 'Bensin', 'Otomatis', 5, 'Yaris ditawarkan dengan banyak fitur di semua varian yang membuatnya kompeten di segmen Hatchback. Menghidupkan Yaris TRD Sportivo CVT adalah mesin 1496 cc yang menghasilkan daya maksimum 106 hp sementara torsi puncak berbunyi 140 Nm. Model teratas Yaris cukup efisien dan memberikan angka mengesankan berkisar antara 11,9 kmpl di kota. Kisaran lebih lanjut didorong ke 14,3 kmpl di jalan raya.', 'car1587544392.png'),
 (3, 'Honda Brio', 1, 'HB 3439 IN', '450000', '20000', 1, 1587544515, 1593173183, 'Bensin', 'Otomatis', 5, 'Hatchback baru dari Honda, Brio hadir dengan 5 varian. Varian teratas Brio, RS CVT 1199 cc, mesin Bensin 4 silinder menghasilkan tenaga 89 hp dan torsi 110 Nm. Brio RS CVT 5 kursi memiliki transmisi CVT Variable Speed. Perangkat Anti Pencurian & Alarm Anti Pencurian menambah keamanan mobil.\r\n\r\n', 'car1587544515.png'),
 (6, 'Toyota Alphard', 22, 'AP 4439 AD', '1200000', '20000', 0, 1587571795, 1590132864, 'Bensin', 'Otomatis', 7, 'MPV baru dari Toyota, Alphard hadir dengan 3 varian. Varian teratas dari Alphard, 3.5 Q A / T a 3456 cc, Mesin bensin 6 silinder menghasilkan tenaga 296 hp dan Torsi 360 Nm. The 7 seater Alphard 3.5 Q A / T memiliki transmisi Otomatis 8-Kecepatan. Perangkat Anti Pencurian & Mesin Immobilizer menambah keamanan mobil.', 'car1587571795.png'),
 (9, 'Honda Mobilio', 3, 'ARD 3434 HM', '450000', '', 0, 1590154049, 1592913358, 'Bensin', 'Otomatis', 6, 'Mobilio ditawarkan dengan banyak fitur di semua varian yang membuatnya kompeten di segmen MPV. Memberi daya pada Mobilio RS CVT adalah gilingan 1496 cc yang menghasilkan tenaga maksimum 116 hp sedangkan torsi puncak berbunyi 145 Nm. Model teratas Mobilio cukup efisien dan memberikan angka mengesankan berkisar antara 14,8 kmpl di kota. Kisaran lebih jauh didorong ke 18,9 kmpl di jalan raya.', 'car1590154049.png'),
@@ -109,7 +109,7 @@ INSERT INTO `cars` (`car_id`, `car_brand`, `car_type_id`, `car_no_police`, `car_
 (11, 'Suzuki APV Luxury', 9, 'ALP 3444 ERD', '350000', '', 0, 1590997571, 1592913295, 'Bensin', 'Manual', 7, 'Minivan baru dari Suzuki, APV Luxury hadir dengan 2 varian. Varian teratas dari APV Luxury, MT R17 yang 1.493 cc, mesin bensin 4 silinder menghasilkan tenaga 92 hp dan torsi 126 Nm. 7 kursi APV Luxury MT R17 memiliki transmisi Otomatis 4-Kecepatan. Perangkat Anti Pencurian & Alarm Anti Pencurian menambah keamanan mobil.', 'car1590997571.png'),
 (12, 'Kijang Innova Reborn', 9, 'CFR 2222 JKL', '710000', '', 0, 1590997855, 1592913333, 'Bensin', 'Manual', 7, 'Kijang Innova ditawarkan dengan banyak fitur di semua varian yang membuatnya kompeten di segmen MPV. Menghidupkan Kijang Innova V A / T Diesel adalah 2.393 cc yang menghasilkan daya maksimum 147 hp sedangkan torsi puncak berbunyi 360 Nm. Model teratas Kijang Innova cukup efisien dan memberikan angka mengesankan berkisar antara 12,4 kmpl di kota. Kisaran lebih jauh didorong ke 18,5 kmpl di jalan raya.', 'car1590997855.png'),
 (13, 'Daihatsu Gran Max MB', 9, 'DGM 2222 TGD', '440000', '', 0, 1590997953, 1592913314, 'Bensin', 'Manual', 8, 'Van baru dari Daihatsu, Gran Max MB hadir dengan 3 varian. Varian teratas dari Gran Max MB 1.5 D Face To Face 1.495 cc, mesin bensin 4 silinder yang menghasilkan tenaga 96 hp dan Torsi 134 Nm. 9 kursi Gran Max MB 1.5 D Face To Face memiliki transmisi Manual 5-Kecepatan. Entri Kartu Akses Pintar & Perangkat Anti Maling menambah keamanan mobil.', 'car1590997953.png'),
-(14, 'Toyota Calya', 3, 'AD 007 DF', '250000', '', 1, 1590998103, 1592913378, 'Bensin', 'Manual', 5, 'MPV baru dari Toyota, Calya hadir dengan 3 varian. Varian teratas Calya, G AT a 1197 cc, mesin bensin 4 silinder menghasilkan tenaga 87 hp dan Torsi 108 Nm. The 7 seater Calya G AT memiliki transmisi Otomatis 4-Kecepatan. Perangkat Anti Pencurian & Alarm Anti Pencurian menambah keamanan mobil.', 'car1590998103.png');
+(14, 'Toyota Calya', 3, 'AD 007 DF', '250000', '', 0, 1590998103, 1592913378, 'Bensin', 'Manual', 5, 'MPV baru dari Toyota, Calya hadir dengan 3 varian. Varian teratas Calya, G AT a 1197 cc, mesin bensin 4 silinder menghasilkan tenaga 87 hp dan Torsi 108 Nm. The 7 seater Calya G AT memiliki transmisi Otomatis 4-Kecepatan. Perangkat Anti Pencurian & Alarm Anti Pencurian menambah keamanan mobil.', 'car1590998103.png');
 
 -- --------------------------------------------------------
 
@@ -145,6 +145,7 @@ CREATE TABLE `clients` (
   `client_fullname` varchar(50) NOT NULL,
   `client_ID_num` varchar(30) NOT NULL,
   `client_IDcard_img` varchar(128) NOT NULL,
+  `client_fmcard_photo` varchar(128) NOT NULL,
   `client_address` varchar(128) NOT NULL,
   `client_phone` varchar(15) NOT NULL,
   `client_status` int(11) NOT NULL
@@ -154,10 +155,11 @@ CREATE TABLE `clients` (
 -- Dumping data untuk tabel `clients`
 --
 
-INSERT INTO `clients` (`client_id`, `client_user_id`, `client_fullname`, `client_ID_num`, `client_IDcard_img`, `client_address`, `client_phone`, `client_status`) VALUES
-('client-0002', 22, 'UniitZeroOne', '------', 'fotoKTP-client-0002-update-1033AM_29062020.jpg', 'D 14', '+6283300003333', 0),
-('client-0003', 7, 'mr Micky Mouse', '000000000', 'fotoKTP-client-0003-update-0318AM_29062020.png', 'none', '088245634567', 0),
-('client-0004', 21, '02', '002', 'fotoKTP-client-0004-update-0853AM_30062020.png', 'not found', '0024445657678', 0);
+INSERT INTO `clients` (`client_id`, `client_user_id`, `client_fullname`, `client_ID_num`, `client_IDcard_img`, `client_fmcard_photo`, `client_address`, `client_phone`, `client_status`) VALUES
+('client-0002', 22, 'UniitZeroOne', '', 'fotoKTP-client-0002-update-1033AM_29062020.jpg', '', 'D 14', '+6283300003333', 0),
+('client-0003', 7, 'mr Micky Mouse', '', 'fotoKTP-client-0003-update-0318AM_29062020.png', '', 'none', '088245634567', 0),
+('client-0004', 21, '02', '', 'fotoKTP-client-0004-update-0853AM_30062020.png', '', 'not found', '0024445657678', 0),
+('client-0005', 23, 'Wahidin', '', '', '', 'Jatimakmur ', '395656946495865', 0);
 
 -- --------------------------------------------------------
 
@@ -241,7 +243,8 @@ INSERT INTO `payment_trans` (`payment_id`, `payment_rental_id`, `payment_user_id
 ('pay-009', 'rent-009', 21, '', 'ATM Transfer', 2, '1050000', 0, 1593500287),
 ('pay-010', 'rent-010', 21, '', 'ATM Transfer', 2, '10000000', 0, 1593510013),
 ('pay-011', 'rent-011', 22, 'bukti-pembayaran-pay-011-1593542635.png', 'ATM Transfer', 2, '2200000', 0, 1593542635),
-('pay-012', 'rent-012', 22, '', 'ATM Transfer', 1, '750000', 0, 1593574698);
+('pay-012', 'rent-012', 22, '', 'ATM Transfer', 1, '750000', 0, 1593574698),
+('pay-013', 'rent-013', 23, '', 'ATM Transfer', 1, '2000000', 0, 1593602003);
 
 -- --------------------------------------------------------
 
@@ -285,7 +288,8 @@ INSERT INTO `rental_trans` (`rent_id`, `rent_car_id`, `rent_user_id`, `rent_clie
 ('rent-009', 14, 21, 'client-0005', '750000', '-', 1, 3, 0, '2020-06-30 00:00:00', '2020-07-01', '2020-07-04', '-', 'belum selesai', 0, 'jakarta', 'bogor, depok', 'kkkkk'),
 ('rent-010', 10, 21, 'client-0005', '10000000', '-', 1, 1, 0, '2020-06-30 04:39:58', '2020-07-01', '2020-07-09', '-', 'belum selesai', 0, 'bogor', 'bogor, tanggerang', ''),
 ('rent-011', 3, 22, 'client-0005', '2200000', '-', 1, 2, 0, '2020-07-01 01:27:17', '2020-07-02', '2020-07-06', '-', 'belum selesai', 0, 'jakarta', 'bogor, depok', 'Haiii'),
-('rent-012', 14, 22, 'client-0005', '750000', '-', 1, 1, 0, '2020-07-01 10:38:03', '2020-07-02', '2020-07-05', '-', 'belum selesai', 0, 'jakarta', 'jakarta, bogor', '');
+('rent-012', 14, 22, 'client-0005', '750000', '-', 1, 1, 0, '2020-07-01 10:38:03', '2020-07-02', '2020-07-05', '-', 'belum selesai', 0, 'jakarta', 'jakarta, bogor', ''),
+('rent-013', 2, 23, 'client-0005', '2000000', '-', 1, 1, 0, '2020-07-01 05:45:27', '2020-07-02', '2020-07-07', '-', 'belum selesai', 0, 'jakarta', 'bogor, tanggerang', '');
 
 -- --------------------------------------------------------
 
@@ -316,12 +320,12 @@ INSERT INTO `user` (`user_id`, `user_name`, `user_email`, `user_password`, `user
 (11, 'driver 1', 'driver1@gmail.com', '$2y$10$MAvviaQiyRJNxoDYzSR73OPbhAI45Yr4XqdY6gnX69T8Op7VijUwy', 7, 'online', 1, 'default.png', 1588410171),
 (12, 'driver2', 'driver2@gmail.com', '$2y$10$oWNJiHqVa/BU7C0BKeqV8.10Vy9ywKXpWDq8MrUwcCDXm3CrCK.fa', 7, 'online', 1, 'default.png', 1588431176),
 (13, 'driver3', 'driver3@gmail.com', '$2y$10$Da76VsMrE55cScYlsRJV1eS0PLn/KFAUQaplbg6xnzuahx5ZOjSqC', 7, 'online', 1, 'default.png', 1588431200),
-(14, 'wahidin', 'wahidin@gmail.com', '$2y$10$QRMU84M3rqUxICMCZSICLu/LPD2W6wYEzMsdm8UJjoyqyzirqvLg2', 4, 'online', 1, 'default.png', 1588431430),
 (18, 'Wili', 'register1@gmail.com', '$2y$10$32eQSIvPTLADmDNm1ZGDlO9XrYAz3XyOBMe1Yemx/Jm5SOTnb9gLS', 4, 'online', 1, 'ava-1592975571.png', 1590981586),
 (19, 'register2', 'register2@gmail.com', '$2y$10$.9zsiAiFSj.a85s.jeRDTeHCnHbe04hAysm4qW.Av.Gw6XxlFFR2C', 3, 'online', 1, 'ava-1592925888.jpg', 1590981641),
 (20, 'Giant', 'register3@gmail.com', '$2y$10$L.TxKCsv/O1oigXkJMHI1eTDjqT3t0at0rNprYqiJJ1dP/p2T.mgm', 3, 'online', 1, 'ava-1592924387.jpeg', 1590995687),
 (21, 'ZeroTwo', 'zero.two@gmail.com', '$2y$10$38SSXBzK/e5H9dmUX1YYeOjtF2CIsPmZQizNoIiXL0MEPJpshdMHG', 3, 'online', 1, 'ava-1593481964.jpeg', 1591608060),
-(22, 'Unit001', 'unit001@gmail.com', '$2y$10$12z8PhGnndytSH4wOXHVtuNbtSyvF0HI04WcuFg4tInMgwk5DRQwG', 3, 'online', 1, 'ava-1593062987.jpg', 1592971028);
+(22, 'Unit001', 'unit001@gmail.com', '$2y$10$12z8PhGnndytSH4wOXHVtuNbtSyvF0HI04WcuFg4tInMgwk5DRQwG', 3, 'online', 1, 'ava-1593062987.jpg', 1592971028),
+(23, 'wahidin', 'wahidin@gmail.com', '$2y$10$YJ6XL5Exg7mtEcyizq7PAOB8CeOoOM6N.NAJ3Nrh23QLh2LZD4xXO', 3, 'online', 1, 'ava-1593602234.jpg', 1593592356);
 
 -- --------------------------------------------------------
 
@@ -663,7 +667,7 @@ ALTER TABLE `drivers`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 
 --
 -- AUTO_INCREMENT untuk tabel `user_access_menu`
