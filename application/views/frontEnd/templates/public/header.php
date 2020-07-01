@@ -8,7 +8,7 @@
 
     <link href="<?= base_url('assets/frontEnd/') ?>dist/css/main.min.css" rel="stylesheet">
     <link href="<?= base_url('assets/frontEnd/') ?>dist/css/vendor.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="<?= base_url('assets/global-plugins/') ?>bootstrap-select/css/bootstrap-select.min.css">
 </head>
 
 <body class="hide">

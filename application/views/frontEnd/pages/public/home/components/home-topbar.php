@@ -10,8 +10,8 @@
                 </a>
                 <?php if ($this->session->userdata('primerental_user')) : ?>
                     <?php if ($user) : ?>
-                        <a href="<?= site_url('profile') ?>" class=" my-auto ml-lg-2">
-                            <img height="40" class="  rounded rounded-circle " src="<?= base_url('assets/uploads/ava/') . $user['user_photo']; ?>" alt="">
+                        <a href="<?= site_url('profile') ?>" class=" my-auto ml-lg-2 ">
+                            <img height="40" width="40" class="  rounded rounded-circle object-center  " src="<?= base_url('assets/uploads/ava/') . $user['user_photo']; ?>" alt="">
                         </a>
                     <?php endif; ?>
                 <?php else :  ?>

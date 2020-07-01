@@ -96,7 +96,7 @@ class Pages extends CI_Controller
 
         $data['themeNavbar'] = "light";
         $data['themeHamburger'] = "dark";
-        $data['linkColor'] = "primary-70";
+        $data['linkColor'] = "primary";
 
         $data['cars'] = $this->M_cars->getCarsWhere([
             'car_type_id' => $car['car_type_id'],

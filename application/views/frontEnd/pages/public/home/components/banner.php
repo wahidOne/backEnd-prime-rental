@@ -43,7 +43,8 @@
                                 </div>
                                 <div class="col-12 col-md-5 col-lg-6 col-xl-7 px-md-0">
                                     <div class="row d-flex">
-                                        <div class="order-1 col-6 offset-md-0 col-md-12"><img class="img-fluid" src="<?= base_url('assets/frontEnd/') ?>dist/static/img/imgbanner.png" alt=""></div>
+                                        <div class="order-1 col-6 offset-md-0 col-md-12">
+                                            <img class="img-fluid" src="<?= base_url('assets/frontEnd/') ?>dist/static/img/imgbanner.png" alt=""></div>
                                         <!-- <div class="order-2 col-6 ml-auto col-md-10 d-flex justify-content-center text-primary flex-column align-items-start">
                                             <p class="font-20px font-sm-24px font-lg-5 mb-1">Toyota Fortuner</p>
                                             <p class="font-md-18px font-lg-30px text-primary-70 mt-md-n5 mt-n5">Rp.

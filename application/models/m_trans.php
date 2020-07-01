@@ -70,10 +70,27 @@ class M_trans extends CI_Model
 
     public function getRentalWhere($where)
     {
-        $this->db->select('rental_trans.*, cars.car_brand, cars.car_price , cars.car_photo  , user.user_id, user.user_name');
+        $this->db->select('rental_trans.*, cars.*, user.*');
         $this->db->from('rental_trans');
         $this->db->join('cars', 'cars.car_id =  rental_trans.rent_car_id');
         $this->db->join('user', 'user.user_id =  rental_trans.rent_user_id');
+        $this->db->where($where);
+
+        $query = $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query->row_array();
+        } else {
+            return false;
+        }
+    }
+
+    public function getDetailUserTransaction($where = null)
+    {
+        $this->db->select('rental_trans.*, cars.*, user.*, payment_trans.*');
+        $this->db->from('rental_trans');
+        $this->db->join('cars', 'cars.car_id =  rental_trans.rent_car_id');
+        $this->db->join('user', 'user.user_id =  rental_trans.rent_user_id');
+        $this->db->join('payment_trans', 'payment_trans.payment_rental_id =  rental_trans.rent_id');
         $this->db->where($where);
 
         $query = $this->db->get();
@@ -91,6 +108,26 @@ class M_trans extends CI_Model
         $this->db->join('cars', 'cars.car_id =  rental_trans.rent_car_id');
         $this->db->join('user', 'user.user_id =  rental_trans.rent_user_id');
         $this->db->where($where);
+
+        $query = $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query;
+        } else {
+            return false;
+        }
+    }
+
+    public function getTransactionsWithPayment($where = null)
+    {
+        $this->db->select('payment_trans.*, rental_trans.*,  user.*, cars.*, clients.*,');
+        $this->db->from('rental_trans');
+        $this->db->join('cars', 'cars.car_id =  rental_trans.rent_car_id');
+        $this->db->join('user', 'user.user_id =  rental_trans.rent_user_id');
+        $this->db->join('clients', 'clients.client_user_id =  rental_trans.rent_user_id');
+        $this->db->join('payment_trans', 'payment_trans.payment_rental_id =  rental_trans.rent_id');
+        $this->db->where($where);
+        $this->db->order_by('rent_id', 'DESC');
+        $this->db->order_by('rent_date', 'DESC');
 
         $query = $this->db->get();
         if ($query->num_rows() != 0) {

@@ -19,7 +19,9 @@
                 <div class="col-sm-6 col-lg-3">
                     <div class="card border-0 shadow-sm py-2 bg-gray-30">
                         <div class="card-body">
-                            <div class="card-img-top d-flex justify-content-center"><img class="img-fluid rounded-circle w-75 mx-auto" class="mx-auto rounded-circle" src="<?= base_url('assets/uploads/ava/') . $user['user_photo']; ?>" alt=""></div>
+                            <div class="card-img-top d-flex justify-content-center  " style="object-fit:cover !important; object-position: center; ">
+                                <img width="200" height="200" style="object-fit:cover !important; object-position: center;" class="mx-auto rounded-circle " src="<?= base_url('assets/uploads/ava/') . $user['user_photo']; ?>" alt="">
+                            </div>
                         </div>
                         <div class="card-footer border-0 bg-transparent">
                             <button class="btn btn-outline-secondary btn-block" data-toggle="modal" data-target="#modalUploadPhoto">
@@ -32,7 +34,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-5 pl-md-2">
-                    <form id="formProfile" action="<?= base_url('profile/update') ?>" method="post">
+                    <form id="formProfile" action="<?= base_url('user/ ' . $user['user_id'] . '/dashboard/profile/update') ?>" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="user_id" value="<?= $profile['user_id'] ?>">
                         <div class="form-group"><label class="font-12px text-dark" for="">Informasi pribadi
                                 :</label>
@@ -42,12 +44,12 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="input-group input-group-profile pr-1"><input name="fullname" class="form-control input-profile my-auto" value="<?= $profile['cos_name'] ?>">
+                            <div class="input-group input-group-profile pr-1"><input name="fullname" class="form-control input-profile my-auto" value="<?= $profile['client_fullname'] ?>">
                                 <div class="input-group-prepend mr-n1"><span class="input-group-text font-12px">Nama</span></div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="input-group input-group-profile pr-1"><input name="no_ktp" class=" form-control input-profile my-auto" value="<?= $profile['cos_ID_num'] ?>">
+                            <div class="input-group input-group-profile pr-1"><input name="no_ktp" class=" form-control input-profile my-auto" value="<?= $profile['client_ID_num'] ?>">
                                 <div class="input-group-prepend mr-n1"><span class="input-group-text font-12px">No Ktp</span></div>
                             </div>
                         </div><br>
@@ -58,16 +60,26 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="input-group input-group-profile pr-1"><input name="no_hp" class="form-control input-profile my-auto" value="<?= $profile['cos_phone'] ?>">
+                            <div class="input-group input-group-profile pr-1"><input name="no_hp" class="form-control input-profile my-auto" value="<?= $profile['client_phone'] ?>">
                                 <div class="input-group-prepend mr-n1"><span class="input-group-text font-12px">No Telp</span></div>
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="input-group input-group-profile pr-1">
-                                <input name="alamat" class="form-control input-profile my-auto" value="<?= $profile['cos_address'] ?>">
+                                <input name="alamat" class="form-control input-profile my-auto" value="<?= $profile['client_address'] ?>">
                                 <div class="input-group-prepend mr-n1"><span class="input-group-text font-12px">Alamat</span></div>
                             </div>
-                        </div><br>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class=" col-form-label col-sm-4  "><small>Upload Foto KTP : </small></label>
+                            <div class="col-sm-8">
+                                <input type="hidden" value="<?= $profile['client_IDcard_img'] ?>" name="old_IDcard_img">
+                                <input type="file" class="dropify" data-default-file="<?= base_url('assets/uploads/client-IDcard/') . $profile['client_IDcard_img'] ?>" data-min-width="100" name="IDcard_img" id="IDcard_img" />
+                            </div>
+
+                        </div>
+                        <br>
+
                         <div class="form-group text-right"><button type="submit" class="btn btn-secondary rounded-0 shadow-sm ml-auto">Ubah Profil</button></div>
                     </form>
                 </div>

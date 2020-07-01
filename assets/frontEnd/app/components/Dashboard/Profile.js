@@ -25,8 +25,7 @@ class Profile {
 	}
 
 	update() {
-		console.log(this.formProfile);
-		if (this.formProfile) {
+		if (this.formProfile.length > 0) {
 			$("#formProfile").validate({
 				rules: {
 					user_name: {
@@ -48,17 +47,7 @@ class Profile {
 						required: true,
 					},
 				},
-				// messages: {
-				// 	fullname: {
-				// 		required: "Lengkapi kolom ini",
-				// 	},
-				// 	no_ktp: {
-				// 		required: "Lengkapi kolom No KTP",
-				// 	},
-				// 	no_hp: {
-				// 		required: "Lengkapi kolom No KTP",
-				// 	},
-				// },
+
 				errorPlacement: function (label, element) {
 					let formGroup = element[0].parentElement.parentElement;
 

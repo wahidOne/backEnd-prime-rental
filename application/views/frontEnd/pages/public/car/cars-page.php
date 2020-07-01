@@ -2,7 +2,7 @@
     <?php
     $this->load->view($componentPath . "cars-banner");
     ?>
-    <section class="listcars-main bg-light">
+    <section id='daftar-mobil' class="listcars-main bg-light">
         <div class="container-fluid px-5 listcars-container bg-light">
             <div class="row px-md-4">
                 <div class="col-lg-3 pt-2 listcars-sidenav d-none d-lg-block  px-lg-5 bg-light">

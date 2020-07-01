@@ -1,6 +1,6 @@
 <?php foreach ($cars as $car) : ?>
     <div class="swiper-slide  ">
-        <div class="card swiper--card card-stretch shadow-sm">
+        <div class="card swiper--card card-stretch ">
 
             <div class="d-flex flex-column">
                 <div class="px-2 swiper-img">

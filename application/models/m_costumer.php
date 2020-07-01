@@ -24,8 +24,6 @@ class M_costumer extends CI_Model
     public function cekCostumer($where = null)
     {
 
-        // return $this->db->get_where('user', $where)->row_array();
-
         $this->db->select('costumer.*, user.*, user_level.*');
         $this->db->from('user');
         $this->db->join('costumer', 'costumer.cos_user_id

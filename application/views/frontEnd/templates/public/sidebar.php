@@ -4,13 +4,14 @@
         <div class="row pt-3">
             <?php if ($this->session->userdata('primerental_user')) : ?>
                 <?php if ($user) : ?>
-                    <div class="col px-0">
-                        <img class="img-fluid rounded-circle shadow-sm" src="<?= base_url('assets/uploads/ava/') . $user['user_photo'] ?>" alt=""></div>
-                    <div class="col my-auto">
-                        <h4 class="font-weight-bold text-light"><?= $user['user_name']; ?></h4><small class="text-primary-50"><?= $user['user_email']; ?></small>
+                    <div class="col px-0 text-center">
+                        <img width="70" height="70" class=" object-center rounded-circle shadow-sm" src="<?= base_url('assets/uploads/ava/') . $user['user_photo'] ?>" alt=""></div>
+                    <div class="col my-auto text-left">
+                        <h4 class="font-weight-bold text-light text-left "><?= $user['user_name']; ?></h4><small class="text-primary-50"><?= $user['user_email']; ?>
+                        </small>
                     </div>
                 <?php endif; ?>
-            <?php else :  ?>
+            <?php else : ?>
                 <div class="col d-flex justify-content-center">
                     <a href="<?= base_url('autentifikasi/registrasi') ?>" class="btn btn-sm  btn-primary  ">Registrasi</a>
                     <a href="<?= base_url('autentifikasi/login') ?>" class="btn btn-sm btn-outline-primary ml-2">Login</a>
@@ -23,9 +24,9 @@
             <?php if ($this->session->userdata('primerental_user')) : ?>
                 <?php if ($user) : ?>
                     <hr class="w-100 bg-secondary-70">
-                    <a class="flex-sm-fill nav-link" href="<?= site_url('profile') ?>"><i class="fal fa-user mr-1 fa-fw"></i><span>Akun
+                    <a class="flex-sm-fill nav-link" href="<?= site_url('user/' . $user['user_id'] . '/dashboard/profile') ?>"><i class="fal fa-user mr-1 fa-fw"></i><span>Akun
                             Saya</span></a>
-                    <a class="flex-sm-fill nav-link" href="#"><i class="fal fa-handshake mr-1 fa-fw"></i><span>Transaksi</span></a>
+                    <a class="flex-sm-fill nav-link" href="<?= site_url('user/' . $user['user_id'] . '/dashboard/transaksi-saya') ?>"><i class="fal fa-handshake mr-1 fa-fw"></i><span>Transaksi</span></a>
                 <?php endif; ?>
             <?php endif; ?>
 

@@ -50,8 +50,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 // frontEnd
-$route['default_controller'] = 'frontend/public/Pages/index';
 $route['beranda'] = 'frontend/public/Pages/index';
+$route['default_controller'] = 'welcome';
+// $route['default_controller'] = 'frontend/public/Pages';
 $route['mobil-kami'] = 'frontend/public/Pages/cars';
 $route['mobil/detail/(:any)'] = 'frontend/public/Pages/detailCar/$1';
 $route['tentang-kami'] = 'frontend/public/Pages/about';
@@ -59,12 +60,23 @@ $route['kontak'] = 'frontend/public/Pages/contact';
 
 
 $route['penyewaan'] = 'frontend/public/Transactions/index';
+$route['pembayaran']['GET'] = 'frontend/public/Transactions/payments';
+$route['pembayaran/update'] = 'frontend/public/Transactions/uploadPaymentsProof';
+$route['tambah-transaksi'] = 'frontend/public/Transactions/addPayment';
+$route['session/respon-pesanan']['GET'] = 'frontend/public/Transactions/orderResponse';
+$route['session/reset/respon-order'] = 'frontend/public/Transactions/resetResponOrderSession';
+$route['session/payment-response']['GET'] = 'frontend/public/Transactions/paymentResponse';
+$route['session/reset/payment-success']['GET'] = 'frontend/public/Transactions/resetPaymentSuccess';
 $route['status-transaksi']['GET'] = 'frontend/public/Transactions/receipt_transactions';
 
-
-$route['profile'] = 'frontend/public/User/index';
-$route['profile/update'] = 'frontend/public/User/updateProfile';
+$route['user/(:any)/dashboard/profile'] = 'frontend/public/User/index';
+$route['user/(:any)/dashboard/profile/update'] = 'frontend/public/User/updateProfile';
 $route['profile/upload-gambar'] = 'frontend/public/User/uploadImage';
+
+// $route['transaksi'] = 'frontend/public/User/transactions';
+$route['user/(:any)/dashboard/transaksi-saya'] = 'frontend/public/User/transactions';
+$route['user/(:any)/dashboard/invoice/pembayaran']['GET'] = 'frontend/public/User/invoicePayment';
+$route['transaksi/detail/(:any)'] = 'frontend/public/User/userDetailTransaction/$1';
 
 $route['autentifikasi/login'] = 'frontend/auth/frontAuth/index';
 $route['autentifikasi/registrasi'] = 'frontend/auth/frontAuth/registrasi';

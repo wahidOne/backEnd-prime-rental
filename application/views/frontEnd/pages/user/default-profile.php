@@ -24,11 +24,12 @@
                     </div>
                     <div class="d-flex mt-2 px-1 font-12px font-12px text-dark justify-content-between">
                         <span>Tanggal Registrasi : </span>
-                        <span><?= date(" d.m.Y ", $profile['user_created']); ?> </span>
+                        <span><?= date(" d.m.Y ", $profile['user_created']); ?>
+                        </span>
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-5 pl-md-2">
-                    <form id="formProfile" action="<?= base_url('profile/update') ?>" method="post">
+                    <form id="formProfile" action="<?= base_url('user/ ' . $user['user_id'] . '/dashboard/profile/update') ?>" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="user_id" value="<?= $profile['user_id'] ?>">
                         <div class="form-group"><label class="font-12px text-dark" for="">Informasi pribadi
                                 :</label>
@@ -65,7 +66,16 @@
                             <div class="input-group input-group-profile pr-1"><input name="alamat" class="form-control input-profile my-auto">
                                 <div class="input-group-prepend mr-n1"><span class="input-group-text font-12px">Alamat</span></div>
                             </div>
-                        </div><br>
+                        </div>
+                        <div class="form-group row">
+                            <label for="" class=" col-form-label col-sm-4  "><small>Upload Foto KTP : </small></label>
+                            <div class="col-sm-8">
+
+                                <input type="file" class="dropify" data-min-width="100" name="IDcard_img" id="IDcard_img" />
+                            </div>
+
+                        </div>
+                        <br>
                         <div class="form-group text-right">
                             <button type="submit" class="btn btn-secondary rounded-0 shadow-sm ml-auto">Ubah Profil</button></div>
                     </form>

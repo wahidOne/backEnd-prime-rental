@@ -131,12 +131,16 @@
                             </div>
                             <div class="card-body bg-white-30 rounded mt-2">
                                 <p class="text-secondary font-weight-bold">Pembayaran dapat di transfer ke nomor
-                                    rekening berikut :</p><span class="ml-2 ml-md-3 text-secondary">BRI :
+                                    rekening berikut :</p>
+                                <span class="ml-2 ml-md-3 text-secondary">BRI :
                                     2000-0020-0203</span>
                             </div>
                         </div>
-                        <div class="card-footer border-0 bg-white text-right"><a href="#" class="btn btn-outline-success"><i class="fad fa-fw fa-check-double"></i>
-                                Checkout</a></div>
+                        <div class="card-footer border-0 bg-white text-right">
+                            <a href="<?= site_url('transaksi') ?>" class="btn btn-outline-success"><i class="fad fa-fw fa-check-double"></i>
+                                Checkout
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>

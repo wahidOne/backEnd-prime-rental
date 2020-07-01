@@ -13,7 +13,7 @@
             <div aria-labelledby="dashboard--profile--toggle" class="dropdown-menu dropdown-menu-right text-secondary navbar-dropdownProfile border-0 shadow-sm ">
                 <div class=" dropdown-menu-nav nav text-primary d-flex justify-content-center ">
                     <div class="d-flex flex-column pt-2 px-2 justify-content-center ">
-                        <img width="80" class=" mx-auto rounded-circle " src="<?= base_url('assets/uploads/ava/') . $user['user_photo']; ?>" alt="">
+                        <img width="80" height="80" class=" mx-auto rounded-circle " style="object-fit:cover !important; object-position: center;" src="<?= base_url('assets/uploads/ava/') . $user['user_photo']; ?>" alt="">
                         <div class="pt-2">
                             <p class="text-center  text-black-50 mb-0 "><?= $user['user_email']; ?></p>
                             <p class="text-center font-20px text-dark text-capitalize  "><?= $user['user_name']; ?></p>
