@@ -44,12 +44,7 @@
                                 <div class="input-group-prepend mr-n1"><span class="input-group-text font-12px">Nama</span></div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="input-group input-group-profile pr-1">
-                                <input class="form-control input-profile my-auto " name="no_ktp">
-                                <div class="input-group-prepend mr-n1"><span class="input-group-text font-12px">No Ktp</span></div>
-                            </div>
-                        </div><br>
+                        <br>
                         <div class="form-group"><label class="font-12px text-dark" for="">Informasi Kontak
                                 :</label>
                             <div class="input-group input-group-profile pr-1">
@@ -67,17 +62,10 @@
                                 <div class="input-group-prepend mr-n1"><span class="input-group-text font-12px">Alamat</span></div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="" class=" col-form-label col-sm-4  "><small>Upload Foto KTP : </small></label>
-                            <div class="col-sm-8">
-
-                                <input type="file" class="dropify" data-min-width="100" name="IDcard_img" id="IDcard_img" />
-                            </div>
-
-                        </div>
                         <br>
                         <div class="form-group text-right">
-                            <button type="submit" class="btn btn-secondary rounded-0 shadow-sm ml-auto">Ubah Profil</button></div>
+                            <button type="submit" class="btn btn-secondary rounded-0 shadow-sm ml-auto">Ubah Profil</button>
+                        </div>
                     </form>
                 </div>
                 <div class="col-lg-4 mt-1">

@@ -44,12 +44,12 @@
                                             <?= form_error('client_name', '<small style="margin-top: 3px"  class="text-danger  ml-2" >', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group row mt-3"><label for="no_ktp" class="col-sm-4 col-form-label">No Identitas/ KTP</label>
+                                    <!-- <div class="form-group row mt-3"><label for="no_ktp" class="col-sm-4 col-form-label">No Identitas/ KTP</label>
                                         <div class="col-sm-8">
                                             <input name="client_no_ID" class="form-control bg-white-30" id="no_ktp" value="<?= set_value('client_no_ID') ?>" placeholder="No KTP...">
                                             <?= form_error('client_no_ID', '<small style="margin-top: 3px"  class="text-danger  ml-2" >', '</small>'); ?>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="form-group row mt-3"><label for="address" class="col-sm-4 col-form-label">Alamat</label>
                                         <div class="col-sm-8">
                                             <input name="client_address" class="form-control bg-white-30" id="address" value="<?= set_value('client_address') ?>" placeholder="Alamat Lengkap">
@@ -63,12 +63,12 @@
                                             <?= form_error('client_phone', '<small style="margin-top: 3px"  class="text-danger  ml-2" >', '</small>'); ?>
                                         </div>
                                     </div>
-                                    <div class="form-group row mt-3">
+                                    <!-- <div class="form-group row mt-3">
                                         <label for="phone" class="col-sm-4 col-form-label">Upload Foto KTP</label>
                                         <div class="col-sm-8">
                                             <input type="file" class="dropify" data-min-width="100" name="IDcard_img" id="IDcard_img" />
                                         </div>
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
 
@@ -149,36 +149,10 @@
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="card border-0 shadow-none">
-                            <div class="card-body text-secondary">
-                                <p class="card-title font-42px">Pembayaran</p>
-                                <div class="form-group row mt-3"><label for="method_payment" class="col-sm-4 col-form-label">Metode</label>
-                                    <div class="col-sm-8 my-auto  d-flex justify-content-between ">
-                                        <div>
-                                            <span><i class="fas fa-check-square fa-fw"></i>
-                                                ATM </span>
-                                            <input name="method_pay" type="hidden" checked="checked" value="No Rekening" id="credit_card">
-                                        </div>
-                                        <span data-toggle="tooltip" data-placement="left" class="ml-auto" title="Maaf Metode pembayaran kami belum banyak">
-                                            <i class=" fas fa-question-circle "></i>
-                                        </span>
-                                    </div>
-                                </div>
-                                <div class="form-group row mt-3"><label for="date_end" class="col-sm-4 col-form-label">Bank</label>
-                                    <div class="col-sm-8">
-                                        <select class="form-control" name="bank">
-                                            <option disabled="disabled" selected="selected">Pilih Bank</option>
-                                            <option value="BRI">BRI</option>
-                                            <option value="BNI">BNI</option>
-                                        </select>
-                                        <?= form_error('bank', '<small style="margin-top: 3px"  class="text-danger  ml-2" >', '</small>'); ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <div class="card border-0 shadow-none">
+
+                        <div class="card border-0 shadow-none px-2">
                             <div class="d-flex">
-                                <button type="submit" class=" text-center text-primary btn btn-secondary ml-auto ">
+                                <button type="submit" class=" text-center btn-lg py-2 text-primary btn btn-secondary ml-auto ">
                                     Selanjutnya <i class=" fad fa-arrow-right "> </i>
                                 </button>
                             </div>
@@ -203,10 +177,7 @@
                                             <p class="text-muted mb-0">Tipe :</p>
                                             <p class="ml-2 font-20px"><?= $car['type_name']  ?></p>
                                         </div>
-                                        <div>
-                                            <p class="text-muted mb-0">Denda :</p>
-                                            <p class="ml-2 font-20px">Rp. <?= $car['car_fine'] ?></p>
-                                        </div>
+
                                     </div>
                                     <div class="col-lg-7 order-1 order-lg-2  my-auto px-0">
                                         <img class="img-fluid" src="<?= base_url('assets/uploads/cars/') . $car['car_photo'] ?>" alt="">

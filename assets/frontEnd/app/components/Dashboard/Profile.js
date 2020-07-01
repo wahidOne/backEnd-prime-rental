@@ -34,10 +34,6 @@ class Profile {
 					fullname: {
 						required: true,
 					},
-					no_ktp: {
-						required: true,
-						number: true,
-					},
 					no_hp: {
 						number: true,
 						min: 13,

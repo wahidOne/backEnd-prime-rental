@@ -61,26 +61,37 @@
                             </div>
                         </div>
 
+
+
                         <div class="card border-0 shadow-none">
                             <div class="card-body text-secondary">
                                 <p class="card-title font-42px">Info Sewa</p>
-                                <div class="form-group row mt-3">
-                                    <label class="col-sm-4 col-form-label">Kendaraan</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="  form-control bg-white-30 " value="<?= $invoice['car_brand'] ?>">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="card card-body d-flex flex-row align-items-center justify-content-around shadow-sm ">
+                                            <div class="">
+                                                <i class="fas fa-sign-in-alt fa-2x"></i>
+                                            </div>
+                                            <div class="my-auto mt-2">
+                                                <p class=" font-w-600 text-dark mb-0 font-13px ">Tanggal Mulai</p>
+                                                <p class=" text-black-50 font-20px ">
+                                                    <?= date("F d, Y", strtotime($invoice['rent_date_start'])); ?>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="form-group row mt-3">
-                                    <label class="col-sm-4 col-form-label">Harga Sewa / Hari</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="  form-control bg-white-30 " value="Rp. <?= $car['car_format_price'] ?> / Hari">
-
-                                    </div>
-                                </div>
-                                <div class="form-group row mt-3">
-                                    <label class="col-sm-4 col-form-label">Waktu</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="  form-control bg-white-30 " value="<?= $invoice['days'] ?>Hari">
+                                    <div class="col-6">
+                                        <div class="card card-body bg-secondary  d-flex flex-row  align-items-center justify-content-around ">
+                                            <div class=" ">
+                                                <i style="transform: scaleX(-1);" class="fas fa-sign-out-alt text-primary fa-2x"></i>
+                                            </div>
+                                            <div class="my-auto mt-2 d-flex justify-content-center flex-column">
+                                                <p class=" font-w-600 text-primary mb-0 font-13px ">Tanggal Berakhir</p>
+                                                <p class=" text-primary-70 font-20px ">
+                                                    <?= date("F d, Y", strtotime($invoice['rent_date_start'])); ?>
+                                                </p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -91,21 +102,7 @@
                     </div>
                     <div class="col-lg-5 ml-auto mt-7 ">
                         <div class="card border-0 shadow-sm pt-2">
-                            <!-- <div class="card-body">
-                                <p class="card-title font-16px text-black-50 text-uppercase font-weight-bold ">Info</p>
-                                <div class="d-flex pl-1  py-2 mb-n1 flex-column ">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <img class="img-fluid" src="<?= base_url('assets/uploads/cars/') . $car['car_photo'] ?>" alt="">
-                                        </div>
-                                        <div class="col my-auto">
-                                            <p class="font-weight-bold text-secondary mb-0 "><?= $invoice['car_brand'] ?></p>
-                                            <span class=" font-14px text-secondary-50 ">Rp. <?= $car['car_format_price']; ?> / Hari</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <hr class=" border-bottom">
-                            </div> -->
+
                             <div class="card-body pt-0 mb-0  ">
                                 <p class="card-title font-16px text-black-50 text-uppercase font-weight-bold ">Detail Pembayaran</p>
                                 <table class=" table table-borderless mt-0">
@@ -157,14 +154,14 @@
                         </div>
 
                         <div class="row mt-4">
-                            <div class="col-auto">
+                            <div class="col-6">
                                 <a href="<?= base_url('batalkan-transaksi?rentid=') . $invoice['rent_id'] . "&userid=" . $user['user_id']  ?>" class="btn btn-block btn-lg btn-outline-danger ">
-                                    Batalkan <i class="fas fa-times-circle fa-fw"></i>
+                                    Batalkan
                                 </a>
                             </div>
-                            <div class="col-auto">
+                            <div class="col-6">
                                 <button disabled id="btn-submit" type="submit" class=" btn-block text-wrap  btn btn-success  btn-lg ">
-                                    <span class=" my-auto ">Sewa Sekarang</span> <i class="fas fa-fw my-auto fa-handshake-alt"></i>
+                                    <span class=" my-auto ">Sewa Sekarang</span>
                                 </button>
                             </div>
                         </div>

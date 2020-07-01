@@ -34,7 +34,7 @@
                     </div>
                 </div>
                 <div class="col-sm-6 col-lg-5 pl-md-2">
-                    <form id="formProfile" action="<?= base_url('user/ ' . $user['user_id'] . '/dashboard/profile/update') ?>" method="post" enctype="multipart/form-data">
+                    <form id="formProfile" action="<?= base_url('user/ ' . $user['user_id'] . '/dashboard/profile/update') ?>" method="post">
                         <input type="hidden" name="user_id" value="<?= $profile['user_id'] ?>">
                         <div class="form-group"><label class="font-12px text-dark" for="">Informasi pribadi
                                 :</label>
@@ -48,11 +48,7 @@
                                 <div class="input-group-prepend mr-n1"><span class="input-group-text font-12px">Nama</span></div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="input-group input-group-profile pr-1"><input name="no_ktp" class=" form-control input-profile my-auto" value="<?= $profile['client_ID_num'] ?>">
-                                <div class="input-group-prepend mr-n1"><span class="input-group-text font-12px">No Ktp</span></div>
-                            </div>
-                        </div><br>
+                        <br>
                         <div class="form-group"><label class="font-12px text-dark" for="">Informasi Kontak
                                 :</label>
                             <div class="input-group input-group-profile pr-1"><input readonly class="form-control input-profile my-auto" value="<?= $profile['user_email'] ?>">
@@ -70,14 +66,7 @@
                                 <div class="input-group-prepend mr-n1"><span class="input-group-text font-12px">Alamat</span></div>
                             </div>
                         </div>
-                        <div class="form-group row">
-                            <label for="" class=" col-form-label col-sm-4  "><small>Upload Foto KTP : </small></label>
-                            <div class="col-sm-8">
-                                <input type="hidden" value="<?= $profile['client_IDcard_img'] ?>" name="old_IDcard_img">
-                                <input type="file" class="dropify" data-default-file="<?= base_url('assets/uploads/client-IDcard/') . $profile['client_IDcard_img'] ?>" data-min-width="100" name="IDcard_img" id="IDcard_img" />
-                            </div>
 
-                        </div>
                         <br>
 
                         <div class="form-group text-right"><button type="submit" class="btn btn-secondary rounded-0 shadow-sm ml-auto">Ubah Profil</button></div>

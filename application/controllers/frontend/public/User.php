@@ -112,16 +112,12 @@ class User extends CI_Controller
     {
         $user_id = $this->input->post('user_id');
         $user_name = $this->input->post('user_name');
-        $old_IDcard_image = $this->input->post('old_IDcard_img');
 
         $dataUser = [
             'user_name' => $user_name,
         ];
         $client = $this->M_clients->checkClient(['client_user_id' => $user_id]);
         $this->M_public->updateData(['user_id' => $user_id], 'user', $dataUser);
-
-        $upload_IDcard_image = $_FILES['IDcard_img']['name'];
-
         if ($client->num_rows() <= 0) {
             $client_id = getAutoNumber('clients', 'client_id', 'client-', 11);
         } else {
@@ -130,59 +126,22 @@ class User extends CI_Controller
 
 
 
-
-
-
         if ($client->num_rows() <= 0) {
-
-            if ($upload_IDcard_image) {
-                $config['upload_path']          = './assets/uploads/client-IDcard/';
-                $config['allowed_types']        = 'gif|jpg|png|jpeg';
-                $config['overwrite']            = true;
-                $config['file_name'] = 'fotoKTP-' . $client_id . "-" . date('hiA_dmY');
-                $this->load->library('upload', $config);
-                if ($this->upload->do_upload('IDcard_img')) {
-                    $IDcar_img = $this->upload->data('file_name');
-                }
-            } else {
-                $IDcar_img = "not Uploaded";
-            }
 
             $dataClient = [
                 'client_id' => $client_id,
                 'client_fullname' => $this->input->post('fullname'),
                 'client_address' => $this->input->post('alamat'),
-                'client_ID_num' => $this->input->post('no_ktp'),
-                'client_phone' => $this->input->post('no_hp'),
-                'client_IDcard_img' => $IDcar_img,
                 'client_user_id' => $user_id
             ];
             $this->M_public->insertData('clients', $dataClient);
             redirect('user/' .  $user_id . '/dashboard/profile');
         } else {
-            if ($upload_IDcard_image) {
-                $config['upload_path']          = './assets/uploads/client-IDcard/';
-                $config['allowed_types']        = 'gif|jpg|png|jpeg';
-                $config['overwrite']            = true;
-                $config['file_name'] = 'fotoKTP-' . $client_id . "-update-" . date('hiA_dmY');
-                $this->load->library('upload', $config);
-                if ($this->upload->do_upload('IDcard_img')) {
-                    $gambar_lama = $old_IDcard_image;
-                    unlink(FCPATH . './assets/uploads/client-IDcard/' . $gambar_lama);
-                    $gambar_baru = $this->upload->data('file_name');
-                    // $this->db->set('user_photo', $gambar_baru);
-                } else {
-                    $gambar_baru = $old_IDcard_image;
-                }
-            } else {
-                $gambar_baru = $old_IDcard_image;
-            }
+
             $dataCustomer = [
                 'client_fullname' => $this->input->post('fullname'),
                 'client_address' => $this->input->post('alamat'),
-                'client_ID_num' => $this->input->post('no_ktp'),
                 'client_phone' => $this->input->post('no_hp'),
-                'client_IDcard_img' => $gambar_baru
             ];
 
             $this->M_public->updateData(['client_user_id' => $user_id], 'clients', $dataCustomer);
