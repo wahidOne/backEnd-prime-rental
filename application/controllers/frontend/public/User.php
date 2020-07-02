@@ -271,6 +271,14 @@ class User extends CI_Controller
                 $rent_id = $this->input->get('rentId');
                 $payment = $this->M_trans->getTransactionsWithPayment(['payment_rental_id' => $rent_id])->row_array();
 
+                $date_rent = strtotime($payment['rent_date']);
+                // // $date_rent = strtotime('2020-07-02 04:00:00');
+                // $date_rent = '2020-07-02 20:00:00';
+
+
+                $expired =  date('Y-m-d G:i:s', $date_rent + (24 * 3600 * 1));
+
+
                 if ($payment['payment_proof'] != "") {
                     $data['status_upload'] = false;
                 } else {
@@ -285,6 +293,7 @@ class User extends CI_Controller
 
 
                 $payment['rent_subtotal'] = $jmlHari * $payment['car_price'];
+                $payment['payment_expired'] = $expired;
 
                 $bank = $this->M_public->getDataWhere('bank', ['bank_id' => $payment['payment_bank_id']])->row_array();
 

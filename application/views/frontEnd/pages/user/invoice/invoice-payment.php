@@ -12,58 +12,87 @@
                     </li>
                 </ol>
             </nav>
-            <p class=" pl-1  text-black-50 font-md-25px text-capitalize  "> Invoice pembayaran </p>
+
             <div class="row mt-4 px-md-3">
 
                 <div class="col-md-7 card-stretch">
-                    <div class="card card-stretch pt-2 px-2 border-0 shadow-sm rounded-0 ">
+                    <div class="card card-stretch pt-2 px-2 border-0 shadow-sm rounded-0  pb-3">
 
-                        <div class="card-body my-auto">
-                            <div class="form-group row mt-2 ">
-                                <label for="" class="col-sm-5 col-form-label text-nowrap text-lg-right ">No Transaksi</label>
-                                <div class="col-sm-7">
-                                    <input type="text" class=" form-control bg-transparent border " readonly value="<?= $payment['rent_id'] ?>">
-                                </div>
+                        <div class="card-body py-2 pl-1 pl-md-2 pr-md-5 ">
+                            <div class=" d-flex flex-column flex-wrap pl-md-1 ">
+                                <span class="font-w-600 mb-0 font-25px ">
+                                    Invoice Pembayaran
+                                </span>
+                                <small class="mt-0 text-black-50 ">
+                                    <?php if ($payment['payment_proof'] == "" && $payment['payment_status'] == "0") : ?>
+                                        Menunggu pembayaran
+                                    <?php elseif (!$payment['payment_proof'] == "" && !$payment['payment_status'] == 1) : ?>
+                                        Pembayaran anda sedang dikonfirmasi
+                                    <?php elseif ($payment['payment_proof'] != "" && $payment['payment_status'] == 1) : ?>
+                                        Pembayaran anda telah dikonfirmasi
+                                    <?php endif; ?>
+                                </small>
                             </div>
-                            <div class="form-group row ">
-                                <label for="" class="col-sm-5 col-form-label text-nowrap text-lg-right ">Nama Pemesanan</label>
-                                <div class="col-sm-7">
-                                    <input type="text" class=" form-control bg-transparent border " readonly value="<?= $payment['client_fullname'] ?>">
-                                </div>
+                            <br>
+                            <div class="d-flex mt-3 justify-content-between pl-md-1 ">
+                                <span class=" text-black-50 ">No Transaksi</span>
+                                <span class=" font-w-600 "><?= $payment['rent_id'] ?></span>
                             </div>
-                            <div class="form-group row ">
-                                <label for="" class="col-sm-5 col-form-label text-nowrap text-lg-right ">Tgl pesanan</label>
-                                <div class="col-sm-7">
-                                    <input type="text" class=" form-control bg-transparent border " readonly value="<?= date('l, d m Y', strtotime($payment['rent_date'])) ?>">
-                                </div>
+                            <div class="d-flex mt-2 justify-content-between pl-md-1 ">
+                                <span class=" text-black-50 ">Nama Pemesan</span>
+                                <span class=" font-w-600 "><?= $payment['client_fullname'] ?></span>
                             </div>
-                            <div class="form-group row ">
-                                <label for="" class="col-sm-5 col-form-label text-nowrap text-lg-right ">Metode pembayaran</label>
-                                <div class="col-sm-7">
-                                    <input type="text" class=" form-control bg-transparent border " readonly value="<?= $payment['payment_method'] ?>">
-                                </div>
+                            <div class="d-flex mt-2 justify-content-between pl-md-1 ">
+                                <span class=" text-black-50 ">Tgl pesanan</span>
+                                <span class=" font-w-600 "><?= date('l, d m Y | H:i', strtotime($payment['rent_date'])) ?></span>
+                            </div>
+                            <hr class="my-2">
+                            <div class="d-flex mt-2 justify-content-between pl-md-1 ">
+                                <span class=" text-black-50 ">Metode Pembayaran</span>
+                                <span class=" text-capitalize font-w-600 "><?= $payment['payment_method'] ?></span>
+                            </div>
+                            <div class="d-flex mt-2 justify-content-between pl-md-1 ">
+                                <span class=" text-black-50 text-capitalize  ">Bank Tujuan</span>
+                                <span class=" font-w-600 "><?= $bank['bank_name'] ?> (<?= $bank['bank_number'] ?>) </span>
                             </div>
 
-                            <div class="form-group row ">
-                                <label for="" class="col-sm-5 col-form-label text-nowrap text-lg-right">Bank Tujuan</label>
-                                <div class="col-sm-7">
-                                    <input type="text" class=" form-control bg-transparent border " readonly value="<?= $bank['bank_name'] ?> (<?= $bank['bank_number'] ?>)  ">
-                                </div>
+                            <div class="d-flex mt-2 justify-content-between pl-md-1 ">
+                                <span class=" text-black-50 text-capitalize  ">Status</span>
+                                <?php if ($payment['payment_proof'] == "" && $payment['payment_status'] == "0") : ?>
+                                    <span class=" text-danger  font-w-600 "> Menunggu pembayaran</span>
+                                <?php elseif (!$payment['payment_proof'] == "" && !$payment['payment_status'] == 1) : ?>
+                                    <span class=" text-info font-w-600  "> Menunggu Konfirmasi</span>
+                                <?php elseif ($payment['payment_proof'] != "" && $payment['payment_status'] == 1) : ?>
+                                    <span class=" text-success font-w-600">Pembayaran Selesai </span>
+                                <?php endif; ?>
                             </div>
+
+                            <div class="d-flex mt-2 justify-content-between pl-md-1 ">
+                                <span class=" text-black-50 text-capitalize  ">Batas Waktu</span>
+                                <span id="date_expired" data-time="<?= date('l, d m Y H:i:s', strtotime($payment['payment_expired'])) ?>" class="font-w-600">
+                                    <?= date('l, d m Y | H:i:s', strtotime($payment['payment_expired'])) ?>
+                                </span>
+                            </div>
+
 
 
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5 card-stretch">
-                    <div class="card card-stretch pt-2 border-0 shadow-sm rounded-0 ">
+                    <div class="card card-stretch pt-2 border-0 shadow-sm rounded-0 pb-3  ">
 
                         <div class="card-body px-2">
-                            <p class="px-1">
-                                <span class=" font-weight-bold text-black ">Note</span><br>
-                                <span class=" text-black-50 ">
-                                    Jika ada kendala dengan no rekening bank yg tujuan saat melakukan transaksi. Anda dapat mengganti no rekening bank tujuan yg dibawah ini_alter
+                            <div class=" d-flex flex-column flex-wrap pl-md-1 mb-4 ">
+                                <span class="font-w-600 mb-0 font-25px ">
+                                    Info
                                 </span>
+
+                            </div>
+                            <p class="px-1 text-black-50 ">
+                                <span>Hay <?= $payment['client_fullname']; ?></span><br>
+                                Jika ada kendala dengan nomor rekening bank tujuan saat melakukan transfer. Anda dapat mengganti nomor rekening bank tujuan dengan yg dibawah ini.
+
                             </p>
 
                             <div class="d-block bg-white-30 p-2 ">
@@ -72,16 +101,7 @@
                                 <?php endforeach; ?>
                             </div>
 
-                            <div class="d-flex mt-2 flex-column">
-                                <span class=" text-black-50 "> Status :</span>
-                                <?php if ($payment['payment_proof'] == "" && $payment['payment_status'] == "0") : ?>
-                                    <span class=" my-auto text-danger ml-2 "> Menunggu pembayaran</span>
-                                <?php elseif (!$payment['payment_proof'] == "" && !$payment['payment_status'] == 1) : ?>
-                                    <span class=" my-auto text-dark ml-2 "> Menunggu Konfirmasi</span>
-                                <?php elseif ($payment['payment_proof'] != "" && $payment['payment_status'] == 1) : ?>
-                                    <span class=" my-auto text-info ml-2">Pembayaran Selesai </span>
-                                <?php endif; ?>
-                            </div>
+
                         </div>
                     </div>
                 </div>
