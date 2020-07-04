@@ -163,7 +163,10 @@ class User extends CI_Controller
                 } else {
                     $allTransaction = FALSE;
                 }
-                // var_dump($allTransaction);
+
+
+
+
                 $data['user'] = $user;
                 $data['car_type'] = $carType;
                 $data['transaksi'] = $allTransaction;
@@ -267,15 +270,14 @@ class User extends CI_Controller
             if ($user->num_rows() > 0) {
                 $user = $user->row_array();
 
-
                 $rent_id = $this->input->get('rentId');
                 $payment = $this->M_trans->getTransactionsWithPayment(['payment_rental_id' => $rent_id])->row_array();
 
+                if ($payment['payment_status'] == "Expired") {
+                    redirect('user/ ' . $user['user_id']  . '/dashboard/transaksi/pembatalan?rentId=' . $payment['rent_id']);
+                }
+
                 $date_rent = strtotime($payment['rent_date']);
-                // // $date_rent = strtotime('2020-07-02 04:00:00');
-                // $date_rent = '2020-07-02 20:00:00';
-
-
                 $expired =  date('Y-m-d G:i:s', $date_rent + (24 * 3600 * 1));
 
 
@@ -294,11 +296,7 @@ class User extends CI_Controller
 
                 $payment['rent_subtotal'] = $jmlHari * $payment['car_price'];
                 $payment['payment_expired'] = $expired;
-
-                $bank = $this->M_public->getDataWhere('bank', ['bank_id' => $payment['payment_bank_id']])->row_array();
-
                 $data['user'] = $user;
-                $data['bank'] = $bank;
                 $data['allbank'] = $this->M_public->getData('bank')->result_array();
                 $data['payment'] = $payment;
                 $data['car_type'] =   $this->M_public->getDataWhere('car_types', ['type_id' => $payment['car_type_id']])->row_array();
@@ -320,6 +318,60 @@ class User extends CI_Controller
         $this->load->view($templatesPath .  "sidebar", $data);
         $this->load->view($templatesPath .  "topbar", $data);
         $this->load->view($views .  "invoice/invoice-payment", $data);
+        // $this->load->view($views .  "transactions/info-reject", $data);
+        $this->load->view($templatesPath .  "end", $data);
+    }
+
+    public function infoReject()
+    {
+        if ($this->session->userdata('primerental_user') != NULL) {
+            $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']]);
+            if ($user->num_rows() > 0) {
+                $user = $user->row_array();
+
+                $rent_id = $this->input->get('rentId');
+                $payment = $this->M_trans->getTransactionsWithPayment(['payment_rental_id' => $rent_id])->row_array();
+
+                $date_rent = strtotime($payment['rent_date']);
+                $expired =  date('Y-m-d G:i:s', $date_rent + (24 * 3600 * 1));
+
+
+                if ($payment['payment_proof'] != "") {
+                    $data['status_upload'] = false;
+                } else {
+                    $data['status_upload'] = true;
+                }
+
+                $date_rent_start = strtotime($payment['rent_date_start']);
+                $date_end = strtotime($payment['rent_date_end']);
+                $datediff = $date_end - $date_rent_start;
+
+                $jmlHari = round($datediff / (60 * 60 * 24));
+
+
+                $payment['rent_subtotal'] = $jmlHari * $payment['car_price'];
+                $payment['payment_expired'] = $expired;
+                $data['user'] = $user;
+                $data['payment'] = $payment;
+            } else {
+                $data['user'] = [];
+            }
+        } else {
+            $this->session->set_flashdata('auth-info', 'Silahkan login terlebih dahulu! untuk mengakses halamannya');
+            redirect('autentifikasi/login');
+        }
+
+        $data['title'] = "Informasi Sewa";
+        $templatesPath  = $this->public['templates'];
+        $views  = $this->public['pages'];
+
+        $data['componentPath'] = $views . "components/";
+
+        $this->load->view($templatesPath .  "header", $data);
+        $this->load->view($templatesPath .  "sidebar", $data);
+        $this->load->view($templatesPath .  "topbar", $data);
+        // $this->load->view($views .  "invoice/invoice-payment", $data);
+        $this->load->view($views .  "transactions/info-reject", $data);
         $this->load->view($templatesPath .  "end", $data);
     }
 }

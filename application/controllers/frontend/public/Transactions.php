@@ -318,7 +318,6 @@ class Transactions extends CI_Controller
         $priceTotal = $this->input->post('total_price');
         $rentPeriod = $this->input->post('rent_time');
         $method = $this->input->post('pay_menthod');
-        $bank = $this->input->post('bank');
         $paymetId = getAutoNumber('payment_trans', 'payment_id', 'pay-', 7);
 
         $data = [
@@ -327,7 +326,6 @@ class Transactions extends CI_Controller
             'payment_user_id' => $userId,
             "payment_proof" => "",
             "payment_method" => $method,
-            'payment_bank_id' => $bank,
             "payment_total" => $priceTotal,
             "payment_status" => 0,
             "payment_date" => time()
@@ -648,5 +646,48 @@ class Transactions extends CI_Controller
                 $this->load->view($templatesPath .  "end", $data);
             }
         }
+    }
+
+    public function autoDeleteOrder()
+    {
+
+
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']])->row_array();
+
+
+        $rent_id = $this->uri->segment(3);
+
+        // $result =  $this->M_public->deleteData(['rent_id' => $rent_id], 'rental_trans');
+        $dataUpdatePayment = [
+            'payment_status' => "Expired",
+        ];
+        $result = $this->M_public->updateData(['payment_rental_id' => $rent_id], 'payment_trans', $dataUpdatePayment);
+
+        // $result = 1;
+
+        $rental = $this->M_trans->getTransactionsWithPayment(['rent_id' => $rent_id])->row_array();
+        $car = $this->M_public->getDataWhere('cars', ['car_id' => $rental['rent_car_id']])->row_array();
+
+        if ($car['car_status'] == 1) {
+            $dataupdate = [
+                'car_status' => 0
+            ];
+            $this->M_public->updateData(['car_id' => $rental['rent_car_id']], 'cars',  $dataupdate);
+        }
+        // $result =  $this->M_public->deleteData(['menu_id' => $this->uri->segment(4)], 'user_menu');
+        if ($result >= 0) {
+            $data['status'] = true;
+            $data['rent_id'] = $rent_id;
+            $data['pesan'] = 'Pesanan anda dengan no pesanan <span class=" font-w-600 ">' . $rental['rent_id'] . ' </span> telah di batalkan secara otomatis.
+            <br>Dikarenakan anda telah telat melakukan pembayaran sesuai batas waktu yg ditentukan ';
+            $data['result'] = $rental;
+            $data['redirect'] = base_url('user/' . $user['user_id'] . '/dashboard/transaksi-saya');
+            $data['car'] = $car;
+        } else {
+            $data['status'] = false;
+        }
+
+
+        echo json_encode($data);
     }
 }

@@ -9,21 +9,7 @@ class Transactions {
 		this.serviceRentalSelect = document.querySelector("#service_rental");
 		this.statusShowInputPickUpAddress = false;
 
-		this.selectBank = document.querySelector("#select-bank");
-
-		this.infoBanking = document.querySelector("#info-banking");
-
 		this.selectDestinations = document.querySelector("#destination");
-	}
-
-	loadingInfoBanking() {
-		return `
-		<span class=" text-black-50 mx-auto ">
-			<div class="spinner-border mx-auto text-secondary" role="status">
-				<span class="sr-only">Loading...</span>
-			</div>
-		</span>
-		`;
 	}
 
 	render() {
@@ -42,52 +28,6 @@ class Transactions {
 					formPickUpAddress.classList.remove("d-none");
 				} else {
 					formPickUpAddress.classList.add("d-none");
-				}
-			});
-		}
-
-		const containInfoBanking = this.infoBanking;
-
-		const loader = this.loadingInfoBanking();
-
-		if (this.selectBank) {
-			const btnSumbit = document.querySelector("#btn-submit");
-			this.selectBank.addEventListener("change", function (event) {
-				const optionSelected = event.target.options[event.target.selectedIndex];
-
-				let bodyCointainInfoBanking = "";
-
-				if (containInfoBanking) {
-					const infoBankingName = containInfoBanking.children[0];
-					const infoBankingNumber = containInfoBanking.children[1];
-
-					let _infoBankingNameContent = "";
-					let _infoBankingNumberContent = "";
-
-					bodyCointainInfoBanking += loader;
-
-					containInfoBanking.innerHTML = bodyCointainInfoBanking;
-
-					const bankingNumberOption = optionSelected.dataset.no;
-
-					const bankingValueOption = optionSelected.dataset.name;
-
-					_infoBankingNameContent += bankingValueOption;
-					_infoBankingNumberContent += bankingNumberOption;
-					btnSumbit.disabled = true;
-
-					setTimeout(() => {
-						bodyCointainInfoBanking = "";
-						infoBankingName.innerHTML = `<span class=" text-info font-weight-bold " >${_infoBankingNameContent}  :</span> `;
-						infoBankingNumber.innerHTML = `<span class=" text-info " >${_infoBankingNumberContent}</span>`;
-
-						containInfoBanking.innerHTML = "";
-
-						containInfoBanking.appendChild(infoBankingName);
-						containInfoBanking.appendChild(infoBankingNumber);
-
-						btnSumbit.disabled = false;
-					}, 1000);
 				}
 			});
 		}

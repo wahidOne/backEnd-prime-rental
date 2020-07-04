@@ -19,6 +19,8 @@
             <a class="nav-link <?= $this->uri->segment(4) == 'profile' ? "active" : '' ?> " href="<?= site_url('user/' . $user['user_id'] . '/dashboard/profile') ?>"><i class="fad fa-fw fa-id-card-alt"></i> <span class="ml-md-1">Profil</span></a></li>
         <li class="nav-item">
             <a class="nav-link <?= $this->uri->segment(4) == 'transaksi-saya' ? "active" : '' ?> " href="<?= site_url('user/' . $user['user_id'] . '/dashboard/transaksi-saya') ?>"><i class="fad fa-fw fa-handshake"></i> <span class="ml-md-1">Transaksi</span></a></li>
+        <li class="nav-item">
+            <a class="nav-link <?= $this->uri->segment(4) == 'inbox' ? "active" : '' ?> " href="<?= site_url('user/' . $user['user_id'] . '/dashboard/inbox') ?>"><i class="fad fa-fw fa-inbox-in"></i> <span class="ml-md-1">Inbox </span> <small id="sidebar-inbox" class="badge badge-secondary text-white mt-n3 ml-1 position-absolute ">0</small> </a></li>
         <hr class="sidebar--devider mt-2 mb-1">
         <li class="nav-item"><a class="nav-link" href="<?= site_url('autentifikasi/logout') ?>"><i class="fad fa-fw fa-sign-out"></i> <span class="ml-md-1">Logout</span></a></li>
     </ul>

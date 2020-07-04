@@ -22,15 +22,15 @@
                                         <th scope="row" class="text-black-50 font-13px">Type Sewa</th>
                                         <th class="text-black-50 font-13px">Tgl Transaksi</th>
                                         <th class="text-black-50 font-13px">Total Harga</th>
-                                        <th class="text-black-50 font-13px">Status</th>
-                                        <th class="text-black-50 font-13px">Action</th>
+                                        <th class="text-black-50 font-13px">Status Bayar</th>
+                                        <th class="text-black-50 font-13px">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody style="white-space: nowrap !important;">
 
                                     <?php $no = 1; ?>
                                     <?php foreach ($transaksi as $tr) : ?>
-                                        <tr>
+                                        <tr class=" <?= $tr['payment_status'] == "Expired" ? "text-black-50 bg-white-50" : ""  ?> ">
                                             <th scope="row"><?= $no++; ?></th>
                                             <td><?= $tr['rent_id']; ?></td>
                                             <td colspan="2">
@@ -55,11 +55,21 @@
                                                 <?php endif ?>
                                             </td>
                                             <td><?= date('d/m/Y', strtotime($tr['rent_date']))  ?></td>
-                                            <!-- <td><?= date('d/m/Y', strtotime($tr['rent_date_start']))  ?></td> -->
-                                            <td><span class=" font-15px ">Rp. <?= number_format($tr['rent_price'], 2, ',', '.'); ?></span></td>
+
                                             <td>
+                                                <span class=" font-15px ">Rp. <?= number_format($tr['rent_price'], 2, ',', '.'); ?></span>
+                                            </td>
+                                            <td>
+
+                                                <?php
+                                                $date_rent = strtotime($tr['rent_date']);
+                                                $expired =  date('Y-m-d G:i:s', $date_rent + (24 * 3600 * 1));
+                                                ?>
+
                                                 <?php if ($tr['payment_proof'] == "" && $tr['payment_status'] == "0") : ?>
-                                                    <span class=" badge badge-danger font-weight-light py-1 btn-sm ">
+                                                    <span class="date_expired" class="d-none" data-url="<?= base_url('penyewaan/set-expired/') . $tr['rent_id']; ?>" id="date_expired" data-time="<?= date('F d, Y H:i:s', strtotime($expired)) ?>">
+                                                    </span>
+                                                    <span class=" badge badge-warning font-weight-light py-1 btn-sm ">
                                                         Menunggu pembayaran
                                                     </span>
                                                 <?php elseif (!$tr['payment_proof'] == "" && !$tr['payment_status'] == 1) : ?>
@@ -71,26 +81,42 @@
                                                         Pembayaran Selesai
                                                     </span>
                                                 <?php else :  ?>
-                                                    <span class="text-center">--</span>
+                                                    <span class="text-center py-1 badge badge-danger text-capitalize font-weight-light ">
+                                                        <?= $tr['payment_status']; ?>
+                                                    </span>
                                                 <?php endif; ?>
                                             </td>
                                             <td>
                                                 <div class="d-flex  ">
+                                                    <?php if ($tr['payment_status'] == "Expired") : ?>
 
-                                                    <!-- <form action="" method="get"></form> -->
-                                                    <a href="<?= base_url('user/' . $user['user_id'] . '/dashboard/invoice/pembayaran?rentId=') .  $tr['rent_id'] ?>" class="btn btn-secondary btn-sm tooltip--costum ">
-                                                        <i class="fad fa-money-check-edit-alt"></i>
-                                                        <span class="tooltip--item text-white">Cek Pembayaran</span>
-                                                    </a>
+                                                        <a href="<?= base_url('user/' . $user['user_id'] . '/dashboard/transaksi/pembatalan?rentId=') .  $tr['rent_id'] ?>" class="btn btn-secondary btn-sm tooltip--costum ">
+                                                            <i class="fad fa-info"></i>
+                                                            <span class="tooltip--item text-white">Infomasi</span>
+                                                        </a>
 
-                                                    <a href="<?= site_url('transaksi/detail/') . $tr['rent_id'] ?>" class="btn btn-secondary btn-sm tooltip--costum ml-1 ">
-                                                        <i class="fad fa-file-invoice"></i>
-                                                        <span class="tooltip--item text-white">Invoice pesanan</span>
-                                                    </a>
-                                                    <a href="#" class="btn btn-secondary btn-sm ml-1 tooltip--costum">
-                                                        <i class="fad fa-times-octagon "></i>
-                                                        <span class=" tooltip--item  text-white">Batalkan Transaksi</span>
-                                                    </a>
+                                                    <?php else : ?>
+
+                                                        <a href="<?= base_url('user/' . $user['user_id'] . '/dashboard/invoice/pembayaran?rentId=') .  $tr['rent_id'] ?>" class="btn btn-secondary btn-sm tooltip--costum ">
+                                                            <i class="fad fa-money-check-edit-alt"></i>
+                                                            <span class="tooltip--item text-white">Cek Pembayaran</span>
+                                                        </a>
+
+                                                        <?php if ($tr['payment_proof'] != "" && $tr['payment_status'] == 1) : ?>
+                                                            <a href="<?= site_url('transaksi/detail/') . $tr['rent_id'] ?>" class="btn btn-secondary btn-sm tooltip--costum ml-1 ">
+                                                                <i class="fad fa-file-invoice"></i>
+                                                                <span class="tooltip--item text-white">Invoice pesanan</span>
+                                                            </a>
+                                                        <?php endif; ?>
+
+
+                                                        <a href="#" class="btn btn-secondary btn-sm ml-1 tooltip--costum">
+                                                            <i class="fad fa-times-octagon "></i>
+                                                            <span class=" tooltip--item  text-white">Batalkan Transaksi</span>
+                                                        </a>
+
+                                                    <?php endif; ?>
+
                                                 </div>
                                             </td>
                                         </tr>
@@ -139,7 +165,7 @@
                                         </p>
 
 
-                                        <a href="<?= site_url('mobil-kami#daftar-mobil') ?>" class=" btn btn-outline-secondary"> Explore Now </a>
+                                        <a href="<?= site_url('mobil-kami#daftar-mobil') ?>" class=" btn btn-outline-secondary rounded-pill "> Expolore now </a>
 
                                     </div>
                                 </div>

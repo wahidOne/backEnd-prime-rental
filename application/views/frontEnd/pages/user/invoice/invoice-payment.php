@@ -15,7 +15,7 @@
 
             <div class="row mt-4 px-md-3">
 
-                <div class="col-md-7 card-stretch">
+                <div class="col-lg-7 card-stretch">
                     <div class="card card-stretch pt-2 px-2 border-0 shadow-sm rounded-0  pb-3">
 
                         <div class="card-body py-2 pl-1 pl-md-2 pr-md-5 ">
@@ -30,6 +30,7 @@
                                         Pembayaran anda sedang dikonfirmasi
                                     <?php elseif ($payment['payment_proof'] != "" && $payment['payment_status'] == 1) : ?>
                                         Pembayaran anda telah dikonfirmasi
+
                                     <?php endif; ?>
                                 </small>
                             </div>
@@ -51,35 +52,38 @@
                                 <span class=" text-black-50 ">Metode Pembayaran</span>
                                 <span class=" text-capitalize font-w-600 "><?= $payment['payment_method'] ?></span>
                             </div>
-                            <div class="d-flex mt-2 justify-content-between pl-md-1 ">
-                                <span class=" text-black-50 text-capitalize  ">Bank Tujuan</span>
-                                <span class=" font-w-600 "><?= $bank['bank_name'] ?> (<?= $bank['bank_number'] ?>) </span>
-                            </div>
 
                             <div class="d-flex mt-2 justify-content-between pl-md-1 ">
                                 <span class=" text-black-50 text-capitalize  ">Status</span>
                                 <?php if ($payment['payment_proof'] == "" && $payment['payment_status'] == "0") : ?>
-                                    <span class=" text-danger  font-w-600 "> Menunggu pembayaran</span>
+                                    <span class=" text-warning  font-w-600 "> Menunggu pembayaran</span>
                                 <?php elseif (!$payment['payment_proof'] == "" && !$payment['payment_status'] == 1) : ?>
                                     <span class=" text-info font-w-600  "> Menunggu Konfirmasi</span>
                                 <?php elseif ($payment['payment_proof'] != "" && $payment['payment_status'] == 1) : ?>
                                     <span class=" text-success font-w-600">Pembayaran Selesai </span>
+                                <?php else : ?>
+                                    <span class=" text-dark font-w-600">Pembayaran terlambat </span>
                                 <?php endif; ?>
                             </div>
-
-                            <div class="d-flex mt-2 justify-content-between pl-md-1 ">
-                                <span class=" text-black-50 text-capitalize  ">Batas Waktu</span>
-                                <span id="date_expired" data-time="<?= date('l, d m Y H:i:s', strtotime($payment['payment_expired'])) ?>" class="font-w-600">
-                                    <?= date('l, d m Y | H:i:s', strtotime($payment['payment_expired'])) ?>
-                                </span>
-                            </div>
-
-
+                            <?php if ($payment['payment_proof'] == "" && $payment['payment_status'] == "0") : ?>
+                                <div class="d-flex mt-2 justify-content-between pl-md-1 ">
+                                    <span class=" text-black-50 text-capitalize">Batas Waktu</span>
+                                    <span class="date_expired font-w-600 " data-url="<?= base_url('penyewaan/delete/') . $payment['rent_id']; ?>" data-time="<?= date('F d, Y H:i:s', strtotime($payment['payment_expired'])) ?>">
+                                        <?= date('l, d m Y | H:i ', strtotime($payment['payment_expired'])) ?>
+                                    </span>
+                                </div>
+                                <div class="d-flex mt-2 justify-content-between pl-md-1 ">
+                                    <span class=" text-black-50 text-capitalize  ">Sisa Waktu </span>
+                                    <span id="remaining_time" class="font-w-600">
+                                        -
+                                    </span>
+                                </div>
+                            <?php endif; ?>
 
                         </div>
                     </div>
                 </div>
-                <div class="col-md-5 card-stretch">
+                <div class="col-lg-5 card-stretch">
                     <div class="card card-stretch pt-2 border-0 shadow-sm rounded-0 pb-3  ">
 
                         <div class="card-body px-2">
@@ -89,10 +93,9 @@
                                 </span>
 
                             </div>
-                            <p class="px-1 text-black-50 ">
-                                <span>Hay <?= $payment['client_fullname']; ?></span><br>
-                                Jika ada kendala dengan nomor rekening bank tujuan saat melakukan transfer. Anda dapat mengganti nomor rekening bank tujuan dengan yg dibawah ini.
-
+                            <p class="px-1 text-dark ">
+                                Hay<span class="font-19px font-w-600 "> <?= $payment['client_fullname']; ?></span><br>
+                                Ini adalah beberapa no rekening bank yang dapat anda tuju untuk melakukan pembayaran, jika anda menemu beberapa kendala saat pembayaran.
                             </p>
 
                             <div class="d-block bg-white-30 p-2 ">
@@ -110,13 +113,13 @@
 
                 <div class="col-12">
                     <div class="card bg-transparent border-0 table-responsive ">
-                        <table class=" table table-borderless rounded ">
-
+                        <table class=" table table-borderless rounded  ">
                             <thead class=" bg-secondary  rounded rounded-pill text-primary ">
                                 <tr class=" rounded-bottom ">
                                     <td class=" pl-5 py-2 ">Merek</td>
                                     <td class="py-2">Gambar</td>
                                     <td class="py-2">Tipe</td>
+                                    <td class="py-2 text-center ">Kapasitas</td>
                                     <td class="py-2 text-center ">Harga Sewa/ hari</td>
                                 </tr>
                             </thead>
@@ -133,6 +136,9 @@
                                     </td>
                                     <td class="pt-3">
                                         <span class="font-20px"> <?= $car_type['type_name']; ?></span>
+                                    </td>
+                                    <td class="pt-3 text-center">
+                                        <span class="font-20px"> <?= $payment['car_capacity']; ?> Kursi</span>
                                     </td>
                                     <td class="pt-3 text-center ">
                                         <span class=" font-20px ">Rp. <?= number_format($payment['payment_total'], 0, ',', '.'); ?></span>
