@@ -152,7 +152,7 @@
 
                         <div class="card border-0 shadow-none px-2">
                             <div class="d-flex">
-                                <button type="submit" class=" text-center btn-lg py-2 text-primary btn btn-secondary ml-auto ">
+                                <button type="submit" class=" text-center btn-lg py-1 text-primary btn btn-secondary ml-auto ">
                                     Selanjutnya <i class=" fad fa-arrow-right "> </i>
                                 </button>
                             </div>

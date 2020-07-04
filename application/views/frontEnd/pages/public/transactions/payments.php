@@ -25,25 +25,50 @@
                         <input type="hidden" value="<?= $invoice['rent_total'] ?>" name="total_price">
                         <input type="hidden" value="<?= $invoice['rent_driver_price']; ?>" name="driver_price">
                         <input type="hidden" value="<?= $invoice['days'] ?>" name="rent_time">
-                        <input type="hidden" value="ATM Transfer" name="pay_menthod">
+                        <input type="hidden" value="BANK TRANSFER" name="pay_menthod">
                         <!-- <input type="hidden" value="<?= $car['car_price'] ?>" name="car_price"> -->
-                        <div class="card border-0 shadow-none">
-                            <div class="card-body text-secondary">
-                                <p class="card-title font-42px">Pembayaran</p>
-                                <div class="form-group row mt-3"><label for="method_payment" class="col-sm-4 col-form-label">Metode</label>
-                                    <div class="col-sm-8 my-auto  d-flex justify-content-between ">
-                                        <div>
-                                            <span class=" btn btn-secondary ">
-                                                <i class="fas text-white fa-credit-card-front  fa-fw mr-1"></i>
-                                                ATM
-                                            </span>
-                                        </div>
+                        <div class="card border-0 shadow-none mt-4">
+                            <p class="card-title font-30px font-w-600 text-uppercase mb-0 ">Metode Pembayaran</p>
+                            <hr class="mb-0">
+                            <div class="card-body text-secondary  text-secondary mt-2 ">
+                                <div class="row pl-2 font-23px ">
+                                    <div class="col-1">
+                                        <i class="fas fa-dot-circle text-secondary-50  "></i>
+                                    </div>
+                                    <div class="col-auto">
+                                        <span class=" font-w-600 ">Bank Transfer</span><br><br>
+                                    </div>
+                                    <div class="col-1 ml-auto ">
                                         <span data-toggle="tooltip" data-placement="left" class="ml-auto" title="Maaf Metode pembayaran kami belum banyak">
-                                            <i class=" fas fa-question-circle "></i>
+                                            <i class=" fas fa-question-circle text-secondary "></i>
                                         </span>
                                     </div>
                                 </div>
-                                <div class="form-group row mt-3">
+                                <div class="row pl-3">
+                                    <div class="col-12">
+                                        Daftar Bank yang dapat dituju anda untuk melakukan transfer
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="row mt-2">
+                                            <?php foreach ($bank as $b) :  ?>
+                                                <div class="col-md-6 mt-2 ">
+                                                    <div class="card  card-body pb-1">
+                                                        <h5><?= $b['bank_name']; ?></h5>
+                                                        <p class=" text-secondary-50 ">
+                                                            <?= $b['bank_number']; ?>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!--  -->
+                            </div>
+
+                            <!-- <div class="form-group row mt-3">
                                     <label for="date_end" class="col-sm-4 col-form-label">Bank Tujuan</label>
 
                                     <div class="col-sm-8">
@@ -56,47 +81,14 @@
                                         </select>
 
                                     </div>
-                                </div>
+                                </div> -->
 
-                            </div>
+
                         </div>
 
 
 
-                        <div class="card border-0 shadow-none">
-                            <div class="card-body text-secondary">
-                                <p class="card-title font-42px">Info Sewa</p>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="card card-body d-flex flex-row align-items-center justify-content-around shadow-sm ">
-                                            <div class="">
-                                                <i class="fas fa-sign-in-alt fa-2x"></i>
-                                            </div>
-                                            <div class="my-auto mt-2">
-                                                <p class=" font-w-600 text-dark mb-0 font-13px ">Tanggal Mulai</p>
-                                                <p class=" text-black-50 font-20px ">
-                                                    <?= date("F d, Y", strtotime($invoice['rent_date_start'])); ?>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="card card-body bg-secondary  d-flex flex-row  align-items-center justify-content-around ">
-                                            <div class=" ">
-                                                <i style="transform: scaleX(-1);" class="fas fa-sign-out-alt text-primary fa-2x"></i>
-                                            </div>
-                                            <div class="my-auto mt-2 d-flex justify-content-center flex-column">
-                                                <p class=" font-w-600 text-primary mb-0 font-13px ">Tanggal Berakhir</p>
-                                                <p class=" text-primary-70 font-20px ">
-                                                    <?= date("F d, Y", strtotime($invoice['rent_date_start'])); ?>
-                                                </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
 
-                        </div>
 
 
                     </div>
@@ -127,23 +119,8 @@
                                     </tfoot>
                                 </table>
                             </div>
-                            <div class="card-body pt-0">
-                                <p class="card-title font-16px text-black-50 text-uppercase font-weight-bold ">Info</p>
-                                <div class="d-flex flex-column mb-2">
-                                    <p class=" text-black-50 ">
-                                        Untuk pembayaran anda dapet ditransfer melalui no berikut
-                                    </p>
 
-                                    <div id="info-banking" class="row px-2 ">
-                                        <div id="bank-name" class=" col-auto font-20px text-info ">
-                                            <span class="text-blank-50 text-danger font-15px ">*Silahkan pilih bank Tujuan!</span>
-                                        </div>
-                                        <div id="no-bank" class=" text-left font-20px col-auto col-offset-5 text-info ">
-                                            <span class="text-black-50   text-left "></span>
-                                        </div>
-
-                                    </div>
-                                </div>
+                            <div class="card-body">
                                 <div class="d-flex bg-white-30 px-2 pt-1 align-items-center justify-content-center flex-column">
                                     <p class="text-center text-uppercase font-20px mb-0 "><?= date("l"); ?></p>
                                     <p class="mt-1 ">
@@ -155,12 +132,12 @@
 
                         <div class="row mt-4">
                             <div class="col-6">
-                                <a href="<?= base_url('batalkan-transaksi?rentid=') . $invoice['rent_id'] . "&userid=" . $user['user_id']  ?>" class="btn btn-block btn-lg btn-outline-danger ">
+                                <a href="<?= base_url('batalkan-transaksi?rentid=') . $invoice['rent_id'] . "&userid=" . $user['user_id']  ?>" class="btn btn-block btn-lg btn-outline-secondary ">
                                     Batalkan
                                 </a>
                             </div>
                             <div class="col-6">
-                                <button disabled id="btn-submit" type="submit" class=" btn-block text-wrap  btn btn-success  btn-lg ">
+                                <button type="submit" class=" btn-block text-wrap  btn btn-secondary  btn-lg ">
                                     <span class=" my-auto ">Sewa Sekarang</span>
                                 </button>
                             </div>
