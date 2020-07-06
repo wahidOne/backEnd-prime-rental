@@ -7,7 +7,6 @@ class Transactions extends CI_Controller
     public $public = [
         "templates" => "frontEnd/templates/public/",
         "pages" => "frontEnd/pages/public/"
-
     ];
 
     public function index()
@@ -384,7 +383,6 @@ class Transactions extends CI_Controller
             $dataRental['rent_total_price'] = $rentTotal;
 
             $data['rental'] = $dataRental;
-            $data['bank'] = $this->M_public->getDataWhere("bank", ['bank_id' => $dataRental['payment_bank_id']])->row_array();
             $data['client'] = $this->M_clients->checkClient(['client_user_id' => $user_id])->row_array();
             $data['user'] = $user;
 

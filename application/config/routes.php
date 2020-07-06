@@ -80,6 +80,8 @@ $route['user/(:any)/dashboard/transaksi/pembatalan']['GET'] = 'frontend/public/U
 $route['user/(:any)/dashboard/invoice/pembayaran']['GET'] = 'frontend/public/User/invoicePayment';
 $route['transaksi/detail/(:any)'] = 'frontend/public/User/userDetailTransaction/$1';
 
+$route['user/(:any)/dashboard/load-inbox']["GET"] = 'frontend/public/Inbox/loadInbox';
+
 $route['autentifikasi/login'] = 'frontend/auth/frontAuth/index';
 $route['autentifikasi/registrasi'] = 'frontend/auth/frontAuth/registrasi';
 $route['autentifikasi/logout'] = 'frontend/auth/frontAuth/logout';
@@ -162,7 +164,11 @@ $route['administrator/users/del-customer/(:num)'] = 'admin/dashboard/Users/delet
 // Transaction
 $route['administrator/transaction/rent'] = 'admin/dashboard/Transaction/rental';
 $route['administrator/transaction/load-rent'] = 'admin/dashboard/Transaction/loadRentalData';
-$route['administrator/transaction/get-rent/(:num)'] = 'admin/dashboard/Transaction/getRental/$1';
+$route['administrator/transaction/get-rent/(:any)'] = 'admin/dashboard/Transaction/getRental/$1';
+
+$route['administrator/transaction/check-payment']['GET'] = 'admin/dashboard/Transaction/checkPayment';
+$route['administrator/transaction/download-payment-proof/(:any)'] = 'admin/dashboard/Transaction/downloadPaymentProof/$1';
+$route['administrators/transaction/confirm-payment'] = 'admin/dashboard/Transaction/confirmPayment';
 
 
 $route['administrator/rental'] = 'admin/demo/Rental/index';

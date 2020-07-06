@@ -1,18 +1,20 @@
+// import Axios from "axios";
+
 export const detailRental = (url) => {
+	$("#detail-modal").modal(
+		{
+			backdrop: "static",
+			keyboard: false,
+		},
+		"show"
+	);
+
 	return $.ajax({
 		type: "GET",
 		url: url,
 		async: true,
 		dataType: "json",
 		success: function (response) {
-			$("#detail-modal").modal(
-				{
-					backdrop: "static",
-					keyboard: false,
-				},
-				"show"
-			);
-
 			loadingModal();
 
 			const container = document.querySelector("#container-modal");
@@ -23,6 +25,9 @@ export const detailRental = (url) => {
 			setTimeout(() => {
 				container.innerHTML = containData;
 			}, 400);
+		},
+		error: function (err) {
+			console.log(err);
 		},
 	});
 };
@@ -130,7 +135,6 @@ const loadingModal = () => {
 	let container = "";
 
 	const containerModal = document.querySelector("#container-modal");
-	console.log(containerModal);
 
 	container += `
 	<div  style="height: 40vh; " class="d-flex justify-content-center align-items-center flex-column ">

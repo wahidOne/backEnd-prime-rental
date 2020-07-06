@@ -22,6 +22,7 @@
     <!-- Layout styles -->
     <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>css/demo_2/style.css">
     <!-- plugin css for this page -->
+    <link rel="stylesheet" href="<?= base_url('assets/global-plugins/'); ?>summernote/summernote-bs4.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>vendors/jquery-tags-input/jquery.tagsinput.min.css">
     <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>vendors/DataTables/css/datatables.bootstrap4.min.css">
 
