@@ -77,7 +77,7 @@
                                                         Menunggu Konfirmasi
                                                     </span>
                                                 <?php elseif ($tr['payment_proof'] != "" && $tr['payment_status'] == 1) : ?>
-                                                    <span class=" badge badge-info font-weight-light py-1 btn-sm ">
+                                                    <span class=" badge badge-success font-weight-light py-1 btn-sm ">
                                                         Pembayaran Selesai
                                                     </span>
                                                 <?php else :  ?>

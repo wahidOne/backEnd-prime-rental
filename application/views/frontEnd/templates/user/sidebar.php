@@ -1,6 +1,6 @@
-<div class="dashboard--sidebar pt-2 pb-3">
+<div class="dashboard--sidebar pt-2 pb-3" data-loadinbox="<?= base_url('user/' . $user['user_id']  . '/dashboard/load-inbox') ?>">
     <a class="sidebar--toggle mb-2 " href="javascript:void(0)">
-        <i class="fad  fa-toggle-on "></i>
+        <i class="fad fa-toggle-on"></i>
     </a>
     <div class="sidebar--account mx-auto px-3 d-flex flex-row ">
         <div class="sidebar--ava">
@@ -20,7 +20,15 @@
         <li class="nav-item">
             <a class="nav-link <?= $this->uri->segment(4) == 'transaksi-saya' ? "active" : '' ?> " href="<?= site_url('user/' . $user['user_id'] . '/dashboard/transaksi-saya') ?>"><i class="fad fa-fw fa-handshake"></i> <span class="ml-md-1">Transaksi</span></a></li>
         <li class="nav-item">
-            <a class="nav-link <?= $this->uri->segment(4) == 'inbox' ? "active" : '' ?> " href="<?= site_url('user/' . $user['user_id'] . '/dashboard/inbox') ?>"><i class="fad fa-fw fa-inbox-in"></i> <span class="ml-md-1">Inbox </span> <small id="sidebar-inbox" class="badge badge-secondary text-white mt-n3 ml-1 position-absolute ">0</small> </a></li>
+            <a class="nav-link <?= $this->uri->segment(4) == 'inbox' ? "active" : '' ?> " href="<?= site_url('user/' . $user['user_id'] . '/dashboard/inbox') ?>">
+                <i class="fad fa-fw fa-inbox-in"></i>
+                <span class="ml-md-1">
+                    Inbox
+
+                </span>
+                <kbd data-userid="<?= $user['user_id'] ?>" id="bagde-sidebar-inbox" class="sidebar-link-notif">0</kbd>
+            </a>
+        </li>
         <hr class="sidebar--devider mt-2 mb-1">
         <li class="nav-item"><a class="nav-link" href="<?= site_url('autentifikasi/logout') ?>"><i class="fad fa-fw fa-sign-out"></i> <span class="ml-md-1">Logout</span></a></li>
     </ul>

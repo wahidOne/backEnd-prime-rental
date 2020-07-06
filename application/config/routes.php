@@ -81,6 +81,7 @@ $route['user/(:any)/dashboard/invoice/pembayaran']['GET'] = 'frontend/public/Use
 $route['transaksi/detail/(:any)'] = 'frontend/public/User/userDetailTransaction/$1';
 
 $route['user/(:any)/dashboard/load-inbox']["GET"] = 'frontend/public/Inbox/loadInbox';
+$route['user/(:any)/dashboard/inbox'] = 'frontend/public/Inbox/viewInbox';
 
 $route['autentifikasi/login'] = 'frontend/auth/frontAuth/index';
 $route['autentifikasi/registrasi'] = 'frontend/auth/frontAuth/registrasi';

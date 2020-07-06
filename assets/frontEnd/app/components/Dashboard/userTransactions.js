@@ -45,9 +45,6 @@ class UserTransaction {
 						}
 
 						const urlSetExpired = e.dataset.url;
-
-						console.log(urlSetExpired);
-
 						if (distance < 0) {
 							checkExpiredPay.stop(timer);
 
