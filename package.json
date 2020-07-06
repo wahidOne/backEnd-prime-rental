@@ -5,7 +5,9 @@
 	"main": "index.js",
 	"scripts": {
 		"build": "webpack --config webpack.prod.js",
-		"test": "webpack --watch --config webpack.config.js --info-verbosity verbose"
+		"test": "webpack --watch --config webpack.config.js --info-verbosity verbose",
+		"back": "webpack --watch --config webpack.backend.config.js --info-verbosity verbose",
+		"front": "webpack --watch --config webpack.frontEnd.config.js --info-verbosity verbose"
 	},
 	"keywords": [],
 	"author": "",
