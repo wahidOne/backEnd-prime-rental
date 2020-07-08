@@ -1,11 +1,16 @@
 import Axios from "axios";
 import CheckExpired from "./checkExpired";
 
+import * as HandleAlert from "./_handleAlert";
+import Inbox from "./Inbox";
+
 class UserTransaction {
 	constructor() {
 		this.dateExpired = document.getElementsByClassName("date_expired");
 		this.remainingTime = document.querySelector("#remaining_time");
 		this.alertContainer = [];
+
+		this.formConfirmData = document.querySelector("#formConfirmData");
 	}
 
 	render() {
@@ -19,6 +24,9 @@ class UserTransaction {
 		});
 
 		this.checkStatusPay();
+		this.confirmData();
+
+		HandleAlert.handleAllAlert();
 	}
 
 	checkStatusPay() {
@@ -28,8 +36,6 @@ class UserTransaction {
 			const eExp = [...elementExpired];
 			eExp.map((e) => {
 				const checkExpiredPay = new CheckExpired(e);
-
-				// data.start();
 
 				const timer = setInterval(() => {
 					checkExpiredPay.countRemeaning().then((res) => {
@@ -47,10 +53,22 @@ class UserTransaction {
 						const urlSetExpired = e.dataset.url;
 						if (distance < 0) {
 							checkExpiredPay.stop(timer);
-
 							Axios.get(urlSetExpired)
 								.then(function (response) {
-									console.log(response);
+									const {
+										status,
+										url_send_inbox,
+										result,
+										domain,
+									} = response.data;
+
+									if (status == true) {
+										new Inbox().autoSendInboxOrderDecline(
+											domain,
+											url_send_inbox,
+											result
+										);
+									}
 								})
 								.catch(function (error) {
 									// handle error
@@ -59,6 +77,38 @@ class UserTransaction {
 						}
 					});
 				}, 1000);
+			});
+		}
+	}
+
+	confirmData() {
+		if (this.formConfirmData) {
+			$("#formConfirmData").validate({
+				rules: {
+					client_ID_num: {
+						number: true,
+						min: 13,
+						required: true,
+					},
+				},
+				messages: {
+					client_ID_num: {
+						required: "Lengkapi kolom diatas!",
+					},
+				},
+				errorPlacement: function (label, element) {
+					// if (element[0].id == "client_file_IDcard") {
+					// 	const colElement = element[0].parentElement.parentElement;
+					// 	label.addClass("mt-1 text-danger");
+					// 	label.insertAfter(colElement);
+					// } else {
+					label.addClass("mt-1 text-danger");
+					label.insertAfter(element);
+					// }
+				},
+				submitHandler: function (form) {
+					form.submit();
+				},
 			});
 		}
 	}

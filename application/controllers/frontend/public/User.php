@@ -265,13 +265,21 @@ class User extends CI_Controller
 
     public function invoicePayment()
     {
+
+
+
         if ($this->session->userdata('primerental_user') != NULL) {
             $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']]);
             if ($user->num_rows() > 0) {
                 $user = $user->row_array();
 
                 $rent_id = $this->input->get('rentId');
+
                 $payment = $this->M_trans->getTransactionsWithPayment(['payment_rental_id' => $rent_id])->row_array();
+
+                if (!$payment) {
+                    redirect('user/ ' . $user['user_id']  . '/dashboard/transaksi-saya');
+                }
 
                 if ($payment['payment_status'] == "Expired") {
                     redirect('user/ ' . $user['user_id']  . '/dashboard/transaksi/pembatalan?rentId=' . $payment['rent_id']);
@@ -330,7 +338,15 @@ class User extends CI_Controller
                 $user = $user->row_array();
 
                 $rent_id = $this->input->get('rentId');
-                $payment = $this->M_trans->getTransactionsWithPayment(['payment_rental_id' => $rent_id])->row_array();
+                $payment = $this->M_trans->getTransactionsWithPayment(['payment_rental_id' => $rent_id]);
+
+                if ($payment) {
+                    $payment->row_array();
+                } else {
+                    set_frontflashmessage("info", "Pesanan sudah dibatalkan", "sepertinya pesanan ini sudah dibatalkan");
+                    redirect('user/' . $user['user_id'] . '/dashboard/transaksi-saya');
+                }
+
 
                 $date_rent = strtotime($payment['rent_date']);
                 $expired =  date('Y-m-d G:i:s', $date_rent + (24 * 3600 * 1));
@@ -373,5 +389,125 @@ class User extends CI_Controller
         // $this->load->view($views .  "invoice/invoice-payment", $data);
         $this->load->view($views .  "transactions/info-reject", $data);
         $this->load->view($templatesPath .  "end", $data);
+    }
+
+    public function confirmClienData()
+    {
+        if ($this->session->userdata('primerental_user') != NULL) {
+            $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']]);
+            if ($user->num_rows() > 0) {
+                $user = $user->row_array();
+
+
+
+                $user_id = $this->uri->segment(2);
+
+                $rent_id = $this->input->get('rent_id');
+
+                $payment = $this->M_trans->getTransactionsWithPayment(['payment_rental_id' => $rent_id])->row_array();
+
+                if ($payment['rent_order_status'] == 1) {
+                    $success['title'] = "";
+                    $success['text'] = "Anda telah melengkapi data diri anda";
+                    $this->session->set_flashdata('info', $success);
+                    redirect('user/' .  $user_id . '/dashboard/transaksi-saya');
+                }
+
+
+                if ($payment['payment_proof'] == "" && $payment['payment_status'] == 0) {
+                    redirect('user/' . $user_id . '/dashboard/transaksi-saya');
+                } elseif ($payment['payment_proof'] != "" && $payment['payment_status'] == 0) {
+                    redirect('user/' . $user_id . '/dashboard/transaksi-saya');
+                }
+                $data['client'] =  $this->M_clients->checkClient(['client_user_id' => $user_id])->row_array();
+                $data['payment'] = $payment;
+                $data['user'] = $user;
+            } else {
+                $data['user'] = [];
+            }
+        } else {
+            $this->session->set_flashdata('auth-info', 'Silahkan login terlebih dahulu! untuk mengakses halamannya');
+            redirect('autentifikasi/login');
+        }
+
+        $data['title'] = "Konfirmasi Data Diri";
+        $templatesPath  = $this->public['templates'];
+        $views  = $this->public['pages'];
+
+        $data['componentPath'] = $views . "components/";
+
+
+        $this->load->view($templatesPath .  "header", $data);
+        $this->load->view($templatesPath .  "sidebar", $data);
+        $this->load->view($templatesPath .  "topbar", $data);
+        $this->load->view($views .  "transactions/form-confirm-clientdata", $data);
+        $this->load->view($templatesPath .  "end", $data);
+    }
+
+    public function addConfirmClientData()
+    {
+        $files = $_FILES['files']['name'];
+        $no_ktp = $this->input->post('client_ID_num');
+
+        $user_id = $this->input->post('user_id');
+        $rent_id = $this->input->post('rent_id');
+
+        $client = $this->M_clients->checkClient(['client_user_id' => $user_id])->row_array();
+
+
+
+        if ($this->input->post('old_files', TRUE)) {
+            $old_files = $this->input->post('old_files', TRUE);
+        } else {
+            $old_files = null;
+        }
+
+        if ($files) {
+            $config['upload_path']          = './assets/uploads/client-files/';
+            $config['allowed_types']        = 'gif|jpg|png|jpeg';
+            $config['file_name']            = 'FOTOKTP-' . $client['client_id'] . "-" . date("Ymd");
+            $config['overwrite']            = true;
+
+            $this->load->library('upload', $config);
+
+            if ($this->upload->do_upload('files')) {
+                if ($old_files != null) {
+                    if ($old_files != $files) {
+                        unlink(FCPATH . './assets/uploads/client-files/' . $old_files);
+                    }
+                }
+
+                $new_file = $this->upload->data('file_name');
+            } else {
+                if ($old_files != null) {
+                    $new_file = $old_files;
+                } else {
+                    redirect('user/' .  $user_id . '/dashboard/konfirmasi-data-diri?rent_id=' . $rent_id);
+                }
+            }
+        }
+
+        $clientUpdateData = [
+            'client_ID_num' => $no_ktp,
+            'client_IDcard_img' => $new_file,
+        ];
+
+        $updateOrderStatus = [
+            'rent_order_status' => 1
+        ];
+
+        $this->M_public->updateData(['client_id' => $client['client_id']], 'clients', $clientUpdateData);
+        $this->M_public->updateData(['rent_id' => $rent_id], 'rental_trans', $updateOrderStatus);
+
+        // $this->db->where('user_id', $user_id);
+
+        $success['title'] = "Berhasil menginput data";
+        $success['text'] = "Anda telah melengkapi data diri anda";
+
+        // $flash['success'] = $success;
+
+        $this->session->set_flashdata('success', $success);
+
+        redirect('user/' .  $user_id . '/dashboard/transaksi-saya');
     }
 }

@@ -2,6 +2,8 @@ import Profile from "./Profile";
 import UserTransaction from "./userTransactions";
 import Inbox from "./Inbox";
 
+import * as HandleFileUploadUI from "./_handleUIFileUpload";
+
 class Dashboard {
 	constructor() {
 		this.sidebar = document.querySelector(".dashboard--sidebar");
@@ -16,6 +18,8 @@ class Dashboard {
 		const urlLoadInbox = sidebar.dataset.loadinbox;
 
 		new Inbox(badgeLinkInboxSidebar, urlLoadInbox).render();
+
+		HandleFileUploadUI.handleDropifyFile();
 	}
 }
 

@@ -15,7 +15,7 @@
         <div class="container-fluid px-md-2">
             <div class="row mt-3">
                 <div class="col-md-8 mx-auto text-center">
-                    <p class=" font-6 font-w-600 text-secondary "> TERIMA KASIH</p>
+                    <p class=" font-22px font-md-6 font-w-600 text-secondary text-uppercase ">Pesanan DiTerima</p>
                     <br>
                     <p class=" text-dark font-18px ">
                         Hay Unit <br>
@@ -30,7 +30,7 @@
                     <div class=" text-center mb-1 ">
                         <i class="fas text-info fa-clock"></i>
                         <span>
-                            Tanggal pesan : <?= date("l, d m y | h:i A", strtotime($rental['rent_date'])); ?>
+                            Tanggal Pemesanan : <?= date("l, d m y | h:i A", strtotime($rental['rent_date'])); ?>
                         </span>
                     </div>
                 </div>
@@ -78,18 +78,18 @@
                     <div class=" d-flex justify-content-center flex-column align-items-center ">
                         <img height="100" src="<?= base_url('assets/uploads/cars/') . $rental['car_photo']  ?>" class="img-fluid mx-auto " alt="">
                         <p class=" mt-1 font-w6-00 font-md-25px text-center text-black text-uppercase mb-0"><?= $rental['car_brand']; ?></p>
-                        <p class="font-19px font-md-5 text-center text-dark font-w-600 ">Rp. <?= number_format($rental['car_price'], 0, ',', '.'); ?> / Hari</p>
+                        <p class="font-19px font-lg-5 text-center text-dark font-w-600 ">Rp. <?= number_format($rental['car_price'], 0, ',', '.'); ?> / Hari</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="d-block text-right">
+                    <div class="d-block text-md-right ">
                         <p class=" font-20px mb-0 font-w-600 ">Tanggal Mulai </p>
                         <p class=" d-flex flex-column ">
                             <span><?= date('l d, m Y', strtotime($rental['rent_date_start'])); ?></span>
 
                         </p>
                     </div><br>
-                    <div class="d-block text-right">
+                    <div class="d-block text-md-right">
                         <p class=" font-20px mb-0 font-w-600 ">Metode Pembayaran </p>
                         <p class=" d-flex flex-column ">
                             <span><?= date('l d, m Y', strtotime($rental['rent_date_end'])); ?></span>
@@ -115,7 +115,7 @@
                         <input type="hidden" name="rent_id" value="<?= $rental['rent_id'] ?>">
                         <input type="hidden" name="price" value="<?= $rental['rent_total_price'] ?>">
                         <button type="submit" class="btn btn-secondary btn-lg text-capitalize text-primary text-center ">
-                            <i class="fas fa-check-double fa-fw mr-1"></i> Checkout
+                            <i class="fas fa-check-double fa-fw mr-1"></i> Upload Bukti Pembayaran
                         </button>
                     </form>
                 </div>

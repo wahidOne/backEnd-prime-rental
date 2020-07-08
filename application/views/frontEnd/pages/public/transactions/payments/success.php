@@ -22,11 +22,11 @@
                                 <i class="far fa-times fa-2x text-dark "></i>
                             </a>
                             <i class="far fa-check-circle  text-success fa-5x "></i>
-                            <p class=" font-18px font-w-600 font-arial font-md-30px text-success mt-3 ">Pembayaran Berhasil!</p>
+                            <p class=" font-18px font-w-600 font-arial font-md-30px text-success mt-3 ">Upload Berhasil!</p>
 
                         </div>
                         <div class="d-flex  px-md-4 mt-2 flex-column align-items-center justify-content-center ">
-                            <p class=" text-dark font-md-25px font-w-400 text-center ">Terima Kasih atas pembayarannya</p>
+                            <p class=" text-dark font-md-25px font-w-400 text-center ">Upload bukti pembayaran anda berhasil.</p>
                             <p class=" font-md-15px text-center ">Untuk Konfirmasi dari kami, kami akan mengirimnya melalui <span class=" font-w-500 "> <?= $user['user_email']; ?> </span> atau inbox anda</p>
 
                         </div>
@@ -65,10 +65,7 @@
                                 </tbody>
 
                             </table>
-                            <a href="" class="btn btn-success w-75 btn-lg mt-3 mx-auto ">
-                                <i class="fad fa-print mr-1 "></i>
-                                Print
-                            </a>
+
                         </div>
 
                     </div>

@@ -77,11 +77,16 @@ $route['profile/upload-gambar'] = 'frontend/public/User/uploadImage';
 // $route['transaksi'] = 'frontend/public/User/transactions';
 $route['user/(:any)/dashboard/transaksi-saya'] = 'frontend/public/User/transactions';
 $route['user/(:any)/dashboard/transaksi/pembatalan']['GET'] = 'frontend/public/User/infoReject';
+$route['user/(:any)/dashboard/transaksi/konfirmasi-pembatalan'] = 'frontend/public/Transactions/confirmCancel';
+$route['user/(:any)/dashboard/transaksi/konfirmasi-data-diri']['GET'] = 'frontend/public/User/confirmClienData';
+$route['user/(:any)/dashboard/transaksi/tambah-konfirmasi-data-diri'] = 'frontend/public/User/addConfirmClientData';
 $route['user/(:any)/dashboard/invoice/pembayaran']['GET'] = 'frontend/public/User/invoicePayment';
 $route['transaksi/detail/(:any)'] = 'frontend/public/User/userDetailTransaction/$1';
 
 $route['user/(:any)/dashboard/load-inbox']["GET"] = 'frontend/public/Inbox/loadInbox';
+$route['user/(:any)/dashboard/send-inbox'] = 'frontend/public/Inbox/addInbox';
 $route['user/(:any)/dashboard/inbox'] = 'frontend/public/Inbox/viewInbox';
+$route['user/(:any)/dashboard/inbox/(:any)'] = 'frontend/public/Inbox/detail/$2';
 
 $route['autentifikasi/login'] = 'frontend/auth/frontAuth/index';
 $route['autentifikasi/registrasi'] = 'frontend/auth/frontAuth/registrasi';

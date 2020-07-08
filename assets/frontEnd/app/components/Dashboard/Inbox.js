@@ -10,15 +10,15 @@ class Inbox {
 		this.inboxContentUnread = document.querySelector("#inbox-contentunread");
 
 		this.urlLoad = url;
-
-		this.linkTabInbox = document.getElementsByName(".");
 	}
 
 	loadInboxSidebar(url, badge) {
 		Axios.get(url)
 			.then(function (response) {
 				const inbox = response.data.inbox;
-				handleNotif(inbox, badge);
+				if (inbox != false) {
+					handleNotif(inbox, badge);
+				}
 			})
 			.catch(function (error) {
 				// handle error
@@ -30,35 +30,53 @@ class Inbox {
 		const inboxContent = this.inboxContent;
 		const inboxContentUnread = this.inboxContentUnread;
 
-		Axios.get(url)
-			.then((res) => {
-				const inbox = res.data.inbox;
-				const user = res.data.user;
+		if (inboxContentUnread && inboxContent) {
+			Axios.get(url)
+				.then((res) => {
+					const inbox = res.data.inbox;
+					const user = res.data.user;
 
-				let containerInbox = "";
-				let containerInboxUnread = "";
+					let containerInbox = "";
+					let containerInboxUnread = "";
 
-				inbox.map((i) => {
-					const sender = user.filter((e) => e.user_email == i.inbox_from);
+					let sender;
 
-					const domain = inboxContent.dataset.domain;
+					if (inbox.length > 0) {
+						inbox.map((i) => {
+							// const sender = user.filter((user) => {
+							// 	const test = user.user_email == i.inbox_from;
+							// 	console.log(test);
+							// });
 
-					containerInbox += handleInbox.displayList(i, sender, domain);
+							if (user.length > 0) {
+								sender = user.filter((e) => e.user_email == i.inbox_from);
 
-					if (i.inbox_status == 0) {
-						containerInboxUnread += handleInbox.displayList(i, sender, domain);
-						inboxContentUnread.innerHTML = containerInboxUnread;
+								const domain = inboxContent.dataset.domain;
+								containerInbox += handleInbox.displayList(i, sender, domain);
+
+								if (i.inbox_status == 0) {
+									sender = user.filter((e) => e.user_email == i.inbox_from);
+									const domain = inboxContent.dataset.domain;
+									containerInboxUnread += handleInbox.displayList(
+										i,
+										sender,
+										domain
+									);
+									inboxContentUnread.innerHTML = containerInboxUnread;
+								}
+
+								inboxContent.innerHTML = containerInbox;
+							}
+						});
 					}
+				})
+				.catch((err) => console.log(err))
+				.then(function () {
+					const subject = inboxContent.getElementsByClassName("inbox__subject");
 
-					inboxContent.innerHTML = containerInbox;
+					handleInbox.handleSortSubject(subject);
 				});
-			})
-			.catch((err) => console.log(err))
-			.then(function () {
-				const subject = inboxContent.getElementsByClassName("inbox__subject");
-
-				handleInbox.handleSortSubject(subject);
-			});
+		}
 	}
 
 	render() {
@@ -71,6 +89,48 @@ class Inbox {
 		}, 1000);
 
 		this.getInbox(loadurl);
+	}
+
+	autoSendInboxOrderDecline(domain, url, order) {
+		const { rent_id } = order;
+
+		let inboxTextContainer = "";
+
+		// console.log(order);
+		// console.log(rent_id);
+
+		inboxTextContainer += handleInbox.inboxTextTemplateOrderDecline(
+			order,
+			domain
+		);
+
+		const subject = `no pesanan ${rent_id} telah dibatalkan secara otomatis`;
+		const title = `Pembatalan transaksi `;
+		const inbox_to = `${order.user_id}`;
+		const inbox_from = "primerental@gmail.com";
+
+		const data = {
+			inbox_subject: subject,
+			inbox_to: inbox_to,
+			inbox_from: inbox_from,
+			inbox_text: inboxTextContainer,
+			inbox_title: title,
+			// rent_id: rent_id.value,
+		};
+
+		// console.log(data);
+
+		const config = {
+			headers: {
+				"Content-Type": "application/json",
+			},
+		};
+
+		Axios.post(url, JSON.stringify(data), config)
+			.then((res) => {
+				console.log(res);
+			})
+			.catch((err) => console.log(err));
 	}
 }
 

@@ -200,3 +200,15 @@ function TanggalIndonesia($date)
     // $tanggalIndonesia =  $hari . ", " . $tgl . " " . $bln . " " . $thn;
     return $tanggalIndonesia;
 };
+
+function set_frontflashmessage($name, $title, $text)
+{
+    $ci = get_instance();
+
+    $data = [
+        'title' => $title,
+        'text' => $text,
+    ];
+
+    $ci->session->set_flashdata($name, $data);
+}

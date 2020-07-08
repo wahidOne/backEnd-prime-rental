@@ -158,12 +158,12 @@ class Transactions extends CI_Controller
                     'rent_fine' => "-",
                     "rent_type" => 1,
                     "rent_service" => $rental_service,
-                    "rent_date" => date('Y-m-d h:i:s A', time()),
+                    "rent_date" => date('Y-m-d G:i:s ', time()),
                     "rent_date_start" => $date_start,
                     "rent_date_end" => $date_end,
                     'rent_return_status' => "-",
                     'rent_status' => "belum selesai",
-                    'rent_pay_status' => 0,
+                    'rent_order_status' => 0,
                     "rent_city" => $city,
                     "rent_city_destin" => $destination,
                     'rent_price' => $total_price,
@@ -176,31 +176,6 @@ class Transactions extends CI_Controller
                 ];
 
                 if ($statusInputDataClients) {
-
-                    // $upload_IDcard_image = $_FILES['IDcard_img']['name'];
-
-                    // if ($upload_IDcard_image) {
-                    //     $config['upload_path']          = './assets/uploads/client-IDcard/';
-                    //     $config['allowed_types']        = 'gif|jpg|png|jpeg';
-                    //     $config['file_name']            = 'fotoKTP-' . $client_id . "-" . date('dmY', time());
-                    //     $config['overwrite']            = true;
-
-                    //     $this->load->library('upload', $config);
-
-                    //     if ($this->upload->do_upload('IDcard_img')) {
-
-
-                    //         $clientIDcard_img = $this->upload->data('file_name');
-                    //     } else {
-                    //         $this->session->set_flashdata('error-date', 'Ada kesalahan saat upload foto KTP anda!');
-                    //         redirect($fullURL);
-                    //     }
-                    // } else {
-                    //     $this->session->set_flashdata('error-date', 'Silahkan upload foto KTP anda!');
-                    //     redirect($fullURL);
-                    // }
-
-
                     $data_insert_to_table_clients = [
                         'client_id' => $client_id,
                         'client_fullname' => $this->input->post('client_name'),
@@ -572,80 +547,6 @@ class Transactions extends CI_Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    public function receipt_transactions()
-    {
-
-        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']])->row_array();
-
-        if (!$this->session->userdata('receipt')) {
-            if (!$user) {
-                $this->session->set_flashdata('auth-error', 'Akses ditolak, silahkan login dulu!');
-                redirect('autentifikasi/login');
-            } else {
-                redirect('user/' . $user['user_id'] . '/dashboard/transaksi-saya');
-            }
-        } else {
-
-            $rent_id = $this->input->get('rent_id');
-            $result  = $this->M_trans->getRentalWhere(['rent_id' => $rent_id]);
-            $sessionReceipt = $this->session->userdata('receipt');
-
-            if ($result['rent_id'] == $sessionReceipt['rent_id'] && $result['rent_user_id'] == $sessionReceipt['user_id'] && $user['user_id']) {
-                $date_rent_start = strtotime($result['rent_date_start']);
-                $date_end = strtotime($result['rent_date_end']);
-                $datediff = $date_end - $date_rent_start;
-
-                $jmlHari = round($datediff / (60 * 60 * 24));
-                $maxHari = 3;
-                $tgl_max_kembali = date('F d, Y ', $date_end + (24 * 3600 * $maxHari));
-
-                $totalharga = $jmlHari * $result['car_price'];
-                $result['car_price'] = "Rp. " . number_format($result['car_price'], 0, ',', '.');
-                $result['car_photo'] = base_url('assets/uploads/cars/') . $result['car_photo'];
-                $result['days'] = $jmlHari;
-                $result['rent_price'] = "Rp. " . number_format($totalharga, 0, ',', '.');
-                $result['rent_date'] = date('F d, Y ', strtotime($result['rent_date']));
-                $result['rent_date_start'] = date('F d, Y ', $date_rent_start);
-                $result['rent_date_end'] = date('F d, Y ', $date_end);
-                $result['rent_max_returned'] = $tgl_max_kembali;
-                $result['rent_type'] = $result['rent_type'] == 1 ? 'Pakai Supir' : 'Tidak Pakai Supir';
-
-                $data['user'] = $user;
-                $data['receipt'] = $result;
-                $data['costumer'] = $this->M_costumer->cekCostumer(['user_id' => $result['rent_user_id']])->row_array();
-                $data['title'] =  "Transaksi Berhasil";
-                $data['themeNavbar'] = "light";
-                $data['themeHamburger'] = "dark";
-                $data['linkColor'] = "secondary";
-                $templatesPath  = $this->public['templates'];
-                $views  = $this->public['pages'];
-
-                $data['componentPath'] = $views . "transactions/components/";
-                $data['templatesPath'] = $templatesPath;
-
-
-                $this->load->view($templatesPath .  "header", $data);
-                $this->load->view($templatesPath .  "navbar_mobile", $data);
-                $this->load->view($templatesPath .  "sidebar", $data);
-                $this->load->view($views .  "transactions/rental-success", $data);
-                $this->load->view($templatesPath .  "footer", $data);
-                $this->load->view($templatesPath .  "end", $data);
-            }
-        }
-    }
-
     public function autoDeleteOrder()
     {
 
@@ -654,16 +555,12 @@ class Transactions extends CI_Controller
 
 
         $rent_id = $this->uri->segment(3);
-
-        // $result =  $this->M_public->deleteData(['rent_id' => $rent_id], 'rental_trans');
         $dataUpdatePayment = [
             'payment_status' => "Expired",
         ];
         $result = $this->M_public->updateData(['payment_rental_id' => $rent_id], 'payment_trans', $dataUpdatePayment);
-
-        // $result = 1;
-
         $rental = $this->M_trans->getTransactionsWithPayment(['rent_id' => $rent_id])->row_array();
+        $rental['rent_price_format'] = "Rp. " . number_format($rental['rent_price'], 0, ',', '.');
         $car = $this->M_public->getDataWhere('cars', ['car_id' => $rental['rent_car_id']])->row_array();
 
         if ($car['car_status'] == 1) {
@@ -676,10 +573,9 @@ class Transactions extends CI_Controller
         if ($result >= 0) {
             $data['status'] = true;
             $data['rent_id'] = $rent_id;
-            $data['pesan'] = 'Pesanan anda dengan no pesanan <span class=" font-w-600 ">' . $rental['rent_id'] . ' </span> telah di batalkan secara otomatis.
-            <br>Dikarenakan anda telah telat melakukan pembayaran sesuai batas waktu yg ditentukan ';
             $data['result'] = $rental;
-            $data['redirect'] = base_url('user/' . $user['user_id'] . '/dashboard/transaksi-saya');
+            $data['domain'] = base_url();
+            $data['url_send_inbox'] = base_url('user/' . $user['user_id'] . '/dashboard/send-inbox');
             $data['car'] = $car;
         } else {
             $data['status'] = false;
@@ -687,5 +583,41 @@ class Transactions extends CI_Controller
 
 
         echo json_encode($data);
+    }
+
+    public function confirmCancel()
+    {
+        $rent_id = $this->input->post('rent_id');
+        $user_id = $this->input->post('user_id');
+        $message = $this->input->post('message');
+
+
+
+        $checkCancelPayment = $this->M_public->getDataWhere('rentalcancel_trans', ['rc_rental_id' => $rent_id]);
+        if (!$checkCancelPayment->num_rows() > 0) {
+            $cancel = [
+                'rc_id' => getAutoNumber('rentalcancel_trans', 'rc_id', 'TC-', 6),
+                'rc_rental_id' => $rent_id,
+                'rc_user_id' => $user_id,
+                'rc_message' => $message,
+                'rc_date' => time(),
+            ];
+
+            $statusOrder = [
+                'rent_status' => "dibatalkan",
+            ];
+
+            $result = $this->M_public->insertData('rentalcancel_trans', $cancel);
+
+            if ($result >= 0) {
+                $this->M_public->updateData(['rent_id' => $rent_id], 'rental_trans',  $statusOrder);
+                $this->M_public->deleteData(['payment_rental_id' => $rent_id], 'payment_trans');
+                set_frontflashmessage("success", "Berhasil dibatalkan", "Anda telah melakukan pembatalan pesanan");
+                redirect('user/' . $user_id . '/dashboard/transaksi-saya');
+            }
+        } else {
+            set_frontflashmessage("info", "Pesanan sudah dibatalkan", "sepertinya pesanan ini sudah dibatalkan");
+            redirect('user/' . $user_id . '/dashboard/transaksi-saya');
+        }
     }
 }

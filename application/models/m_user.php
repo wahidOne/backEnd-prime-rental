@@ -46,6 +46,22 @@ class M_user extends CI_Model
             return false;
         }
     }
+    public function getAllAdmin()
+    {
+        // return $this->db->get_where('user', $where)->row_array();
+        $this->db->select('user.*, user_level.`level`, admin.*');
+        $this->db->from('user');
+        $this->db->join('user_level', 'user_level.level_id
+        = user.user_level');
+        $this->db->join('admin', 'admin.admin_user_id
+        = user.user_id');
+        $query =  $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query->result_array();
+        } else {
+            return false;
+        }
+    }
 
     // public function update($image) {
 

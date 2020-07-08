@@ -9,7 +9,19 @@
                 </ol>
             </nav>
 
+
+
             <div class="row">
+                <?php if ($this->session->flashdata('success')) : ?>
+                    <div class="flash-success  d-none" data-status="success" data-text="<?= $this->session->flashdata('success')['text'];  ?>" data-title="<?= $this->session->flashdata('success')['title'];  ?>">
+                    </div>
+                <?php elseif ($this->session->flashdata('info')) : ?>
+                    <div class="flash-success  d-none" data-status="info" data-text="<?= $this->session->flashdata('info')['text'];  ?>" data-title="<?= $this->session->flashdata('info')['title'];  ?>">
+                    </div>
+                <?php elseif ($this->session->flashdata('error')) : ?>
+                    <div class="flash-success  d-none" data-status="error" data-text="<?= $this->session->flashdata('error')['text'];  ?>" data-title="<?= $this->session->flashdata('error')['title'];  ?>">
+                    </div>
+                <?php endif; ?>
                 <?php if ($transaksi != false) : ?>
                     <div class="col-lg-11 mx-auto mt-0">
                         <div class="card border-0 table-responsive">
@@ -174,7 +186,10 @@
                     </div>
                 <?php endif; ?>
 
+
             </div>
+
+
         </div>
 
 
