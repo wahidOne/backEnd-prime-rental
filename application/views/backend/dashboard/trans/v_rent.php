@@ -40,7 +40,8 @@
                                     <th>Mobil</th>
                                     <th>Total Harga</th>
                                     <th>Jenis Layanan </th>
-                                    <th>Status Pembayaran</th>
+                                    <th>Status</th>
+                                    <th>Konfirmasi</th>
                                     <th class="text-center">More</th>
                                 </tr>
                             </thead>

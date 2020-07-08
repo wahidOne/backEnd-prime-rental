@@ -175,6 +175,7 @@ $route['administrator/transaction/get-rent/(:any)'] = 'admin/dashboard/Transacti
 $route['administrator/transaction/check-payment']['GET'] = 'admin/dashboard/Transaction/checkPayment';
 $route['administrator/transaction/download-payment-proof/(:any)'] = 'admin/dashboard/Transaction/downloadPaymentProof/$1';
 $route['administrators/transaction/confirm-payment'] = 'admin/dashboard/Transaction/confirmPayment';
+$route['administrators/transaction/confirm-payment-decline'] = 'admin/dashboard/Transaction/confirmPaymentDecline';
 
 
 $route['administrator/rental'] = 'admin/demo/Rental/index';

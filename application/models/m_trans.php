@@ -61,8 +61,8 @@ class M_trans extends CI_Model
         $this->db->join('payment_trans', 'payment_trans.payment_rental_id =  rental_trans.rent_id');
         $this->db->order_by('rent_id', 'DESC');
         $this->db->order_by('rent_date', 'DESC');
-        $column_order_data = [null, 'rent_date', 'rent_id', 'user_name', 'car_brand', 'car_price',  'rent_type', 'payment_status', null];
-        $column_search_data = ['rent_date', 'rent_id', 'user_name', 'car_brand', 'car_price',  'payment_status'];
+        $column_order_data = [null, 'rent_date', 'rent_id', 'user_name', 'car_brand', 'car_price',  'rent_type', null, null];
+        $column_search_data = ['rent_date', 'rent_id', 'user_name', 'car_brand', 'car_price',  null];
 
         $order_data = ['rent_date' => 'DESC'];
 

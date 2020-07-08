@@ -338,10 +338,9 @@ class User extends CI_Controller
                 $user = $user->row_array();
 
                 $rent_id = $this->input->get('rentId');
-                $payment = $this->M_trans->getTransactionsWithPayment(['payment_rental_id' => $rent_id]);
-
-                if ($payment) {
-                    $payment->row_array();
+                $order = $this->M_trans->getTransactionsWithPayment(['payment_rental_id' => $rent_id]);
+                if ($order) {
+                    $payment = $order->row_array();
                 } else {
                     set_frontflashmessage("info", "Pesanan sudah dibatalkan", "sepertinya pesanan ini sudah dibatalkan");
                     redirect('user/' . $user['user_id'] . '/dashboard/transaksi-saya');

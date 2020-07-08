@@ -49,7 +49,7 @@ const inboxTextTemplateOrderDecline = (data, domain) => {
         <div class="col-md-8 mx-auto ">
         <div class="card card-bod p-3 border-0 shadow-sm ">
             <div class="d-flex flex-column justify-content-center align-items-center ">
-                <i class="fas text-danger fa-times-circle fa-4x">
+                <i class="fas text-danger fa-ban  fa-4x">
                 </i>
                 <br>
                 <p class=" font-18px font-md-25px font-w-600 text-danger ">Pesanan Anda Ditolak</p>

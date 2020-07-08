@@ -171,12 +171,10 @@
                                 </div>
                                 <div class="col-md-8 my-auto">
                                     <div class="card-body">
-                                        <h5 class=" display-4 text-secondary ">Opps...</h5>
+                                        <h5 class=" display-4 text-secondary ">Maaf...</h5>
                                         <p class=" font-22px text-secondary-50 ">Data transaksi anda masing kosong <i class="fas fa-sad-tear   text-secondary "></i><br>
                                             <span class=" font-18px text-secondary ">Silahkan lakukan transaksi</span>
                                         </p>
-
-
                                         <a href="<?= site_url('mobil-kami#daftar-mobil') ?>" class=" btn btn-outline-secondary rounded-pill "> Expolore now </a>
 
                                     </div>

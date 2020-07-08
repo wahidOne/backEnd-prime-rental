@@ -6,7 +6,12 @@ const configEditor = () => {
 	// });
 
 	$("#summernote").summernote({
-		placeholder: "Hello Bootstrap 4",
+		placeholder: "Masukan pesan",
+		tabsize: 2,
+		height: 400,
+	});
+	$("#summernotePaymentDecline").summernote({
+		placeholder: "Masukan pesan",
 		tabsize: 2,
 		height: 400,
 	});

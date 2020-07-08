@@ -46,16 +46,12 @@
                         <a href="<?= site_url('administrator/transaction/download-payment-proof/') . $payment['rent_id']  ?>" class=" btn btn-success btn-lg mt-4 py-2 w-75 mx-auto "> <i class="fas fa-fw fa-file-download mr-1"></i> <span> Download Bukti Bayar</span> </a>
                     <?php endif; ?>
 
-
                 </div>
-
             </div>
         <?php endif; ?>
-        <div class="col-md-6 grid-margin stretch-card ">
-
+        <div class="col-12 col-md-6 grid-margin stretch-card ">
             <div class="card card-body py-5 px-2">
-
-                <div class="col-10 mx-auto ">
+                <div class="col-md-10 mx-auto ">
 
                     <?php if ($payment['payment_status'] == 1 && $payment['payment_proof'] != "") : ?>
                         <div class="d-flex flex-column justify-content-center align-items-center ">
@@ -100,19 +96,16 @@
                         <hr class=" border-top ">
 
                     <?php elseif ($payment['payment_proof'] != "" && $payment['payment_status'] == 0) :  ?>
-                        <div class="d-flex justify-content-between flex-column flex-md-row ">
-                            <h4 class=" text-primary-muted ">Total</h4>
-                            <h4 class=" mt-1 mt-md-0 font-weight-light">Rp. <?= number_format($payment['payment_total'], 2, ',', '.'); ?></h4>
-                        </div>
-                        <hr class=" border-top ">
 
+                        <hr class=" border-top ">
                         <div class="d-flex justify-content-between flex-column flex-md-row ">
                             <h4 class=" text-primary-muted ">Total</h4>
                             <h4 class=" mt-1 mt-md-0 font-weight-light">Rp. <?= number_format($payment['payment_total'], 2, ',', '.'); ?></h4>
                         </div>
                         <div class="d-flex justify-content-end mt-3 flex-column flex-md-row ">
-                            <a href="" class=" btn btn-danger mr-2  text-dark"> <i class="fas fa-times fa-fw text-dark"></i> Tolak </a>
-
+                            <button type="button" class="btn btn-danger mr-2 text-dark" data-toggle="modal" data-target="#declinePayment">
+                                <i class="fas fa-times fa-fw text-dark"></i> Tolak
+                            </button>
                             <button type="button" class="btn btn-primary text-dark" data-toggle="modal" data-target="#confirmPayment">
                                 <i class="fas fa-check fa-fw text-dark "></i> Konfirmasi
                             </button>
@@ -140,120 +133,12 @@
 </div>
 
 
+<?php
+$data = [
+    'user' => $user,
+    'payment' => $payment,
+];
 
-<!-- Modal -->
-<div class="modal fade" id="confirmPayment" tabindex="-1" role="dialog" aria-labelledby="confirmPaymentLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg " role="document">
-        <div class="modal-content">
-            <form id="form-confirm-success" action="<?= base_url('administrators/transaction/confirm-payment') ?>" method="post">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="confirmPaymentLabel">Pesan Konfirmasi </h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12 grid-margin stretch-card d-flex flex-column ">
-                            <h2 class=" display-5 text-capitalize font-weight-light ">Silahkan masukan pesan konfirmasi</h2>
-
-                            <input type="hidden" name="inbox_to" value="<?= $payment['user_id']  ?>">
-                            <input type="hidden" name="inbox_from" value="primerental@gmail.com">
-                            <input type="hidden" name="rent_id" value="<?= $payment['rent_id'] ?>">
-                            <!-- <input type="hidden" name="inbox_created_at" value="primeRental@gmail.com"> -->
-                            <div class="form-group mt-3">
-                                <label for="inbox_email">Kepada</label>
-                                <input type="text" class="form-control form-control-lg  text-light py-2" id="inbox_email" value="<?= $payment['user_email']  ?>" readonly>
-                            </div>
-                            <div class="form-group ">
-                                <label for="inbox_subject">Judul</label>
-                                <input type="text" class="form-control form-control-lg  text-light py-2" name="inbox_title" id="inbox_title" placeholder="Masukan judul " value="Konfirmasi pembayaran">
-                            </div>
-                            <div class="form-group">
-                                <label for="inbox_subject">Subjek</label>
-                                <input type="text" class="form-control form-control-lg py-2 text-light " name="inbox_subject" id="inbox_subject" placeholder="Masukan Subject " value="Pembayaran anda telah kami dikonfirmasi">
-                            </div>
-                            <div class="form-group">
-
-                                <a class="btn btn-primary" data-toggle="collapse" href="#inbox_text_collapse" role="button" aria-expanded="false" aria-controls="inbox_text_collapse">
-                                    Tulis Pesan
-                                </a>
-                                <div class="collapse pt-4" id="inbox_text_collapse">
-                                    <label for="inbox_text">Pesan</label>
-                                    <div class="tinymce-wrap">
-                                        <textarea class="tinymce" name="inbox_text" id="summernote">
-<div class="row">
-    <div class="col-12">
-        <br><br>
-        <p>Hai <b><?= $payment['client_fullname'] ?></b></p>
-        <br>
-        <p>Terima kasih atas pembayaran. Kami telah menerima bukti pembayaran dan telah kami konfirmasi sebagai pembayaran yang sukses. untuk langkah selanjutnya silahkan lengkapi data diri anda sebagai syarat dalam transaksi penyewaan ini.
-        </p>
-
-        <br>
-        <div class="d-flex flex-column">
-            <h5 class=" text-black-50  ">No Pesanan</h5>
-            <h5><?= $payment['rent_id']; ?></h5>
-
-        </div>
-        <div class="d-flex flex-column mt-3">
-            <h5 class=" text-black-50  ">Atas Nama</h5>
-            <h5><?= $payment['client_fullname']; ?></h5>
-
-        </div>
-
-        <div class="d-flex flex-column mt-3">
-            <h5 class=" text-black-50  ">Tanggal bayar</h5>
-            <h5><?= date('l, d m y | H:i A', $payment['payment_date']) ?></h5>
-        </div>
-
-
-        <div class="d-flex flex-column mt-3">
-            <h5 class=" text-black-50  ">Metode Bayar</h5>
-            <h5>
-                <?= $payment['payment_method']  ?>
-            </h5>
-        </div>
-        <div class="d-flex flex-column mt-3">
-            <h5 class=" text-black-50  ">Total Pembayaran</h5>
-            <h5>Rp. <?= number_format($payment['payment_total'], 2, ',', '.')  ?></h5>
-        </div>
-        <br><br><br>
-
-        <p>
-            Klik Link Dibawah ini untuk mengisi formulir data diri anda
-            <br>
-            <a  class=" text-decoration-none "   href="<?= base_url('user/' . $payment['user_id'] . '/dashboard/transaksi/konfirmasi-data-diri?rent_id=' . $payment['rent_id'])  ?>">
-                Lengkapi data diri
-            </a>
-        </p>
-        <br><br><br>
-    </div>
-
-    <div class="col-12 px">
-
-        <p>From</p>
-        <h3>Prime rental</h3>
-        <br><br><br>
-    </div>
-
-</div>
-
-                                        </textarea>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" id="form-submit" class="btn btn-primary">Kirim</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+$this->load->view($viewsDashboardPath . 'trans/payment/modal-confirm-success', $data);
+$this->load->view($viewsDashboardPath . 'trans/payment/modal-confirm-decline', $data);
+?>

@@ -2,7 +2,7 @@ import dataTableConfig from "./components/datatableConfig";
 import Invoice from "./components/Invoice";
 import CheckExpired from "../../../frontEnd/app/components/Dashboard/checkExpired";
 import configEditor from "./components/configEditors";
-import FormConfirmPayments from "./components/FormConfirmPayments";
+import * as _confirmPayments from "./components/FormConfirmPayments";
 
 class Transactions {
 	constructor() {
@@ -14,9 +14,14 @@ class Transactions {
 		this.timeLeft = document.querySelector("#time_left");
 
 		this.formConfirmSuccess = document.querySelector("#form-confirm-success");
+		this.formConfirmDecline = document.querySelector("#form-confirm-decline");
 	}
 
 	public() {
+		$('[data-toggle="tooltip"]').tooltip();
+		$(".konfirmasi-popover").popover({
+			container: "body",
+		});
 		this.loadData();
 
 		const tableRent = this.table;
@@ -80,9 +85,15 @@ class Transactions {
 
 	confirmPayment() {
 		const formConfirmSuccess = this.formConfirmSuccess;
+		const formConfirmDec = this.formConfirmDecline;
 
 		if (formConfirmSuccess) {
-			FormConfirmPayments();
+			console.log("ok");
+			_confirmPayments.FormConfirmPayments();
+		}
+
+		if (formConfirmDec) {
+			_confirmPayments.FormConfirmPaymentsDecline();
 		}
 	}
 }

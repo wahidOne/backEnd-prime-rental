@@ -104,7 +104,7 @@ class Inbox {
 			domain
 		);
 
-		const subject = `no pesanan ${rent_id} telah dibatalkan secara otomatis`;
+		const subject = `Pesanan anda telah dibatalkan`;
 		const title = `Pembatalan transaksi `;
 		const inbox_to = `${order.user_id}`;
 		const inbox_from = "primerental@gmail.com";

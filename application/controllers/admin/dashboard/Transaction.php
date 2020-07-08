@@ -65,37 +65,64 @@ class Transaction extends CI_Controller
 
             $row[] = $service;
 
-            if (!$r->payment_proof == "" && $r->payment_status == 1 &&  $r->rent_status == "belum selesai") {
-                $status = "<span class='badge badge-info text-dark text-capitalize w-100  '>Sedang Jalan</span>";
-            } elseif ($r->payment_proof != "" && $r->payment_status == 0 &&  $r->rent_status == "belum selesai") {
-                $status = "<span class='badge badge-primary text-white text-capitalize w-100 '>Proses</span>";
-            } elseif ($r->payment_proof != "" && $r->payment_status == 1 &&  $r->rent_status == "selesai") {
-                $status = "<span class='badge badge-success text-white text-capitalize w-100 '>Selesai</span>";
+
+
+
+            if ($r->rent_status == "belum selesai" && $r->rent_order_status == 0 && $r->payment_proof == "" && $r->payment_status == 0) {
+                $konfirmasi = '<a href="#" class="btn btn-success disabled btn-sm   "  tabindex="-1" role="button" aria-disabled="true" >
+                <i class="fas fa-check-square my-auto "></i>
+                </a>';
+                // status
+                $status = "<span class='badge badge-danger text-white text-capitalize w-100  '>Menunggu Pembayaran</span>";
+            } elseif ($r->rent_status == "belum selesai" && $r->rent_order_status == 0 && $r->payment_proof !== "" && $r->payment_status == 0) {
+                $konfirmasi = '<a href="#" class="btn btn-success disabled btn-sm"  tabindex="-1" role="button" aria-disabled="true" >
+                <i class="fas fa-check-square  my-auto"></i>
+                </a>';
+                // status
+                $status = "<span class='badge badge-warning text-dark text-capitalize w-100  '>Konfirmasi Pembayaran</span>";
+            } elseif ($r->rent_status == "belum selesai" && $r->rent_order_status == 0 && $r->payment_proof !== "" && $r->payment_status == 1) {
+                $konfirmasi = '<a href="#" class="btn btn-success disabled btn-sm"  tabindex="-1" role="button" aria-disabled="true" >
+                <i class="fas fa-check-square  my-auto "></i>
+                </a>';
+                // status
+                $status = "<span class='badge badge-primary text-dark text-capitalize w-100'>Pembayaran Selesai</span>";
+            } elseif ($r->rent_status == "belum selesai" && $r->rent_order_status == 1 && $r->payment_proof !== "" && $r->payment_status == 1) {
+                $konfirmasi = '
+                <a href="#" class="btn btn-success btn-sm">
+                    <i class="fas fa-check-square"></i>
+                </a>';
+                $status = "<span class='badge badge-outlineinfo  text-info text-capitalize w-100  '>Menunggu Persetujuan</span>";
+            } elseif ($r->rent_status == "jalan" && $r->rent_order_status == 1 && $r->payment_proof !== "" && $r->payment_status == 1) {
+                $konfirmasi = '<a href="#" class="btn btn-success disabled btn-xs "  tabindex="-1" role="button" aria-disabled="true">
+                Telah dikonfirmasi
+                </a>';
+                $status = "<span class='badge badge-info text-dark text-capitalize w-100'>Sedan Jalan</span>";
             } else {
-                $status = "<span class='badge badge-danger text-white text-capitalize w-100 '>Di tolak</span>";
+                $status = false;
+                $konfirmasi = false;
             }
 
 
 
-            if ($r->payment_proof == "" && $r->payment_status == "0") {
-                $statusPay = "<span class=' badge badge-warning text-capitalize ' > Menunggu Pembayaran </span>";
-            } elseif (!$r->payment_proof == "" && !$r->payment_status == 1) {
-                $statusPay = "<span class='badge badge-info text-capitalize ' > Menunggu Konfirmasi</span>";
-            } elseif ($r->payment_proof != "" && $r->payment_status == 1) {
-                $statusPay = "<span class=' badge badge-outlinesuccess text-capitalize  '>Pembayaran selesai</span>";
-            } elseif ($r->payment_status == "Expired") {
-                $statusPay = "<span class='badge badge-danger  text-capitalize  '>Pembayaran Terlambat</span>";
-            }
 
+            // if ($r->payment_proof == "" && $r->payment_status == "0") {
+            //     $statusPay = "<span class=' badge badge-warning text-capitalize ' > Menunggu Pembayaran </span>";
+            // } elseif (!$r->payment_proof == "" && !$r->payment_status == 1) {
+            //     $statusPay = "<span class='badge badge-info text-capitalize ' > Menunggu Konfirmasi</span>";
+            // } elseif ($r->payment_proof != "" && $r->payment_status == 1) {
+            //     $statusPay = "<span class=' badge badge-outlinesuccess text-capitalize  '>Pembayaran selesai</span>";
+            // } elseif ($r->payment_status == "Expired") {
+            //     $statusPay = "<span class='badge badge-danger  text-capitalize  '>Pembayaran Terlambat</span>";
+            // }
 
-            $row[] = $statusPay;
+            $row[] = $status;
+            $row[] = $konfirmasi;
             $row[] = ' 
-            <div class="dropleft">
+                    <div class="dropleft">
                         <button class="btn p-0" type="button" id="' . $r->rent_id . '" data-toggle="dropdown" aria-haspopup="false" aria-expanded="false">
                             <i class="fas fa-ellipsis-v text-primary-muted "></i>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="' . $r->rent_id . '">
-                            
                             <a id="check-payment" class="dropdown-item d-flex align-items-center text-primary " href="' .  base_url('administrator/transaction/check-payment?rent_id=') .  $r->rent_id . '&user_id=' . $r->user_id . '">
                                 <i class=" fad fa-hand-holding-usd mr-2 fa-fw "></i> 
                                 <span class="">Cek Pembayaran</span>
@@ -104,17 +131,11 @@ class Transaction extends CI_Controller
                                 <i class=" fad fa-file-invoice  mr-2 fa-fw "></i> 
                                 <span class="">Invoice</span>
                             </a>
-                            <a class="dropdown-item d-flex align-items-center text-success " href="#">
-                                <i class=" far fa-check   mr-2 fa-fw "></i> 
-                                <span class="">Konfirmasi</span>
-                            </a>
+                            
                             <a class="dropdown-item d-flex align-items-center text-danger " href="#">
                                 <i class=" far fa-times   mr-2 fa-fw "></i> 
                                 <span class="">Batalkan</span>
                             </a>
-                            <div class=" d-flex align-items-start flex-column font-weight-bold  my-2 px-4 " >
-                                ' . $status . '  
-                            </div> 
                             
                         </div>
                     </div>
@@ -212,10 +233,13 @@ class Transaction extends CI_Controller
 
         $backendTemplates = $this->publicData['backendTemplates'];
         $viewsDashboardPath = 'backend/dashboard/';
+
+        $data['viewsDashboardPath'] = $viewsDashboardPath;
+
         $this->load->view($backendTemplates . 'header', $data);
         $this->load->view($backendTemplates . 'topbar', $data);
         $this->load->view($backendTemplates . 'sidebar', $data);
-        $this->load->view($viewsDashboardPath . 'trans/v_check-payment', $data); //main content
+        $this->load->view($viewsDashboardPath . 'trans/payment/v_check-payment', $data); //main content
         $this->load->view($backendTemplates . 'footer', $data);
         $this->load->view($viewsDashboardPath . '/plugins/_transaction', $data); //plugins
         $this->load->view($backendTemplates . 'script', $data);
@@ -241,7 +265,6 @@ class Transaction extends CI_Controller
         header('Access-Control-Allow-Headers: *');
 
         $requestData = json_decode(file_get_contents('php://input'), true);
-
         foreach ($requestData as $key => $val) {
             // $val = filter_var($val, FILTER_SANITIZE_STRING); // Remove all HTML tags from string
             $requestData[$key] = $val;
@@ -249,13 +272,9 @@ class Transaction extends CI_Controller
             $requestData['inbox_created_at'] = time();
             $requestData['inbox_status'] = 0;
         }
-        // var_dump($requestData);
-
-
-        // $order = $this->M_trans->getTransactionsWithPayment(['rent_id' => $requestData['rent_id']])->row_array();
         $update = [
             'payment_status' => 1,
-            'payment_date_confirm' => time()
+            'payment_date_confirm' => date("Y-m-d G:i:s")
         ];
 
         $this->M_public->updateData(['payment_rental_id' => $requestData['rent_id']], 'payment_trans', $update);
@@ -275,10 +294,61 @@ class Transaction extends CI_Controller
 
 
 
+
+
         if ($result >= 0) {
             $response['data'] = $inbox;
             $response['status'] = TRUE;
             $response['redirect'] = base_url('administrator/transaction/rent');
+            $data['response'] = $response;
+        } else {
+            $data = [];
+        }
+
+        // $data['inbox_subject'] = $inboxText;
+
+        echo json_encode($data);
+    }
+    public function confirmPaymentDecline()
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Headers: *');
+
+        $requestData = json_decode(file_get_contents('php://input'), true);
+        foreach ($requestData as $key => $val) {
+            // $val = filter_var($val, FILTER_SANITIZE_STRING); // Remove all HTML tags from string
+            $requestData[$key] = $val;
+            $requestData['inbox_id'] = getAutoNumber('inbox', 'inbox_id', 'inbox00', 10);
+            $requestData['inbox_created_at'] = time();
+            $requestData['inbox_status'] = 0;
+        }
+
+        $payment = $this->M_public->getDataWhere('payment_trans', ['payment_rental_id' => $requestData['rent_id']])->row_array();
+        unlink(FCPATH . './assets/uploads/payment-proof/' . $payment['payment_proof']);
+
+        $update = [
+            'payment_proof' => "",
+        ];
+
+        $this->M_public->updateData(['payment_rental_id' => $requestData['rent_id']], 'payment_trans', $update);
+
+        $inbox = [
+            'inbox_id' => $requestData['inbox_id'],
+            'inbox_to' => $requestData['inbox_to'],
+            'inbox_from' => $requestData['inbox_from'],
+            'inbox_subject' => $requestData['inbox_subject'],
+            'inbox_title' => $requestData['inbox_title'],
+            'inbox_text' => $requestData['inbox_text'],
+            'inbox_status' => $requestData['inbox_status'],
+            'inbox_created_at' => $requestData['inbox_created_at'],
+        ];
+
+        $result = $this->M_public->insertData('inbox', $inbox);
+        if ($result >= 0) {
+            $response['data'] = $inbox;
+            $response['status'] = TRUE;
+            $response['redirect'] = base_url('administrator/transaction/rent');
+            $response['payment'] = $payment;
             $data['response'] = $response;
         } else {
             $data = [];
