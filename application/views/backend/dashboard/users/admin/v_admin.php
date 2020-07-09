@@ -50,42 +50,6 @@
     </div>
 </div>
 
-
-
-<div class="modal fade bd-example-modal-sm" id="modal_level" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5>Change Level</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-                <form id="form-change-level" action="<?= site_url('administrator/users/change-level') ?>">
-                    <div class="col-12">
-                        <input type="hidden" class=" form-control " name="user_id">
-                        <input type="hidden" class=" form-control " name="old_level">
-                        <div class="form-group row">
-                            <label for="user_level" class="col-sm-2 my-auto">Level</label>
-                            <div class="col-sm-10">
-                                <select name="user_level" id="user_level" class="form-control text-primary text-capitalize ">
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group text-right">
-                            <button type="submit" class="btn btn-primary btn-small ml-auto">Save Changes </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
 <div id="m-info" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">

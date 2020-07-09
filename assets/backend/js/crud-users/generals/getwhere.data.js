@@ -5,19 +5,25 @@ export const getUserWhere = (url, id) => {
 		async: true,
 		dataType: "json",
 		success: function (res) {
-			$("#modal_level").modal({
-				backdrop: false,
-			});
+			$("#modal_level").modal(
+				{
+					backdrop: false,
+				},
+				"show"
+			);
 			let formData = "";
 			const formLevel = document.querySelector("#form-change-level");
 
-			const inputId = formLevel.querySelector("[ name=user_id ]");
+			const inputId = formLevel.querySelector("[name=user_id]");
 			const selectUserLevel = formLevel.querySelector("[name=user_level]");
 			const oldLevel = formLevel.querySelector("[name=old_level]");
-
 			const user_level_id = res.user.user_level;
 
-			res.level.map((row) => (formData += UpdateformModal(row, user_level_id)));
+			const { level } = res;
+
+			level
+				.filter((l) => l.level_id != 7 && l.level_id != 15)
+				.map((row) => (formData += UpdateformModal(row, user_level_id)));
 
 			inputId.value = res.user.user_id;
 			oldLevel.value = res.user.user_level;

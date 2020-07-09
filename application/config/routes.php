@@ -95,7 +95,7 @@ $route['autentifikasi/logout'] = 'frontend/auth/frontAuth/logout';
 
 // auth admnistrator
 $route['administrator/sign-in'] = 'admin/auth/auth/index';
-$route['administrator/sign-up'] = 'admin/auth/auth/signUp';
+// $route['administrator/sign-up'] = 'admin/auth/auth/signUp';
 $route['administrator/sign-out'] = 'admin/auth/auth/signOut';
 
 // menu
@@ -129,6 +129,8 @@ $route['administrator/master-data/update-car'] = 'admin/dashboard/Master_data/up
 $route['administrator/master-data/get-car/(:num)'] = 'admin/dashboard/Master_data/getCarWhere/$1';
 $route['administrator/master-data/delete-car/(:num)'] = 'admin/dashboard/Master_data/deleteCar/$1';
 $route['administrator/master-data/data-tables-cars'] = 'admin/dashboard/Master_data/get_ajax';
+// Master Data Drivers
+$route['administrator/master-data/drivers'] = 'admin/dashboard/Master_data/viewDataDrivers';
 /////
 $route['administrator/master-data/types-car'] = 'admin/dashboard/Master_data/typesCar';
 $route['administrator/master-data/get-types-car'] = 'admin/dashboard/Master_data/showTypesCar';
@@ -144,28 +146,27 @@ $route['administrator/profile/update-profile'] = 'admin/profile/Profile/updatePr
 //-->  users <--//
 
 $route['administrator/users/general'] = 'admin/dashboard/Users/index';
-$route['administrator/users/get-user/(:num)'] = 'admin/dashboard/Users/getUser/$1';
-$route['administrator/users/change-level'] = 'admin/dashboard/Users/changeLevel';
+$route['administrator/users/get-user/(:any)'] = 'admin/dashboard/Users/getUser/$1';
 $route['administrator/users/get-general-user'] = 'admin/dashboard/Users/generalUser';
 
 // users/admin
 
 $route['administrator/users/admin'] = 'admin/dashboard/Users/administrators';
 $route['administrator/users/get-admin-user'] = 'admin/dashboard/Users/getAdminUser';
-$route['administrator/users/admin-where/(:num)'] = 'admin/dashboard/Users/getAdminWhere/$1';
+$route['administrator/users/admin-where/(:any)'] = 'admin/dashboard/Users/getAdminWhere/$1';
 
 
 $route['administrator/users/drivers'] = 'admin/dashboard/Users/drivers';
 $route['administrator/users/get-drivers'] = 'admin/dashboard/Users/getDrivers';
-$route['administrator/users/get-a-driver/(:num)'] = 'admin/dashboard/Users/getDriversWhere/$1';
-$route['administrator/users/del-driver/(:num)'] = 'admin/dashboard/Users/deleteDriver/$1';
+$route['administrator/users/get-a-driver/(:any)'] = 'admin/dashboard/Users/getDriversWhere/$1';
+$route['administrator/users/del-driver/(:any)'] = 'admin/dashboard/Users/deleteDriver/$1';
 
 
 // users/costumer 
 $route['administrator/users/customer'] = 'admin/dashboard/Users/customers';
 $route['administrator/users/get-customers'] = 'admin/dashboard/Users/getCustomers';
-$route['administrator/users/get-costumer/(:num)'] = 'admin/dashboard/Users/getCustomersWhere/$1';
-$route['administrator/users/del-customer/(:num)'] = 'admin/dashboard/Users/deleteCostumer/$1';
+$route['administrator/users/get-costumer/(:any)'] = 'admin/dashboard/Users/getCustomersWhere/$1';
+$route['administrator/users/del-customer/(:any)'] = 'admin/dashboard/Users/deleteCostumer/$1';
 
 // Transaction
 $route['administrator/transaction/rent'] = 'admin/dashboard/Transaction/rental';

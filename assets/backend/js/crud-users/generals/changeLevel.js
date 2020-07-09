@@ -1,4 +1,6 @@
 export const changeLevel = (url, data, showMessage) => {
+	console.log(url);
+	console.log(data);
 	return $.ajax({
 		type: "POST",
 		url: url,

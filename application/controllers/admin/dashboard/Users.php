@@ -52,85 +52,12 @@ class Users extends CI_Controller
     public function getUser()
     {
         $user_id = $this->uri->segment(4);
-
-
         $data = [
-            'user' => $this->M_user->getUserWhere(['user_id' => $user_id])->row_array(),
-            'level' => $this->M_public->getData('user_level')->result_array()
+            'user' => $this->M_user->getUserWhere([
+                'user_id' => $user_id,
+            ])->row_array(),
+            'level' => $this->M_public->getData('user_level')->result_array(),
         ];
-
-
-        echo json_encode($data);
-    }
-
-
-    public function changeLevel()
-    {
-        // $user_id = $this->uri->segment(4);
-
-        $user_id = $this->input->post('user_id');
-        $user_level = $this->input->post('user_level');
-        $old_user_level = $this->input->post('old_level');
-
-
-        $dataupdate = [
-            'user_id' => $user_id,
-            'user_level' => $user_level
-        ];
-
-        $user = $this->db->get_where('user', ['user_id' => $user_id])->row_array();
-
-
-        if ($user_level == 4 || $old_user_level = 4) {
-            $cekdata = $this->db->get_where('admin', ['admin_user_id' => $user_id]);
-        } elseif ($user_level == 7) {
-            $cekdata = $this->db->get_where('drivers', ['driver_user_id' => $user_id]);
-        }
-
-        if ($cekdata->num_rows() < 1) {
-            if ($user_level == "4") {
-                $admin = [
-                    'admin_name' => $user['user_name'],
-                    'admin_user_id' => $user_id,
-                    'admin_address' => '-',
-                    'admin_phone' => '-',
-                    'admin_birth' => '-',
-                    'admin_gender' => '-',
-                    'admin_created' => time(),
-                ];
-                $this->M_public->insertData('admin', $admin);
-                $this->M_public->updateData(['user_id ' => $user_id], 'user', $dataupdate);
-                $data['admin'] = $admin;
-            } else if ($user_level == "7") {
-                $driver = [
-                    'driver_name' => $user['user_name'],
-                    'driver_phone' => '0000-0000-0000',
-                    'driver_user_id' => $user_id,
-                    'driver_ID_number' => "-",
-                    'driver_status' => "Bebas",
-                ];
-                $this->M_public->insertData('drivers', $driver);
-                $this->M_public->updateData(['user_id ' => $user_id], 'user', $dataupdate);
-                $data['driver'] = $driver;
-            }
-        } else {
-            if ($old_user_level = 4) {
-                if ($user_level != 4) {
-                    $this->db->delete('admin', ['admin_user_id' => $user_id]);
-                    $this->M_public->updateData(['user_id ' => $user_id], 'user', $dataupdate);
-                }
-            }
-        }
-
-
-
-
-        if ($data) {
-            $res['status'] = "Berhasil";
-            $res['message'] = "Berhasil mengubah level user";
-        }
-
-        $data['response'] = $res;
 
 
         echo json_encode($data);

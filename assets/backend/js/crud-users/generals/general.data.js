@@ -69,14 +69,8 @@ const showRow = (path, user, no) => {
                 aria-haspopup="true" aria-expanded="false">
                 <i class=" fas fa-fw fa-ellipsis-v  "></i>
                 </button>
-                <div class="dropdown-menu " aria-labelledby="${
-									user.user_email
-								}">
-					<a data-id="${
-						user.user_id
-					}" class="dropdown-item d-flex align-items-center text-secondary btn-change-level " href="#">
-						<i class="fas fa-user-cog fa-fw  mr-2"></i> 
-						<span class="">Change Role</span></a>
+				<div class="dropdown-menu" 
+				aria-labelledby="${user.user_email}">
 					<a class="dropdown-item d-flex align-items-center text-warning" href="#">
 						<i class=" fas fa-user-alt-slash  mr-2"></i> 
 						<span class="">Deactivate</span>
@@ -84,8 +78,7 @@ const showRow = (path, user, no) => {
 					<a class="dropdown-item d-flex align-items-center text-danger " href="#">
 					<i 
 						class="fas fa-trash-alt fa-fw  mr-2"></i> <span class="">Detele</span></a>
-					
-					
+
                 </div>
             </div>
 	    </td>
