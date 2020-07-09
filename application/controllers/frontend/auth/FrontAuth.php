@@ -146,6 +146,7 @@ class FrontAuth extends CI_Controller
             $this->load->view('frontEnd/templates/auth/footer', $data);
         } else {
             $data = [
+                'user_id' => getAutoNumber('user', 'user_id', 'user-', 9),
                 'user_name' => htmlspecialchars($this->input->post('name', true)),
                 'user_email' => htmlspecialchars($this->input->post('email', true)),
                 'user_photo' => 'default.png',
