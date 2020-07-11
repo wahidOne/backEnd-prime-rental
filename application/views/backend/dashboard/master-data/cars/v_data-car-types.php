@@ -49,9 +49,7 @@
                             </div>
                         </div>
                         <div class="card-body px-3">
-                            <button class="btn btn-primary btn-small mb-2" type="button" id="collpase-insert-btn">
-                                Tambah Data
-                            </button>
+
                             <form data-url="<?= site_url('administrator/master-data/update-type')  ?>" id="form-ubah" action="" method="POST">
                                 <div class="form-group row">
                                     <label for="u_name" class="form-control-label col-sm-2 font-weight-bolder text-primary ">Update Type Name</label>
@@ -77,9 +75,8 @@
                     <div class="d-flex">
                         <!-- <button type="button" class="btn btn-primary tambahMenu" data-toggle="modal" data-target="#modal-tambah-menu">Tambah Menu</button> -->
 
-                        <button type="button" class="btn btn-primary" id="button-actions">
-                            <i class="fas fa-plus"></i>
-                            Add Car data
+                        <button class="btn btn-primary btn-small mb-2" type="button" id="collpase-insert-btn">
+                            Tambah Data
                         </button>
                     </div>
                 </div>

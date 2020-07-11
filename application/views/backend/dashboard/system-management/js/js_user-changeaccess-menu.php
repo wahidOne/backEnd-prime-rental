@@ -1,4 +1,4 @@
-<script hidden>
+<script>
     $(function() {
         $('#data-akses-menu').DataTable({
             "aLengthMenu": [

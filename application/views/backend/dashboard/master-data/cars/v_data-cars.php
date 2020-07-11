@@ -20,8 +20,6 @@
             <div class="card">
                 <div class="card-header ">
                     <div class="d-flex">
-                        <!-- <button type="button" class="btn btn-primary tambahMenu" data-toggle="modal" data-target="#modal-tambah-menu">Tambah Menu</button> -->
-
                         <button type="button" class="btn btn-primary" id="button-actions">
                             <i class="fas fa-plus"></i>
                             Add Car data

@@ -101,20 +101,6 @@ class Transaction extends CI_Controller
                 $status = false;
                 $konfirmasi = false;
             }
-
-
-
-
-            // if ($r->payment_proof == "" && $r->payment_status == "0") {
-            //     $statusPay = "<span class=' badge badge-warning text-capitalize ' > Menunggu Pembayaran </span>";
-            // } elseif (!$r->payment_proof == "" && !$r->payment_status == 1) {
-            //     $statusPay = "<span class='badge badge-info text-capitalize ' > Menunggu Konfirmasi</span>";
-            // } elseif ($r->payment_proof != "" && $r->payment_status == 1) {
-            //     $statusPay = "<span class=' badge badge-outlinesuccess text-capitalize  '>Pembayaran selesai</span>";
-            // } elseif ($r->payment_status == "Expired") {
-            //     $statusPay = "<span class='badge badge-danger  text-capitalize  '>Pembayaran Terlambat</span>";
-            // }
-
             $row[] = $status;
             $row[] = $konfirmasi;
             $row[] = ' 
@@ -140,20 +126,6 @@ class Transaction extends CI_Controller
                         </div>
                     </div>
             ';
-            // $row[] = '<div class="d-flex justify-content-center">
-            //             <a id="btn-info" href="' . site_url('administrator/transaction/get-rent/') . $r->rent_id . '" class="badge badge-info text-dark">
-            //                 <i class="fad fa-fw fa-info"></i>Detail
-            //             </a>
-            //             <a data-id="' . $r->rent_id  . '" id="hapus-menu" href="' . site_url('administrator/transaction/delete-rent/')  . '" class="badge badge-success text-dark ml-2">
-            //                 <i class="far fa-fw fa-check"></i> Confirm
-            //             </a>
-            //             <a data-id="' . $r->rent_id  . '" id="hapus-menu" href="' . site_url('administrator/transaction/delete-rent/')  . '" class="badge badge-danger text-dark ml-2">
-            //                 <i class="far fa-fw fa-times "></i> Reject
-            //             </a>
-            //         </div>
-            // ';
-            // add html for action
-
             $data[] = $row;
         }
         $output = array(

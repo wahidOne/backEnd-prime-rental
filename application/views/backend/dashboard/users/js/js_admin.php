@@ -16,17 +16,11 @@
 
     table.addEventListener('click' , (e) => {
         e.preventDefault();
-
         if(e.target.parentNode.classList.contains('btn-detail') || e.target.classList.contains('btn-detail')) { 
-
             const idDetail = e.target.dataset.id || e.target.parentNode.dataset.id;
             const urlDetail = `<?= base_url('administrator/users/admin-where/') ?>`;
-
             detailAdmin(urlDetail, idDetail);
-
-
         }
-
     })
 
     document.addEventListener('visibilitychange', function () {

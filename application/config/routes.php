@@ -131,6 +131,12 @@ $route['administrator/master-data/delete-car/(:num)'] = 'admin/dashboard/Master_
 $route['administrator/master-data/data-tables-cars'] = 'admin/dashboard/Master_data/get_ajax';
 // Master Data Drivers
 $route['administrator/master-data/drivers'] = 'admin/dashboard/Master_data/viewDataDrivers';
+$route['administrator/master-data/load-drivers'] = 'admin/dashboard/Master_data/loadDataDrivers';
+$route['administrator/master-data/insert-driver'] = 'admin/dashboard/Master_data/insertDataDrivers';
+$route['administrator/master-data/update-driver'] = 'admin/dashboard/Master_data/updateDataDriver';
+$route['administrator/master-data/delete-driver/(:any)'] = 'admin/dashboard/Master_data/deleteDriver/$1';
+$route['administrator/master-data/auto-insert-driver'] = 'admin/dashboard/Master_data/AutoinsertDataDrivers';
+$route['administrator/master-data/get-driver/(:any)'] = 'admin/dashboard/Master_data/getDriversDetail/$1';
 /////
 $route['administrator/master-data/types-car'] = 'admin/dashboard/Master_data/typesCar';
 $route['administrator/master-data/get-types-car'] = 'admin/dashboard/Master_data/showTypesCar';
@@ -154,13 +160,6 @@ $route['administrator/users/get-general-user'] = 'admin/dashboard/Users/generalU
 $route['administrator/users/admin'] = 'admin/dashboard/Users/administrators';
 $route['administrator/users/get-admin-user'] = 'admin/dashboard/Users/getAdminUser';
 $route['administrator/users/admin-where/(:any)'] = 'admin/dashboard/Users/getAdminWhere/$1';
-
-
-$route['administrator/users/drivers'] = 'admin/dashboard/Users/drivers';
-$route['administrator/users/get-drivers'] = 'admin/dashboard/Users/getDrivers';
-$route['administrator/users/get-a-driver/(:any)'] = 'admin/dashboard/Users/getDriversWhere/$1';
-$route['administrator/users/del-driver/(:any)'] = 'admin/dashboard/Users/deleteDriver/$1';
-
 
 // users/costumer 
 $route['administrator/users/customer'] = 'admin/dashboard/Users/customers';

@@ -15,8 +15,8 @@
 
 
         const btnShowCollapseInsert = document.querySelector('#collpase-insert-btn');
-
         btnShowCollapseInsert.addEventListener('click' , (e) => {
+            
             $('#collapse-insert').collapse('show');
             $('#collapse-update').collapse('hide');
         })

@@ -168,40 +168,6 @@
     }
 
 
-    // _tableMenu.addEventListener('click', async function (e) {
-    //     e.preventDefault();
-    //     if(e.target.id == "ubah-menu" || e.target.parentNode.id == "ubah-menu") {
-    //         const url = e.target.href || e.target.parentNode.href;
-    //         console.log(url);
-    //     }
-
-    //     if(e.target.id == "hapus-menu" || e.target.parentNode.id == "hapus-menu") {
-    //         const url = e.target.href || e.target.parentNode.href;
-    //         const dataID = e.target.dataset.id || e.target.parentNode.dataset.id
-    //         Swal.fire({
-    //             title: 'Ingin Menghapus menu ini?',
-    //             icon: 'warning',
-    //             showCancelButton: true,
-    //             confirmButtonColor: '#3085d6',
-    //             cancelButtonColor: '#d33',
-    //             confirmButtonText: 'Iya'
-    //         }).then((result) => {
-    //             if (result.value) {
-    //                 const res = await DeleteMenu(url, dataID, showMessage);
-
-    //                 if(res) {
-    //                     $("#table-menu").DataTable().destroy();
-    //                     loadDataMenu();
-    //                 }
-                
-                    
-    //             }
-    //         })
-
-    //     }
-        
-    // })
-
 
    
 

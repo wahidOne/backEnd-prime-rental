@@ -215,6 +215,7 @@ class M_user extends CI_Model
         $this->db->join('user_level', 'user_level.level_id
         = user.user_level');
         $this->db->where('user_level', 7);
+        $this->db->order_by('user.user_created', "DESC");
         $query = $this->db->get();
 
         if ($query->num_rows() != 0) {

@@ -272,4 +272,242 @@ class Master_data extends CI_Controller
 
         echo json_encode($data);
     }
+
+
+
+    public function viewDataDrivers()
+    {
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
+        $data = [
+            'title' => 'Data Drivers',
+            'user' => $user,
+        ];
+
+        $backendTemplates = $this->publicData['backendTemplates'];
+        $viewsDashboardPath = 'backend/dashboard/';
+        $this->load->view($backendTemplates . 'header', $data);
+        $this->load->view($backendTemplates . 'topbar', $data);
+        $this->load->view($backendTemplates . 'sidebar', $data);
+        $this->load->view($viewsDashboardPath . 'master-data/driver/v_driver', $data); //main content
+        $this->load->view($backendTemplates . 'footer', $data);
+        $this->load->view($viewsDashboardPath . '/plugins/_master-data', $data); //plugins
+        $this->load->view($backendTemplates . 'script', $data);
+        // costum js
+        $this->load->view($viewsDashboardPath . 'master-data/driver/js/js_driver', $data);
+        $this->load->view($backendTemplates . 'end', $data);
+    }
+
+
+    public function loadDataDrivers()
+    {
+        $drivers = $this->M_user->getDrivers();
+        foreach ($drivers as $driver) {
+            $driver->user_created = date('d F Y', $driver->user_created);
+            $row[] = $driver;
+        }
+
+        $data['drivers'] = $row;
+
+        echo json_encode($data);
+    }
+
+    public function insertDataDrivers()
+    {
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Headers: *');
+
+        $postData = json_decode(file_get_contents('php://input'), true);
+
+        foreach ($postData as $key => $val) {
+            $val = filter_var($val, FILTER_SANITIZE_STRING); // Remove all HTML tags from string
+            $postData[$key] = $val;
+        }
+
+        $user_id = getAutoNumber('user', 'user_id', 'user-', 9);
+
+        $user_email = htmlspecialchars($postData['user_email']);
+        $user_name = htmlspecialchars($postData['user_name']);
+        $password = password_hash($postData['user_password'], PASSWORD_DEFAULT);
+        $cekdata = $this->db->get_where('user', ['user_email' => $user_email]);
+
+        if ($cekdata->num_rows() == 0) {
+            $res['is_email_already'] = false;
+            $res['the_user'] = $cekdata->row_array();
+            $res['the_row'] = $cekdata->num_rows();
+
+
+            $datauser = [
+                'user_id' => $user_id,
+                'user_name' => $user_name,
+                'user_email' => $user_email,
+                'user_password' => $password,
+                'user_status' => "online",
+                'user_level' => 7,
+                'user_is_activation' => 1,
+                'user_photo' => "default.png",
+                'user_created' => time(),
+            ];
+
+            $datadriver = [
+                'driver_id' => getAutoNumber('drivers', 'driver_id', 'D-', 5),
+                'driver_user_id' => $datauser['user_id'],
+                'driver_name' => $postData['driver_name'],
+                'driver_phone' => $postData['driver_phone'],
+                'driver_ID_number' => $postData['driver_ID_number'],
+                'driver_status' => 0,
+            ];
+
+
+
+            $result = $this->M_public->insertData('user', $datauser);
+            // $result = 1;
+
+            if ($result > 0) {
+                $this->M_public->insertData('drivers', $datadriver);
+                $res['status'] = true;
+                $res['message'] = 'Berhasil menambahkan data supir';
+                $res['user'] = $datauser;
+                $res['driver'] = $datadriver;
+            } else {
+                $res['status'] = false;
+                $res['message'] = 'Gagal menambahkan data supir, Silahkan Coba Lagi';
+            }
+        } else {
+            $res['status'] = false;
+            $res['is_email_already'] = true;
+            $res['message'] = 'Email yang dimasukan sudah tersedia!';
+        }
+        $data['res']  = $res;
+        echo json_encode($data);
+    }
+
+    public function AutoinsertDataDrivers()
+    {
+
+
+        $user_id = getAutoNumber('user', 'user_id', 'user-', 9);
+        $user_email = getAutoNumber('user', 'user_email', 'prime.driver', 15);
+        $driver_name = getAutoNumber('drivers', 'driver_name', 'driver-', 10);
+
+        $datauser = [
+            'user_id' => $user_id,
+            'user_name' => $driver_name,
+            'user_email' => $user_email . "@gmail.com",
+            'user_password' => password_hash($driver_name, PASSWORD_DEFAULT),
+            'user_status' => "online",
+            'user_level' => 7,
+            'user_is_activation' => 1,
+            'user_photo' => "default.png",
+            'user_created' => time(),
+        ];
+
+        $datadriver = [
+            'driver_id' => getAutoNumber('drivers', 'driver_id', 'D-', 5),
+            'driver_user_id' => $user_id,
+            'driver_name' => $driver_name,
+            'driver_phone' => "+628-0000-0000-0000",
+            'driver_ID_number' => time(),
+            'driver_status' => 0,
+        ];
+
+        $result = $this->M_public->insertData('user', $datauser);
+        // $result = 1;
+
+        if ($result > 0) {
+            $this->M_public->insertData('drivers', $datadriver);
+            $res['status'] = true;
+            $res['message'] = 'Berhasil menambahkan data supir baru';
+            $res['user'] = $datauser;
+            $res['driver'] = $datadriver;
+        } else {
+            $res['status'] = false;
+            $res['message'] = 'Gagal menambahkan data supir, Silahkan Coba Lagi';
+        }
+
+        $data['response'] = $res;
+        echo json_encode($data);
+    }
+
+    public function getDriversDetail()
+    {
+
+
+        $user_id = $this->uri->segment(4);
+
+        $driver = $this->M_user->getDriversWhere(['user_id' => $user_id])->row_array();
+
+        $driver['user_created'] =  date('F, d Y', $driver['user_created']);
+
+        $res['driver'] = $driver;
+        $res['status'] = true;
+        $data['response'] = $res;
+
+        echo json_encode($data);
+    }
+
+    public function updateDataDriver()
+    {
+
+
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Headers: *');
+
+        $postData = json_decode(file_get_contents('php://input'), true);
+
+        foreach ($postData as $key => $val) {
+            $val = filter_var($val, FILTER_SANITIZE_STRING); // Remove all HTML tags from string
+            $postData[$key] = $val;
+        }
+
+        $user_id = $postData['user_id'];
+
+        $res['user_id'] = $user_id;
+        $res['post'] = $postData;
+
+        $datauser = [
+            'user_name' => $postData['user_name'],
+        ];
+
+        $datadriver = [
+            'driver_name' => $postData['driver_name'],
+            'driver_phone' => $postData['driver_phone'],
+            'driver_ID_number' => $postData['driver_ID_number'],
+        ];
+
+        // $result = true;
+        $this->M_public->updateData(['user_id' => $user_id], 'user', $datauser);
+        $this->M_public->updateData(['driver_user_id' => $user_id], 'drivers', $datadriver);
+
+        $data['data'] = $res;
+        $data['status'] = true;
+        $data['pesan'] = "Berhasil mengubah data supir!";
+
+
+        echo json_encode($data);
+    }
+
+    public function deleteDriver()
+    {
+        $user_id = $this->uri->segment(4);
+        // $data['types'] = $this->M_public->getDataWhere('car_types', ['type_id' => $type_id])->row_array();
+        // $this->M_public->deleteData(['user_id' => $user_id], 'user');
+        // $this->M_public->deleteData(['driver_user_id' => $user_id], 'user');
+
+        $user = $this->M_public->getDataWhere('user', ['user_id' => $user_id])->row_array();
+
+        if ($this->M_public->deleteData(['user_id' => $user_id], 'user') &&  $this->M_public->deleteData(['driver_user_id' => $user_id], 'drivers')) {
+            if ($user['user_photo'] != "default.png") {
+                unlink(FCPATH . './assets/uploads/ava/' . $user['user_photo']);
+            }
+            $res['status'] = true;
+            $res['message'] = "Berhasil menghapus data!";
+        } else {
+            $res['status'] = false;
+            $res['message'] = "Oopps..gagal menghapus data driver";
+        }
+
+        $data['res'] = $res;
+
+        echo json_encode($data);
+    }
 }
