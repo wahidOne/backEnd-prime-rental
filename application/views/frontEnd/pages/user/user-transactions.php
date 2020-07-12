@@ -78,6 +78,8 @@
                                                 $expired =  date('Y-m-d G:i:s', $date_rent + (24 * 3600 * 1));
                                                 ?>
 
+
+
                                                 <?php if ($tr['payment_proof'] == "" && $tr['payment_status'] == "0") : ?>
                                                     <span class="date_expired" class="d-none" data-url="<?= base_url('penyewaan/set-expired/') . $tr['rent_id']; ?>" id="date_expired" data-time="<?= date('F d, Y H:i:s', strtotime($expired)) ?>">
                                                     </span>
@@ -99,14 +101,13 @@
                                                 <?php endif; ?>
                                             </td>
                                             <td>
+
                                                 <div class="d-flex  ">
                                                     <?php if ($tr['payment_status'] == "Expired") : ?>
-
                                                         <a href="<?= base_url('user/' . $user['user_id'] . '/dashboard/transaksi/pembatalan?rentId=') .  $tr['rent_id'] ?>" class="btn btn-secondary btn-sm tooltip--costum ">
                                                             <i class="fad fa-info"></i>
                                                             <span class="tooltip--item text-white">Infomasi</span>
                                                         </a>
-
                                                     <?php else : ?>
 
                                                         <a href="<?= base_url('user/' . $user['user_id'] . '/dashboard/invoice/pembayaran?rentId=') .  $tr['rent_id'] ?>" class="btn btn-secondary btn-sm tooltip--costum ">
@@ -114,46 +115,28 @@
                                                             <span class="tooltip--item text-white">Cek Pembayaran</span>
                                                         </a>
 
-                                                        <?php if ($tr['payment_proof'] != "" && $tr['payment_status'] == 1) : ?>
-                                                            <a href="<?= site_url('transaksi/detail/') . $tr['rent_id'] ?>" class="btn btn-secondary btn-sm tooltip--costum ml-1 ">
+                                                        <?php if ($tr['rent_order_status'] == 1) : ?>
+                                                            <a href="<?= site_url('user/' . $tr['user_id']  . '/dashboard/invoice?rent_id=') . $tr['rent_id'] ?>" class="btn btn-secondary btn-sm tooltip--costum ml-1 ">
                                                                 <i class="fad fa-file-invoice"></i>
                                                                 <span class="tooltip--item text-white">Invoice pesanan</span>
                                                             </a>
+                                                        <?php else : ?>
+                                                            <a href="#" class="btn btn-secondary btn-sm ml-1 tooltip--costum">
+                                                                <i class="fad fa-times-octagon "></i>
+                                                                <span class=" tooltip--item  text-white">Batalkan Transaksi</span>
+                                                            </a>
+
                                                         <?php endif; ?>
 
 
-                                                        <a href="#" class="btn btn-secondary btn-sm ml-1 tooltip--costum">
-                                                            <i class="fad fa-times-octagon "></i>
-                                                            <span class=" tooltip--item  text-white">Batalkan Transaksi</span>
-                                                        </a>
 
                                                     <?php endif; ?>
-
                                                 </div>
                                             </td>
                                         </tr>
 
                                     <?php endforeach; ?>
 
-                                    <!-- <tr>
-                            <th scope="row">1</th>
-                            <td colspan="2">
-                                <div class="d-flex align-items-center flex-nowrap"><img height="80" class="" src="dist/static/img/datsun-go.png" alt="">
-                                    <div class="ml-1 text-wrap">
-                                        <p class="font-14px w-100 mb-n1 font-weight-bold">Datsun Go</p>
-                                        <small class="mt-0 text-black-50">Hatback</small>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>Pakai Supir</td>
-                            <td>20/05/2020</td>
-                            <td>20/05/2020</td>
-                            <td>Rp. 600.000</td>
-                            <td><span class="badge badge-warning">Menunggu Pembyaran</span></td>
-                            <td>
-                                <div class="d-flex"><a href="invoice.html" class="btn btn-info btn-sm tooltip--costum"><i class="fad fa-file-invoice"></i> <span class="tooltip--item">invoice</span> </a><a href="#" class="btn btn-danger btn-sm ml-1 tooltip--costum"><i class="fad fa-times-octagon"></i> <span class="tooltip--item">Batalkan Transaksi</span></a></div>
-                            </td>
-                        </tr> -->
 
 
                                 </tbody>

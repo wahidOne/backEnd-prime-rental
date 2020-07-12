@@ -66,21 +66,24 @@ class Transaction extends CI_Controller
             $row[] = $service;
 
 
-
-
-            if ($r->rent_status == "belum selesai" && $r->rent_order_status == 0 && $r->payment_proof == "" && $r->payment_status == 0) {
+            if ($r->rent_status == "belum selesai" && $r->rent_order_status == "0" && $r->payment_proof == "" && $r->payment_status == "0") {
                 $konfirmasi = '<a href="#" class="btn btn-success disabled btn-sm   "  tabindex="-1" role="button" aria-disabled="true" >
                 <i class="fas fa-check-square my-auto "></i>
                 </a>';
                 // status
                 $status = "<span class='badge badge-danger text-white text-capitalize w-100  '>Menunggu Pembayaran</span>";
-            } elseif ($r->rent_status == "belum selesai" && $r->rent_order_status == 0 && $r->payment_proof !== "" && $r->payment_status == 0) {
+            } elseif ($r->payment_status == "Expired" && $r->rent_status == "belum selesai" && $r->rent_order_status == "0" && $r->payment_proof == "") {
+                $konfirmasi = '<a href="#" class="btn btn-danger disabled btn-xs "  tabindex="-1" role="button" aria-disabled="true">
+                    Dibatalkan
+                    </a>';
+                $status = "<span class='badge badge-danger text-dark text-capitalize w-100'>Expired</span>";
+            } elseif ($r->rent_status == "belum selesai" && $r->rent_order_status == "0" && $r->payment_proof !== "" && $r->payment_status == "0") {
                 $konfirmasi = '<a href="#" class="btn btn-success disabled btn-sm"  tabindex="-1" role="button" aria-disabled="true" >
                 <i class="fas fa-check-square  my-auto"></i>
                 </a>';
                 // status
                 $status = "<span class='badge badge-warning text-dark text-capitalize w-100  '>Konfirmasi Pembayaran</span>";
-            } elseif ($r->rent_status == "belum selesai" && $r->rent_order_status == 0 && $r->payment_proof !== "" && $r->payment_status == 1) {
+            } elseif ($r->rent_status == "belum selesai" && $r->rent_order_status == "0" && $r->payment_proof !== "" && $r->payment_status == 1) {
                 $konfirmasi = '<a href="#" class="btn btn-success disabled btn-sm"  tabindex="-1" role="button" aria-disabled="true" >
                 <i class="fas fa-check-square  my-auto "></i>
                 </a>';

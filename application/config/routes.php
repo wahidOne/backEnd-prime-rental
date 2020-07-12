@@ -81,7 +81,7 @@ $route['user/(:any)/dashboard/transaksi/konfirmasi-pembatalan'] = 'frontend/publ
 $route['user/(:any)/dashboard/transaksi/konfirmasi-data-diri']['GET'] = 'frontend/public/User/confirmClienData';
 $route['user/(:any)/dashboard/transaksi/tambah-konfirmasi-data-diri'] = 'frontend/public/User/addConfirmClientData';
 $route['user/(:any)/dashboard/invoice/pembayaran']['GET'] = 'frontend/public/User/invoicePayment';
-$route['transaksi/detail/(:any)'] = 'frontend/public/User/userDetailTransaction/$1';
+$route['user/(:any)/dashboard/invoice']['GET'] = 'frontend/public/User/invoice';
 
 $route['user/(:any)/dashboard/load-inbox']["GET"] = 'frontend/public/Inbox/loadInbox';
 $route['user/(:any)/dashboard/send-inbox'] = 'frontend/public/Inbox/addInbox';

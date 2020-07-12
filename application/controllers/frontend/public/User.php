@@ -195,17 +195,16 @@ class User extends CI_Controller
     }
 
 
-    public function userDetailTransaction()
+    public function invoice()
     {
         if ($this->session->userdata('primerental_user') != NULL) {
             $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']]);
             if ($user->num_rows() > 0) {
                 $user = $user->row_array();
 
-                $rentId = $this->uri->segment(3);
+                $rentId = $this->input->get('rent_id');
                 $result = $this->M_trans->getDetailUserTransaction(['rent_id' => $rentId]);
                 $client  = $this->M_clients->checkClient(['client_user_id' => $result['rent_user_id']])->row_array();
-                // $customer = $this->M_costumer->cekCostumer(['cos_user_id' => $result['rent_user_id']])->row_array();
                 $carType = $this->M_public->getDataWhere('car_types', ['type_id' => $result['car_type_id']])->row_array();
 
                 $date_rent_start = strtotime($result['rent_date_start']);
@@ -236,12 +235,17 @@ class User extends CI_Controller
                 $result['rent_max_returned'] = $tgl_max_kembali;
 
 
+                if ($result['rent_service'] == 2 || $result['rent_service'] == 3) {
+                    $driver = $this->M_user->getDriversWhere(['driver_id' => $result['rent_driver_id']])->row_array();
+                } else {
+                    $driver = "";
+                }
 
                 $data['user'] = $user;
                 $data['transaksi'] = $result;
                 $data['tipe_mobil'] = $carType;
+                $data['driver'] = $driver;
                 $data['klien'] = $client;
-                $data['bank'] = $this->M_public->getDataWhere('bank', ['bank_id' => $result['payment_bank_id']])->row_array();
             } else {
                 $data['user'] = [];
             }
@@ -259,7 +263,7 @@ class User extends CI_Controller
         $this->load->view($templatesPath .  "header", $data);
         $this->load->view($templatesPath .  "sidebar", $data);
         $this->load->view($templatesPath .  "topbar", $data);
-        $this->load->view($views .  "invoice-transaction", $data);
+        $this->load->view($views .  "invoice/invoice-transaction", $data);
         $this->load->view($templatesPath .  "end", $data);
     }
 
