@@ -3,9 +3,12 @@ import Invoice from "./components/Invoice";
 import CheckExpired from "../../../frontEnd/app/components/Dashboard/checkExpired";
 import configEditor from "./components/configEditors";
 import * as _confirmPayments from "./components/FormConfirmPayments";
+import HandleAlert from "../components/_handleAlert";
+import TransactionConfirm from "./components/Transaction.Confrim";
 
-class Transactions {
+export default class Transactions {
 	constructor() {
+		this.domainName = mainDomain;
 		this.table = document.querySelector("#table-rent");
 
 		this.modal = document.querySelector("#container-modal");
@@ -15,6 +18,9 @@ class Transactions {
 
 		this.formConfirmSuccess = document.querySelector("#form-confirm-success");
 		this.formConfirmDecline = document.querySelector("#form-confirm-decline");
+		// confirmaction comp
+
+		this.driverRow = document.querySelector(".selectdriver-row");
 	}
 
 	public() {
@@ -34,6 +40,9 @@ class Transactions {
 		this.confirmPayment();
 
 		configEditor();
+
+		new HandleAlert().render();
+		new TransactionConfirm(this.driverRow, this.domainName).render();
 	}
 
 	loadData() {
@@ -99,5 +108,4 @@ class Transactions {
 }
 
 const transactions = new Transactions();
-
 transactions.public();

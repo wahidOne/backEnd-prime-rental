@@ -37,12 +37,12 @@
 
             </div>
             <hr class=" ">
-            <div class="row mt-4 px-md-2">
+            <div class="row mt-4 px-md-3 px-lg-5">
                 <div class="col-12 mt-4">
                     <h3 class=" font-w-400 ">Detail pesanan <?= $rental['rent_id'] ?></h3>
                 </div>
             </div>
-            <div class="row mt-4 px-md-2">
+            <div class="row mt-4 px-md-3 px-lg-5">
                 <div class="col-md-4">
                     <div class="d-block">
                         <p class=" font-20px mb-0 font-w-600 ">Untuk </p>

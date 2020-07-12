@@ -1,6 +1,4 @@
-import Swal from "sweetalert2";
-
-class AlertService {
+class AlertBackEndService {
 	constructor(selector) {
 		this.selector = selector;
 		this.element;
@@ -62,4 +60,4 @@ class AlertService {
 	}
 }
 
-export default AlertService;
+export default AlertBackEndService;

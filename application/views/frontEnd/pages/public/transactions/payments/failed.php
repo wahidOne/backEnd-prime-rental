@@ -16,7 +16,7 @@
 
         <div class="container-fluid">
             <div class="row mt-4">
-                <div class="col-md-6 mx-auto ">
+                <div class="col-lg-6 col-md-8 mx-auto ">
 
                     <div class="card border-0 shadow card-body py-6">
                         <div class="d-flex justify-content-center flex-column align-items-center ">

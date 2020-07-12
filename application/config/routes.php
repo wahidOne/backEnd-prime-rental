@@ -86,7 +86,7 @@ $route['transaksi/detail/(:any)'] = 'frontend/public/User/userDetailTransaction/
 $route['user/(:any)/dashboard/load-inbox']["GET"] = 'frontend/public/Inbox/loadInbox';
 $route['user/(:any)/dashboard/send-inbox'] = 'frontend/public/Inbox/addInbox';
 $route['user/(:any)/dashboard/inbox'] = 'frontend/public/Inbox/viewInbox';
-$route['user/(:any)/dashboard/inbox/(:any)'] = 'frontend/public/Inbox/detail/$2';
+$route['user/(:any)/dashboard/inbox/(:any)'] = 'frontend/public/Inbox/detail';
 
 $route['autentifikasi/login'] = 'frontend/auth/frontAuth/index';
 $route['autentifikasi/registrasi'] = 'frontend/auth/frontAuth/registrasi';
@@ -176,6 +176,10 @@ $route['administrator/transaction/check-payment']['GET'] = 'admin/dashboard/Tran
 $route['administrator/transaction/download-payment-proof/(:any)'] = 'admin/dashboard/Transaction/downloadPaymentProof/$1';
 $route['administrators/transaction/confirm-payment'] = 'admin/dashboard/Transaction/confirmPayment';
 $route['administrators/transaction/confirm-payment-decline'] = 'admin/dashboard/Transaction/confirmPaymentDecline';
+$route['administrators/transaction/confirmation-transaction']['GET'] = 'admin/dashboard/Transaction/confirmationTransaction';
+$route['administrators/transaction/send-confirmation-transaction'] = 'admin/dashboard/Transaction/sendConfirmationTransaction';
+
+$route['administrators/transaction/get-free-driver'] = 'admin/dashboard/Transaction/getDriverFree';
 
 
 $route['administrator/rental'] = 'admin/demo/Rental/index';

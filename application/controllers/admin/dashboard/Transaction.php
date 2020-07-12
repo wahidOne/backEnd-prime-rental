@@ -87,10 +87,19 @@ class Transaction extends CI_Controller
                 // status
                 $status = "<span class='badge badge-primary text-dark text-capitalize w-100'>Pembayaran Selesai</span>";
             } elseif ($r->rent_status == "belum selesai" && $r->rent_order_status == 1 && $r->payment_proof !== "" && $r->payment_status == 1) {
+                // $konfirmasi = '
+                // <a href="#" class="btn btn-success btn-sm">
+                //     <i class="fas fa-check-square"></i>
+                // </a>';
                 $konfirmasi = '
-                <a href="#" class="btn btn-success btn-sm">
+                <form target="_blank" action="' . base_url('administrators/transaction/confirmation-transaction') . '" method="GET">
+                <input type="hidden" name="rent_id" value="' . $r->rent_id . '" >
+                <input type="hidden" name="user_id" value="' . $r->rent_user_id . '" >
+                <button type="submit" class="btn btn-success btn-sm">
                     <i class="fas fa-check-square"></i>
-                </a>';
+                </button>
+                </form>
+                ';
                 $status = "<span class='badge badge-outlineinfo  text-info text-capitalize w-100  '>Menunggu Persetujuan</span>";
             } elseif ($r->rent_status == "jalan" && $r->rent_order_status == 1 && $r->payment_proof !== "" && $r->payment_status == 1) {
                 $konfirmasi = '<a href="#" class="btn btn-success disabled btn-xs "  tabindex="-1" role="button" aria-disabled="true">
@@ -101,6 +110,7 @@ class Transaction extends CI_Controller
                 $status = false;
                 $konfirmasi = false;
             }
+
             $row[] = $status;
             $row[] = $konfirmasi;
             $row[] = ' 
@@ -281,6 +291,7 @@ class Transaction extends CI_Controller
 
         echo json_encode($data);
     }
+
     public function confirmPaymentDecline()
     {
         header('Access-Control-Allow-Origin: *');
@@ -327,6 +338,152 @@ class Transaction extends CI_Controller
         }
 
         // $data['inbox_subject'] = $inboxText;
+
+        echo json_encode($data);
+    }
+
+
+    //persetujuan transaksi
+    public function confirmationTransaction()
+    {
+
+        $rent_id = $this->input->get('rent_id');
+        $user_id = $this->input->get('user_id');
+
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
+        $rental = $this->M_trans->getTransactionsWithPayment(['rent_id' => $rent_id])->row_array();
+
+        $rental = $this->M_trans->getTransactionsWithPayment(['rent_id' => $rent_id])->row_array();
+        if ($rental['rent_status'] == "jalan") {
+            set_frontflashmessage("info", "Informasi!", "Pesanan ini telah terkonfirmasi, jadi tidak dapat melakukan konfirmasi lebih dari sekali");
+            redirect('administrator/transaction/rent');
+        }
+
+        $client = $this->M_clients->checkClient(['client_user_id' => $user_id])->row_array();
+
+        $rental['car_photo'] = base_url('assets/uploads/cars/') . $rental['car_photo'];
+        $carTypes = $this->M_public->getDataWhere('car_types', ['type_id' => $rental['car_type_id']])->row_array();
+
+        $date_rent_start = strtotime($rental['rent_date_start']);
+        $date_end = strtotime($rental['rent_date_end']);
+        $datediff = $date_end - $date_rent_start;
+
+        $jmlHari = round($datediff / (60 * 60 * 24));
+        $rental['car_price_format'] = "Rp. " . number_format($rental['car_price'], 0, ',', '.');
+        // end
+        $rental['days'] = $jmlHari;
+        // end
+
+
+
+        $data = [
+            'title' => 'Confirmation Transactions',
+            'user' => $user,
+            'rental' => $rental,
+            'client' => $client,
+            'tipe_mobil' => $carTypes
+        ];
+        // $data['rental'] = $rental;
+        // $data[''] = 
+
+        $backendTemplates = $this->publicData['backendTemplates'];
+        $viewsDashboardPath = 'backend/dashboard/';
+
+        $data['viewsDashboardPath'] = $viewsDashboardPath;
+
+        $this->load->view($backendTemplates . 'header', $data);
+        $this->load->view($backendTemplates . 'topbar', $data);
+        $this->load->view($backendTemplates . 'sidebar', $data);
+        $this->load->view($viewsDashboardPath . 'trans/v_confirmation-transaction', $data); //main content
+        $this->load->view($backendTemplates . 'footer', $data);
+        $this->load->view($viewsDashboardPath . '/plugins/_transaction', $data); //plugins
+        $this->load->view($backendTemplates . 'script', $data);
+        // costum js
+        $this->load->view($viewsDashboardPath . 'trans/js/js_rent', $data);
+        $this->load->view($backendTemplates . 'end', $data);
+    }
+
+    public function sendConfirmationTransaction()
+    {
+
+
+
+
+
+        $rent_id = $this->input->post('rent_id');
+        $user_id = $this->input->post('user_id');
+
+
+
+        // data inbox 
+        $inbox_id = getAutoNumber('inbox', 'inbox_id', 'inbox00', 10);
+        $inbox_created_at = time();
+        $inbox_status = 0;
+        $inbox_to = $this->input->post('inbox_to');
+        $inbox_from = $this->input->post('inbox_from');
+
+        $inbox_title = $this->input->post('inbox_title');
+        $inbox_subject = $this->input->post('inbox_subject');
+        $inbox_text = $this->input->post('inbox_text');
+
+        $rent_service = $this->input->post('rent_service');
+
+        if ($rent_service == 2 || $rent_service == 3) {
+            $driver = $this->input->post('driver_id', true);
+            if ($driver == NULL) {
+                set_frontflashmessage("error", "Gagal Konfirmasi!", "Silahkan pilih Supir terlebih dahulu ");
+                redirect('administrators/transaction/confirmation-transaction?rent_id=' . $rent_id . '&user_id=' . $user_id);
+            } else {
+
+                $statusDriver = [
+                    'driver_status' => 1
+                ];
+
+                $this->M_public->updateData(['driver_id' => $driver], 'drivers', $statusDriver);
+            }
+        } else {
+            $driver = NULL;
+        }
+
+
+
+        $inbox = [
+            'inbox_id' => $inbox_id,
+            'inbox_to' => $inbox_to,
+            'inbox_from' => $inbox_from,
+            'inbox_subject' => $inbox_subject,
+            'inbox_title' => $inbox_title,
+            'inbox_text' => $inbox_text,
+            'inbox_status' => $inbox_status,
+            'inbox_created_at' => $inbox_created_at,
+        ];
+
+        $dataStatus = [
+            'rent_status' => "jalan",
+            'rent_driver_id' => $driver,
+        ];
+
+
+        $this->M_public->updateData(['rent_id' => $rent_id], 'rental_trans', $dataStatus);
+        $this->M_public->insertData('inbox', $inbox);
+
+        set_frontflashmessage("success", "Terkonfirmasi!", "Berhasil mengkonfirmasi nomor pesanan " . $rent_id);
+        redirect('administrator/transaction/rent');
+    }
+
+    public function getDriverFree()
+    {
+        $drivers = $this->M_user->getDriversWhere(['driver_status' => 0])->result();
+
+        foreach ($drivers as $driver) {
+            $row[] = $driver;
+            $driver->user_created = date('F, d Y', $driver->user_created);
+        }
+
+
+        $res['drivers'] = $row;
+        $res['status'] = true;
+        $data['response'] = $res;
 
         echo json_encode($data);
     }

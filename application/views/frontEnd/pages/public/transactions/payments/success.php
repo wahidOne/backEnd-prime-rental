@@ -15,7 +15,7 @@
 
         <div class="container-fluid">
             <div class="row mt-4">
-                <div class="col-md-6 mx-auto ">
+                <div class="col-lg-6 col-md-8 mx-auto ">
                     <div class="card border-0 shadow card-body pb-6 pt-4">
                         <div class="d-flex justify-content-center flex-column align-items-center ">
                             <a href="<?= site_url('user/' . $user['user_id'] . '/dashboard/transaksi-saya') ?>" class=" nav-link ml-auto " data-toggle="tooltip" data-placement="left" title="Kembali Ke Halaman Transaksi">

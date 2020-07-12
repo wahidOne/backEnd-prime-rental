@@ -15,7 +15,7 @@
                 <div class="col-12">
                     <div class="card inbox--card card-body border-0 shadow-sm pt-2">
                         <div class="row">
-                            <div class="col-12 mt-2">
+                            <div class="col-md-10 mt-2">
                                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                                     <li class="nav-item  ">
                                         <a class="nav-link text-secondary active" id="all-inbox-tab" data-toggle="tab" href="#all-inbox" role="tab" aria-controls="all-inbox" aria-selected="true">
@@ -32,7 +32,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-12 pt-3">
+                            <div class="col-md-8 pt-3">
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="all-inbox" role="tabpanel" aria-labelledby="all-inbox-tab">
                                         <div class="d-flex flex-column px-md-2" id="inbox-content" data-domain="<?= base_url('') ?>">

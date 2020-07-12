@@ -288,6 +288,10 @@ class User extends CI_Controller
                 $date_rent = strtotime($payment['rent_date']);
                 $expired =  date('Y-m-d G:i:s', $date_rent + (24 * 3600 * 1));
 
+                // test rental
+
+                // $rental = $this->M_trans->getTransactionsWithPayment(['rent_id' => $rent_id])->row_array();
+
 
                 if ($payment['payment_proof'] != "") {
                     $data['status_upload'] = false;
@@ -307,6 +311,7 @@ class User extends CI_Controller
                 $data['user'] = $user;
                 $data['allbank'] = $this->M_public->getData('bank')->result_array();
                 $data['payment'] = $payment;
+
                 $data['car_type'] =   $this->M_public->getDataWhere('car_types', ['type_id' => $payment['car_type_id']])->row_array();
             } else {
                 $data['user'] = [];

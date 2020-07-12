@@ -217,6 +217,7 @@ class Transactions extends CI_Controller
 
             $sessionInvoice = $this->session->userdata('invoice');
 
+
             if ($invoice_rental['rent_id'] == $sessionInvoice['rent_id'] && $invoice_rental['rent_client_id'] == $sessionInvoice['client_id'] && $invoice_rental['rent_user_id'] == $user_id) {
 
 
@@ -265,13 +266,14 @@ class Transactions extends CI_Controller
                 $data['themeNavbar'] = "dark";
                 $data['themeHamburger'] = "light";
                 $data['linkColor'] = "primary";
+
+
+                // if ($this->form_validation->run() == false) {
                 $templatesPath  = $this->public['templates'];
                 $views  = $this->public['pages'];
 
                 $data['componentPath'] = $views . "transactions/components/";
                 $data['templatesPath'] = $templatesPath;
-
-                // if ($this->form_validation->run() == false) {
                 $this->load->view($templatesPath .  "header", $data);
                 $this->load->view($templatesPath .  "navbar_mobile", $data);
                 $this->load->view($templatesPath .  "sidebar", $data);

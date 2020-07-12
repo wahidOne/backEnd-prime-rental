@@ -29,7 +29,6 @@ class Inbox {
 	getInbox(url) {
 		const inboxContent = this.inboxContent;
 		const inboxContentUnread = this.inboxContentUnread;
-
 		if (inboxContentUnread && inboxContent) {
 			Axios.get(url)
 				.then((res) => {
