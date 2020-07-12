@@ -32,10 +32,6 @@ export default class Transactions {
 
 		const tableRent = this.table;
 
-		if (this.table) {
-			tableRent.addEventListener("click", (e) => this.tableActions(e));
-		}
-
 		this.checkStatusPayment();
 		this.confirmPayment();
 
@@ -50,20 +46,6 @@ export default class Transactions {
 		if (tableRent) {
 			const urlLoad = tableRent.dataset.url;
 			dataTableConfig(urlLoad);
-		}
-	}
-
-	tableActions(e) {
-		const invoice = new Invoice();
-
-		if (e.target.id == "btn-info" || e.target.parentNode.id == "btn-info") {
-			e.preventDefault();
-
-			// const Id = e.target.dataset.id  || e.target.parentNode.dataset.id
-			// ;
-			const urlGetInvoice = e.target.href || e.target.parentNode.href;
-
-			invoice.fetchData(urlGetInvoice);
 		}
 	}
 

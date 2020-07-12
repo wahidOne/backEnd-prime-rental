@@ -114,6 +114,21 @@ class Transaction extends CI_Controller
                 $konfirmasi = false;
             }
 
+            if ($r->rent_status == 'jalan' || $r->rent_status == "selesai") {
+                $linkInvoice = '<a class="dropdown-item d-flex align-items-center text-info " href="' . site_url('administrator/transaction/invoice?rent_id=') . $r->rent_id . '">
+            <i class=" fad fa-file-invoice  mr-2 fa-fw "></i> 
+            <span class="">Invoice</span>
+            </a>
+            ';
+                $statusDecline = "";
+            } else {
+                $statusDecline = '<a class="dropdown-item d-flex align-items-center text-danger " href="#">
+                <i class=" far fa-times   mr-2 fa-fw "></i> 
+                <span class="">Batalkan</span>
+            </a>';
+                $linkInvoice = "";
+            }
+
             $row[] = $status;
             $row[] = $konfirmasi;
             $row[] = ' 
@@ -126,15 +141,7 @@ class Transaction extends CI_Controller
                                 <i class=" fad fa-hand-holding-usd mr-2 fa-fw "></i> 
                                 <span class="">Cek Pembayaran</span>
                             </a>
-                            <a id="btn-info" class="dropdown-item d-flex align-items-center text-info " href="' . site_url('administrator/transaction/get-rent/') . $r->rent_id . '">
-                                <i class=" fad fa-file-invoice  mr-2 fa-fw "></i> 
-                                <span class="">Invoice</span>
-                            </a>
-                            
-                            <a class="dropdown-item d-flex align-items-center text-danger " href="#">
-                                <i class=" far fa-times   mr-2 fa-fw "></i> 
-                                <span class="">Batalkan</span>
-                            </a>
+                            ' . $linkInvoice . $statusDecline . '
                             
                         </div>
                     </div>
@@ -151,12 +158,12 @@ class Transaction extends CI_Controller
         echo json_encode($output);
     }
 
-
-
-    public function getRental()
+    public function invoice()
     {
-        $id_rent = $this->uri->segment(4);
-        $result  = $this->M_trans->getRentalWhere(['rent_id' => $id_rent]);
+
+        $rent_id = $this->input->get('rent_id');
+        $result  = $this->M_trans->getTransactionsWithPayment(['rent_id' => $rent_id])->row_array();
+
 
         $date_rent_start = strtotime($result['rent_date_start']);
         $date_end = strtotime($result['rent_date_end']);
@@ -165,34 +172,112 @@ class Transaction extends CI_Controller
 
         $max_days = 3;
         $max_return = date('d F Y', $date_end + (24 * 3600 * $max_days));
+
         $result['rent_days'] = $days;
+        $result['car_photo'] = base_url('assets/uploads/cars/') . $result['car_photo'];
         $result['rent_date_max_return'] = $max_return;
         $result['rent_date'] = date("d F Y", strtotime($result['rent_date']));
         $result['rent_date_start'] = date("d F Y", strtotime($result['rent_date_start']));
         $result['rent_date_end'] = date("d F Y", strtotime($result['rent_date_end']));
-        $result['rent_type'] = $result['rent_type'] == 1 ? 'Pakai Supir' : 'Tidak Pakai Supir';
-        $totalPrice = $result['car_price'] * $days;
-        $result['rent_price'] = "Rp. " . number_format($totalPrice, 0, ',', '.');
-        // if (empty($result['rent_proof_pay'])) {
-        //     $result['rent_pay_status'] = "<small class='text-warning' >Belum upload bukti pembayaran</small>";
-        // } elseif ($result['rent_pay_status'] == 0) {
-        //     $result['rent_pay_status'] = "Menunggu konfirmasi";
-        // } elseif ($result['rent_pay_status'] == 1) {
-        //     $result['rent_pay_status'] = "Selesai";
-        // }
-
-        // if ($result['rent_date_returned'] == "0000-00-00") {
-        //     $result['rent_date_returned'] = "-";
-        // } else {
-        //     $result['rent_date_returned'] = date("d F Y", strtotime($result['rent_date_returned']));
-        // }
-
-        $result['car_price'] = "Rp. " . number_format($result['car_price'], 0, ',', '.');
 
 
-        $data['response'] = $result;
-        echo json_encode($data);
+        if ($result['rent_service'] == 1) {
+            $serv = "Self Drive";
+        } elseif ($result['rent_service'] == 2) {
+            $serv = "With Drive";
+        } elseif ($result['rent_service'] == 3) {
+            $serv = "All In";
+        }
+
+        if ($result['rent_service'] == 2 || $result['rent_service'] == 3) {
+            $driverPrice = "100000";
+        } else {
+            $driverPrice = "0";
+        }
+
+
+
+        $result['rent_name_service'] = $serv;
+
+        if (empty($result['payment_proof']) && $result['payment_status'] == "0") {
+            $result['rent_pay_status'] = "<small class='text-warning' >Menunggu Pembayaran</small>";
+        } elseif (!empty($result['payment_proof']) && $result['payment_status'] == "0") {
+            $result['rent_pay_status'] = "<small class='text-info' >Menunggu Konfirmasi</small>";
+        } elseif (!empty($result['payment_proof']) && $result['payment_status'] == "1") {
+            $result['rent_pay_status'] = "<small class='text-info' >Pembayaran Selesai</small>";
+        }
+
+
+        $totalDriver = $driverPrice * $days;
+        $subtotal = $days * $result['car_price'];
+
+        $result['rent_driver_price'] = "Rp. " . number_format($totalDriver, 0, ',', '.');
+        $result['car_price_format'] = "Rp. " . number_format($result['car_price'], 0, ',', '.');
+        $result['rent_sub_total'] = "Rp. " . number_format($subtotal, 0, ',', '.');
+
+        $carType = $this->M_public->getDataWhere('car_types', ['type_id' => $result['car_type_id']])->row_array();
+
+        if ($result['rent_service'] == 2 || $result['rent_service'] == 3) {
+            $driver = $this->M_user->getDriversWhere(['driver_id' => $result['rent_driver_id']])->row_array();
+        } else {
+            $driver = "";
+        }
+
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
+        $data = [
+            'title' => 'Invoice ' . $rent_id,
+            'user' => $user,
+            'rental' => $result,
+            'tipe_mobil' => $carType,
+            'driver' => $driver,
+        ];
+
+        $backendTemplates = $this->publicData['backendTemplates'];
+        $viewsDashboardPath = 'backend/dashboard/';
+        $this->load->view($backendTemplates . 'header', $data);
+        $this->load->view($backendTemplates . 'topbar', $data);
+        $this->load->view($backendTemplates . 'sidebar', $data);
+        $this->load->view($viewsDashboardPath . 'trans/v_invoice', $data); //main content
+        $this->load->view($backendTemplates . 'footer', $data);
+        $this->load->view($viewsDashboardPath . '/plugins/_transaction', $data); //plugins
+        $this->load->view($backendTemplates . 'script', $data);
+        // costum js
+        $this->load->view($viewsDashboardPath . 'trans/js/js_rent', $data);
+        $this->load->view($backendTemplates . 'end', $data);
     }
+
+
+
+    // public function getRental()
+    // {
+    //     $id_rent = $this->uri->segment(4);
+
+
+    //     $result['rent_type'] = $result['rent_type'] == 1 ? 'Pakai Supir' : 'Tidak Pakai Supir';
+
+    //     $totalPrice = $result['car_price'] * $days;
+    //     $result['rent_price'] = "Rp. " . number_format($totalPrice, 0, ',', '.');
+    //     // if (empty($result['rent_proof_pay'])) {
+    //     //     $result['rent_pay_status'] = "<small class='text-warning' >Belum upload bukti pembayaran</small>";
+    //     // } elseif ($result['rent_pay_status'] == 0) {
+    //     //     $result['rent_pay_status'] = "Menunggu konfirmasi";
+    //     // } elseif ($result['rent_pay_status'] == 1) {
+    //     //     $result['rent_pay_status'] = "Selesai";
+    //     // }
+
+
+    //     // if ($result['rent_date_returned'] == "0000-00-00") {
+    //     //     $result['rent_date_returned'] = "-";
+    //     // } else {
+    //     //     $result['rent_date_returned'] = date("d F Y", strtotime($result['rent_date_returned']));
+    //     // }
+
+    //     
+
+
+    //     $data['response'] = $result;
+    //     echo json_encode($data);
+    // }
 
     public function checkPayment()
     {

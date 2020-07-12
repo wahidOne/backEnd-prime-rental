@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inbox_subject">Subjek</label>
-                                <input type="text" class="form-control form-control-lg py-2 text-light " name="inbox_subject" id="inbox_subject" placeholder="Masukan Subject " value="Pembayaran anda telah kami dikonfirmasi">
+                                <input type="text" class="form-control form-control-lg py-2 text-light " name="inbox_subject" id="inbox_subject" placeholder="Masukan Subject " value="Pembayaran anda telah dikonfirmasi">
                             </div>
                             <div class="form-group">
 
@@ -99,11 +99,11 @@
                                                     <p>
                                                         Klik Link Dibawah ini untuk mengisi formulir data diri anda
                                                         <br>
-                                                        <font color="#0089F9">
-                                                        <a  class=" text-decoration-none "   href="<?= base_url('user/' . $payment['user_id'] . '/dashboard/transaksi/konfirmasi-data-diri?rent_id=' . $payment['rent_id'])  ?>">
+                                                        
+                                                        <a style="color: #0089F9;" class=" text-decoration-none "   href="<?= base_url('user/' . $payment['user_id'] . '/dashboard/transaksi/konfirmasi-data-diri?rent_id=' . $payment['rent_id'])  ?>">
                                                             Lengkapi data diri
                                                         </a>
-                                                        </font>
+                                                        
                                                         
                                                     </p>
                                                     <br><br><br>

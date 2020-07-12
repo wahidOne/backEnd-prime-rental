@@ -171,7 +171,8 @@
                                         <tbody>
                                             <tr>
                                                 <td>
-                                                    <div class="d-flex align-items-center flex-nowrap justify-content-center "><img height="80" class="" src="<?= $transaksi['car_photo'] ?>" alt="">
+                                                    <div class="d-flex align-items-center flex-nowrap justify-content-center ">
+                                                        <img height="80" class="" src="<?= $transaksi['car_photo'] ?>" alt="">
                                                         <div class="ml-1 text-wrap">
                                                             <p class="font-18px w-100 font-weight-bold mb-0 ">
                                                                 <?= $transaksi['car_brand'] ?></p>

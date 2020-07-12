@@ -89,22 +89,36 @@
                     <div class="card card-stretch pt-2 border-0 shadow-sm rounded-0 pb-3  ">
 
                         <div class="card-body px-2">
-                            <div class=" d-flex flex-column flex-wrap pl-md-1 mb-4 ">
-                                <span class="font-w-600 mb-0 font-25px ">
-                                    Info
-                                </span>
 
-                            </div>
-                            <p class="px-1 text-dark ">
-                                Hay<span class="font-19px font-w-600 "> <?= $payment['client_fullname']; ?></span><br>
-                                Ini adalah beberapa no rekening bank yang dapat anda tuju untuk melakukan pembayaran, jika anda menemu beberapa kendala saat pembayaran.
-                            </p>
+                            <?php if ($payment['payment_status'] == 0) :  ?>
+                                <div class=" d-flex flex-column flex-wrap pl-md-1 mb-4 ">
+                                    <span class="font-w-600 mb-0 font-25px ">
+                                        Info
+                                    </span>
 
-                            <div class="d-block bg-white-30 p-2 ">
-                                <?php foreach ($allbank as $b) : ?>
-                                    <div class=" my-1 text-left ">Bank <?= $b['bank_name']; ?> <span class="ml-1 text-black-50 ">(<?= $b['bank_number']; ?>)</span> </div>
-                                <?php endforeach; ?>
-                            </div>
+                                </div>
+                                <p class="px-1 text-dark ">
+                                    Halo<span class="font-19px font-w-600 "> <?= $payment['client_fullname']; ?></span><br>
+                                    Ini adalah beberapa no rekening bank yang dapat anda tuju untuk melakukan pembayaran, jika anda menemu beberapa kendala saat pembayaran.
+                                </p>
+
+                                <div class="d-block bg-white-30 p-2 ">
+                                    <?php foreach ($allbank as $b) : ?>
+                                        <div class=" my-1 text-left ">Bank <?= $b['bank_name']; ?> <span class="ml-1 text-black-50 ">(<?= $b['bank_number']; ?>)</span> </div>
+                                    <?php endforeach; ?>
+                                </div>
+
+                            <?php else : ?>
+
+                                <div class="d-flex flex-column my-auto h-100 align-items-center justify-content-center">
+                                    <h1 class="text-center">
+                                        <i class="fas fa-badge-check text-success fa-3x "></i>
+                                    </h1>
+                                    <br>
+                                    <p class=" font-18pxtext-center text-success">Pembayaran anda telah Berhasil!</p>
+
+                                </div>
+                            <?php endif; ?>
 
 
                         </div>

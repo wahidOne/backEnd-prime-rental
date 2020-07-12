@@ -171,6 +171,7 @@ $route['administrator/users/del-customer/(:any)'] = 'admin/dashboard/Users/delet
 $route['administrator/transaction/rent'] = 'admin/dashboard/Transaction/rental';
 $route['administrator/transaction/load-rent'] = 'admin/dashboard/Transaction/loadRentalData';
 $route['administrator/transaction/get-rent/(:any)'] = 'admin/dashboard/Transaction/getRental/$1';
+$route['administrator/transaction/invoice']['GET'] = 'admin/dashboard/Transaction/invoice';
 
 $route['administrator/transaction/check-payment']['GET'] = 'admin/dashboard/Transaction/checkPayment';
 $route['administrator/transaction/download-payment-proof/(:any)'] = 'admin/dashboard/Transaction/downloadPaymentProof/$1';

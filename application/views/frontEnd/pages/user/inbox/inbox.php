@@ -32,7 +32,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <div class="col-md-8 pt-3">
+                            <div class="col-md-12 pt-3">
                                 <div class="tab-content" id="myTabContent">
                                     <div class="tab-pane fade show active" id="all-inbox" role="tabpanel" aria-labelledby="all-inbox-tab">
                                         <div class="d-flex flex-column px-md-2" id="inbox-content" data-domain="<?= base_url('') ?>">
