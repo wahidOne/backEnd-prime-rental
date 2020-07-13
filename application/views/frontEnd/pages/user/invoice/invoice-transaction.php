@@ -13,20 +13,33 @@
 
             <div class="row">
                 <div class="col-md-11 mx-auto">
-                    <div class="card bg-white border-0 shadow-sm px-2 pt-3 pb-4">
-                        <div class="card-header border-0 bg-white">
-                            <div class="d-flex justify-content-between flex-column flex-md-row">
-                                <h2 class="text-secondary">PrimeRental</h2>
-                                <div class="dropdown my-auto">
+                    <div class="card bg-white border-0 shadow-sm px-2 pt-5 pb-4">
+                        <div class="card-header border-0 bg-white ">
+                            <div class="d-flex justify-content-end flex-column flex-md-row px-md-3">
 
-                                    <button class="btn btn-outline-secondary btn-sm actions-invoice" type="button"><i class="fas fa-bars mr-1"></i> <span>Actions </span><i class="fas fa-angle-down ml-1"></i></button>
-                                    <div class="dropdown-menu font-15px dropdown-menu-right mt-1" id="dropdown-menu-actionsInvoice"><a class="dropdown-item" href="#"><i class="fad fa-print mr-1"></i> Print</a> <a class="dropdown-item" href="#"><i class="fad fa-times-octagon t mr-1"></i> Batalkan</a></div>
+                                <div class="dropdown my-auto">
+                                    <button class="btn btn-outline-secondary btn-sm actions-invoice" type="button"><i class="fas fa-bars mr-1"></i> <span>Actions </span><i class="fas fa-angle-down ml-1"></i>
+                                    </button>
+                                    <div class="dropdown-menu font-15px dropdown-menu-right mt-1" id="dropdown-menu-actionsInvoice"><a class="dropdown-item" href="#"><i class="fad fa-print mr-1"></i> Print</a> <a class="dropdown-item" href="#"><i class="fad fa-times-octagon t mr-1"></i> Batalkan</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-body">
-                            <p class="text-uppercase text-info font-md-40px font-weight-bold text-left">Invoice
-                                : <?= $transaksi['rent_id']; ?></p>
+                            <div class="row px-md-3">
+                                <div class="col-md-6">
+                                    <div class="d-flex flex-column">
+                                        <h2 class="text-secondary">PrimeRental</h2>
+                                        <p class="mt-1 mb-1"><b>PrimeRental Invoice</b></p>
+                                        <p>108,<br> Great Russell St,<br>London, WC1B 3NA.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 text-right">
+                                    <p class="text-uppercase text-info font-md-30px font-weight-bold">Invoice
+                                        : <?= $transaksi['rent_id']; ?></p>
+                                </div>
+                            </div>
+                            <br><br>
                             <div class="row d-flex px-md-3">
                                 <div class="col-6 col-lg-4 order-1 order-lg-1 ">
                                     <div class="d-flex flex-column text-secondary"><span class="my-auto font-18px text-black-50">No transaksi</span>
@@ -69,27 +82,7 @@
                                 </div>
 
                             </div><br>
-                            <!-- <div class="row px-md-3">
-                                <div class="col-12 col-md-6 mx-auto">
-                                    <div class="d-flex mt-2  flex-row justify-content-between  text-secondary">
-                                        <div>
-                                            <span class="font-16px text-black-50">Tgl Mulai</span>
-                                            <div class="text-black d-flex flex-column">
-                                                <span class="text-uppercase font-17px "><?= $transaksi['rent_date_start'] ?></span>
-                                            </div>
-                                        </div>
-                                        <div class="my-auto d-flex">
-                                            <i class="fas fa-arrow-right fa-2x "></i>
-                                        </div>
-                                        <div>
-                                            <span class="font-16px text-black-50">Tgl Berakhir</span>
-                                            <div class="text-black d-flex flex-column">
-                                                <span class="text-uppercase font-17px "><?= $transaksi['rent_date_end'] ?></span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div><br> -->
+
                             <div class="row px-md-3">
                                 <hr class="w-100">
                                 <div class="col-md-4">

@@ -518,4 +518,30 @@ class User extends CI_Controller
 
         redirect('user/' .  $user_id . '/dashboard/transaksi-saya');
     }
+
+    public function cancelUserOrder()
+    {
+        $rent_id = $this->uri->segment(6);
+
+        // $result = $this->M_public->insertData('inbox', $inbox)
+
+        $order =  $this->M_trans->getTransactionsWithPayment(['payment_rental_id' => $rent_id])->row_array();
+        $result = $this->M_public->deleteData(['rent_id' => $rent_id], 'rental_trans');
+
+        // $result = 1;
+        if ($result > 0) {
+            $updateStatusCar = [
+                'car_status' => 0
+            ];
+            $this->M_public->updateData(['car_id' => $order['rent_car_id']], 'cars', $updateStatusCar);
+            $this->M_public->deleteData(['payment_rental_id' => $rent_id], 'payment_trans');
+
+            $response['status'] = TRUE;
+            $response['message'] = "Nomor Pesanan " . $rent_id . ", <br> berhasil dibatalkan!";
+            $data['response'] = $response;
+        } else {
+            $data = [];
+        }
+        echo json_encode($data);
+    }
 }

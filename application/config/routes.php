@@ -61,6 +61,7 @@ $route['kontak'] = 'frontend/public/Pages/contact';
 
 $route['penyewaan'] = 'frontend/public/Transactions/index';
 $route['penyewaan/set-expired/(:any)'] = 'frontend/public/Transactions/autoDeleteOrder/$1';
+$route['batal-lanjut-pesan']['GET'] = 'frontend/public/Transactions/cancelFurtherOrder';
 $route['pembayaran']['GET'] = 'frontend/public/Transactions/payments';
 $route['pembayaran/update'] = 'frontend/public/Transactions/uploadPaymentsProof';
 $route['tambah-transaksi'] = 'frontend/public/Transactions/addPayment';
@@ -77,6 +78,7 @@ $route['profile/upload-gambar'] = 'frontend/public/User/uploadImage';
 // $route['transaksi'] = 'frontend/public/User/transactions';
 $route['user/(:any)/dashboard/transaksi-saya'] = 'frontend/public/User/transactions';
 $route['user/(:any)/dashboard/transaksi/pembatalan']['GET'] = 'frontend/public/User/infoReject';
+$route['user/(:any)/dashboard/transaksi/pembatalan-pesanan/(:any)'] = 'frontend/public/User/cancelUserOrder';
 $route['user/(:any)/dashboard/transaksi/konfirmasi-pembatalan'] = 'frontend/public/Transactions/confirmCancel';
 $route['user/(:any)/dashboard/transaksi/konfirmasi-data-diri']['GET'] = 'frontend/public/User/confirmClienData';
 $route['user/(:any)/dashboard/transaksi/tambah-konfirmasi-data-diri'] = 'frontend/public/User/addConfirmClientData';

@@ -622,4 +622,22 @@ class Transactions extends CI_Controller
             redirect('user/' . $user_id . '/dashboard/transaksi-saya');
         }
     }
+
+
+    public function cancelFurtherOrder()
+    {
+
+        $rent_id = $this->input->get('rent_id');
+
+
+        $rental = $this->M_public->getDataWhere('rental_trans', ['rent_id' => $rent_id])->row_array();
+        $statusCar = [
+            'car_status' => 0
+        ];
+
+        $this->M_public->updateData(['car_id' => $rental['rent_car_id']], 'cars',  $statusCar);
+        $this->M_public->deleteData(['rent_id' => $rent_id], 'rental_trans');
+
+        redirect('beranda');
+    }
 }

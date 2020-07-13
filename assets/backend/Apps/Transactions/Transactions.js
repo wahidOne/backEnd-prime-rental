@@ -1,5 +1,4 @@
 import dataTableConfig from "./components/datatableConfig";
-import Invoice from "./components/Invoice";
 import CheckExpired from "../../../frontEnd/app/components/Dashboard/checkExpired";
 import configEditor from "./components/configEditors";
 import * as _confirmPayments from "./components/FormConfirmPayments";
@@ -79,7 +78,6 @@ export default class Transactions {
 		const formConfirmDec = this.formConfirmDecline;
 
 		if (formConfirmSuccess) {
-			console.log("ok");
 			_confirmPayments.FormConfirmPayments();
 		}
 

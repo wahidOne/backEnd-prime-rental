@@ -121,7 +121,7 @@
                                                                 <span class="tooltip--item text-white">Invoice pesanan</span>
                                                             </a>
                                                         <?php else : ?>
-                                                            <a href="#" class="btn btn-secondary btn-sm ml-1 tooltip--costum">
+                                                            <a href="#" id="btn-cancel" data-userid="<?= $user["user_id"] ?>" data-rentid="<?= $tr['rent_id'] ?>" class="btn btn-secondary btn-sm ml-1 tooltip--costum">
                                                                 <i class="fad fa-times-octagon "></i>
                                                                 <span class=" tooltip--item  text-white">Batalkan Transaksi</span>
                                                             </a>

@@ -12,7 +12,7 @@ class Dashboard {
 	render() {
 		const sidebar = this.sidebar;
 		new Profile().render();
-		new UserTransaction().render();
+		new UserTransaction(_MainDomain).render();
 
 		const badgeLinkInboxSidebar = sidebar.querySelector("#bagde-sidebar-inbox");
 		const urlLoadInbox = sidebar.dataset.loadinbox;

@@ -132,7 +132,7 @@
 
                         <div class="row mt-4">
                             <div class="col-6">
-                                <a href="<?= base_url('batalkan-transaksi?rentid=') . $invoice['rent_id'] . "&userid=" . $user['user_id']  ?>" class="btn btn-block btn-lg btn-outline-secondary ">
+                                <a href="<?= base_url('batal-lanjut-pesan?rent_id=') . $invoice['rent_id']  ?>" class="btn btn-block btn-lg btn-outline-secondary ">
                                     Batalkan
                                 </a>
                             </div>
