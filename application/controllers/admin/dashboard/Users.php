@@ -135,28 +135,62 @@ class Users extends CI_Controller
         $this->load->view($viewsDashboardPath . 'users/js/js_costumer', $data);
         $this->load->view($backendTemplates . 'end', $data);
     }
-
-    public function getCustomers()
+    public function clients()
     {
-        $customer = $this->M_costumer->getCustomers()->result();
-        foreach ($customer as $cus) {
-            $cus->user_created = date('d-F-Y', $cus->user_created);
-            $row[] = $cus;
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
+        $data = [
+            'title' => 'Data Clients',
+            'user' => $user,
+        ];
+
+        $backendTemplates = $this->publicData['backendTemplates'];
+        $viewsDashboardPath = 'backend/dashboard/';
+        $this->load->view($backendTemplates . 'header', $data);
+        $this->load->view($backendTemplates . 'topbar', $data);
+        $this->load->view($backendTemplates . 'sidebar', $data);
+        $this->load->view($viewsDashboardPath . 'users/clients/v_clients', $data); //main content
+        $this->load->view($backendTemplates . 'footer', $data);
+        $this->load->view($viewsDashboardPath . '/plugins/_users', $data); //plugins
+        $this->load->view($backendTemplates . 'script', $data);
+        // costum js
+        $this->load->view($viewsDashboardPath . 'users/js/js_clients', $data);
+        $this->load->view($backendTemplates . 'end', $data);
+    }
+
+    // public function getCustomers()
+    // {
+    //     $customer = $this->M_costumer->getClients()->result();
+    //     foreach ($customer as $cus) {
+    //         $cus->user_created = date('d-F-Y', $cus->user_created);
+    //         $row[] = $cus;
+    //     }
+
+    //     $data['clients'] = $row;
+
+    //     echo json_encode($data);
+    // }
+    public function getClients()
+    {
+        $cliens = $this->M_clients->getClients()->result();
+        foreach ($cliens as $c) {
+            $c->user_created = date('d-F-Y', $c->user_created);
+            $row[] = $c;
         }
 
-        $data['costumers'] = $row;
+        $data['clients'] = $row;
 
         echo json_encode($data);
     }
 
-    public function getCustomersWhere()
+    public function getClientWhere()
     {
 
-        $cos_id = $this->uri->segment(4);
+        $client_id = $this->uri->segment(4);
 
-        $data = $this->M_costumer->cekCostumer(['cos_id' => $cos_id])->row_array();
+        $data = $this->M_clients->checkClient(['client_id' => $client_id])->row_array();
 
         $data['user_created'] =  date('d-F-Y', $data['user_created']);
+        // $data['id'] = $client_id;
 
         echo json_encode($data);
     }

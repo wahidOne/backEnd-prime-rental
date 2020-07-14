@@ -1,10 +1,13 @@
-const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const {
+	CleanWebpackPlugin
+} = require("clean-webpack-plugin");
 const path = require("path");
 
 module.exports = {
 	entry: {
 		transactions: "./assets/backEnd/Apps/Transactions/Transactions.js",
 		master_data: "./assets/backEnd/Apps/MasterData/MasterData.js",
+		users: "./assets/backEnd/Apps/Users/Users.js",
 	},
 	watch: true,
 	watchOptions: {
@@ -26,18 +29,16 @@ module.exports = {
 	],
 
 	module: {
-		rules: [
-			{
-				test: /\.js$/,
-				exclude: /node_modules/,
-				use: {
-					loader: "babel-loader",
-					options: {
-						presets: ["@babel/env"],
-						plugins: ["transform-class-properties"],
-					},
+		rules: [{
+			test: /\.js$/,
+			exclude: /node_modules/,
+			use: {
+				loader: "babel-loader",
+				options: {
+					presets: ["@babel/env"],
+					plugins: ["transform-class-properties"],
 				},
 			},
-		],
+		}, ],
 	},
 };
