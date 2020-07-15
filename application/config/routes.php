@@ -164,10 +164,12 @@ $route['administrator/users/get-admin-user'] = 'admin/dashboard/Users/getAdminUs
 $route['administrator/users/admin-where/(:any)'] = 'admin/dashboard/Users/getAdminWhere/$1';
 
 // users/costumer 
-$route['administrator/users/customer'] = 'admin/dashboard/Users/customers';
-$route['administrator/users/get-customers'] = 'admin/dashboard/Users/getCustomers';
-$route['administrator/users/get-costumer/(:any)'] = 'admin/dashboard/Users/getCustomersWhere/$1';
-$route['administrator/users/del-customer/(:any)'] = 'admin/dashboard/Users/deleteCostumer/$1';
+// $route['administrator/users/customer'] = 'admin/dashboard/Users/customers';
+$route['administrator/users/clients'] = 'admin/dashboard/Users/clients';
+// $route['administrator/users/get-customers'] = 'admin/dashboard/Users/getCustomers';
+$route['administrator/users/load-clients'] = 'admin/dashboard/Users/getClients';
+$route['administrator/users/get-client/(:any)'] = 'admin/dashboard/Users/getClientWhere/$1';
+$route['administrator/users/del-client/(:any)'] = 'admin/dashboard/Users/deleteClient/$1';
 
 // Transaction
 $route['administrator/transaction/rent'] = 'admin/dashboard/Transaction/rental';

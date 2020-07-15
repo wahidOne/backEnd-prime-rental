@@ -1,4 +1,9 @@
-<script type="module">
+<script>
+    const mainDomain = `<?= base_url('') ?>`
+</script>
+<script src="<?= base_url('assets/backend/js/_costum/users/users.js'); ?>"></script>
+
+<!-- <script type="module">
 
     import {loadDataCostumers} from '<?= base_url('assets/backend/js/crud-users/costumers/load.customer.js'); ?>';
     import { getCostumer} from '<?= base_url('assets/backend/js/crud-users/costumers/get.customer.js'); ?>';
@@ -11,7 +16,7 @@
 
     loadDataCostumers(pathImg)
 
-    const table = document.querySelector("#table-customers");
+    const table = document.querySelector("#table-clients");
 
     table.addEventListener('click', function(e) {
         e.preventDefault();
@@ -19,14 +24,13 @@
             const cusId = e.target.dataset.id  || e.target.parentNode.dataset.id 
             ;
 
-            const urlGet  = `<?= base_url('administrator/users/get-costumer/') ?>`
-
-            getCostumer(urlGet, cusId, pathImg);
+            const urlGet  = `<?= base_url('administrator/users/get-client/') ?>${cusId}`
+            getCostumer(urlGet, pathImg);
         }
 
         if(e.target.id == "delete-customer" || e.target.parentNode.id == "delete-customer") {
 
-            const urlDelete = `<?= site_url('administrator/users/del-customer/') ?>`;
+            const urlDelete = `<?= site_url('administrator/users/del-client/') ?>`;
             const dataName = e.target.dataset.name || e.target.parentNode.dataset.name;
             const dataid = e.target.dataset.id || e.target.parentNode.dataset.id;
 
@@ -68,18 +72,4 @@
     })
 
 
-    document.addEventListener('visibilitychange', function () {
-
-// fires when user switches tabs, apps, goes to homescreen, etc.
-    if (document.visibilityState === 'hidden') {
-        $("#table-customers").DataTable().destroy();
-        loadDataCostumers(pathImg)
-    }
-    // fires when app transitions from prerender, user returns to the app / tab.
-    if (document.visibilityState === 'visible') {
-        $("#table-customers").DataTable().destroy();
-        loadDataCostumers(pathImg)
-    }
-});
-
-</script>
+</script> -->

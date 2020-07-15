@@ -5,14 +5,14 @@
             <li class="breadcrumb-item mt-auto">
                 <span class=" font-18 text-white-50 ">Users</span>
             </li>
-            <li class=" breadcrumb-item active mt-auto" aria-current="page"><span class="font-14 text-primary font-weight-bold ">Drivers</span>
+            <li class=" breadcrumb-item active mt-auto" aria-current="page"><span class="font-14 text-primary font-weight-bold ">Clients</span>
             </li>
         </ol>
     </nav>
     <div class="row pt-5 pb-4 px-3">
         <h1 class=" display-5 text-primary ">
             <i class="far fa-fw fa-user-tag font-26  "></i>
-            <span class=" font-weight-light ml-3 ">Costumer </span>
+            <span class=" font-weight-light ml-3 ">Clients </span>
         </h1>
     </div>
 
@@ -26,7 +26,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive table-responsive-lg ">
-                        <table class="table table-hover " id="table-customers" data-url="<?= site_url('administrator/users/get-customers') ?>">
+                        <table class="table table-hover " id="table-clients">
                             <thead>
                                 <tr>
                                     <th class="pt-0">#</th>
@@ -38,7 +38,7 @@
                                     <th class="pt-0 text-center ">Actions</th>
                                 </tr>
                             </thead>
-                            <tbody id="tbody-customers">
+                            <tbody id="tbody-clients">
 
                             </tbody>
                         </table>
@@ -51,7 +51,7 @@
 
 
 
-<div id="m-info" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div id="m-info-client" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header border-0 pt-md-2 ">
@@ -63,7 +63,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="container-fluid" id="container-modal">
+                <div class="container-fluid container-modal" id="container-modal-client">
+
                 </div>
 
             </div>
