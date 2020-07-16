@@ -2109,3 +2109,9 @@ button.toast-close-button {
 		width: 25em;
 	}
 }
+
+/* costum */
+
+.nav .nav-link {
+	color: #4250f2 !important;
+}

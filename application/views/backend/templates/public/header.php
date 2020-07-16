@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/backend/'); ?>vendors/DataTables/css/datatables.bootstrap4.min.css">
 
     <!-- end plugin css for this page -->
-    <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>css/main.css">
+    <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>css/costum/main.min.css">
 </head>
 
 <body>

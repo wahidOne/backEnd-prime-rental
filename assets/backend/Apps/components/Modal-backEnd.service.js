@@ -13,10 +13,6 @@ const loadingModal = (modal) => {
 	if (modal) {
 		containerModal.innerHTML = container;
 	}
-
 };
 
-
-export {
-	loadingModal
-};
+export { loadingModal };

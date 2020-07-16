@@ -63,7 +63,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div class="container-fluid container-modal" id="container-modal-client">
+                <div class="container-fluid container-modal pl-0" id="container-modal-client">
 
                 </div>
 

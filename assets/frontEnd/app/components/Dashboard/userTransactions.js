@@ -105,14 +105,8 @@ class UserTransaction {
 					},
 				},
 				errorPlacement: function (label, element) {
-					// if (element[0].id == "client_file_IDcard") {
-					// 	const colElement = element[0].parentElement.parentElement;
-					// 	label.addClass("mt-1 text-danger");
-					// 	label.insertAfter(colElement);
-					// } else {
 					label.addClass("mt-1 text-danger");
 					label.insertAfter(element);
-					// }
 				},
 				submitHandler: function (form) {
 					form.submit();
@@ -148,7 +142,6 @@ class UserTransaction {
 				confirmButtonText: "Ya, Batalkan!",
 			}).then((result) => {
 				if (result.value) {
-					// Swal.fire("Deleted!", "Your file has been deleted.", "success");
 					Axios.get(url).then((res) => {
 						const { status, message } = res.data.response;
 						if (status == true) {
@@ -160,9 +153,7 @@ class UserTransaction {
 								showConfirmButton: true,
 							}).then((result) => {
 								if (result.value) {
-									// setInterval(() => {
 									window.location.reload();
-									// }, 1000);
 								}
 							});
 						}

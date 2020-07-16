@@ -1,6 +1,7 @@
 @import "./colors";
 @import "./utillities";
 @import "./typography";
+@import "./_mixin";
 
 @import "./auth";
 @import "./sidebar";
@@ -9,3 +10,5 @@
 @import "./@sweetalert2/theme-dark/scss/dark";
 
 @import "./toastr";
+
+@import "./components/navs";

@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>css/demo_2/style.css">
 
     <!-- Layout styles -->
-    <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>css/main.css">
+    <link rel="stylesheet" href="<?= base_url('assets/backend/') ?>css/costum/main.min.css">
 
 
 

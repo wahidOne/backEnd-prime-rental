@@ -153,7 +153,7 @@ $route['administrator/profile/update-profile'] = 'admin/profile/Profile/updatePr
 
 //-->  users <--//
 
-$route['administrator/users/general'] = 'admin/dashboard/Users/index';
+$route['administrator/users/all'] = 'admin/dashboard/Users/index';
 $route['administrator/users/get-user/(:any)'] = 'admin/dashboard/Users/getUser/$1';
 $route['administrator/users/get-general-user'] = 'admin/dashboard/Users/generalUser';
 
@@ -164,9 +164,7 @@ $route['administrator/users/get-admin-user'] = 'admin/dashboard/Users/getAdminUs
 $route['administrator/users/admin-where/(:any)'] = 'admin/dashboard/Users/getAdminWhere/$1';
 
 // users/costumer 
-// $route['administrator/users/customer'] = 'admin/dashboard/Users/customers';
 $route['administrator/users/clients'] = 'admin/dashboard/Users/clients';
-// $route['administrator/users/get-customers'] = 'admin/dashboard/Users/getCustomers';
 $route['administrator/users/load-clients'] = 'admin/dashboard/Users/getClients';
 $route['administrator/users/get-client/(:any)'] = 'admin/dashboard/Users/getClientWhere/$1';
 $route['administrator/users/del-client/(:any)'] = 'admin/dashboard/Users/deleteClient/$1';

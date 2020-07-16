@@ -5,14 +5,14 @@
             <li class="breadcrumb-item mt-auto">
                 <span class=" font-18 text-white-50 ">Users</span>
             </li>
-            <li class=" breadcrumb-item active mt-auto" aria-current="page"><span class="font-14 text-primary font-weight-bold ">General</span>
+            <li class=" breadcrumb-item active mt-auto" aria-current="page"><span class="font-14 text-primary font-weight-bold ">Users</span>
             </li>
         </ol>
     </nav>
     <div class="row pt-5 pb-4 px-3">
         <h1 class=" display-5 text-primary ">
             <i class="far fa-fw fa-users font-26  "></i>
-            <span class=" font-weight-light ml-3 ">General users</span>
+            <span class=" font-weight-light ml-3 ">Users</span>
         </h1>
     </div>
 

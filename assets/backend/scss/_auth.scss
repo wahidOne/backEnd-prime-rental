@@ -1,7 +1,7 @@
 .auth-page {
 	.auth-login {
 		width: 100%;
-		background-image: url(../svg/login.svg);
+		background-image: url(../../svg/authentication.svg);
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: 100%;
@@ -9,7 +9,7 @@
 		object-position: center;
 	}
 	.auth-register {
-		background: url(../svg/authentication.svg);
+		background: url(../../svg/authentication.svg);
 		background-repeat: no-repeat;
 		background-size: 90%;
 		background-position-y: 30%;
