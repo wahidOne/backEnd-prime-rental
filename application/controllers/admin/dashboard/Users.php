@@ -70,7 +70,6 @@ class Users extends CI_Controller
             'title' => 'Data Administrator',
             'user' => $user,
         ];
-
         $backendTemplates = $this->publicData['backendTemplates'];
         $viewsDashboardPath = 'backend/dashboard/';
         $this->load->view($backendTemplates . 'header', $data);
@@ -85,18 +84,70 @@ class Users extends CI_Controller
         $this->load->view($backendTemplates . 'end', $data);
     }
 
+    public function insertAdmin()
+    {
+        $admin_name = $this->input->post('admin_name');
+        $user_name = $this->input->post('user_name', true);
+        $user_email = $this->input->post('user_email', true);
+        $admin_phone = $this->input->post('admin_phone');
+        $admin_address = $this->input->post('admin_address');
+        $admin_birth = $this->input->post('admin_birth');
+        $admin_gender = $this->input->post('admin_gender');
+
+        $dataUser = [
+            'user_id' => getAutoNumber('user', 'user_id', 'user-', 9),
+            'user_name' => htmlspecialchars($user_name),
+            'user_email' => htmlspecialchars($user_email),
+            'user_photo' => 'default.png',
+            'user_password' => password_hash($this->input->post('user_password'), PASSWORD_DEFAULT),
+            'user_status' => 'online',
+            'user_level' => 4,
+            'user_is_activation' => 1,
+            'user_created' => time()
+        ];
+
+        $dataAdmin = [
+            'admin_id' => getAutoNumber('admin', 'admin_id', 'admin-', 8),
+            'admin_user_id' => $dataUser['user_id'],
+            "admin_name" => $admin_name,
+            "admin_phone" => $admin_phone,
+            "admin_address" => $admin_address,
+            "admin_birth" => $admin_birth,
+            "admin_gender" => $admin_gender,
+            "admin_created" => time(),
+        ];
+
+        $cekdata = $this->db->get_where('user', ['user_email' => $user_email]);
+
+        if ($cekdata->num_rows() == 1) {
+            set_frontflashmessage("error", "Gagal!", "Email yang dimasukan sudah tersedia!");
+            redirect('administrator/users/admin');
+        } else {
+            $this->M_public->insertData('user', $dataUser);
+            $this->M_public->insertData('admin', $dataAdmin);
+            set_frontflashmessage("success", "Berhasil menambah data!", "Anda baru saja menambahkan data admin baru!");
+            redirect('administrator/users/admin');
+        }
+    }
+
     public function getAdminUser()
     {
-        $admin = $this->M_user->getAdminUsers();
+        $admin = $this->M_user->getAdminUsers()->result_array();
         foreach ($admin as $a) {
-            if ($a->user_level != 1) {
-                $a->user_created = date('d-F-Y', $a->user_created);
+            if ($a['user_level'] != 1) {
+                $a['user_created'] = date('d-F-Y', $a['user_created']);
                 $row[] = $a;
+                $status = true;
+            } else {
+                $status = false;
             }
         }
 
-        $data['users'] = $row;
-        // $data['users'] = $users;
+        // $data['users'] = $row;
+        // var_dump($row);
+        // die();
+        $data['admin'] = $row;
+        $data['status'] = $status;
 
 
         echo json_encode($data);
@@ -112,6 +163,33 @@ class Users extends CI_Controller
         $data['user_photo'] =   base_url('assets/uploads/ava/') . $data['user_photo'];
 
         echo json_encode($data);
+    }
+
+    public function changeUserToAdmin()
+    {
+        $user_id = $this->uri->segment(4);
+
+        $user = $this->M_user->getUser(['user_id' => $user_id])->row_array();
+
+        $datauser = [
+            'user_level' => 4,
+        ];
+        $admin_id = getAutoNumber('admin', 'admin_id', 'admin-', 8);
+        $dataAdmin = [
+            'admin_id' => $admin_id,
+            'admin_user_id' => $user['user_id'],
+            "admin_name" => $admin_id,
+            "admin_phone" => "080000000000",
+            "admin_address" => "unknown",
+            "admin_birth" => "2001-01-11",
+            "admin_gender" => "unknown",
+            "admin_created" => time(),
+        ];
+
+        $this->M_public->insertData('admin', $dataAdmin);
+        $this->M_public->updateData(['user_id' => $user_id], 'user', $datauser);
+        set_frontflashmessage("success", "Berhasil menambah data!", $user['user_name'] . " Telah Dijadikan Admin!");
+        redirect('administrator/users/admin');
     }
 
     public function clients()
@@ -135,19 +213,6 @@ class Users extends CI_Controller
         $this->load->view($viewsDashboardPath . 'users/js/js_clients', $data);
         $this->load->view($backendTemplates . 'end', $data);
     }
-
-    // public function getCustomers()
-    // {
-    //     $customer = $this->M_costumer->getClients()->result();
-    //     foreach ($customer as $cus) {
-    //         $cus->user_created = date('d-F-Y', $cus->user_created);
-    //         $row[] = $cus;
-    //     }
-
-    //     $data['clients'] = $row;
-
-    //     echo json_encode($data);
-    // }
     public function getClients()
     {
         $cliens = $this->M_clients->getClients()->result();

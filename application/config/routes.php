@@ -160,6 +160,8 @@ $route['administrator/users/get-general-user'] = 'admin/dashboard/Users/generalU
 // users/admin
 
 $route['administrator/users/admin'] = 'admin/dashboard/Users/administrators';
+$route['administrator/users/add-admin'] = 'admin/dashboard/Users/insertAdmin';
+$route['administrator/users/insert-admin-from-data-user/(:any)'] = 'admin/dashboard/Users/changeUserToAdmin';
 $route['administrator/users/get-admin-user'] = 'admin/dashboard/Users/getAdminUser';
 $route['administrator/users/admin-where/(:any)'] = 'admin/dashboard/Users/getAdminWhere/$1';
 

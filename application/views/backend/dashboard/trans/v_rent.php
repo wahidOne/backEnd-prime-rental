@@ -17,14 +17,17 @@
     </div>
 
     <div class="row">
+        <div class="d-none">
+            <?php var_dump($this->session->flashdata('success')); ?>
+        </div>
         <?php if ($this->session->flashdata('success')) : ?>
             <div class="flash-success  d-none" data-status="success" data-text="<?= $this->session->flashdata('success')['text'];  ?>" data-title="<?= $this->session->flashdata('success')['title'];  ?>">
             </div>
         <?php elseif ($this->session->flashdata('info')) : ?>
-            <div class="flash-success  d-none" data-status="info" data-text="<?= $this->session->flashdata('info')['text'];  ?>" data-title="<?= $this->session->flashdata('info')['title'];  ?>">
+            <div class="flash-info  d-none" data-status="info" data-text="<?= $this->session->flashdata('info')['text'];  ?>" data-title="<?= $this->session->flashdata('info')['title'];  ?>">
             </div>
         <?php elseif ($this->session->flashdata('error')) : ?>
-            <div class="flash-success  d-none" data-status="error" data-text="<?= $this->session->flashdata('error')['text'];  ?>" data-title="<?= $this->session->flashdata('error')['title'];  ?>">
+            <div class="flash-error  d-none" data-status="error" data-text="<?= $this->session->flashdata('error')['text'];  ?>" data-title="<?= $this->session->flashdata('error')['title'];  ?>">
             </div>
         <?php endif; ?>
         <div class="col-md-12 grid-margin stretch-card">
@@ -33,10 +36,7 @@
                     <div class="d-flex">
                         <!-- <button type="button" class="btn btn-primary tambahMenu" data-toggle="modal" data-target="#modal-tambah-menu">Tambah Menu</button> -->
 
-                        <button type="button" class="btn btn-primary" id="button-actions">
-                            <i class="fas fa-plus"></i>
-                            new transaction?
-                        </button>
+
                     </div>
                 </div>
                 <div class="card-body">
