@@ -5,6 +5,8 @@ import {
 	tableUsersChangeToAdmin,
 	configDataTableUsersToAdmin,
 } from "./_handleTableUserToAdmin";
+import { loadingModal } from "../../components/Modal-backEnd.service";
+import { modalInfoAdminUI } from "./_handleModalInfoAdminUI";
 
 export default class Admin {
 	constructor(domain) {
@@ -16,12 +18,16 @@ export default class Admin {
 		this.formAddManual = document.querySelector("#tambah-admin-manual");
 
 		this.tableAdmin_user = document.querySelector("#table-admin_user");
+
+		this.modalInfo = document.querySelector("#m-admin-info");
 	}
 
 	render() {
 		if (this.tableAdmin) {
 			this.urlLoad = this.domain + "administrator/users/get-admin-user";
 			this.loadDataAdmin();
+
+			this.tableAdmin.addEventListener("click", (e) => this.actionsTable(e));
 		}
 		if (this.formAddManual) {
 			validateAdminForm.validateFormAddAdminManual(this.formAddManual);
@@ -126,5 +132,54 @@ export default class Admin {
 				window.location = url;
 			}
 		});
+	}
+	actionsTable(e) {
+		const event = e.target;
+		if (event.id == "info-admin" || event.parentNode.id == "info-admin") {
+			e.preventDefault();
+
+			const adminId = event.dataset.id || event.parentNode.dataset.id;
+			this.urlDetail =
+				this.domain + "administrator/users/admin-where/" + adminId;
+			this.loadDetailAdmin();
+		}
+	}
+
+	loadDetailAdmin() {
+		const _getDetailDataAdmin = this.getDetailDataAdmin();
+
+		_getDetailDataAdmin.then((res) => {
+			$("#m-admin-info").modal(
+				{
+					backdrop: "static",
+					keyboard: false,
+				},
+				"show"
+			);
+
+			let containerModalInfo = "";
+
+			const { admin } = res.data;
+
+			const containerModal = this.modalInfo.querySelector(
+				"#container-modal-admin"
+			);
+
+			if (this.modalInfo) {
+				loadingModal(this.modalInfo);
+				containerModalInfo += modalInfoAdminUI(this.modalInfo, admin);
+
+				setTimeout(() => {
+					containerModal.innerHTML = containerModalInfo;
+				}, 500);
+			}
+		});
+	}
+
+	getDetailDataAdmin() {
+		return axios
+			.get(this.urlDetail)
+			.then((res) => res)
+			.catch((err) => console.log(err));
 	}
 }

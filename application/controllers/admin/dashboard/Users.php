@@ -157,10 +157,12 @@ class Users extends CI_Controller
     {
         $user_id = $this->uri->segment(4);
 
-        $data = $this->M_user->getAdminWhere(['user_id' => $user_id])->row_array();
+        $admin = $this->M_user->getAdminWhere(['user_id' => $user_id])->row_array();
 
-        $data['user_created'] =  date('d-F-Y', $data['user_created']);
-        $data['user_photo'] =   base_url('assets/uploads/ava/') . $data['user_photo'];
+        $admin['user_created'] =  date('d-F-Y', $admin['user_created']);
+        $admin['user_photo'] =   base_url('assets/uploads/ava/') . $admin['user_photo'];
+
+        $data['admin'] = $admin;
 
         echo json_encode($data);
     }
@@ -218,7 +220,9 @@ class Users extends CI_Controller
         $cliens = $this->M_clients->getClients()->result();
         foreach ($cliens as $c) {
             $c->user_created = date('d-F-Y', $c->user_created);
-            $row[] = $c;
+            if ($c->user_level != 4 && $c->user_level != 1) {
+                $row[] = $c;
+            }
         }
 
         $data['clients'] = $row;

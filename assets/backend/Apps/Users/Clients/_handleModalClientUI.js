@@ -34,7 +34,8 @@ const handleModalClientUI = (modal, data, path, domain = "", transaction) => {
         </div>
         <div class="col-md-8 pt-md-0  mt-3 mt-md-0">
             <div class="tab-content" id="v-pills-tabContent">
-                <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">${profileTabContain}</div>
+                <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">${profileTabContain}
+            </div>
             
                 <div class="tab-pane fade" id="v-pills-transaction" role="tabpanel" aria-labelledby="v-pills-transaction-tab">
                 <div class="row">

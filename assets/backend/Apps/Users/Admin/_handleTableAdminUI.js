@@ -16,28 +16,18 @@ const tableAdminUI = (user, path, no) => {
 				}  </td>
         <td class=" text-center " >${user.admin_phone}</td>
 	    <td>
-            <div class="dropleft mb-2">
-                <button class="btn p-0 ml-3 text-primary" type="button" id="${
-									user.user_email
-								}" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
-				<i class=" fas fa-fw fa-ellipsis-v  "></i>
-                </button>
-                <div class="dropdown-menu " aria-labelledby="${
-									user.user_email
-								}">
-                <a data-id="${
-									user.user_id
-								}" class="dropdown-item d-flex align-items-center text-primary btn-detail " href="#">
-                    <i  class=" fas fa-info-circle fa-fw "></i> 
-                    <span class="ml-2">Detail</span></a>
-                <a class="dropdown-item d-flex align-items-center text-danger " href="#">
-                <i 
-                    class="fas fa-trash-alt fa-fw  mr-2"></i> <span class="">Detele</span></a>
-                <a class="dropdown-item d-flex align-items-center text-warning" href="#"><i 
-                    class=" fas fa-user-alt-slash  mr-2"></i> <span class="">Deactivate</span></a>
-                </div>
-            </div>
+            <div class="d-flex flex-nowrap justify-content-center">
+				<a data-id="${
+					user.user_id
+				}" class="badge badge-primary" id="info-admin" href="#">
+					<i  class=" fas fa-info-circle fa-fw "></i> 
+					<span class="ml-2">Detail</span>
+				</a>
+				<a class="  badge badge-danger ml-2  " href="#">
+					<i class="fas fa-trash-alt fa-fw  mr-2"></i> 
+					<span class="">Detele</span>
+				</a>
+			</div>
 	    </td>
 	</tr>
 	`;
