@@ -194,6 +194,34 @@ class Users extends CI_Controller
         redirect('administrator/users/admin');
     }
 
+
+    public function deleteAdmin()
+    {
+
+        $user_id = $this->uri->segment(4);
+
+        $datauser = [
+            'user_level' => 3
+        ];
+
+        // $result = 1;
+
+        $result = $this->M_public->deleteData(['admin_user_id' => $user_id], 'admin');
+        if ($result > 0) {
+            $this->M_public->updateData(['user_id' => $user_id], 'user', $datauser);
+            $res['user_id'] = $user_id;
+            $res['status'] = true;
+            $res['pesan'] = "Berhasil Menghapus data!";
+        } else {
+            $res['status'] = false;
+            $res['pesan'] = "Gagal Menghapus data!";
+        }
+
+        $data['response'] = $res;
+
+        echo json_encode($data);
+    }
+
     public function clients()
     {
         $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();

@@ -23,7 +23,9 @@ const tableAdminUI = (user, path, no) => {
 					<i  class=" fas fa-info-circle fa-fw "></i> 
 					<span class="ml-2">Detail</span>
 				</a>
-				<a class="  badge badge-danger ml-2  " href="#">
+				<a id="delete-admin" class="  badge badge-danger ml-2  " data-name="${
+					user.admin_name
+				}" data-id="${user.user_id}" href="#">
 					<i class="fas fa-trash-alt fa-fw  mr-2"></i> 
 					<span class="">Detele</span>
 				</a>

@@ -143,6 +143,29 @@ export default class Admin {
 				this.domain + "administrator/users/admin-where/" + adminId;
 			this.loadDetailAdmin();
 		}
+
+		if (event.id == "delete-admin" || event.parentNode.id == "delete-admin") {
+			e.preventDefault();
+
+			const user_id = event.dataset.id || event.parentNode.dataset.id;
+			const adminName = event.dataset.name || event.parentNode.dataset.name;
+
+			this.urlDelete =
+				this.domain + "administrator/users/delete-admin/" + user_id;
+
+			Swal.fire({
+				title: "Anda yakin",
+				text: "Ingin menghapus " + adminName,
+				icon: "warning",
+				showCancelButton: true,
+				confirmButtonText: "Yes",
+			}).then((result) => {
+				if (result.value) {
+					// window.location = url;
+					this.deleteData();
+				}
+			});
+		}
 	}
 
 	loadDetailAdmin() {
@@ -181,5 +204,32 @@ export default class Admin {
 			.get(this.urlDetail)
 			.then((res) => res)
 			.catch((err) => console.log(err));
+	}
+
+	deleteData() {
+		axios.get(this.urlDelete).then((res) => {
+			const { status, pesan } = res.data.response;
+
+			if (status == true) {
+				Swal.fire("Berhasil", pesan, "success").then((result) => {
+					if (result.value) {
+						$("#table-admin").DataTable().destroy();
+
+						this.loadDataAdmin();
+
+						$("#table-admin_user").DataTable().destroy();
+						this.loadDataUsers();
+					}
+				});
+			} else {
+				Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: pesan,
+					timer: 6000,
+					confirmButton: false,
+				});
+			}
+		});
 	}
 }

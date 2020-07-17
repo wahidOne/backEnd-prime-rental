@@ -164,6 +164,7 @@ $route['administrator/users/add-admin'] = 'admin/dashboard/Users/insertAdmin';
 $route['administrator/users/insert-admin-from-data-user/(:any)'] = 'admin/dashboard/Users/changeUserToAdmin';
 $route['administrator/users/get-admin-user'] = 'admin/dashboard/Users/getAdminUser';
 $route['administrator/users/admin-where/(:any)'] = 'admin/dashboard/Users/getAdminWhere/$1';
+$route['administrator/users/delete-admin/(:any)'] = 'admin/dashboard/Users/deleteAdmin/$1';
 
 // users/costumer 
 $route['administrator/users/clients'] = 'admin/dashboard/Users/clients';
