@@ -122,13 +122,12 @@ class Transaction extends CI_Controller
             ';
                 $statusDecline = "";
             } else {
-                $statusDecline = '<a class="dropdown-item d-flex align-items-center text-danger " href="#">
+                $statusDecline = '<a class="dropdown-item d-flex align-items-center text-danger " href="' . site_url('administrator/transaction/cancellation-transaction?rent_id=') . $r->rent_id . "&user_id=" . $r->user_id . '">
                 <i class=" far fa-times   mr-2 fa-fw "></i> 
                 <span class="">Batalkan</span>
             </a>';
                 $linkInvoice = "";
             }
-
             $row[] = $status;
             $row[] = $konfirmasi;
             $row[] = ' 
@@ -282,8 +281,6 @@ class Transaction extends CI_Controller
     public function checkPayment()
     {
         $rent_id = $this->input->get('rent_id');
-
-
 
         $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
         $payment = $this->M_trans->getTransactionsWithPayment(['rent_id' => $rent_id])->row_array();
@@ -494,10 +491,6 @@ class Transaction extends CI_Controller
     public function sendConfirmationTransaction()
     {
 
-
-
-
-
         $rent_id = $this->input->post('rent_id');
         $user_id = $this->input->post('user_id');
 
@@ -574,5 +567,76 @@ class Transaction extends CI_Controller
         $data['response'] = $res;
 
         echo json_encode($data);
+    }
+
+    public function cancellationTransaction()
+    {
+        $rent_id = $this->input->get('rent_id');
+
+        $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array();
+        $rental = $this->M_trans->getTransactionsWithPayment(['rent_id' => $rent_id])->row_array();
+
+        $data = [
+            'title' => 'Cancellation ' . $rent_id,
+            'user' => $user,
+            'rental' => $rental,
+
+        ];
+
+        $backendTemplates = $this->publicData['backendTemplates'];
+        $viewsDashboardPath = 'backend/dashboard/';
+
+        $data['viewsDashboardPath'] = $viewsDashboardPath;
+
+        $this->load->view($backendTemplates . 'header', $data);
+        $this->load->view($backendTemplates . 'topbar', $data);
+        $this->load->view($backendTemplates . 'sidebar', $data);
+        $this->load->view($viewsDashboardPath . 'trans/v_cancellation', $data); //main content
+        $this->load->view($backendTemplates . 'footer', $data);
+        $this->load->view($viewsDashboardPath . '/plugins/_transaction', $data); //plugins
+        $this->load->view($backendTemplates . 'script', $data);
+        // costum js
+        $this->load->view($viewsDashboardPath . 'trans/js/js_rent', $data);
+        $this->load->view($backendTemplates . 'end', $data);
+    }
+
+    public function sendCancellation()
+    {
+        $rent_id = $this->input->post('rent_id');
+        $order =  $this->M_trans->getTransactionsWithPayment(['rent_id' => $rent_id])->row_array();
+        $inbox_id = getAutoNumber('inbox', 'inbox_id', 'inbox00', 10);
+        $inbox_created_at = time();
+        $inbox_status = 0;
+        $inbox_to = $this->input->post('inbox_to');
+        $inbox_from = $this->input->post('inbox_from');
+
+        $inbox_title = $this->input->post('inbox_title');
+        $inbox_subject = $this->input->post('inbox_subject');
+        $inbox_text = $this->input->post('inbox_text');
+
+        $this->M_public->deleteData(['payment_rental_id' => $rent_id], 'payment_trans');
+        $this->M_public->deleteData(['rent_id' => $rent_id], 'rental_trans');
+
+        $inbox = [
+            'inbox_id' => $inbox_id,
+            'inbox_to' => $inbox_to,
+            'inbox_from' => $inbox_from,
+            'inbox_subject' => $inbox_subject,
+            'inbox_title' => $inbox_title,
+            'inbox_text' => $inbox_text,
+            'inbox_status' => $inbox_status,
+            'inbox_created_at' => $inbox_created_at,
+        ];
+
+
+        $updateStatusCar = [
+            'car_status' => 0
+        ];
+        $this->M_public->updateData(['car_id' => $order['rent_car_id']], 'cars', $updateStatusCar);
+
+        $this->M_public->insertData('inbox', $inbox);
+
+        set_frontflashmessage("success", "DiBatalkan!", "Berhasil membatalkan nomor transaksi " . $rent_id);
+        redirect('administrator/transaction/rent');
     }
 }

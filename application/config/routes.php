@@ -184,6 +184,8 @@ $route['administrators/transaction/confirm-payment'] = 'admin/dashboard/Transact
 $route['administrators/transaction/confirm-payment-decline'] = 'admin/dashboard/Transaction/confirmPaymentDecline';
 $route['administrators/transaction/confirmation-transaction']['GET'] = 'admin/dashboard/Transaction/confirmationTransaction';
 $route['administrators/transaction/send-confirmation-transaction'] = 'admin/dashboard/Transaction/sendConfirmationTransaction';
+$route['administrator/transaction/cancellation-transaction']['GET'] = 'admin/dashboard/Transaction/cancellationTransaction';
+$route['administrator/transaction/send-cancellation'] = 'admin/dashboard/Transaction/sendCancellation';
 
 $route['administrators/transaction/get-free-driver'] = 'admin/dashboard/Transaction/getDriverFree';
 

@@ -20,7 +20,6 @@
                 <div class="row">
                     <div class="col-lg-6 pl-0">
                         <input type="hidden" value="<?= $user['user_id'] ?>" name="user_id">
-
                         <input type="hidden" value="<?= $invoice['rent_id'] ?>" name="rent_id">
                         <input type="hidden" value="<?= $invoice['rent_total'] ?>" name="total_price">
                         <input type="hidden" value="<?= $invoice['rent_driver_price']; ?>" name="driver_price">
@@ -67,30 +66,7 @@
                                 </div>
                                 <!--  -->
                             </div>
-
-                            <!-- <div class="form-group row mt-3">
-                                    <label for="date_end" class="col-sm-4 col-form-label">Bank Tujuan</label>
-
-                                    <div class="col-sm-8">
-                                        <select class="form-control" name="bank" id="select-bank">
-                                            <option disabled="disabled" selected="selected">Pilih Bank</option>
-                                            <?php foreach ($bank as $b) :  ?>
-                                                <option data-no="<?= $b['bank_number'] ?>" data-name="<?= $b['bank_name'] ?>" value="<?= $b['bank_id'] ?>">
-                                                    <?= $b['bank_name']; ?></option>
-                                            <?php endforeach; ?>
-                                        </select>
-
-                                    </div>
-                                </div> -->
-
-
                         </div>
-
-
-
-
-
-
                     </div>
                     <div class="col-lg-5 ml-auto mt-7 ">
                         <div class="card border-0 shadow-sm pt-2">

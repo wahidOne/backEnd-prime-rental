@@ -44,8 +44,6 @@ class User extends CI_Controller
             $this->session->set_flashdata('auth-info', 'Silahkan login terlebih dahulu! untuk mengakses halamannya');
             redirect('autentifikasi/login');
         }
-
-
         $data['title'] = "Profile";
 
         $templatesPath  = $this->public['templates'];

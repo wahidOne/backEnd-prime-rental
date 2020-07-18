@@ -25,7 +25,7 @@
                         </div>
                         <div class="d-flex px-md-4 mt-2 flex-column align-items-center ">
                             <p class=" font-md-20px ">Opps.. pembayaran anda gagal. silahakan ulangi sekali lagi</p>
-                            <a href="<?= base_url('user/7/dashboard/invoice/pembayaran?rentId=') . $payment['rent_id'] ?>" class="btn btn-danger w-75 btn-lg mt-3 mx-auto ">
+                            <a href="<?= base_url('user/ ' . $payment['rent_user_id'] . '/dashboard/invoice/pembayaran?rentId=') . $payment['rent_id'] ?>" class="btn btn-danger w-75 btn-lg mt-3 mx-auto ">
                                 Coba lagi
                             </a>
                         </div>
