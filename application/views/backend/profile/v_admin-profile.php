@@ -192,7 +192,34 @@
                                     <div id="changePw" class="col-12 collapse" aria-labelledby="changePw" data-parent="#collapse-parent">
                                         <span class="display-4 font-weight-bolder text-primary mb-3 
                                         "> Change password </span>
-                                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quibusdam, amet sint soluta dolore commodi beatae veritatis porro. Enim ipsum eaque modi neque nisi error, laboriosam ab totam veritatis dolore est!</p>
+                                        <form action="" method="POST" id="change-password">
+
+                                            <div class="form-group row">
+                                                <label for="current_password" class="col-sm-2 col-md-3 col-form-label">Current Password</label>
+                                                <div class="col-sm-10 col-md-6 ">
+                                                    <input data-post="change-password" type="hidden" class="form-control border-primary text-primary " name="user_id" value="<?= $user['user_id'] ?>">
+                                                    <input data-post="change-password" type="password" class="form-control border-primary text-primary " name="current_password" id="current_password">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="new_password1" class="col-sm-2 col-md-3 col-form-label">New Password</label>
+                                                <div class="col-sm-10 col-md-6 ">
+
+                                                    <input data-post="change-password" type="password" class="form-control border-primary text-primary " name="new_password" id="new_password">
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <label for="repeat_password" class="col-sm-2 col-md-3 col-form-label">Repeat Password</label>
+                                                <div class="col-sm-10 col-md-6 ">
+                                                    <input data-post="change-password" type="password" class="form-control border-primary text-primary " name="repeat_password" id="repeat_password">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+
+                                                <button type="submit" id="submit" class="btn btn-primary">Change</button>
+                                            </div>
+
+                                        </form>
                                     </div>
                                     <!-- end of change password -->
 

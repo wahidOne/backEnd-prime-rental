@@ -65,8 +65,6 @@
         })
     }
 
-    console.log(successMessage);
-
 
     if (successMessage) {
         const dataMessage = successMessage.dataset.message;
@@ -75,4 +73,7 @@
             title: dataMessage
         })
     }
+
+    const mainDomain = `<?= base_url('') ?>`
 </script>
+<script src="<?= base_url('assets/backend/js/_costum/profile/profile.js'); ?>"></script>

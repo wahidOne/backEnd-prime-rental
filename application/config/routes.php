@@ -150,6 +150,7 @@ $route['administrator/master-data/delete-type/(:num)'] = 'admin/dashboard/Master
 //admnistrator profile
 $route['administrator/profile'] = 'admin/profile/Profile/index';
 $route['administrator/profile/update-profile'] = 'admin/profile/Profile/updateProfile';
+$route['administrator/profile/change-password'] = 'admin/profile/Profile/changePassword';
 
 //-->  users <--//
 

@@ -13,6 +13,7 @@ module.exports = {
 		transactions: "./assets/backEnd/Apps/Transactions/Transactions.js",
 		master_data: "./assets/backEnd/Apps/MasterData/MasterData.js",
 		users: "./assets/backEnd/Apps/Users/Users.js",
+		profile: "./assets/backEnd/Apps/Profile/Profile.js",
 	},
 	watch: true,
 	watchOptions: {

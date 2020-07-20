@@ -55,4 +55,52 @@ class Profile extends CI_Controller
         $this->session->set_flashdata('success-profile', 'Profil berhasil diupdate!');
         redirect('administrator/profile');
     }
+
+    public function changePassword()
+    {
+
+        // $current_passwrod = $this->input->post('');
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Headers: *');
+
+        $post_data = json_decode(file_get_contents('php://input'), true);
+
+        foreach ($post_data as $key => $val) {
+            $val = filter_var($val, FILTER_SANITIZE_STRING); // Remove all HTML tags from string
+            $post_data[$key] = $val;
+        }
+
+        $user_id = $post_data['user_id'];
+
+        $user = $this->M_user->getUser(['user_id' => $user_id])->row_array();
+        $current_password = $post_data['current_password'];
+        $new_password = $post_data['new_password'];
+
+        if (!password_verify($current_password, $user['user_password'])) {
+
+            $status = false;
+            $message = "Password Terkini salah";
+        } else {
+            if ($current_password == $new_password) {
+                $status = false;
+                $message = "Password terbaru tidak boleh sama dengan yang lama!";
+            } else {
+                $new_password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
+                $data['password'] = $new_password_hash;
+
+                $this->db->set('user_password', $new_password_hash);
+                $this->db->where('user_email', $user['user_email']);
+                $this->db->update('user');
+
+                $status = true;
+                $message = "Berhasil mengganti password ";
+            }
+        }
+
+        $data['status'] = $status;
+        $data['message'] = $message;
+
+        echo json_encode($data);
+    }
 }
