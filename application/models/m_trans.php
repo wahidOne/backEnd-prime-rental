@@ -104,6 +104,24 @@ class M_trans extends CI_Model
         }
     }
 
+    public function getLastTransactions($limit = null, $order = null)
+    {
+        $this->db->select('rental_trans.*, cars.*, user.*, payment_trans.*, clients.*');
+        $this->db->from('rental_trans');
+        $this->db->join('cars', 'cars.car_id =  rental_trans.rent_car_id');
+        $this->db->join('clients', 'clients.client_user_id =  rental_trans.rent_user_id');
+        $this->db->join('user', 'user.user_id =  rental_trans.rent_user_id');
+        $this->db->join('payment_trans', 'payment_trans.payment_rental_id =  rental_trans.rent_id');
+        $this->db->limit($limit);
+        $this->db->order_by($order, 'DESC');
+        $query = $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query;
+        } else {
+            return false;
+        }
+    }
+
     public function getUserRental($where)
     {
         $this->db->select('rental_trans.*, cars.*, user.user_id, user.user_name');

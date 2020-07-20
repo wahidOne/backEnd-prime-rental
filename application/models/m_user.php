@@ -19,6 +19,24 @@ class M_user extends CI_Model
         return $this->db->get();
     }
 
+    public function getNewUsers($limit = null, $order = null, $where = null)
+    {
+
+        $this->db->select('user.*, user_level.*');
+        $this->db->from('user');
+        $this->db->join('user_level', 'user_level.level_id
+        = user.user_level');
+        $this->db->where($where);
+        $this->db->limit($limit);
+        $this->db->order_by($order, 'DESC');
+        $query = $this->db->get();
+        if ($query->num_rows() != 0) {
+            return $query;
+        } else {
+            return false;
+        }
+    }
+
     public function getAdmin($where = null)
     {
         // return $this->db->get_where('user', $where)->row_array();

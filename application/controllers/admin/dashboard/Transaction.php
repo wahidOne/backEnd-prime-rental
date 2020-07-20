@@ -70,7 +70,6 @@ class Transaction extends CI_Controller
                 $konfirmasi = '<a href="#" class="btn btn-success disabled btn-sm   "  tabindex="-1" role="button" aria-disabled="true" >
                 <i class="fas fa-check-square my-auto "></i>
                 </a>';
-                // status
                 $status = "<span class='badge badge-danger text-white text-capitalize w-100  '>Menunggu Pembayaran</span>";
             } elseif ($r->payment_status == "Expired" && $r->rent_status == "belum selesai" && $r->rent_order_status == "0" && $r->payment_proof == "") {
                 $konfirmasi = '<a href="#" class="btn btn-danger disabled btn-xs "  tabindex="-1" role="button" aria-disabled="true">
@@ -90,10 +89,7 @@ class Transaction extends CI_Controller
                 // status
                 $status = "<span class='badge badge-primary text-dark text-capitalize w-100'>Pembayaran Selesai</span>";
             } elseif ($r->rent_status == "belum selesai" && $r->rent_order_status == 1 && $r->payment_proof !== "" && $r->payment_status == 1) {
-                // $konfirmasi = '
-                // <a href="#" class="btn btn-success btn-sm">
-                //     <i class="fas fa-check-square"></i>
-                // </a>';
+
                 $konfirmasi = '
                 <form target="_blank" action="' . base_url('administrators/transaction/confirmation-transaction') . '" method="GET">
                 <input type="hidden" name="rent_id" value="' . $r->rent_id . '" >

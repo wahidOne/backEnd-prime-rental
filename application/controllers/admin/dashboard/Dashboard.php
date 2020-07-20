@@ -20,10 +20,14 @@ class Dashboard extends CI_Controller
     {
 
 
+        $tenLatest = $this->M_trans->getLastTransactions(10, 'rent_date')->result_array();
+        $new_user = $this->M_user->getNewUsers(5, 'user_created', ['level' => 'user'])->result();
+
         $data = [
             'title' => 'Dashboard',
             'user' => $this->M_user->getUser(['user_email' => $this->session->userdata('primerental')['user_email']])->row_array(),
-            'allUser' => $this->M_user->getGeneralUsers()
+            'new_user' => $new_user,
+            'tenLatestTransactions' => $tenLatest
         ];
 
 

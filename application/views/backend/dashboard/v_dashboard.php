@@ -183,33 +183,46 @@
                                     <th class="pt-0">Batas Waktu</th>
                                     <th class="pt-0">Type</th>
                                     <th class="pt-0">Status</th>
-                                    <th class="pt-0">Actions</th>
+
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>26/04/2020</td>
-                                    <td>Wahidin</td>
-                                    <td>01/01/2020</td>
-                                    <td>26/04/2020</td>
-                                    <td>Supir</td>
-                                    <td><span class="badge badge-danger">Dibatalkan</span></td>
-                                    <td>
-                                        <div class="dropleft">
-                                            <button class="btn p-0" type="button" id="dropdownMenuButton1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                <i class="icon-lg text-muted pb-3px" data-feather="more-horizontal"></i>
-                                            </button>
-                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                                <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="eye" class="icon-sm mr-2"></i> <span class="">View</span></a>
-                                                <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="edit-2" class="icon-sm mr-2"></i> <span class="">Edit</span></a>
-                                                <a class="dropdown-item d-flex align-items-center" href="#"><i data-feather="trash" class="icon-sm mr-2"></i> <span class="">Delete</span></a>
+                                <?php $no = 1; ?>
+                                <?php foreach ($tenLatestTransactions as $t) :  ?>
+                                    <tr>
+                                        <td><?= $no++; ?></td>
+                                        <td><?= date('d/m/Y', strtotime($t['rent_date'])); ?></td>
+                                        <td><?= $t['client_fullname']; ?></td>
+                                        <td><?= date('d/m/Y', strtotime($t['rent_date_start'])); ?></td>
+                                        <td><?= date('d/m/Y', strtotime($t['rent_date_end'])); ?></td>
+                                        <?php if ($t['rent_service'] == 1) : ?>
+                                            <td>Self Driver</td>
+                                        <?php elseif ($t['rent_service'] == 2) : ?>
+                                            <td>With Driver</td>
+                                        <?php elseif ($t['rent_service'] == 3) : ?>
+                                            <td>All in</td>
+                                        <?php endif; ?>
 
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
 
+                                        <?php if ($t['rent_status'] == "belum selesai" && $t['rent_order_status'] == "0" && $t['payment_proof'] == "" && $t['payment_status'] == "0") : ?>
+                                            <!-- jika mengungu bukti pembayaran -->
+                                            <td><span class="badge badge-danger">Menunggu pembayaran</span></td>
+                                        <?php elseif ($t['rent_status'] == "belum selesai" && $t['rent_order_status'] == "0" && $t['payment_proof'] !== "" && $t['payment_status'] == "0") : ?>
+                                            <!-- jika mengungu konfirmasi pembayaran -->
+                                            <td><span class="badge badge-warning">Konfirmasi pembayaran</span></td>
+                                        <?php elseif ($t['rent_status'] == "belum selesai" && $t['rent_order_status'] == "0" && $t['payment_proof'] !== "" && $t['payment_status'] == 1) : ?>
+                                            <!-- jika pembayaran selesai -->
+                                            <td><span class="badge badge-primary">Pembayaran Selesai</span></td>
+                                        <?php elseif ($t['rent_status'] == "belum selesai" && $t['rent_order_status'] == 1 && $t['payment_proof'] !== "" && $t['payment_status'] == 1) : ?>
+
+                                            <td><span class='badge badge-outlineinfo  text-info text-capitalize w-100  '>Menunggu Persetujuan</span></td>
+                                        <?php elseif ($t['rent_status'] == "jalan" && $t['rent_order_status'] == 1 && $t['payment_proof'] !== "" && $t['payment_status'] == 1) : ?>
+                                            <td><span class='badge badge-info text-dark text-capitalize w-100'>Sedan Jalan</span></td>
+                                        <?php endif; ?>
+
+
+                                    </tr>
+                                <?php endforeach; ?>
 
                             </tbody>
                         </table>
@@ -247,7 +260,7 @@
                             <tbody>
 
                                 <?php $no = 1; ?>
-                                <?php foreach ($allUser as $u) : ?>
+                                <?php foreach ($new_user as $u) : ?>
                                     <tr>
                                         <th><?= $no++; ?></th>
                                         <td>
