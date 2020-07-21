@@ -77,9 +77,7 @@
                         <p class="font-12px mb-0 text-dark">Level :</p>
                         <span class="text-secondary text-capitalize  ml-1"> <?= $profile['level'] ?> </span>
                     </div>
-                    <div class="col mt-1">
-                        <p class="font-12px mb-0 text-dark">More :</p><a class="text-secondary ml-1" href="">Ubah Password</a>
-                    </div>
+
 
                 </div>
             </div>

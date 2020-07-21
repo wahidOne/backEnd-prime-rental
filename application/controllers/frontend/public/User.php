@@ -147,6 +147,72 @@ class User extends CI_Controller
         }
     }
 
+    public function changePassword()
+    {
+
+        if ($this->session->userdata('primerental_user') != NULL) {
+            $user = $this->M_user->getUser(['user_email' => $this->session->userdata('primerental_user')['user_email']]);
+            if ($user->num_rows() > 0) {
+                $user = $user->row_array();
+                $userLevel = preg_replace('/\s+/', '', $user['level']);
+
+                if ($userLevel == "superadmin" || $userLevel == "admin") {
+                    redirect('user/' .  $user['user_id'] . '/dashboard/profile');
+                }
+                $data['user'] = $user;
+            } else {
+                $data['user'] = [];
+                $data['profile'] = [];
+            }
+        } else {
+            $this->session->set_flashdata('auth-info', 'Silahkan login terlebih dahulu! untuk mengakses halamannya');
+            redirect('autentifikasi/login');
+        }
+        $data['title'] = "Ubah Password";
+
+        $templatesPath  = $this->public['templates'];
+        $views  = $this->public['pages'];
+
+        $data['componentPath'] = $views . "components/";
+
+        $this->form_validation->set_rules('current_password', 'Password yang lama', 'required|trim');
+        $this->form_validation->set_rules('new_password', 'Password baru', 'required|trim|min_length[3]|matches[repeat_password]');
+        $this->form_validation->set_rules('repeat_password', 'Konfirmasi password baru', 'required|trim|min_length[3]|matches[new_password]');
+
+        if ($this->form_validation->run() == false) {
+            $this->load->view($templatesPath .  "header", $data);
+            $this->load->view($templatesPath .  "sidebar", $data);
+            $this->load->view($templatesPath .  "topbar", $data);
+            $this->load->view($views .  "change-password", $data);
+            $this->load->view($templatesPath .  "end", $data);
+        } else {
+
+            $current_password = $this->input->post('current_password');
+            $user_id = $this->input->post('user_id');
+            $new_password = $this->input->post('new_password');
+            if (!password_verify($current_password, $data['user']['user_password'])) {
+                set_frontflashmessage("error", "Oppss..", "Password lama salah!");
+                redirect('user/' . $user['user_id'] . '/dashboard/profile/change-password');
+            } else {
+                if ($current_password == $new_password) {
+                    set_frontflashmessage("error", "Oppss..", "Password lama dan password baru tidak boleh sama!");
+                    redirect('user/' . $user['user_id'] . '/dashboard/profile/change-password');
+                } else {
+                    // password udah ok
+                    $password_hash = password_hash($new_password, PASSWORD_DEFAULT);
+
+                    $this->db->set('user_password', $password_hash);
+                    $this->db->where('user_id', $user_id);
+                    $this->db->update('user');
+
+
+                    set_frontflashmessage("success", "Berhasil.", "Password berhasil diganti!");
+                    redirect('user/' . $user['user_id'] . '/dashboard/profile/change-password');
+                }
+            }
+        }
+    }
+
     public function transactions()
     {
         if ($this->session->userdata('primerental_user') != NULL) {

@@ -1,9 +1,9 @@
 import Axios from "axios";
 import CheckExpired from "./checkExpired";
 
-import * as HandleAlert from "./_handleAlert";
 import Inbox from "./Inbox";
 import Swal from "sweetalert2";
+import HandleFrontAlert from "./_handleAlert";
 
 class UserTransaction {
 	constructor(mainDomain) {
@@ -28,7 +28,7 @@ class UserTransaction {
 		this.checkStatusPay();
 		this.confirmData();
 
-		HandleAlert.handleAllAlert();
+		new HandleFrontAlert().render()
 
 		if (this.btnCancelOrder) {
 			[...this.btnCancelOrder].map((btn) =>
@@ -47,7 +47,13 @@ class UserTransaction {
 
 				const timer = setInterval(() => {
 					checkExpiredPay.countRemeaning().then((res) => {
-						const { distance, days, hours, minutes, seconds } = res;
+						const {
+							distance,
+							days,
+							hours,
+							minutes,
+							seconds
+						} = res;
 
 						if (this.remainingTime) {
 							if (distance > 0) {
@@ -143,7 +149,10 @@ class UserTransaction {
 			}).then((result) => {
 				if (result.value) {
 					Axios.get(url).then((res) => {
-						const { status, message } = res.data.response;
+						const {
+							status,
+							message
+						} = res.data.response;
 						if (status == true) {
 							Swal.fire({
 								title: "Dibatalkan",

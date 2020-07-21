@@ -78,7 +78,7 @@
                         <span class="text-secondary text-capitalize  ml-1"> <?= $profile['level'] ?> </span>
                     </div>
                     <div class="col mt-1">
-                        <p class="font-12px mb-0 text-dark">More :</p><a class="text-secondary ml-1" href="">Ubah Password</a>
+                        <p class="font-12px mb-0 text-dark">More :</p><a class="text-secondary ml-1" href="<?= base_url('user/' . $profile['user_id'] . '/dashboard/profile/change-password') ?>">Ubah Password</a>
                     </div>
 
                 </div>

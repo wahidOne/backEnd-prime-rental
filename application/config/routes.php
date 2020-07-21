@@ -73,7 +73,9 @@ $route['status-transaksi']['GET'] = 'frontend/public/Transactions/receipt_transa
 
 $route['user/(:any)/dashboard/profile'] = 'frontend/public/User/index';
 $route['user/(:any)/dashboard/profile/update'] = 'frontend/public/User/updateProfile';
+$route['user/(:any)/dashboard/profile/change-password'] = 'frontend/public/User/changePassword';
 $route['profile/upload-gambar'] = 'frontend/public/User/uploadImage';
+
 
 // $route['transaksi'] = 'frontend/public/User/transactions';
 $route['user/(:any)/dashboard/transaksi-saya'] = 'frontend/public/User/transactions';

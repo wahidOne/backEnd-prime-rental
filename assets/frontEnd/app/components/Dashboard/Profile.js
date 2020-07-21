@@ -1,4 +1,7 @@
 import Swal from "sweetalert2";
+import HandleFrontAlert from "./_handleAlert";
+
+
 
 class Profile {
 	constructor() {
@@ -7,6 +10,8 @@ class Profile {
 	}
 
 	render() {
+
+		new HandleFrontAlert().render()
 		this.alert();
 		this.update();
 	}

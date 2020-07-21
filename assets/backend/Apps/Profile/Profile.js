@@ -1,5 +1,9 @@
-import { handleFormInputs } from "../components/POST-backend.service";
-import { handleToast } from "./_handleAlertProfile";
+import {
+	handleFormInputs
+} from "../components/POST-backend.service";
+import {
+	handleToast
+} from "./_handleAlertProfile";
 
 class Profile {
 	constructor(domain) {
@@ -8,7 +12,6 @@ class Profile {
 	}
 
 	render() {
-		console.log(this.domain);
 
 		this.changePassword();
 	}
@@ -79,7 +82,10 @@ class Profile {
 		const resutlPost = this.postDataChangePassword(dataPost, config);
 
 		resutlPost.then((res) => {
-			const { status, message } = res.data;
+			const {
+				status,
+				message
+			} = res.data;
 			if (status == false) {
 				handleToast({
 					position: "bottom-end",
