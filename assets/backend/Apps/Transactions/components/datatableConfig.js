@@ -1,4 +1,5 @@
 const dataTableConfig = (url) => {
+	console.log('ok');
 	$("#table-rent").DataTable({
 		responsive: true,
 		processing: true,
@@ -13,12 +14,10 @@ const dataTableConfig = (url) => {
 			url: url,
 			type: "POST",
 		},
-		columnDefs: [
-			{
-				targets: [-1, 8],
-				orderable: false,
-			},
-		],
+		columnDefs: [{
+			targets: [-1, 7, 8, 9],
+			orderable: false,
+		}, ],
 	});
 	$("#table-rent").each(function () {
 		let datatable = $(this);

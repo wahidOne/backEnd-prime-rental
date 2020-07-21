@@ -130,7 +130,11 @@ class User extends CI_Controller
                 'client_id' => $client_id,
                 'client_fullname' => $this->input->post('fullname'),
                 'client_address' => $this->input->post('alamat'),
-                'client_user_id' => $user_id
+                'client_user_id' => $user_id,
+                'client_ID_num' => 0,
+                'client_IDcard_img' => "",
+                'client_status' => 0,
+                'client_phone' => $this->input->post('no_hp'),
             ];
             $this->M_public->insertData('clients', $dataClient);
             redirect('user/' .  $user_id . '/dashboard/profile');

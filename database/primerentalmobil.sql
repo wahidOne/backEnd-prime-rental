@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.1
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 21 Jul 2020 pada 07.17
--- Versi server: 10.4.11-MariaDB
--- Versi PHP: 7.4.3
+-- Generation Time: Jul 21, 2020 at 10:18 AM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -40,7 +40,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_user_id`, `admin_address`, `admin_phone`, `admin_birth`, `admin_gender`, `admin_created`) VALUES
@@ -56,7 +56,7 @@ INSERT INTO `admin` (`admin_id`, `admin_name`, `admin_user_id`, `admin_address`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `bank`
+-- Table structure for table `bank`
 --
 
 CREATE TABLE `bank` (
@@ -67,7 +67,7 @@ CREATE TABLE `bank` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `bank`
+-- Dumping data for table `bank`
 --
 
 INSERT INTO `bank` (`bank_id`, `bank_name_of`, `bank_name`, `bank_number`) VALUES
@@ -79,7 +79,7 @@ INSERT INTO `bank` (`bank_id`, `bank_name_of`, `bank_name`, `bank_number`) VALUE
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `cars`
+-- Table structure for table `cars`
 --
 
 CREATE TABLE `cars` (
@@ -100,7 +100,7 @@ CREATE TABLE `cars` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `cars`
+-- Dumping data for table `cars`
 --
 
 INSERT INTO `cars` (`car_id`, `car_brand`, `car_type_id`, `car_no_police`, `car_price`, `car_fine`, `car_status`, `car_date_input`, `car_date_update`, `car_fuel`, `car_transmission`, `car_capacity`, `car_desc`, `car_photo`) VALUES
@@ -118,7 +118,7 @@ INSERT INTO `cars` (`car_id`, `car_brand`, `car_type_id`, `car_no_police`, `car_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `car_types`
+-- Table structure for table `car_types`
 --
 
 CREATE TABLE `car_types` (
@@ -127,7 +127,7 @@ CREATE TABLE `car_types` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `car_types`
+-- Dumping data for table `car_types`
 --
 
 INSERT INTO `car_types` (`type_id`, `type_name`) VALUES
@@ -140,7 +140,7 @@ INSERT INTO `car_types` (`type_id`, `type_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `clients`
+-- Table structure for table `clients`
 --
 
 CREATE TABLE `clients` (
@@ -155,7 +155,7 @@ CREATE TABLE `clients` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `clients`
+-- Dumping data for table `clients`
 --
 
 INSERT INTO `clients` (`client_id`, `client_user_id`, `client_fullname`, `client_ID_num`, `client_IDcard_img`, `client_address`, `client_phone`, `client_status`) VALUES
@@ -166,7 +166,7 @@ INSERT INTO `clients` (`client_id`, `client_user_id`, `client_fullname`, `client
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `drivers`
+-- Table structure for table `drivers`
 --
 
 CREATE TABLE `drivers` (
@@ -179,7 +179,7 @@ CREATE TABLE `drivers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `drivers`
+-- Dumping data for table `drivers`
 --
 
 INSERT INTO `drivers` (`driver_id`, `driver_user_id`, `driver_name`, `driver_ID_number`, `driver_phone`, `driver_status`) VALUES
@@ -198,7 +198,7 @@ INSERT INTO `drivers` (`driver_id`, `driver_user_id`, `driver_name`, `driver_ID_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `inbox`
+-- Table structure for table `inbox`
 --
 
 CREATE TABLE `inbox` (
@@ -213,7 +213,7 @@ CREATE TABLE `inbox` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `inbox`
+-- Dumping data for table `inbox`
 --
 
 INSERT INTO `inbox` (`inbox_id`, `inbox_to`, `inbox_from`, `inbox_subject`, `inbox_title`, `inbox_text`, `inbox_created_at`, `inbox_status`) VALUES
@@ -241,7 +241,7 @@ INSERT INTO `inbox` (`inbox_id`, `inbox_to`, `inbox_from`, `inbox_subject`, `inb
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `payment_trans`
+-- Table structure for table `payment_trans`
 --
 
 CREATE TABLE `payment_trans` (
@@ -257,7 +257,7 @@ CREATE TABLE `payment_trans` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `payment_trans`
+-- Dumping data for table `payment_trans`
 --
 
 INSERT INTO `payment_trans` (`payment_id`, `payment_rental_id`, `payment_user_id`, `payment_proof`, `payment_method`, `payment_total`, `payment_status`, `payment_date_confirm`, `payment_date`) VALUES
@@ -268,7 +268,7 @@ INSERT INTO `payment_trans` (`payment_id`, `payment_rental_id`, `payment_user_id
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `rentalcancel_trans`
+-- Table structure for table `rentalcancel_trans`
 --
 
 CREATE TABLE `rentalcancel_trans` (
@@ -282,7 +282,7 @@ CREATE TABLE `rentalcancel_trans` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `rental_trans`
+-- Table structure for table `rental_trans`
 --
 
 CREATE TABLE `rental_trans` (
@@ -307,7 +307,7 @@ CREATE TABLE `rental_trans` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `rental_trans`
+-- Dumping data for table `rental_trans`
 --
 
 INSERT INTO `rental_trans` (`rent_id`, `rent_car_id`, `rent_user_id`, `rent_client_id`, `rent_price`, `rent_fine`, `rent_type`, `rent_service`, `rent_driver_id`, `rent_date`, `rent_date_start`, `rent_date_end`, `rent_return_status`, `rent_status`, `rent_order_status`, `rent_city`, `rent_city_destin`, `rent_pickup_address`) VALUES
@@ -318,7 +318,7 @@ INSERT INTO `rental_trans` (`rent_id`, `rent_car_id`, `rent_user_id`, `rent_clie
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -334,13 +334,13 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`user_id`, `user_name`, `user_email`, `user_password`, `user_level`, `user_status`, `user_is_activation`, `user_photo`, `user_created`) VALUES
 ('user-0001', 'Abhay', 'akbar@gmail.com', '$2y$10$VzIwngxfZxwYluOi2yZ7Ru/47T56rFH/y0aZMNDbBjP5xG0xPdOfy', 1, 'online', 1, 'ava-1592925379.jpg  ', 1586709933),
 ('user-0002', 'primerental', 'primerental@gmail.com', '$2y$10$rfFNCdINdKK.7cAyTSwlxedWpL0JyQXr.behHn2QYYu6zAe/zu5dy', 1, 'online', 1, 'default.png', 1594489201),
-('user-0003', 'unit', 'unit@gmail.com', '$2y$10$o.B6NMDVowdbH.ReAF9svu0H3l45XbHKQGPCgmVve1oCEwyARqVO6', 3, 'online', 1, 'ava-1594783216.jpeg', 1594270429),
+('user-0003', 'unit', 'unit@gmail.com', '$2y$10$vWEpU.uhReXdvzRpfxFTeem6RTG29r8XrSTuCRmcgEDTBAOPZOGrO', 3, 'online', 1, 'ava-1594783216.jpeg', 1594270429),
 ('user-0009', 'driver-004', 'prime.driver004@gmail.com', '$2y$10$63mNOWlNEekEVOuM3f5OCeVin7TZKmkGaE5NPCKtFnLBzg1l9Hi26', 7, 'online', 1, 'default.png', 1594441569),
 ('user-0010', 'driver-005', 'prime.driver005@gmail.com', '$2y$10$O9mflJfh9NZLOCCn0hMTn.4viEYtoPhJyelLMDnoXo0jupPdGQWii', 7, 'online', 1, 'default.png', 1594441608),
 ('user-0011', 'driver-006', 'prime.driver006@gmail.com', '$2y$10$KU.ipY23Yt/RB9ejM4WKGOHYxgLgncHMmDTvWduByBDsmRaj75wye', 7, 'online', 1, 'default.png', 1594441721),
@@ -365,7 +365,7 @@ INSERT INTO `user` (`user_id`, `user_name`, `user_email`, `user_password`, `user
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_access_menu`
+-- Table structure for table `user_access_menu`
 --
 
 CREATE TABLE `user_access_menu` (
@@ -375,7 +375,7 @@ CREATE TABLE `user_access_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user_access_menu`
+-- Dumping data for table `user_access_menu`
 --
 
 INSERT INTO `user_access_menu` (`access_id`, `access_user_level_id`, `access_menu_id`) VALUES
@@ -397,7 +397,7 @@ INSERT INTO `user_access_menu` (`access_id`, `access_user_level_id`, `access_men
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_access_submenu`
+-- Table structure for table `user_access_submenu`
 --
 
 CREATE TABLE `user_access_submenu` (
@@ -407,7 +407,7 @@ CREATE TABLE `user_access_submenu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user_access_submenu`
+-- Dumping data for table `user_access_submenu`
 --
 
 INSERT INTO `user_access_submenu` (`access_id`, `access_user_level_id`, `access_submenu_id`) VALUES
@@ -460,7 +460,7 @@ INSERT INTO `user_access_submenu` (`access_id`, `access_user_level_id`, `access_
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_level`
+-- Table structure for table `user_level`
 --
 
 CREATE TABLE `user_level` (
@@ -469,7 +469,7 @@ CREATE TABLE `user_level` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user_level`
+-- Dumping data for table `user_level`
 --
 
 INSERT INTO `user_level` (`level_id`, `level`) VALUES
@@ -482,7 +482,7 @@ INSERT INTO `user_level` (`level_id`, `level`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_menu`
+-- Table structure for table `user_menu`
 --
 
 CREATE TABLE `user_menu` (
@@ -496,7 +496,7 @@ CREATE TABLE `user_menu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user_menu`
+-- Dumping data for table `user_menu`
 --
 
 INSERT INTO `user_menu` (`menu_id`, `menu_method`, `menu_url`, `menu_uri_segment`, `menu_name`, `menu_icon`, `menu_type_id`) VALUES
@@ -512,7 +512,7 @@ INSERT INTO `user_menu` (`menu_id`, `menu_method`, `menu_url`, `menu_uri_segment
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_menu_type`
+-- Table structure for table `user_menu_type`
 --
 
 CREATE TABLE `user_menu_type` (
@@ -521,7 +521,7 @@ CREATE TABLE `user_menu_type` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user_menu_type`
+-- Dumping data for table `user_menu_type`
 --
 
 INSERT INTO `user_menu_type` (`type_id`, `type_name`) VALUES
@@ -531,7 +531,7 @@ INSERT INTO `user_menu_type` (`type_id`, `type_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_submenu`
+-- Table structure for table `user_submenu`
 --
 
 CREATE TABLE `user_submenu` (
@@ -545,7 +545,7 @@ CREATE TABLE `user_submenu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `user_submenu`
+-- Dumping data for table `user_submenu`
 --
 
 INSERT INTO `user_submenu` (`submenu_id`, `submenu_menu_id`, `submenu_name`, `submenu_method`, `submenu_type_id`, `submenu_icon`, `submenu_active`) VALUES
@@ -566,161 +566,161 @@ INSERT INTO `user_submenu` (`submenu_id`, `submenu_menu_id`, `submenu_name`, `su
 --
 
 --
--- Indeks untuk tabel `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
--- Indeks untuk tabel `bank`
+-- Indexes for table `bank`
 --
 ALTER TABLE `bank`
   ADD PRIMARY KEY (`bank_id`);
 
 --
--- Indeks untuk tabel `cars`
+-- Indexes for table `cars`
 --
 ALTER TABLE `cars`
   ADD PRIMARY KEY (`car_id`);
 
 --
--- Indeks untuk tabel `car_types`
+-- Indexes for table `car_types`
 --
 ALTER TABLE `car_types`
   ADD PRIMARY KEY (`type_id`);
 
 --
--- Indeks untuk tabel `clients`
+-- Indexes for table `clients`
 --
 ALTER TABLE `clients`
   ADD PRIMARY KEY (`client_id`);
 
 --
--- Indeks untuk tabel `drivers`
+-- Indexes for table `drivers`
 --
 ALTER TABLE `drivers`
   ADD PRIMARY KEY (`driver_id`);
 
 --
--- Indeks untuk tabel `inbox`
+-- Indexes for table `inbox`
 --
 ALTER TABLE `inbox`
   ADD PRIMARY KEY (`inbox_id`);
 
 --
--- Indeks untuk tabel `payment_trans`
+-- Indexes for table `payment_trans`
 --
 ALTER TABLE `payment_trans`
   ADD PRIMARY KEY (`payment_id`);
 
 --
--- Indeks untuk tabel `rentalcancel_trans`
+-- Indexes for table `rentalcancel_trans`
 --
 ALTER TABLE `rentalcancel_trans`
   ADD PRIMARY KEY (`rc_id`);
 
 --
--- Indeks untuk tabel `rental_trans`
+-- Indexes for table `rental_trans`
 --
 ALTER TABLE `rental_trans`
   ADD PRIMARY KEY (`rent_id`);
 
 --
--- Indeks untuk tabel `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indeks untuk tabel `user_access_menu`
+-- Indexes for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
   ADD PRIMARY KEY (`access_id`);
 
 --
--- Indeks untuk tabel `user_access_submenu`
+-- Indexes for table `user_access_submenu`
 --
 ALTER TABLE `user_access_submenu`
   ADD PRIMARY KEY (`access_id`);
 
 --
--- Indeks untuk tabel `user_level`
+-- Indexes for table `user_level`
 --
 ALTER TABLE `user_level`
   ADD PRIMARY KEY (`level_id`);
 
 --
--- Indeks untuk tabel `user_menu`
+-- Indexes for table `user_menu`
 --
 ALTER TABLE `user_menu`
   ADD PRIMARY KEY (`menu_id`);
 
 --
--- Indeks untuk tabel `user_menu_type`
+-- Indexes for table `user_menu_type`
 --
 ALTER TABLE `user_menu_type`
   ADD PRIMARY KEY (`type_id`);
 
 --
--- Indeks untuk tabel `user_submenu`
+-- Indexes for table `user_submenu`
 --
 ALTER TABLE `user_submenu`
   ADD PRIMARY KEY (`submenu_id`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `bank`
+-- AUTO_INCREMENT for table `bank`
 --
 ALTER TABLE `bank`
   MODIFY `bank_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT untuk tabel `cars`
+-- AUTO_INCREMENT for table `cars`
 --
 ALTER TABLE `cars`
   MODIFY `car_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `car_types`
+-- AUTO_INCREMENT for table `car_types`
 --
 ALTER TABLE `car_types`
   MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
--- AUTO_INCREMENT untuk tabel `user_access_menu`
+-- AUTO_INCREMENT for table `user_access_menu`
 --
 ALTER TABLE `user_access_menu`
   MODIFY `access_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- AUTO_INCREMENT untuk tabel `user_access_submenu`
+-- AUTO_INCREMENT for table `user_access_submenu`
 --
 ALTER TABLE `user_access_submenu`
   MODIFY `access_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
--- AUTO_INCREMENT untuk tabel `user_level`
+-- AUTO_INCREMENT for table `user_level`
 --
 ALTER TABLE `user_level`
   MODIFY `level_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
--- AUTO_INCREMENT untuk tabel `user_menu`
+-- AUTO_INCREMENT for table `user_menu`
 --
 ALTER TABLE `user_menu`
   MODIFY `menu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT untuk tabel `user_menu_type`
+-- AUTO_INCREMENT for table `user_menu_type`
 --
 ALTER TABLE `user_menu_type`
   MODIFY `type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `user_submenu`
+-- AUTO_INCREMENT for table `user_submenu`
 --
 ALTER TABLE `user_submenu`
   MODIFY `submenu_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;

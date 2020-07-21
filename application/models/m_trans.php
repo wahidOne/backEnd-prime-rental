@@ -4,6 +4,25 @@ defined('BASEPATH') or exit('No direct script access allowed');
 class M_trans extends CI_Model
 {
 
+    public function datatables_rental()
+    {
+        $this->db->select('payment_trans.*, rental_trans.*,  user.*, cars.*, clients.*,');
+        $this->db->from('rental_trans');
+        $this->db->join('cars', 'cars.car_id =  rental_trans.rent_car_id');
+        $this->db->join('user', 'user.user_id =  rental_trans.rent_user_id');
+        $this->db->join('clients', 'clients.client_user_id =  rental_trans.rent_user_id');
+        $this->db->join('payment_trans', 'payment_trans.payment_rental_id =  rental_trans.rent_id');
+        $this->db->order_by('rent_id', 'DESC');
+        $this->db->order_by('rent_date', 'DESC');
+        $column_order_data = [null, 'rent_date', 'rent_id', 'client_fullname', 'car_brand', 'car_price', null, null, null, null];
+        $column_search_data = ['rent_date', 'rent_id', 'client_fullname', 'car_brand', 'car_price'];
+
+        $order_data = ['rent_date' => 'DESC'];
+
+        $this->get_datatables_query_trans($column_search_data, $column_order_data, $order_data);
+    }
+
+
     private function get_datatables_query_trans($column_search, $column_order, $order)
     {
         $i = 0;
@@ -51,23 +70,6 @@ class M_trans extends CI_Model
         return $query->result();
     }
 
-    public function datatables_rental()
-    {
-        $this->db->select('payment_trans.*, rental_trans.*,  user.*, cars.*, clients.*,');
-        $this->db->from('rental_trans');
-        $this->db->join('cars', 'cars.car_id =  rental_trans.rent_car_id');
-        $this->db->join('user', 'user.user_id =  rental_trans.rent_user_id');
-        $this->db->join('clients', 'clients.client_user_id =  rental_trans.rent_user_id');
-        $this->db->join('payment_trans', 'payment_trans.payment_rental_id =  rental_trans.rent_id');
-        $this->db->order_by('rent_id', 'DESC');
-        $this->db->order_by('rent_date', 'DESC');
-        $column_order_data = [null, 'rent_date', 'rent_id', 'user_name', 'car_brand', 'car_price',  'rent_type', null, null];
-        $column_search_data = ['rent_date', 'rent_id', 'user_name', 'car_brand', 'car_price',  null];
-
-        $order_data = ['rent_date' => 'DESC'];
-
-        $this->get_datatables_query_trans($column_search_data, $column_order_data, $order_data);
-    }
 
 
 
